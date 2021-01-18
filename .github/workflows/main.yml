@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Test frontend
-        run: npm test --coverage
+        run: npm test -- --coverage
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
