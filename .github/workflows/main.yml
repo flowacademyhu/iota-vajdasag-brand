@@ -35,17 +35,17 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('frontend/package-lock.json') }}
 
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-coverage-report
-          path: frontend/coverage/lcov-report
-
       - name: Install dependencies
         run: npm ci
 
       - name: Test frontend
         run: npm test --coverage
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: frontend/coverage/lcov-report
 
       - name: Build frontend
         run: npm run build
