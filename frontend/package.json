@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-i18next": "^11.8.5",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -24,7 +25,10 @@
     ]
   },
   "jest": {
-    "coverageReporters": ["text", "lcov"]
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   },
   "browserslist": {
     "production": [
