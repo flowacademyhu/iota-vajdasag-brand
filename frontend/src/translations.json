@@ -1,0 +1,17 @@
+{
+    "en": {
+        "translation": {
+        "Welcome to React": "Hi"
+        }
+    },
+    "sr": {
+        "translation": {
+        "Welcome to React": "Zdravo"
+        }
+    },
+    "hu": {
+        "translation": {
+        "Welcome to React": "Udv"
+        }
+    }
+}
