@@ -1,23 +1,8 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import TranslationsFromJson from "./translations.json";
 
-const resources = {
-  en: {
-    translation: {
-      "Welcome to React": "Hi",
-    },
-  },
-  sr: {
-    translation: {
-      "Welcome to React": "Zdravo",
-    },
-  },
-  hu: {
-    translation: {
-      "Welcome to React": "Udv",
-    },
-  },
-};
+const resources = TranslationsFromJson;
 
 i18n.use(initReactI18next).init({
   resources,
