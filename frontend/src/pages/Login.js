@@ -29,7 +29,6 @@ export default () => {
     })
 
     const handleResponse = response => {
-        console.log("handleSubmit")
         setToken(response.data)
     }
 

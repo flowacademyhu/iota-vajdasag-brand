@@ -3,7 +3,7 @@ import {Field, useField } from "formik";
 
 
 export default ({ label, ...props }) => {
-    const [field, meta, helpers] = useField(props.name);
+    const [field, meta] = useField(props.name);
     const showError = meta.touched && meta.error;
 
     return (
