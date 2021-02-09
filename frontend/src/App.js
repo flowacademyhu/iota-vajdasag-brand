@@ -8,10 +8,10 @@ function App() {
         <Route path="/registration">
           <div>Registration component</div>
         </Route>
-        <Route path="/companyAdmin">
+        <Route path="/company-admin">
           <div>Company</div>
         </Route>
-        <Route path="/superAdmin">
+        <Route path="/super-admin">
           <div>Superadmin</div>
         </Route>
         <Route path="/login">
