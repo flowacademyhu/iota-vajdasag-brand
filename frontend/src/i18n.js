@@ -9,7 +9,10 @@ const resources = {
       "login.title": "Sign In",
       "login.email": "Email",
       "login.password":"Password",
-      "login.buttontext":"Sign in"
+      "login.buttontext":"Sign in",
+      "login.invalidemail":"Bad email",
+      "login.invalidPassword":"The password is min. 6 character",
+      "login.noEmail":"Give email"
 
     }
   },
@@ -18,7 +21,10 @@ const resources = {
       "login.title": "Bejelentkezés",
       "login.email": "Email cím",
       "login.password":"Jelszó",
-      "login.buttontext":"Belépés"
+      "login.buttontext":"Belépés",
+      "login.invalidemail":"Hibás email cím",
+      "login.invalidPassword":"A jelszó minimum 6 karater",
+      "login.noEmail":"Szükséges emailt megadni"
     }
   }
 };
