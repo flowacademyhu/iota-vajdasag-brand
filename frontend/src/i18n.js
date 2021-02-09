@@ -6,12 +6,19 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Welcome to React": "Welcome to React and react-i18next"
+      "login.title": "Sign In",
+      "login.email": "Email",
+      "login.password":"Password",
+      "login.buttontext":"Sign in"
+
     }
   },
-  fr: {
+  hu: {
     translation: {
-      "Welcome to React": "Bienvenue à React et react-i18next"
+      "login.title": "Bejelentkezés",
+      "login.email": "Email cím",
+      "login.password":"Jelszó",
+      "login.buttontext":"Belépés"
     }
   }
 };
