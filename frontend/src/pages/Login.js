@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
@@ -13,13 +13,13 @@ const mock = new MockAdapter(axios)
 mock.onPost("http://localhost:3000/api", { email: "teszt@teszt.com", password: "1234567" })
     .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv")
 
-export default () => {
+const Login = () => {
     const { t, i18n } = useTranslation();
     const [token, setToken] = useState("");
 
     useEffect(() => {
         i18n.changeLanguage("hu")
-    }, [])
+    }, [i18n])
 
     const SignUpSchema = Yup.object().shape({
         email: Yup.string()
@@ -30,6 +30,7 @@ export default () => {
 
     const handleResponse = response => {
         setToken(response.data)
+        console.log(token)
     }
 
 
@@ -67,3 +68,6 @@ export default () => {
         </Formik>
     );
 }
+
+
+export default Login

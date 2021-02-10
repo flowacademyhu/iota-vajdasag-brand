@@ -1,8 +1,8 @@
-import {Field, useField } from "formik";
+import { Field, useField } from "formik";
 
 
 
-export default ({ label, ...props }) => {
+const InputField = ({ label, ...props }) => {
     const [field, meta] = useField(props.name);
     const showError = meta.touched && meta.error;
 
@@ -20,3 +20,5 @@ export default ({ label, ...props }) => {
 
 
 }
+
+export default InputField
