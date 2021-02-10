@@ -62,7 +62,7 @@ const Login = () => {
                     <div className="my-3">
                         <InputField label={t("login.password")} name="password" id="password" placeholder={t("login.password")} type="password"></InputField>
                     </div>
-                    <Button type="submit">{t("login.buttontext")}</Button>
+                    <Button design="btn btn-primary btn-block col-12" type="submit">{t("login.buttontext")}</Button>
                     {!isSignInAccepted ? (
                         <h5 className="text-danger text-center my-3">{errorMessage}</h5>
                     ) : (<></>)}
