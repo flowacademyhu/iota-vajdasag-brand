@@ -10,16 +10,15 @@ function App() {
           <div>Registration component</div>
         </Route>
         <Route path="/company-admin">
-          <div>Company</div>
+          <Menu />
+          <div id="page-content-wrapper">Company</div>
         </Route>
         <Route path="/super-admin">
+        <Menu />          
           <div>Superadmin</div>
         </Route>
         <Route path="/login">
           <div>Login</div>
-        </Route>
-        <Route path="/menu">
-          <Menu/>
         </Route>
       </Switch>
     </Router>

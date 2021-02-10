@@ -1,51 +1,43 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const items = ["menu.users", "menu.products", "menu.events", "menu.logout"];
+const menuItems = [
+  {
+    path: "users",
+    title: "menu.users"
+  },
+  {
+    path: "products",
+    title: "menu.products"
+  },
+  {
+    path: "events",
+    title: "menu.events"
+  },
+  {
+    path: "logout",
+    title: "menu.logout"
+  }
+];
 
 export default function Menu() {
-    return (
-      <div className="d-flex" id="wrapper">
-        <div className="bg-light border-right" id="sidebar-wrapper">
-          <div className="list-group list-group-flush">
-            <div key={items[0]} className="nav-item">
+  return (
+    <div class="d-flex" id="wrapper">
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div className="list-group list-group-flush">
+          {menuItems.map((item, index) => (
+            <div key={index} className="nav-item">
               <NavLink
                 activeClassName="active"
                 className="nav-link"
-                to={`/users`}
+                to={`/${item.path}`}
               >
-                {items[0]}
+                {item.title}
               </NavLink>
             </div>
-            <div key={items[1]} className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to={`/products`}
-              >
-                {items[1]}
-              </NavLink>
-            </div>
-            <div key={items[2]} className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to={`/events`}
-              >
-                {items[2]}
-              </NavLink>
-            </div>
-            <div key={items[3]} className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to={`/logout`}
-              >
-                {items[3]}
-              </NavLink>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
