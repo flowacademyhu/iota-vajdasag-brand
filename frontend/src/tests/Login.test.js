@@ -3,9 +3,9 @@ import App from "../App";
 
 test('renders login form correctly', () => {
     render(<App />);
-    const titleElement = screen.getByText(/Bejelentkezés/i);
-    const emailInput = screen.getByLabelText("Email cím")
-    const passwordInput=screen.getByLabelText("Jelszó")
+    const titleElement = screen.getByText("Sign In");
+    const emailInput = screen.getByLabelText("Email")
+    const passwordInput=screen.getByLabelText("Password")
     
     expect(titleElement).toBeInTheDocument();
     expect(emailInput).toBeInTheDocument();

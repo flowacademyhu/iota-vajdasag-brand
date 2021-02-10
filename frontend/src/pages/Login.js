@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import { useTranslation } from 'react-i18next';
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
 import * as Yup from 'yup';
 
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
+import { loginMock } from "../communications/mockForUserApi";
 
-const mock = new MockAdapter(axios)
 
-mock.onPost("http://localhost:3000/api", { email: "teszt@teszt.com", password: "1234567" })
-    .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv")
-
+loginMock();
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().shape({
     email: Yup.string()
@@ -23,7 +19,7 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
 }))
 
 const Login = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [token, setToken] = useState("");
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
@@ -43,8 +39,8 @@ const Login = () => {
             setIsSignInAccepted(true)
         } catch (error) {
             setIsSignInAccepted(false)
-            if (error.response.status == 404) setErrorMessage(t("login.connectionProblems"))
-            else if (error.response.status == 400) setErrorMessage(t("login.invalidData"))
+            if (error.response.status === 404) setErrorMessage(t("login.connectionProblems"))
+            else if (error.response.status === 400) setErrorMessage(t("login.invalidData"))
         }
     }
 
