@@ -1,17 +1,17 @@
 {
     "en": {
         "translation": {
-        "Welcome to React": "Hi"
+        "text": "Hi"
         }
     },
     "sr": {
         "translation": {
-        "Welcome to React": "Zdravo"
+        "text": "Zdravo"
         }
     },
     "hu": {
         "translation": {
-        "Welcome to React": "Udv"
+        "text": "Udv"
         }
     }
 }
