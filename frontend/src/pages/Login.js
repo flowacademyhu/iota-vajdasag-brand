@@ -17,10 +17,6 @@ const Login = () => {
     const { t, i18n } = useTranslation();
     const [token, setToken] = useState("");
 
-    useEffect(() => {
-        i18n.changeLanguage("hu")
-    }, [i18n])
-
     const SignUpSchema = Yup.object().shape({
         email: Yup.string()
             .email(t("login.invalidemail"))
