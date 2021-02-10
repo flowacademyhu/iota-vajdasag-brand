@@ -12,16 +12,29 @@ export default function Registration() {
   const { t, i18n } = useTranslation();
   i18n.changeLanguage("en");
 
-  let SignUpSchema = Yup.object().shape({
-    name: Yup.string().required(t("registration.nameRequired")),
+  let validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required(t("registration.nameRequired")),
     email: Yup.string()
       .email(t("registration.invalidemail"))
       .required("Kötelező emailt megadni"),
-      
-    password: Yup.string().min(6, "hibás email"),
-    taxNumber: Yup.string().required().min(),
-    address: Yup.string().required()
+    password: Yup.string()
+    // .matches(
+    //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+    //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    // ),
+  
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*\_\-+()[\]{}></|"'.,:;]{8,}$/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number"),
+    passwordConfirmation: Yup.string().oneOf([Yup.ref("password"), null], t("registration.passwordMatch")),
+    taxNumber: Yup.string().required(),
+    address: Yup.string().required(),
   });
+
+//   legalább 8 karakter;
+// legalább egy nagybetű és egy kisbetű; (?=.*[A-Za-z])
+// legalább egy szám;
+// szóközt nem tartalmazhat;
+// érvényes egyéb karakterek:~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \ | " ' . , : ;
 
   return (
     <div>
@@ -34,13 +47,7 @@ export default function Registration() {
           address: "",
           taxNumber: "",
         }}
-        validationSchema={SignUpSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+     
       >
         <Form>
           <div>
@@ -71,10 +78,10 @@ export default function Registration() {
             ></Field>
           </div>
           <div>
-            <label htmlFor="password">{t("registration.password")}</label>
+            <label htmlFor="passwordConfirmation">{t("registration.passwordConfirmation")}</label>
             <Field
-              name="password"
-              placeholder={t("registration.passwordAgain")}
+              name="passwordConfirmation"
+              placeholder={t("registration.passwordConfirmation")}
               type="password"
               value={password}
             ></Field>
@@ -125,7 +132,7 @@ export default function Registration() {
           <Button type="submit">{t("login.buttontext")}</Button>
         </Form>
       </Formik>
-
+      <hr></hr>
     </div>
   );
 }

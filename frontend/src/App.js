@@ -8,7 +8,7 @@ function App() {
       <Switch>
         <Route path="/components/Registration">
           <div>
-            <Registration/>
+            <Registration />
           </div>
         </Route>
         <Route path="/company-admin">
