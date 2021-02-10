@@ -98,7 +98,7 @@ export default function Registration() {
                       {t("registration.taxNumber")}
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       placeholder={t("registration.taxNumber")}
                       {...field}
                     />
@@ -125,7 +125,7 @@ export default function Registration() {
           <Button type="submit">{t("login.buttontext")}</Button>
         </Form>
       </Formik>
-      
+
     </div>
   );
 }
