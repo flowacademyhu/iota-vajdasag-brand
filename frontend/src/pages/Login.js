@@ -7,11 +7,12 @@ import * as Yup from 'yup';
 
 import Button from "../components/Button";
 import InputField from "../components/InputField";
+import { login } from "../communications/userApi";
 
 const mock = new MockAdapter(axios)
 
-//mock.onPost("http://localhost:3000/api", { email: "teszt@teszt.com", password: "1234567" })
-    //.reply(400, "84848fhgvripuerh98r4gu9hg4ru9hrv")
+mock.onPost("http://localhost:3000/api", { email: "teszt@teszt.com", password: "1234567" })
+    .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv")
 
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().shape({
@@ -37,13 +38,13 @@ const Login = () => {
     async function handleSubmit(value) {
         console.log("submitting: ", value)
         try {
-            const response = await axios.post("http://localhost:3000/api", value);
+            const response = await login(value)
             handleResponse(response)
             setIsSignInAccepted(true)
         } catch (error) {
             setIsSignInAccepted(false)
-            if(error.response.status == 404)setErrorMessage(t("login.connectionProblems"))
-            else if(error.response.status == 400)setErrorMessage(t("login.invalidData"))
+            if (error.response.status == 404) setErrorMessage(t("login.connectionProblems"))
+            else if (error.response.status == 400) setErrorMessage(t("login.invalidData"))
         }
     }
 
@@ -66,9 +67,9 @@ const Login = () => {
                         <InputField label={t("login.password")} name="password" id="password" placeholder={t("login.password")} type="password"></InputField>
                     </div>
                     <Button type="submit">{t("login.buttontext")}</Button>
-                    {!isSignInAccepted?(
+                    {!isSignInAccepted ? (
                         <h5 className="text-danger text-center my-3">{errorMessage}</h5>
-                    ):(<></>)}
+                    ) : (<></>)}
                 </div>
             </Form>
         </Formik>
