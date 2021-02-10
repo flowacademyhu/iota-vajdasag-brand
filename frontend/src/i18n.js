@@ -6,13 +6,14 @@ import sr from "./i18n/sr.json";
 
 const resources = { en, hu, sr };
 
+Object.keys(resources)
+  .forEach(key => resources[key] = { translation: resources[key] })
+
 i18n.use(initReactI18next).init({
   resources,
   lng: "en",
 
   keySeparator: ".",
-  defaultNS: "",
-  ns: "",
 
   interpolation: {
     escapeValue: false,
