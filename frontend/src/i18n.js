@@ -7,19 +7,22 @@ const resources = {
   en: {
     translation: {
       "registration.title": "Registration",
-      "registration.fullName" : "Name",
-      "registration.privatePerson" : "Magánszemély",
-      "registration.legalPerson" : "Jogi személy",
-      "registration.taxNumber" : "Tax number",
-      "registration.password" : "Password",
-      "registration.email" : "Email"
-    }
+      "registration.fullName": "Name",
+      "registration.privatePerson": "Magánszemély",
+      "registration.legalPerson": "Jogi személy",
+      "registration.taxNumber": "Tax number",
+      "registration.password": "Password",
+      "registration.email": "Email",
+      "registration.buttontext": "Registration",
+      "registration.alreadyRegistered": "Already registered?",
+      "registration.aszf": "I understood everything...",
+    },
   },
   fr: {
     translation: {
-      "Welcome to React": "Bienvenue à React et react-i18next"
-    }
-  }
+      "Welcome to React": "Bienvenue à React et react-i18next",
+    },
+  },
 };
 
 i18n
@@ -31,8 +34,8 @@ i18n
     keySeparator: false, // we do not use keys in form messages.welcome
 
     interpolation: {
-      escapeValue: false // react already safes from xss
-    }
+      escapeValue: false, // react already safes from xss
+    },
   });
 
-  export default i18n;
+export default i18n;

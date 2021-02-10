@@ -1,40 +1,51 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
+import axios from "axios";
+import Button from "../components/Button";
 
 export default function Registration() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [taxNumber, setTaxNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [token, setToken] = useState("");
   const { t, i18n } = useTranslation();
   i18n.changeLanguage("en");
 
-  let validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .required(t("registration.nameRequired")),
+  let SignUpSchema = Yup.object().shape({
+    name: Yup.string().required(t("registration.nameRequired")),
     email: Yup.string()
       .email(t("registration.invalidemail"))
       .required("Kötelező emailt megadni"),
-    password: Yup.string()
-    // .matches(
-    //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-    //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-    // ),
-  
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*\_\-+()[\]{}></|"'.,:;]{8,}$/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number"),
-    passwordConfirmation: Yup.string().oneOf([Yup.ref("password"), null], t("registration.passwordMatch")),
+    password: Yup.string().matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*_\-+()[\]{}></|"'.,:;]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number"
+    ),
+    passwordConfirmation: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      t("registration.passwordMatch")
+    ),
     taxNumber: Yup.string().required(),
     address: Yup.string().required(),
   });
 
-//   legalább 8 karakter;
-// legalább egy nagybetű és egy kisbetű; (?=.*[A-Za-z])
-// legalább egy szám;
-// szóközt nem tartalmazhat;
-// érvényes egyéb karakterek:~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \ | " ' . , : ;
+  const handleResponse = (response) => {
+    setToken(response.data);
+    console.log(token);
+  };
+  async function handleSubmit(value) {
+    console.log("submitting: ", value);
+    try {
+      const response = await axios.post("http://localhost:3000/api", value);
+      handleResponse(response);
+    } catch (err) {
+      handleResponse(err);
+    }
+  }
+
+  let history = useHistory();
+  const redirect = () => {
+    history.push("../pages/login");
+  };
 
   return (
     <div>
@@ -47,7 +58,8 @@ export default function Registration() {
           address: "",
           taxNumber: "",
         }}
-     
+        onSubmit={handleSubmit}
+        validationSchema={SignUpSchema}
       >
         <Form>
           <div>
@@ -56,7 +68,6 @@ export default function Registration() {
               name="name"
               placeholder={t("registration.fullName")}
               type="text"
-              value={name}
             ></Field>
           </div>
           <div>
@@ -65,7 +76,6 @@ export default function Registration() {
               name="email"
               placeholder={t("registration.email")}
               type="email"
-              value={email}
             ></Field>
           </div>
           <div>
@@ -74,16 +84,16 @@ export default function Registration() {
               name="password"
               placeholder={t("registration.password")}
               type="password"
-              value={password}
             ></Field>
           </div>
           <div>
-            <label htmlFor="passwordConfirmation">{t("registration.passwordConfirmation")}</label>
+            <label htmlFor="passwordConfirmation">
+              {t("registration.passwordConfirmation")}
+            </label>
             <Field
               name="passwordConfirmation"
               placeholder={t("registration.passwordConfirmation")}
               type="password"
-              value={password}
             ></Field>
           </div>
           <div>
@@ -120,7 +130,6 @@ export default function Registration() {
               name="address"
               placeholder={t("registration.address")}
               type="text"
-              values={address}
             ></Field>
           </div>
           <div>
@@ -129,10 +138,17 @@ export default function Registration() {
               {t("registration.aszf")}
             </label>
           </div>
-          <Button type="submit">{t("login.buttontext")}</Button>
+          <div>
+            <Button type="submit">{t("registration.buttontext")}</Button>
+          </div>
         </Form>
       </Formik>
       <hr></hr>
+      <div>
+        <Button type="button" onClick={redirect}>
+          {t("registration.alreadyRegistered")}
+        </Button>
+      </div>
     </div>
   );
 }
