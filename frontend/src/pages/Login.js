@@ -56,10 +56,10 @@ export default () => {
                 <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
                     <h3 className="text-center">{t("login.title")}</h3>
                     <div className="my-3">
-                        <InputField label={t("login.email")} name="email" placeholder={t("login.email")} type="email"></InputField>
+                        <InputField label={t("login.email")} name="email" id="email" placeholder={t("login.email")} type="email"></InputField>
                     </div>
                     <div className="my-3">
-                        <InputField label={t("login.password")} name="password" placeholder={t("login.password")} type="password"></InputField>
+                        <InputField label={t("login.password")} name="password" id="password" placeholder={t("login.password")} type="password"></InputField>
                     </div>
                     <Button type="submit">{t("login.buttontext")}</Button>
                 </div>
