@@ -1,12 +1,15 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Registration from "./components/Registration";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/registration">
-          <div>Registration component</div>
+        <Route path="/components/Registration">
+          <div>
+            <Registration/>
+          </div>
         </Route>
         <Route path="/company-admin">
           <div>Company</div>

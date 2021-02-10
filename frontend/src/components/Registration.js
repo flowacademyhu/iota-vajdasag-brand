@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
+import * as Yup from "yup";
 
 export default function Registration() {
   const [name, setName] = useState("");
@@ -11,22 +12,29 @@ export default function Registration() {
   const { t, i18n } = useTranslation();
   i18n.changeLanguage("en");
 
+  let SignUpSchema = Yup.object().shape({
+    name: Yup.string().required(t("registration.nameRequired")),
+    email: Yup.string()
+      .email(t("registration.invalidemail"))
+      .required("Kötelező emailt megadni"),
+      
+    password: Yup.string().min(6, "hibás email"),
+    taxNumber: Yup.string().required().min(),
+    address: Yup.string().required()
+  });
+
   return (
     <div>
       <h1>{t("registration.title")}</h1>
       <Formik
-        initialValues={{ name: "", email: "", password: "" }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-          return errors;
+        initialValues={{
+          name: "",
+          email: "",
+          password: "",
+          address: "",
+          taxNumber: "",
         }}
+        validationSchema={SignUpSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -114,8 +122,10 @@ export default function Registration() {
               {t("registration.aszf")}
             </label>
           </div>
+          <Button type="submit">{t("login.buttontext")}</Button>
         </Form>
       </Formik>
+      
     </div>
   );
 }
