@@ -16,6 +16,7 @@ const resources = {
       "registration.buttontext": "Registration",
       "registration.alreadyRegistered": "Already registered?",
       "registration.aszf": "I understood everything...",
+      "registration.address": "Address",
     },
   },
   fr: {
