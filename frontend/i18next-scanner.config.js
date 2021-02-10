@@ -27,8 +27,6 @@ module.exports = {
     },
     lngs: ["en", "hu", "sr"],
     defaultLng: "en",
-    defaultNs: "translation",
-    ns: ["translation"],
     defaultValue: function (lng, ns, key) {
       return key;
     },
