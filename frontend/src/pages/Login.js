@@ -13,16 +13,18 @@ const mock = new MockAdapter(axios)
 mock.onPost("http://localhost:3000/api", { email: "teszt@teszt.com", password: "1234567" })
     .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv")
 
+
+const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().shape({
+    email: Yup.string()
+        .email(invalidEmail)
+        .required(noEmail),
+    password: Yup.string().min(6, invalidPassword)
+}))
+
 const Login = () => {
     const { t, i18n } = useTranslation();
     const [token, setToken] = useState("");
 
-    const SignUpSchema = Yup.object().shape({
-        email: Yup.string()
-            .email(t("login.invalidemail"))
-            .required(t("login.noEmail")),
-        password: Yup.string().min(6, t("login.invalidPassword"))
-    })
 
     const handleResponse = response => {
         setToken(response.data)
@@ -47,7 +49,7 @@ const Login = () => {
                 password: ""
             }}
             onSubmit={handleSubmit}
-            validationSchema={SignUpSchema}
+            validationSchema={SignUpSchema(t("login.invalidemail"), t("login.noEmail"), t("login.invalidPassword"))}
         >
             <Form>
                 <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
