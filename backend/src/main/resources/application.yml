@@ -14,13 +14,11 @@ spring:
   h2:
     console:
       enabled: true
-
-  keycloak:
-        realm: VajdasagBrand
-        auth-server-url: http://localhost:8180/auth
-        ssl-required: external
-        resource: vajdasagClient
-        credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
-        use-resource-role-mappings: true
-        bearer-only: true
-
+keycloak:
+  realm: VajdasagBrand
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: VajdasagClient
+  credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
+  use-resource-role-mappings: true
+  bearer-only: true
