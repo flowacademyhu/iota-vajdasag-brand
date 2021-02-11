@@ -21,7 +21,7 @@ keycloakBackendClient:
   client-id: admin-cli
   adminusername: masterAdmin
   adminpassword: 1234567
-  user-role: realmadmin
+  user-role: realmuser
 
 keycloak:
   realm: VajdasagBrand

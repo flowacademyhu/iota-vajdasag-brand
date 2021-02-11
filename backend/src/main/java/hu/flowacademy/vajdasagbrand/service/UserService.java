@@ -47,7 +47,7 @@ public class UserService {
         }
         user.setLocalDateTime(LocalDateTime.now());
         User result = userRepository.save(user);
-        log.debug("The result is : {}", result);
+        log.info("The result is : {}", result);
         return result;
     }
 }

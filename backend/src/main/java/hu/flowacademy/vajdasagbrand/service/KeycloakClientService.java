@@ -43,7 +43,7 @@ public class KeycloakClientService {
         UserRepresentation user = new UserRepresentation();
         user.setUsername(email);
         user.setCredentials(List.of(credential));
-        user.setEnabled(true);
+        user.setEnabled(false);
         user.setEmail(email);
         return user;
     }
