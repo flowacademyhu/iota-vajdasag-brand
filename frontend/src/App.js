@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/components/Registration">
+        <Route path="/registration">
           <div>
             <Registration />
           </div>

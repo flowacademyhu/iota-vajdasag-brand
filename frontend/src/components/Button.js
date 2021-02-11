@@ -1,7 +1,11 @@
 import React from "react";
 
 const Button = ({ type, children, onClick }) => (
-  <button className="btn btn-primary btn-block col-12" type={type}>
+  <button
+    onClick={onClick}
+    className="btn btn-primary btn-block col-12"
+    type={type}
+  >
     {children}
   </button>
 );

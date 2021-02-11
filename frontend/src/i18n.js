@@ -17,6 +17,7 @@ const resources = {
       "registration.alreadyRegistered": "Already registered?",
       "registration.aszf": "I understood everything...",
       "registration.address": "Address",
+      "registration.invalidemail": "Invalid email",
     },
   },
   fr: {
