@@ -158,16 +158,18 @@ export default function Registration() {
                   type="text"
                 ></InputField>
               </div>
-              <a href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf">
-                {t("registration.adatkezelesi")}
-              </a>
-              <a href="https://jusoft.hu/docs/ASZF_adatfeldolgozoi_tevekenyseghez.pdf">
-                {t("registration.aszf")}
-              </a>
-              <div className="form-check">
-                <label className="form-check-label" htmlFor="acceptedTerms">
+              <div>
+                <a href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf">
+                  {t("registration.adatkezelesi")}
+                </a>
+              </div>
+              <div>
+                <a href="https://jusoft.hu/docs/ASZF_adatfeldolgozoi_tevekenyseghez.pdf">
                   {t("registration.aszf")}
-                </label>
+                </a>
+              </div>
+              <div className="form-check">
+               
                 <Field
                   className={`form-check-input ${
                     errors.acceptedTerms && touched.acceptedTerms
@@ -178,12 +180,19 @@ export default function Registration() {
                   name="acceptedTerms"
                   id="acceptedTerms"
                 />
+                 <label className="form-check-label" htmlFor="acceptedTerms">
+                  {t("registration.aszf")}
+                </label>
                 {errors.acceptedTerms && touched.acceptedTerms ? (
                   <div className="invalid-feedback">{errors.acceptedTerms}</div>
                 ) : null}
               </div>
               <div>
-                <Button type="submit" onClick={() => setModalShow(true)}>
+                <Button
+                  className="btn btn-primary btn-block col-12"
+                  type="submit"
+                  onClick={() => setModalShow(true)}
+                >
                   {t("registration.buttontext")}
                 </Button>
                 {!isSignUpAccepted ? (
@@ -214,7 +223,11 @@ export default function Registration() {
       </div>
 
       <div>
-        <Button type="button" onClick={redirect}>
+        <Button
+          className="btn btn-primary btn-block col-12"
+          type="button"
+          onClick={redirect}
+        >
           {t("registration.login")}
         </Button>
       </div>

@@ -33,8 +33,9 @@ const resources = {
 };
 const resources = { en, hu, sr };
 
-Object.keys(resources)
-  .forEach(key => resources[key] = { translation: resources[key] })
+Object.keys(resources).forEach(
+  (key) => (resources[key] = { translation: resources[key] })
+);
 
 i18n.use(initReactI18next).init({
   resources,
