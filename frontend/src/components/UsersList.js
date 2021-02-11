@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ListElement from "./listofusers/ListElement";
 import { useTranslation } from "react-i18next";
 import useUsers from "./useUsers";

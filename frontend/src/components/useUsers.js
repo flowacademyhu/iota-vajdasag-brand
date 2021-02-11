@@ -6,16 +6,11 @@ const useUsers = () => {
   const [error, setError] = useState();
 
   const fetchUsers = () => {
-    getUsers(setUsers);
+    getUsers(setUsers, setError);
   };
 
   useEffect(() => {
-    try {
-      fetchUsers();
-    } catch (e) {
-      setError(e);
-      console.log(error.response.status);
-    }
+    fetchUsers();
   }, []);
 
   return { users, fetchUsers };
