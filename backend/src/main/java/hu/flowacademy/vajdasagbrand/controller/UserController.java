@@ -22,8 +22,8 @@ public class UserController {
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     @PermitAll
-    public void userRegistration (@RequestBody User user) throws ValidationException {
-        userService.userRegistrationData(user);
+    public User userRegistration (@RequestBody User user) throws ValidationException {
+       return userService.userRegistrationData(user);
     }
 
 }
