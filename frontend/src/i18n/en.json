@@ -10,6 +10,21 @@
     "password": "Password",
     "title": "Sign in"
   },
-  "registration": "registration",
-  "text": "text"
+
+  "registration": {
+    "title": "Registration",
+    "fullName": "Name",
+    "privatePerson": "Magánszemély",
+    "legalPerson": "Jogi személy",
+    "taxNumber": "Tax number",
+    "password": "Password",
+    "passwordConfirmation": "Confirm password",
+    "email": "Email",
+    "buttontext": "Registration",
+    "alreadyRegistered": "Already registered?",
+    "agreement": "I understood and agree with the terms and conditions",
+    "address": "Address",
+    "invalidemail": "Invalid email",
+    "login": "Login"
+  }
 }

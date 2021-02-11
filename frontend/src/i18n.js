@@ -6,31 +6,6 @@ import sr from "./i18n/sr.json";
 
 // the translations
 // (tip move them in a JSON file and import them)
-const resources = {
-  en: {
-    translation: {
-      "registration.title": "Registration",
-      "registration.fullName": "Name",
-      "registration.privatePerson": "Magánszemély",
-      "registration.legalPerson": "Jogi személy",
-      "registration.taxNumber": "Tax number",
-      "registration.password": "Password",
-      "registration.passwordConfirmation": "Confirm password",
-      "registration.email": "Email",
-      "registration.buttontext": "Registration",
-      "registration.alreadyRegistered": "Already registered?",
-      "registration.agreement": "I understood and agree with the terms and conditions",
-      "registration.address": "Address",
-      "registration.invalidemail": "Invalid email",
-      "registration.login": "Login",
-    },
-  },
-  fr: {
-    translation: {
-      "Welcome to React": "Bienvenue à React et react-i18next",
-    },
-  },
-};
 const resources = { en, hu, sr };
 
 Object.keys(resources).forEach(

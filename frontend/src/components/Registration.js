@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
+import SwitchLanguage from "../components/SwitchLanguage";
 import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
@@ -67,6 +68,7 @@ export default function Registration() {
 
   return (
     <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
+      <SwitchLanguage />
       <Formik
         initialValues={{
           name: "",
@@ -169,7 +171,6 @@ export default function Registration() {
                 </a>
               </div>
               <div className="form-check">
-               
                 <Field
                   className={`form-check-input ${
                     errors.acceptedTerms && touched.acceptedTerms
@@ -180,8 +181,8 @@ export default function Registration() {
                   name="acceptedTerms"
                   id="acceptedTerms"
                 />
-                 <label className="form-check-label" htmlFor="acceptedTerms">
-                  {t("registration.aszf")}
+                <label className="form-check-label" htmlFor="acceptedTerms">
+                  {t("registration.agreement")}
                 </label>
                 {errors.acceptedTerms && touched.acceptedTerms ? (
                   <div className="invalid-feedback">{errors.acceptedTerms}</div>
