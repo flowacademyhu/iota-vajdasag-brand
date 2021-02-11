@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListElement from "./listofusers/ListElement";
 import { fetchUsersWithApi } from "../communications/userApi";
-import { fetchMockUsersForListing } from "../communications/mockForUserApi";
 import { useTranslation } from "react-i18next";
-
-fetchMockUsersForListing();
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
