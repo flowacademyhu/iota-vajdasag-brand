@@ -6,12 +6,14 @@ import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";
+import PopUpModal from "../components/PopUpModal";
 
 export default function Registration() {
   const [token, setToken] = useState("");
   const { t } = useTranslation();
   const [isSignUpAccepted, setIsSignUpAccepted] = useState();
   const [errorMessage, setErrorMessage] = useState();
+  const [modalShow, setModalShow] = React.useState(false);
 
   const schema = Yup.object().shape({
     name: Yup.string().required(t("registration.nameRequired")),
@@ -23,13 +25,18 @@ export default function Registration() {
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*_\-+()[\]{}></|"'.,:;]{8,}$/,
         `Must Contain 8 Characters, One Uppercase, One Lowercase, One Number. 
-        Optional special characters are: !?@#$%^&*_-+()[]{}></|\"'.,:; `
+        Optional special characters are: !?@#$%^&*_-+()[]{}></|"'.,:; `
       ),
     passwordConfirmation: Yup.string().oneOf(
       [Yup.ref("password")],
       t("registration.passwordMatch")
     ),
-    taxNumber: Yup.string().required("Required"),
+    entity: Yup.string(),
+    taxNumber: Yup.string().when("entity", {
+      is: "legalPerson",
+      then: Yup.string().required("Required"),
+      otherwise: Yup.string(),
+    }),
     address: Yup.string().required("Required"),
     acceptedTerms: Yup.boolean()
       .required("Required")
@@ -41,8 +48,9 @@ export default function Registration() {
     console.log(token);
   };
 
-  async function handleSubmit(value) {
+  const handleSubmit = async (value) => {
     console.log("submitting: ", value);
+    let errorMessage = "";
     try {
       const response = await signUp(value);
       handleResponse(response);
@@ -50,11 +58,11 @@ export default function Registration() {
     } catch (error) {
       setIsSignUpAccepted(false);
       if (error.response.status === 404)
-        setErrorMessage(t("registration.connectionProblems"));
+        errorMessage = t("registration.connectionProblems");
       else if (error.response.status === 400)
-        setErrorMessage(t("registration.invalidData"));
+        errorMessage = t("registration.invalidData");
     }
-  }
+  };
 
   let history = useHistory();
   const redirect = () => {
@@ -154,20 +162,44 @@ export default function Registration() {
                   type="text"
                 ></InputField>
               </div>
-              <div className="my-3">
-                <label>
-                  <Field type="checkbox" name="acceptedTerms" />
+              <div className="form-check">
+                <label className="form-check-label" htmlFor="acceptedTerms">
                   {t("registration.aszf")}
                 </label>
+                <Field
+                  className={`form-check-input ${
+                    errors.acceptedTerms && touched.acceptedTerms
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  type="checkbox"
+                  name="acceptedTerms"
+                  id="acceptedTerms"
+                />
+                {errors.acceptedTerms && touched.acceptedTerms ? (
+                  <div className="invalid-feedback">{errors.acceptedTerms}</div>
+                ) : null}
               </div>
               <div>
-                <Button type="submit">{t("registration.buttontext")}</Button>
+                <Button type="submit" onClick={() => setModalShow(true)}>
+                  {t("registration.buttontext")}
+                </Button>
                 {!isSignUpAccepted ? (
-                  <h5 className="text-danger text-center my-3">
-                    {errorMessage}
-                  </h5>
+                  <PopUpModal
+                    modalTitle={t("registration.modalTitle")}
+                    modalBody={t("registration.modalBodyError")}
+                    modalButton={t("registration.modalButton")}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
                 ) : (
-                  <></>
+                  <PopUpModal
+                    modalTitle={t("registration.modalTitle")}
+                    modalBody={t("registration.modalBodyOK")}
+                    modalButton={t("registration.modalButton")}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
                 )}
               </div>
             </div>
