@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ListElement from "./listofusers/ListElement";
-import { fetchUsersWithApi } from "../communications/userApi";
 import { useTranslation } from "react-i18next";
+import useUsers from "./useUsers";
 
 const UsersList = () => {
-  const [users, setUsers] = useState([]);
+  const { users, fetchUsers } = useUsers();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    try {
-      fetchData();
-    } catch (error) {
-      console.log(error.response.status);
-    }
-  }, []);
-
-  const fetchData = async () => {
-    const response = await fetchUsersWithApi();
-    setUsers(response.data.users);
-  };
 
   return (
     <div className="d-flex flex-row-reverse">
