@@ -27,7 +27,7 @@ const Login = () => {
 
 
     const handleResponse = response => {
-        window.sessionStorage.setItem("token", response.data)
+        sessionStorage.setItem("token", response.data)
     }
 
 
