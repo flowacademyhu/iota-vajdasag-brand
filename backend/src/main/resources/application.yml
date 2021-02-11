@@ -14,11 +14,20 @@ spring:
   h2:
     console:
       enabled: true
+keycloakBackendClient:
+  realm: master
+  realm2: VajdasagBrand
+  server-url: http://localhost:8080/auth
+  client-id: admin-cli
+  adminusername: Masteradmin
+  adminpassword: 1234567
+  user-role: worksheetuser
+  token-url: http://localhost:8180/auth/realms/worksheet/protocol/openid-connect/token
 keycloak:
-  realm: VajdasagBrand
-  auth-server-url: http://localhost:8080/auth
+  realm: worksheet
+  auth-server-url: http://localhost:8180/auth
   ssl-required: external
-  resource: VajdasagClient
-  credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
+  resource: worksheetclient
+  credentials.secret: be835fad-eba0-4797-ad88-b802b676d2f3
   use-resource-role-mappings: true
   bearer-only: true
