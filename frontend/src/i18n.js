@@ -11,7 +11,7 @@ const resources = {
       "login.password":"Password",
       "login.buttontext":"Sign in",
       "login.invalidemail":"Bad email",
-      "login.invalidPassword":"The password is min. 6 character",
+      "login.invalidPassword":"The password is min. 8 character",
       "login.noEmail":"Give email",
       "login.connectionProblems":"Connection problems",
       "login.invalidData":"Wrong email or password"
@@ -25,7 +25,7 @@ const resources = {
       "login.password":"Jelszó",
       "login.buttontext":"Belépés",
       "login.invalidemail":"Hibás email cím",
-      "login.invalidPassword":"A jelszó minimum 6 karater",
+      "login.invalidPassword":"A jelszó minimum 8 karater",
       "login.noEmail":"Szükséges emailt megadni",
       "login.connectionProblems":"Internet kapcsolati probléma",
       "login.invalidData":"Hibás email cím vagy jelszó"
