@@ -6,7 +6,10 @@ import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";
+import { signUpMock } from "../communications/mockForUserApi";
 import PopUpModal from "../components/PopUpModal";
+
+signUpMock();
 
 export default function Registration() {
   const [token, setToken] = useState("");
@@ -48,18 +51,12 @@ export default function Registration() {
   };
 
   const handleSubmit = async (value) => {
-    console.log("submitting: ", value);
-    let errorMessage = "";
     try {
       const response = await signUp(value);
       handleResponse(response);
       setIsSignUpAccepted(true);
     } catch (error) {
       setIsSignUpAccepted(false);
-      if (error.response.status === 404)
-        errorMessage = t("registration.connectionProblems");
-      else if (error.response.status === 400)
-        errorMessage = t("registration.invalidData");
     }
   };
 
