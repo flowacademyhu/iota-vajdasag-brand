@@ -14,11 +14,20 @@ spring:
   h2:
     console:
       enabled: true
+
+keycloakBackendClient:
+  realm_master: master
+  realm2: VajdasagBrand
+  client-id: admin-cli
+  adminusername: masterAdmin
+  adminpassword: 1234567
+  user-role: realmadmin
+
 keycloak:
   realm: VajdasagBrand
   auth-server-url: http://localhost:8080/auth
   ssl-required: external
   resource: VajdasagClient
-  credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
+  credentials.secret: 68d2287f-17dc-4836-b559-836b9eb971fb
   use-resource-role-mappings: true
-  bearer-only: true
+  bearer-only: false
