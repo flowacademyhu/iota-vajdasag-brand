@@ -16,10 +16,10 @@ const resources = {
       "registration.email": "Email",
       "registration.buttontext": "Registration",
       "registration.alreadyRegistered": "Already registered?",
-      "registration.agreement":
-        "I understood and agree with the terms and conditions",
+      "registration.agreement": "I understood and agree with the terms and conditions",
       "registration.address": "Address",
       "registration.invalidemail": "Invalid email",
+      "registration.login": "Login",
     },
   },
   fr: {

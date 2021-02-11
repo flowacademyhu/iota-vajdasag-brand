@@ -66,7 +66,7 @@ export default function Registration() {
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
       <Formik
         initialValues={{
           name: "",
@@ -83,7 +83,7 @@ export default function Registration() {
         {({ errors, touched }) => (
           <Form>
             <h1 className="text-center">{t("registration.title")}</h1>
-            <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
+            <div>
               <div className="my-3">
                 <InputField
                   label={t("registration.fullName")}
@@ -210,8 +210,12 @@ export default function Registration() {
       </Formik>
       <hr></hr>
       <div>
+        <p className="text-center">{t("registration.alreadyRegistered")}</p>
+      </div>
+
+      <div>
         <Button type="button" onClick={redirect}>
-          {t("registration.alreadyRegistered")}
+          {t("registration.login")}
         </Button>
       </div>
     </div>
