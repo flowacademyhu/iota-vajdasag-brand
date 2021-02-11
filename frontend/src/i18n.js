@@ -15,7 +15,8 @@ const resources = {
       "registration.email": "Email",
       "registration.buttontext": "Registration",
       "registration.alreadyRegistered": "Already registered?",
-      "registration.aszf": "I understood everything...",
+      "registration.agreement":
+        "I understood and agree with the terms and conditions",
       "registration.address": "Address",
       "registration.invalidemail": "Invalid email",
     },

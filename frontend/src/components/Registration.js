@@ -12,7 +12,6 @@ export default function Registration() {
   const [token, setToken] = useState("");
   const { t } = useTranslation();
   const [isSignUpAccepted, setIsSignUpAccepted] = useState();
-  const [errorMessage, setErrorMessage] = useState();
   const [modalShow, setModalShow] = React.useState(false);
 
   const schema = Yup.object().shape({
@@ -162,6 +161,12 @@ export default function Registration() {
                   type="text"
                 ></InputField>
               </div>
+              <a href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf">
+                {t("registration.adatkezelesi")}
+              </a>
+              <a href="https://jusoft.hu/docs/ASZF_adatfeldolgozoi_tevekenyseghez.pdf">
+                {t("registration.aszf")}
+              </a>
               <div className="form-check">
                 <label className="form-check-label" htmlFor="acceptedTerms">
                   {t("registration.aszf")}
