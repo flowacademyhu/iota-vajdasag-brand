@@ -18,11 +18,11 @@ export default function App() {
 
   return (
     <Router>
-      {/*<div>
+      <div>
         {isLoggedIn ? <Menu /> : <Redirect to="/registration" />}
         {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
         {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
-  </div>*/}
+      </div>
       <div>
         <Switch>
           <Route path="/registration">
@@ -30,7 +30,7 @@ export default function App() {
             <div>{t("registration")}</div>
           </Route>
           <Route path="/login">
-            <Login/>
+            <Login />
           </Route>
           <Route path="/company-admin">
             <div id="page-content-wrapper">Company</div>
