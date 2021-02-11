@@ -11,10 +11,14 @@ const UsersList = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    fetch();
+    try {
+      fetchData();
+    } catch (error) {
+      console.log(error.response.status);
+    }
   }, []);
 
-  const fetch = async () => {
+  const fetchData = async () => {
     const response = await fetchUsersWithApi();
     setUsers(response.data.users);
   };
