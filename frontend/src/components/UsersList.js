@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import useUsers from "./useUsers";
 
 const UsersList = () => {
-  const { users, fetchUsers } = useUsers();
+  const { users } = useUsers();
   const { t } = useTranslation();
 
   return (
