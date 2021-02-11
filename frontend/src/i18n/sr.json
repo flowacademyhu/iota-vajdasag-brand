@@ -1,4 +1,15 @@
 {
-  "registration": "registration",
+  "login": {
+    "buttontext": "Prijava",
+    "connectionProblems": "Problemi sa konekcijom",
+    "email": "email",
+    "invalidData": "Pogresni podaci",
+    "invalidPassword": "Pogresna lozinka",
+    "invalidemail": "Pogresna email adresa",
+    "noEmail": "Morate uneti email adresu",
+    "password": "Morate uneti lozinku",
+    "title": "Prijava"
+  },
+  "registration": "Registracija",
   "text": "text"
 }

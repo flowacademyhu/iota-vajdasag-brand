@@ -18,11 +18,11 @@ export default function App() {
 
   return (
     <Router>
-      <div>
+      {/*<div>
         {isLoggedIn ? <Menu /> : <Redirect to="/registration" />}
         {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
         {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
-      </div>
+  </div>*/}
       <div>
         <Switch>
           <Route path="/registration">
