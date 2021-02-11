@@ -3,17 +3,17 @@ import { getUsers } from "../communications/userApi";
 
 const useUsers = () => {
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState();
 
-  const fetchUsers = () => {
-    getUsers(setUsers, setError);
+  const fetchUsers = async () => {
+    const fetchedUsers = await getUsers();
+    setUsers(fetchedUsers);
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  return { users, fetchUsers };
+  return { users };
 };
 
 export default useUsers;
