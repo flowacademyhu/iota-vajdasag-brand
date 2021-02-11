@@ -12,6 +12,7 @@ const resources = {
       "registration.legalPerson": "Jogi személy",
       "registration.taxNumber": "Tax number",
       "registration.password": "Password",
+      "registration.passwordConfirmation": "Confirm password",
       "registration.email": "Email",
       "registration.buttontext": "Registration",
       "registration.alreadyRegistered": "Already registered?",
