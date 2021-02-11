@@ -32,7 +32,6 @@ const Login = () => {
 
 
     async function handleSubmit(value) {
-        console.log("submitting: ", value)
         try {
             const response = await login(value)
             handleResponse(response)
