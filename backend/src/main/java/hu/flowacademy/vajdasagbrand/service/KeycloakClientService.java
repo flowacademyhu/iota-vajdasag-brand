@@ -1,6 +1,5 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.resource.*;
 import org.keycloak.representations.AccessTokenResponse;
@@ -44,17 +43,14 @@ public class KeycloakClientService {
                 .build();
     }
 
-    public int createAccount(String name) {
+    public int createAccount(String email) {
         CredentialRepresentation credential = new CredentialRepresentation();
         credential.setType(CredentialRepresentation.PASSWORD);
-        credential.setValue("admin123");
-        credential.setTemporary(false);
-        UserRepresentation user = new UserRepresentation();
-        String[] namesToUse = nameChecker(name);
-        user.setLastName(namesToUse[0]);
-        user.setFirstName(namesToUse[1]);
+        credential.setValue(generatePassword(50));
+        credential.setTemporary(true);
 
-        user.setUsername((name + "_" + user.getLastName()).toLowerCase(Locale.ROOT));
+        UserRepresentation user = new UserRepresentation();
+        user.setUsername(email.toLowerCase(Locale.ROOT));
         user.setCredentials(Arrays.asList(credential));
 
         RealmResource ourRealm = getInstance().realm("master");
@@ -62,7 +58,7 @@ public class KeycloakClientService {
 
         UsersResource everyOne = ourRealm.users();
 
-        RoleRepresentation roleToUse = roleList.get("CegAdmin").toRepresentation();
+        RoleRepresentation roleToUse = roleList.get("realmuser").toRepresentation();
 
         javax.ws.rs.core.Response response = getInstance().realm(realm).users().create(user);
 
@@ -77,22 +73,7 @@ public class KeycloakClientService {
 
         return HttpStatus.CREATED.value();
     }
-    private String[] nameChecker(String name) {
-        String[] out = new String[2];
-        String[] namesToRegister = name.split(" ");
-        out[0] = namesToRegister[0];
-        if (namesToRegister.length < 2) {
-            out[1] = "User";
-        }
-        else {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 1; i < namesToRegister.length; i++) {
-                builder.append(namesToRegister[i]).append(" ");
-            }
-            out[1] = builder.toString();
-        }
-        return out;
-    }
+
     public static String getCreatedId(Response response) {
         URI location = response.getLocation();
         if (!response.getStatusInfo().equals(Response.Status.CREATED)) {
@@ -107,6 +88,14 @@ public class KeycloakClientService {
         return path.substring(path.lastIndexOf('/') + 1);
     }
 
+    public static String generatePassword(int numberOfDigits) {
+        String password = "";
+        for (int i = 0; i < numberOfDigits / 2; i++) {
+            password = password + (int) Math.floor(Math.random() * 9) + (char) Math.floor((Math.random() * 15) + 97);
+        }
+        return password;
+    }
+
     public AccessTokenResponse login(String email, String password) {
         return Keycloak.getInstance(
                 serverurl,
@@ -117,4 +106,6 @@ public class KeycloakClientService {
                 .tokenManager()
                 .getAccessToken();
     }
+
+
 }
