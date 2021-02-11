@@ -18,24 +18,24 @@ export default function App() {
   return (
     <Router>
       <div>
-        {isLoggedIn ? <Menu /> : <Redirect to="/registration" />}
+        <SwitchLanguage />
+        {isLoggedIn ? <Menu /> : <Redirect to="/login" />}
         {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
         {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
       </div>
       <div>
         <Switch>
           <Route path="/registration">
-            <SwitchLanguage />
-            <div>{t("registration")}</div>
+            <div>{t("Registration")}</div>
           </Route>
           <Route path="/login">
-            <div>Login</div>
+            <div>{t("Login")}</div>
           </Route>
           <Route path="/company-admin">
-            <div id="page-content-wrapper">Company</div>
+          <div>{t("Company")}</div>
           </Route>
           <Route path="/super-admin">
-            <div>Superadmin</div>
+          <div>{t("Superadmin")}</div>
           </Route>
         </Switch>
       </div>
