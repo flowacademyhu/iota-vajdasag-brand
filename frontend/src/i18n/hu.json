@@ -1,4 +1,15 @@
 {
+  "login": {
+    "buttontext": "Bejelentkezés",
+    "connectionProblems": "Kapcsolati probléma",
+    "email": "Email",
+    "invalidData": "Rossz email vagy jelszó",
+    "invalidPassword": "A jelszó minimum 8 karakter",
+    "invalidemail": "Hibás email",
+    "noEmail": "Az email megadása kötelező",
+    "password": "Jelszó",
+    "title": "Bejelentkezés"
+  },
   "registration": "registration",
   "text": "5"
 }

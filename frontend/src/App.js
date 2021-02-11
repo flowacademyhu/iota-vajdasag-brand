@@ -1,4 +1,5 @@
 import "./App.css";
+import Login from "./pages/Login";
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,7 +30,7 @@ export default function App() {
             <div>{t("registration")}</div>
           </Route>
           <Route path="/login">
-            <div>Login</div>
+            <Login />
           </Route>
           <Route path="/company-admin">
             <div id="page-content-wrapper">Company</div>
