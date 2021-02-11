@@ -62,7 +62,6 @@ const Login = () => {
                         <InputField label={t("login.password")} name="password" id="password" placeholder={t("login.password")} type="password"></InputField>
                     </div>
                     <Button className="btn btn-primary btn-block col-12" type="submit">{t("login.buttontext")}</Button>
-                    <h1>{window.sessionStorage.getItem("token")}</h1>
                     {!isSignInAccepted && <h5 className="text-danger text-center my-3">{errorMessage}</h5>}
                 </div>
             </Form>
