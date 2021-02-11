@@ -20,14 +20,12 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
 
 const Login = () => {
     const { t } = useTranslation();
-    const [token, setToken] = useState("");
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
 
 
     const handleResponse = response => {
-        setToken(response.data)
-        console.log(token)
+        window.sessionStorage.setItem("token", response.data)
     }
 
 
@@ -63,6 +61,7 @@ const Login = () => {
                         <InputField label={t("login.password")} name="password" id="password" placeholder={t("login.password")} type="password"></InputField>
                     </div>
                     <Button design="btn btn-primary btn-block col-12" type="submit">{t("login.buttontext")}</Button>
+                    <h1>{window.sessionStorage.getItem("token")}</h1>
                     {!isSignInAccepted ? (
                         <h5 className="text-danger text-center my-3">{errorMessage}</h5>
                     ) : (<></>)}
