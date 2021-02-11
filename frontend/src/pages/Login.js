@@ -15,7 +15,9 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
     email: Yup.string()
         .email(invalidEmail)
         .required(noEmail),
-    password: Yup.string().min(6, invalidPassword)
+    password: Yup.string()
+        .min(8, invalidPassword)
+        .required()
 }))
 
 const Login = () => {
@@ -60,7 +62,7 @@ const Login = () => {
                     <div className="my-3">
                         <InputField label={t("login.password")} name="password" id="password" placeholder={t("login.password")} type="password"></InputField>
                     </div>
-                    <Button design="btn btn-primary btn-block col-12" type="submit">{t("login.buttontext")}</Button>
+                    <Button className="btn btn-primary btn-block col-12" type="submit">{t("login.buttontext")}</Button>
                     <h1>{window.sessionStorage.getItem("token")}</h1>
                     {!isSignInAccepted ? (
                         <h5 className="text-danger text-center my-3">{errorMessage}</h5>

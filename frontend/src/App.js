@@ -4,7 +4,7 @@ import './i18n';
 function App() {
   return (
     <div>
-      <LogIn></LogIn>
+      <LogIn/>
     </div>
   );
 }
