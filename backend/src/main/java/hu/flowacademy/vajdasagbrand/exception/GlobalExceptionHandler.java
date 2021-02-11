@@ -13,8 +13,12 @@ import java.util.List;
 @ControllerAdvice
 public class GlobalExceptionHandler extends Exception {
 
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<Object> handleAllExceptions(Exception e) {
+        return new ResponseEntity<>(List.of(e.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     @ExceptionHandler(ValidationException.class)
-    protected ResponseEntity<Exception> handleValidationException(ValidationException e) {
-        return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+    public final ResponseEntity<Object> handleUserException(ValidationException ex) {
+        return new ResponseEntity<>(List.of(ex.getLocalizedMessage()), HttpStatus.NOT_FOUND);
     }
 }
