@@ -20,8 +20,8 @@ const UsersList = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.map((elem) => (
-              <ListElement elem={elem} key={elem.id} />
+            {users?.map((user) => (
+              <ListElement user={user} key={user.id} />
             ))}
           </tbody>
         </table>
