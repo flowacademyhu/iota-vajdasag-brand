@@ -37,22 +37,22 @@ public class UserService {
 
     private void validateUserData(User user) throws ValidationException {
         if (!StringUtils.hasText(user.getFullName())) {
-            throw new ValidationException("Didn't get full name", HttpStatus.BAD_REQUEST);
+            throw new ValidationException("Didn't get full name");
         }
         if(!StringUtils.hasText(user.getAddress())){
-            throw new ValidationException("Didn't get address", HttpStatus.BAD_REQUEST);
+            throw new ValidationException("Didn't get address");
         }
         if(!StringUtils.hasText(user.getEmail())){
-            throw new ValidationException("Didn't get email", HttpStatus.BAD_REQUEST);
+            throw new ValidationException("Didn't get email");
         }
         if(!EmailValidator.getInstance().isValid(user.getEmail())){
-            throw new ValidationException("Invalid email", HttpStatus.BAD_REQUEST);
+            throw new ValidationException("Invalid email");
         }
         if(!StringUtils.hasText(String.valueOf(user.getType()))) {
-            throw new ValidationException("Didn't get type", HttpStatus.BAD_REQUEST);
+            throw new ValidationException("Didn't get type");
         }
         if((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY){
-            throw new ValidationException("Can not add tax number for individual members", HttpStatus.BAD_REQUEST);
+            throw new ValidationException("Can not add tax number for individual members");
         }
     }
 }
