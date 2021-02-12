@@ -160,11 +160,14 @@ export default function Registration() {
                 ></InputField>
               </div>
               <div>
-                
+                <p>
+                  {t("registration.agreement")}{" "}
+                  {t("registration.linkAdatkezelesi")}
+                  {t("registration.and")}
+                  {t("registration.linkAszf")}
+                </p>
               </div>
-              <div>
-               
-              </div>
+              <div></div>
               <div className="form-check">
                 <Field
                   className={`form-check-input ${
