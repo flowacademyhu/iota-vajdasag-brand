@@ -9,3 +9,7 @@ export const getUsers = async () => {
     throw new Error("Failed to get users.");
   }
 };
+
+export const login = (value) => {
+   return axios.post("http://localhost:3000/api", value)
+}

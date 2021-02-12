@@ -1,0 +1,15 @@
+{
+  "login": {
+    "buttontext": "Sign In",
+    "connectionProblems": "Connection problems",
+    "email": "Email",
+    "invalidData": "Wrong Email or Password",
+    "invalidPassword": "The password is min. 8 characters",
+    "invalidemail": "Invalid email",
+    "noEmail": "Email is required",
+    "password": "Password",
+    "title": "Sign in"
+  },
+  "registration": "registration",
+  "text": "text"
+}
