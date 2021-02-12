@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
+import { Link } from "react-router-dom";
 
 
 
@@ -17,7 +18,7 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
         .required()
 }))
 
-const Login = ({setTokenInState}) => {
+const Login = ({ setTokenInState }) => {
     const { t } = useTranslation();
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
