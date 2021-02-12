@@ -30,6 +30,6 @@ public class User {
     private String email;
     private Type type;
     private boolean enabled;
-    @JsonFormat(pattern = ("yyyy/MM/dd HH:mm:ss"))
-    private LocalDateTime localDateTime;
+    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
+    private LocalDateTime registeredAt;
 }

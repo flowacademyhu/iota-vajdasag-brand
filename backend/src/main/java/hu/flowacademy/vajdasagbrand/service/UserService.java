@@ -26,10 +26,19 @@ public class UserService {
 
     public User userRegistrationData(User user) throws ValidationException {
         log.info("UserService called with: {}",user);
+        validateUserData(user);
+
+        keycloakClientService.createAccount(user.getEmail());
+        user.setRegisteredAt(LocalDateTime.now());
+        User result = userRepository.save(user);
+        log.info("The result is : {}", result);
+        return result;
+    }
+
+    private void validateUserData(User user) throws ValidationException {
         if (!StringUtils.hasText(user.getFullName())) {
             throw new ValidationException("Didn't get full name", HttpStatus.BAD_REQUEST);
         }
-        keycloakClientService.createAccount(user.getEmail());
         if(!StringUtils.hasText(user.getAddress())){
             throw new ValidationException("Didn't get address", HttpStatus.BAD_REQUEST);
         }
@@ -45,9 +54,5 @@ public class UserService {
         if((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY){
             throw new ValidationException("Can not add tax number for individual members", HttpStatus.BAD_REQUEST);
         }
-        user.setLocalDateTime(LocalDateTime.now());
-        User result = userRepository.save(user);
-        log.info("The result is : {}", result);
-        return result;
     }
 }
