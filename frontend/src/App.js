@@ -1,5 +1,5 @@
 import "./App.css";
-import Registration from "./components/Registration";
+import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import {
   BrowserRouter as Router,
