@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useParams, Switch, Route, useRouteMatch, BrowserRouter as Router } from "react-router-dom";
+import { Route } from "react-router-dom";
 import UsersList from '../components/UsersList';
 
 const SuperAdmin = () => {

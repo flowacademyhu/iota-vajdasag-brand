@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuComponent from "../components/menuComponent";
 
 const menuItems = [
@@ -24,7 +24,6 @@ const menuItems = [
 
 export default function Menu() {
   const { t } = useTranslation();
-  let { url } = useRouteMatch()
   return (
     <div className="d-flex" id="wrapper">
       <div className="bg-light border-right" id="sidebar-wrapper">
