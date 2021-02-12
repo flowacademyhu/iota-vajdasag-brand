@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -54,5 +55,18 @@ public class UserService {
         if ((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY) {
             throw new ValidationException("Can not add tax number for individual members");
         }
+
+    public User deleteById(String id) throws ValidationException {
+       Optional<User> user = userRepository.findById(id);
+       if(user.isEmpty()) {
+           throw new ValidationException("No user with given id: " + id);
+       }
+       if(!user.get().getDeletedAt().equals(null)) {
+           throw new ValidationException("User already deleted");
+       }
+       User deleted = user.get();
+       deleted.setDeletedAt(LocalDateTime.now());
+       userRepository.save(deleted);
+       return deleted;
     }
 }
