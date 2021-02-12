@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-import SwitchLanguage from "../components/SwitchLanguage";
-
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
@@ -47,8 +45,6 @@ const Login = () => {
     return (
 
         <div>
-            <SwitchLanguage />
-
             <Formik
                 initialValues={{
                     email: "",
