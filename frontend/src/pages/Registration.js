@@ -160,14 +160,10 @@ export default function Registration() {
                 ></InputField>
               </div>
               <div>
-                <a href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf">
-                  {t("registration.adatkezelesi")}
-                </a>
+                
               </div>
               <div>
-                <a href="https://jusoft.hu/docs/ASZF_adatfeldolgozoi_tevekenyseghez.pdf">
-                  {t("registration.aszf")}
-                </a>
+               
               </div>
               <div className="form-check">
                 <Field
