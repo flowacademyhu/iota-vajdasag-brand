@@ -22,8 +22,8 @@ const menuItems = [
 
 export default function Menu() {
   return (
-    <div class="d-flex" id="wrapper">
-      <div class="bg-light border-right" id="sidebar-wrapper">
+    <div className="d-flex" id="wrapper">
+      <div className="bg-light border-right" id="sidebar-wrapper">
         <div className="list-group list-group-flush">
           {menuItems.map((item, index) => (
             <div key={index} className="nav-item">

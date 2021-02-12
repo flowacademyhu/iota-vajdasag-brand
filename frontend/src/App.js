@@ -9,18 +9,23 @@ import {
 import SwitchLanguage from "./components/SwitchLanguage";
 import { useTranslation } from "react-i18next";
 import Menu from "./components/Menu.js";
+import { TokenStateHandler } from "./components/tokenHandler";
+import SuperAdmin from "./pages/SuperAdmin";
 
 export default function App() {
   const { t } = useTranslation();
-  const isLoggedIn = false;
+  const {token,setTokenInState}=TokenStateHandler();
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
+
+  console.log("token:"+token)
+
 
   return (
     <Router>
       <div>
         <SwitchLanguage />
-        {isLoggedIn ? <Menu /> : <Redirect to="/login" />}
+        {token ? <Redirect to="/super-admin" /> : <Redirect to="/login" />}
         {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
         {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
       </div>
@@ -30,13 +35,13 @@ export default function App() {
             <div>{t("Registration")}</div>
           </Route>
           <Route path="/login">
-            <Login />
+            <Login setTokenInState={setTokenInState} />
           </Route>
           <Route path="/company-admin">
             <div>{t("Companyadmin")}</div>
           </Route>
           <Route path="/super-admin">
-            <div>{t("Superadmin")}</div>
+            <SuperAdmin/>
           </Route>
         </Switch>
       </div>
