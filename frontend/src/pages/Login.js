@@ -19,7 +19,7 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
         .required()
 }))
 
-const Login = () => {
+const Login = ({setTokenInState}) => {
     const { t } = useTranslation();
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
@@ -27,6 +27,8 @@ const Login = () => {
 
     const handleResponse = response => {
         sessionStorage.setItem("token", response.data)
+        setTokenInState(response.data)
+
     }
 
 
