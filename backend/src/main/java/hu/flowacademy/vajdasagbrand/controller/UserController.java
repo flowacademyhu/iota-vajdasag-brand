@@ -1,27 +1,33 @@
 package hu.flowacademy.vajdasagbrand.controller;
 
+import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.entity.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;
 import hu.flowacademy.vajdasagbrand.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.internal.build.AllowPrintStacktrace;
+import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 import javax.annotation.security.PermitAll;
 
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
-@Slf4j
 public class UserController {
 
+    private final KeycloakClientService keycloakClientService;
     private final UserService userService;
+
+    @PermitAll
+    @PostMapping("/login")
+    public AccessTokenResponse login(@RequestBody LoginDto loginDto) {
+        return keycloakClientService.login(loginDto.getUsername(),loginDto.getPassword());
+    }
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
@@ -32,5 +38,4 @@ public class UserController {
         BeanUtils.copyProperties(userDTO, user);
         userService.userRegistrationData(user);
     }
-
 }

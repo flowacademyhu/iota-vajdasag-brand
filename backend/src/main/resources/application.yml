@@ -1,8 +1,11 @@
 server:
-  port: 8090
+  port: 8081
+
+hu.flowacademy:
+
 spring:
   datasource:
-    url: jdbc:h2:file:./db/demo
+    url: jdbc:h2:file:./testDb/db
     driverClassName: org.h2.Driver
     username: sa
     password: sa
@@ -10,24 +13,25 @@ spring:
     hibernate:
       ddl-auto: update
       use-new-id-generator-mappings: true
-    show-sql: true
+
   h2:
     console:
       enabled: true
 
 keycloakBackendClient:
-  realm_master: master
-  realm2: VajdasagBrand
-  client-id: admin-cli
-  adminusername: masterAdmin
-  adminpassword: 1234567
+  serverUrl: http://localhost:8180/auth
+  realm: VajdasagBrand
+  adminusername: initial1
+  clientpassword: gsdmnk
+  clientId: admin-cli
   user-role: realmuser
 
 keycloak:
   realm: VajdasagBrand
-  auth-server-url: http://localhost:8080/auth
+  auth-server-url: http://localhost:8180/auth
   ssl-required: external
-  resource: VajdasagClient
-  credentials.secret: 68d2287f-17dc-4836-b559-836b9eb971fb
+  resource: ui-vajdasag-client
+  credentials.secret: aac16d76-6ace-409a-a5ef-8423b5fd688b
   use-resource-role-mappings: true
   bearer-only: false
+
