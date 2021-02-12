@@ -32,10 +32,10 @@ export default function App() {
             <div>{t("Login")}</div>
           </Route>
           <Route path="/company-admin">
-          <div>{t("Company")}</div>
+            <Login />
           </Route>
           <Route path="/super-admin">
-          <div>{t("Superadmin")}</div>
+            <div>{t("Superadmin")}</div>
           </Route>
         </Switch>
       </div>
