@@ -28,9 +28,7 @@ public class KeycloakClientService {
         CredentialRepresentation credential = createCredentials();
         RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getRealm2());
         RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getUserRole()).toRepresentation();
-        javax.ws.rs.core.Response response = keycloak.realm(keycloakPropertiesHolder.getRealm2()).users().create(
-                createUserRepresentation(email, credential)
-        );
+        javax.ws.rs.core.Response response = ourRealm.users().create(createUserRepresentation(email, credential));
         String userId = CreatedResponseUtil.getCreatedId(response);
         UserResource oneUser = ourRealm.users().get(userId);
         oneUser.roles().realmLevel().add(List.of(roleToUse));
