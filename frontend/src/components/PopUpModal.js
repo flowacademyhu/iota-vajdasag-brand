@@ -7,11 +7,12 @@ export default function MyVerticallyCenteredModal(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      animation={false}
     >
       {/* <Modal.Header closeButton> */}
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.modalTitle}
-        </Modal.Title>
+      <Modal.Title id="contained-modal-title-vcenter">
+        {props.modalTitle}
+      </Modal.Title>
       {/* </Modal.Header> */}
       <Modal.Body>
         <p>{props.modalBody}</p>

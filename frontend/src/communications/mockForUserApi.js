@@ -40,7 +40,6 @@ export const loginMock = () => {
 
 export const signUpMock = () => {
   const mock = new MockAdapter(axios);
-  mock
-  .onPost("http://localhost:3000/api/registration")
-  .reply(200);
+  console.log("singup mock");
+  mock.onPost("http://localhost:3000/api/registration").reply(201);
 };

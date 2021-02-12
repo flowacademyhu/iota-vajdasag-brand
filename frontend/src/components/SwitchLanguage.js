@@ -21,7 +21,7 @@ const SwitchLanguage = () => {
         <option value="sr">🇷🇸 Српски</option>
         <option value="en">🇬🇧 English</option>
       </select>
-      <p>{t("text")}</p>
+    
     </div>
   );
 };

@@ -4,8 +4,6 @@ import en from "./i18n/en.json";
 import hu from "./i18n/hu.json";
 import sr from "./i18n/sr.json";
 
-// the translations
-// (tip move them in a JSON file and import them)
 const resources = { en, hu, sr };
 
 Object.keys(resources).forEach(

@@ -14,8 +14,8 @@
   "registration": {
     "title": "Registration",
     "fullName": "Name",
-    "privatePerson": "Magánszemély",
-    "legalPerson": "Jogi személy",
+    "privatePerson": "Private person",
+    "legalPerson": "Legal entity",
     "taxNumber": "Tax number",
     "password": "Password",
     "passwordConfirmation": "Confirm password",

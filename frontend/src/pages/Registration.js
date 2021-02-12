@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
-import SwitchLanguage from "../components/SwitchLanguage";
 import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
@@ -13,7 +12,6 @@ import PopUpModal from "../components/PopUpModal";
 signUpMock();
 
 export default function Registration() {
-  const [token, setToken] = useState("");
   const { t } = useTranslation();
   const [isSignUpAccepted, setIsSignUpAccepted] = useState();
   const [modalShow, setModalShow] = React.useState(false);
@@ -46,18 +44,19 @@ export default function Registration() {
       .oneOf([true], "You must accept terms and conditions"),
   });
 
-  const handleResponse = (response) => {
-    setToken(response.data);
-    console.log(token);
-  };
-
   const handleSubmit = async (value) => {
     try {
+      console.log(value);
       const response = await signUp(value);
-      handleResponse(response);
-      setIsSignUpAccepted(true);
+      console.log(response.status);
+      setIsSignUpAccepted(response.status);
+      console.log(isSignUpAccepted);
     } catch (error) {
-      setIsSignUpAccepted(false);
+      console.log(error);
+      console.log("error in handlesubmit");
+      setIsSignUpAccepted(error.status);
+    } finally {
+      setModalShow(true);
     }
   };
 
@@ -68,12 +67,12 @@ export default function Registration() {
 
   return (
     <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
-      <SwitchLanguage />
       <Formik
         initialValues={{
           name: "",
           email: "",
           password: "",
+          passwordConfirmation: "",
           address: "",
           taxNumber: "",
           acceptedTerms: false,
@@ -192,14 +191,14 @@ export default function Registration() {
                 <Button
                   className="btn btn-primary btn-block col-12"
                   type="submit"
-                  onClick={() => setModalShow(true)}
+                  // onClick={() => setModalShow(true)}
                 >
                   {t("registration.buttontext")}
                 </Button>
-                {!isSignUpAccepted ? (
+                {isSignUpAccepted === 201 ? (
                   <PopUpModal
                     modalTitle={t("registration.modalTitle")}
-                    modalBody={t("registration.modalBodyError")}
+                    modalBody={t("registration.modalBodyOK")}
                     modalButton={t("registration.modalButton")}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
@@ -207,7 +206,7 @@ export default function Registration() {
                 ) : (
                   <PopUpModal
                     modalTitle={t("registration.modalTitle")}
-                    modalBody={t("registration.modalBodyOK")}
+                    modalBody={t("registration.modalBodyError")}
                     modalButton={t("registration.modalButton")}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
