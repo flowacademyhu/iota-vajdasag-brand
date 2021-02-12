@@ -1,17 +1,21 @@
 import React from "react";
-
-import Menu from "../components/Menu";
+import { useTranslation } from "react-i18next";
+import { useParams, Switch, Route, useRouteMatch, BrowserRouter as Router } from "react-router-dom";
+import UsersList from '../components/UsersList';
 
 const SuperAdmin = () => {
-    return (
-        <div className="col-3">
-        <Menu></Menu>
-        <div>
+   const {t} = useTranslation();
 
-        </div>
-        </div>
-    
-);
+    return (
+        <>
+            <Route exact path="/super-admin">
+                <h1>{t("welcome")}</h1>
+            </Route>
+            <Route path="/super-admin/users">
+                <UsersList />
+            </Route>
+        </>
+    );
 }
 
 export default SuperAdmin

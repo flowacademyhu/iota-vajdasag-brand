@@ -11,7 +11,7 @@ const SwitchLanguage = () => {
   };
 
   return (
-    <div className="col-2">
+    <div className="col-2 ms-auto">
       <select
         className="form-select mb-3"
         value={actualLanguage}
@@ -21,7 +21,6 @@ const SwitchLanguage = () => {
         <option value="sr">🇷🇸 Српски</option>
         <option value="en">🇬🇧 English</option>
       </select>
-      <p>{t("text")}</p>
     </div>
   );
 };

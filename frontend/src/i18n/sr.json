@@ -1,15 +1,26 @@
 {
+  "Accepted registration": "Prihvacena registracija",
+  "Companyadmin": "Firma admin",
+  "Date of registration": "Datum registracije",
+  "Email": "Email",
+  "Name": "Ime",
+  "No": "Ne",
+  "Registration": "Registracija",
+  "Yes": "Da",
   "login": {
     "buttontext": "Prijava",
     "connectionProblems": "Problemi sa konekcijom",
-    "email": "email",
+    "email": "Email",
     "invalidData": "Pogresni podaci",
     "invalidPassword": "Pogresna lozinka",
     "invalidemail": "Pogresna email adresa",
     "noEmail": "Morate uneti email adresu",
-    "password": "Morate uneti lozinku",
+    "password": "Lozinka",
     "title": "Prijava"
   },
-  "registration": "Registracija",
-  "text": "text"
+  "welcome": "Pozdrav",
+  "users":"Korisnici",
+  "products":"Artikli",
+  "events":"Dogadjaji",
+  "logout":"Izjavljivanje"
 }

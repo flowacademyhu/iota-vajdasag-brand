@@ -1,4 +1,12 @@
 {
+  "Accepted registration": "Sikeres regisztráció",
+  "Companyadmin": "Cég Admin",
+  "Date of registration": "Regisztráció dátuma",
+  "Email": "Email",
+  "Name": "Név",
+  "No": "Nem",
+  "Registration": "Regisztráció",
+  "Yes": "Igen",
   "login": {
     "buttontext": "Bejelentkezés",
     "connectionProblems": "Kapcsolati probléma",
@@ -10,6 +18,9 @@
     "password": "Jelszó",
     "title": "Bejelentkezés"
   },
-  "registration": "registration",
-  "text": "5"
+  "welcome": "Üdvözlöm",
+  "users":"Felhasználók",
+  "products":"Termékek",
+  "events":"Rendezvények",
+  "logout":"Kijelentkezés"
 }

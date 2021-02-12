@@ -14,37 +14,45 @@ import SuperAdmin from "./pages/SuperAdmin";
 
 export default function App() {
   const { t } = useTranslation();
-  const {token,setTokenInState}=TokenStateHandler();
+  const { token, setTokenInState } = TokenStateHandler();
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
 
-  console.log("token:"+token)
+  console.log("token:" + token)
 
 
   return (
-    <Router>
-      <div>
-        <SwitchLanguage />
-        {token ? <Redirect to="/super-admin" /> : <Redirect to="/login" />}
-        {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
-        {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
-      </div>
-      <div>
-        <Switch>
-          <Route path="/registration">
-            <div>{t("Registration")}</div>
-          </Route>
-          <Route path="/login">
-            <Login setTokenInState={setTokenInState} />
-          </Route>
-          <Route path="/company-admin">
-            <div>{t("Companyadmin")}</div>
-          </Route>
-          <Route path="/super-admin">
-            <SuperAdmin/>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <>
+      <SwitchLanguage />
+      <Router>
+        <div className="container">
+          <div className="row">
+              {token &&
+                (<div className="col-3">
+                  <Menu />
+                </div>)}
+              {token ? <Redirect to="/super-admin" /> : <Redirect to="/login" />}
+              {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
+              {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
+              <div className="col">
+                <Switch>
+                  <Route path="/registration">
+                    <div>{t("Registration")}</div>
+                  </Route>
+                  <Route path="/login">
+                    <Login setTokenInState={setTokenInState} />
+                  </Route>
+                  <Route path="/company-admin">
+                    <div>{t("Companyadmin")}</div>
+                  </Route>
+                  <Route path="/super-admin">
+                    <SuperAdmin />
+                  </Route>
+                </Switch>
+              </div>
+            </div>
+          </div>
+      </Router>
+    </>
   );
 }
