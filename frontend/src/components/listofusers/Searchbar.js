@@ -11,7 +11,7 @@ const Searchbar = ({ setSearchKeyword }) => {
           className="searchbar form-control mr-sm-2"
           type="search"
           placeholder={t("Search")}
-          aria-label="Search"
+          aria-label={t("Search")}
           onChange={(e) => setSearchKeyword(e.target.value)}
         />
         <i className="bi bi-search"></i>
