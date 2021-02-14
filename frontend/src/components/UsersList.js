@@ -6,7 +6,7 @@ import Searchbar from "./listofusers/Searchbar";
 
 const UsersList = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
-  const { users } = useUsers();
+  const { users } = useUsers(searchKeyword);
   const { t } = useTranslation();
 
   return (
@@ -16,29 +16,16 @@ const UsersList = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">{t("Name")}</th>
-              <th scope="col">{t("Email")}</th>
-              <th scope="col">{t("Accepted registration")}</th>
-              <th scope="col">{t("Date of registration")}</th>
+              <th scope="col">{t("name")}</th>
+              <th scope="col">{t("email")}</th>
+              <th scope="col">{t("acceptedRegistration")}</th>
+              <th scope="col">{t("dateOfRegistration")}</th>
             </tr>
           </thead>
           <tbody>
-            {users
-              ?.filter((user) =>
-                user.name
-                  .normalize("NFD")
-                  .replace(/[\u0300-\u036f]/g, "")
-                  .toUpperCase()
-                  .includes(
-                    searchKeyword
-                      .normalize("NFD")
-                      .replace(/[\u0300-\u036f]/g, "")
-                      .toUpperCase()
-                  )
-              )
-              .map((user) => (
-                <ListElement user={user} key={user.id} />
-              ))}
+            {users?.map((user) => (
+              <ListElement user={user} key={user.id} />
+            ))}
           </tbody>
         </table>
       </div>
