@@ -1,15 +1,34 @@
 {
   "login": {
-    "buttontext": "Prijava",
+    "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
-    "email": "email",
+    "email": "E-mail adresa",
     "invalidData": "Pogresni podaci",
     "invalidPassword": "Pogresna lozinka",
     "invalidemail": "Pogresna email adresa",
     "noEmail": "Morate uneti email adresu",
-    "password": "Morate uneti lozinku",
+    "password": "Lozinka",
+    "passwordPH": "Morate uneti lozinku",
     "title": "Prijava"
   },
-  "registration": "Registracija",
-  "text": "text"
+  "registration": {
+    "title": "Registracija",
+    "fullName": "Ime i prezime",
+    "privatePerson": "Fizičko lice",
+    "legalPerson": "Pravno lice",
+    "taxNumber": "Poreski broj",
+    "password": "Lozinka",
+    "passwordConfirmation": "Lozinka ponovo",
+    "email": "E-mail adresa",
+    "buttontext": "Registration",
+    "alreadyRegistered": "Dali ste već registrovani?",
+    "agreement": "Prihvatam",
+    "linkAszf": "  Opšte uslove ugovora i",
+    "and": "  i",
+    "linkadat": " osnovne principe upravljanja podacima",
+    "address": "Adresa/Sedište",
+    "invalidemail": "E-mail adresa nije odgovarajuća",
+    "login": "Prijava"
+  }
+ 
 }
