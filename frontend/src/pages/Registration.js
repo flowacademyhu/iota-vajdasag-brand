@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { useTranslation, Trans, Link } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
@@ -162,9 +162,21 @@ export default function Registration() {
               <div>
                 <p>
                   {t("registration.agreement")}
-                  <a target="_blank" href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf">{t("registration.linkadat")}</a>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf"
+                  >
+                    {t("registration.linkadat")}
+                  </a>
                   {t("registration.and")}
-                  <a target="_blank" href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf">{t("registration.linkAszf")}</a>
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf"
+                  >
+                    {t("registration.linkAszf")}
+                  </a>
                 </p>
               </div>
               <div></div>
