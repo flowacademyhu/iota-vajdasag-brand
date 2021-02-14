@@ -117,15 +117,19 @@ export default function Registration() {
                   type="password"
                 ></InputField>
               </div>
-              <div className="my-3">
-                <label>
-                  <Field name="entity" type="radio" value="privatePerson" />{" "}
-                  {t("registration.privatePerson")}
-                </label>
-                <label>
-                  <Field name="entity" type="radio" value="legalPerson" />{" "}
-                  {t("registration.legalPerson")}
-                </label>
+              <div className="my-3 form-check-inline">
+                <div>
+                  <label>
+                    <Field name="entity" type="radio" value="privatePerson" />{" "}
+                    {t("registration.privatePerson")}
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <Field name="entity" type="radio" value="legalPerson" />{" "}
+                    {t("registration.legalPerson")}
+                  </label>
+                </div>
               </div>
               <div className="my-3">
                 <Field name="taxNumber">
@@ -159,8 +163,18 @@ export default function Registration() {
                   type="text"
                 ></InputField>
               </div>
-              <div>
-                <p>
+              <div className="my-3 form-check">
+                <Field
+                  className={`form-check-input ${
+                    errors.acceptedTerms && touched.acceptedTerms
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  type="checkbox"
+                  name="acceptedTerms"
+                  id="acceptedTerms"
+                />
+                <label className="form-check-label" htmlFor="acceptedTerms">
                   {t("registration.agreement")}
                   <a
                     rel="noopener noreferrer"
@@ -177,22 +191,6 @@ export default function Registration() {
                   >
                     {t("registration.linkAszf")}
                   </a>
-                </p>
-              </div>
-              <div></div>
-              <div className="form-check">
-                <Field
-                  className={`form-check-input ${
-                    errors.acceptedTerms && touched.acceptedTerms
-                      ? "is-invalid"
-                      : ""
-                  }`}
-                  type="checkbox"
-                  name="acceptedTerms"
-                  id="acceptedTerms"
-                />
-                <label className="form-check-label" htmlFor="acceptedTerms">
-                  {t("registration.agreement")}
                 </label>
                 {errors.acceptedTerms && touched.acceptedTerms ? (
                   <div className="invalid-feedback">{errors.acceptedTerms}</div>
@@ -202,7 +200,6 @@ export default function Registration() {
                 <Button
                   className="btn btn-primary btn-block col-12"
                   type="submit"
-                  // onClick={() => setModalShow(true)}
                 >
                   {t("registration.buttontext")}
                 </Button>
