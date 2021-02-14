@@ -65,9 +65,9 @@
   "forgotPW": {
     "newPassword": "New password"
   },
-  "navbar": {
+  "menu": {
     "users": "Users",
-    "product": "Product",
+    "products": "Products",
     "events": "Events",
     "sign out": "Sign out"
   }
