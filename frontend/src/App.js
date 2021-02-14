@@ -21,7 +21,7 @@ export default function App() {
     <Router>
       <div>
         <SwitchLanguage />
-        {isLoggedIn ? <Menu /> : <Redirect to="/login" />}
+        {/* {isLoggedIn ? <Menu /> : <Redirect to="/login" />} */}
         {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
         {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
       </div>

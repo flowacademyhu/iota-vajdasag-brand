@@ -22,10 +22,10 @@
     "email": "Email",
     "buttontext": "Registration",
     "alreadyRegistered": "Already registered?",
-    "agreement": "I understood and agree with the",
-    "linkAdatkezelesi": "href= https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf",
+    "agreement": "I understood and agree with the  ",
+    "linkadat": " terms",
     "and": " and the ",
-    "linkAszf" : "href= https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf",
+    "linkAszf": " conditions.",
     "address": "Address",
     "invalidemail": "Invalid email",
     "login": "Login"
