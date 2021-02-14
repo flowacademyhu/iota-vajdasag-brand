@@ -29,6 +29,46 @@
     "address": "Address/Company seat",
     "invalidemail": "Email address is not valid",
     "login": "Login"
+  },
+  "companyAdmin": {
+    "newProduct": "New product",
+    "edit": "Edit",
+    "remove": "Remove",
+    "search": "Search"
+  },
+  "superAdmin": {
+    "createNewUser": "Create a new user",
+    "name": "Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "dateOfRegistration": "Date of registration",
+    "editBasicData": "Edit basic data",
+    "editProducts": "Edit products",
+    "delete": "Delete",
+    "confirmDelete": "Confirm delete?",
+    "search": "Search"
+  },
+  "datasheet": {
+    "descripotion": "Description",
+    "Events": "Events",
+    "address": "Address",
+    "city": "City",
+    "street": "Street",
+    "coordinates": "Coordinates ",
+    "contactPerson": "Contact person",
+    "phone": "Phone",
+    "website": "Website",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "gallery": "Gallery"
+  },
+  "forgotPW": {
+    "newPassword": "New password"
+  },
+  "navbar": {
+    "users": "Users",
+    "product": "Product",
+    "events": "Events",
+    "sign out": "Sign out"
   }
- 
 }
