@@ -24,8 +24,8 @@ public class KeycloakClientService {
     private final Keycloak keycloak;
     private final KeycloakPropertiesHolder keycloakPropertiesHolder;
 
-    public void createAccount(String email) throws ValidationException {
-        CredentialRepresentation credential = createCredentials();
+    public void createAccount(String email,String password) throws ValidationException {
+        CredentialRepresentation credential = createCredentials(password);
         RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getRealm2());
         RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getUserRole()).toRepresentation();
         javax.ws.rs.core.Response response = ourRealm.users().create(createUserRepresentation(email, credential));
@@ -46,11 +46,11 @@ public class KeycloakClientService {
         return user;
     }
 
-    private CredentialRepresentation createCredentials() {
+    private CredentialRepresentation createCredentials(String password) {
         CredentialRepresentation credential = new CredentialRepresentation();
         credential.setType(CredentialRepresentation.PASSWORD);
-        credential.setValue(generatePassword(50));
-        credential.setTemporary(true);
+        credential.setValue(password);
+        credential.setTemporary(false);
         return credential;
     }
 

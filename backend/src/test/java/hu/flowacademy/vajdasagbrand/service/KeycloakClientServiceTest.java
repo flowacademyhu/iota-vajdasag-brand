@@ -35,6 +35,7 @@ class KeycloakClientServiceTest {
     private KeycloakClientService keycloakClientService;
 
     private String email;
+    private String password;
 
     @Test
     public void givenConfiguredKeycloak_whenCallingCreatingAccount_thenUserIsCreated() throws ValidationException {
@@ -42,7 +43,7 @@ class KeycloakClientServiceTest {
         givenKeycloakPropertiesHolderConfiguration();
         givenIntegratedKeycloak();
 
-        keycloakClientService.createAccount(email);
+        keycloakClientService.createAccount(email,password);
         verify(keycloak, times(1)).realm(anyString());
         verifyNoMoreInteractions(keycloak);
         verify(keycloakPropertiesHolder, times(1)).getRealm2();

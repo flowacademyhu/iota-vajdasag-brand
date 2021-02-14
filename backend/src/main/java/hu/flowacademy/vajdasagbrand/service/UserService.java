@@ -24,11 +24,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
 
-    public User userRegistrationData(User user) throws ValidationException {
+    public User userRegistrationData(User user,String password) throws ValidationException {
         log.info("UserService called with: {}",user);
         validateUserData(user);
 
-        keycloakClientService.createAccount(user.getEmail());
+        keycloakClientService.createAccount(user.getEmail(),password);
         user.setRegisteredAt(LocalDateTime.now());
         User result = userRepository.save(user);
         log.info("The result is : {}", result);
