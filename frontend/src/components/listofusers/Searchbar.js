@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Search } from "react-bootstrap-icons";
 
 const Searchbar = ({ setSearchKeyword }) => {
   const { t } = useTranslation();
@@ -10,11 +11,11 @@ const Searchbar = ({ setSearchKeyword }) => {
         <input
           className="searchbar form-control mr-sm-2"
           type="search"
-          placeholder={t("Search")}
-          aria-label={t("Search")}
+          placeholder={t("search")}
+          aria-label={t("search")}
           onChange={(e) => setSearchKeyword(e.target.value)}
         />
-        <i className="bi bi-search"></i>
+        <Search></Search>
       </form>
     </nav>
   );
