@@ -48,8 +48,8 @@
     "search": "Search"
   },
   "datasheet": {
-    "descripotion": "Description",
-    "Events": "Events",
+    "description": "Description",
+    "events": "Events",
     "address": "Address",
     "city": "City",
     "street": "Street",
