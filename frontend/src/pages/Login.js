@@ -5,10 +5,8 @@ import * as Yup from 'yup';
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
-import { loginMock } from "../communications/mockForUserApi";
 
 
-loginMock();
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().shape({
     email: Yup.string()
@@ -19,7 +17,7 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
         .required()
 }))
 
-const Login = () => {
+const Login = ({ setTokenInState }) => {
     const { t } = useTranslation();
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
@@ -27,6 +25,8 @@ const Login = () => {
 
     const handleResponse = response => {
         sessionStorage.setItem("token", response.data)
+        setTokenInState(response.data)
+
     }
 
 

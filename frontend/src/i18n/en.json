@@ -1,4 +1,12 @@
 {
+  "Accepted registration": "Accepted registration",
+  "Companyadmin": "Companyadmin",
+  "Date of registration": "Date of registration",
+  "Email": "Email",
+  "Name": "Name",
+  "No": "No",
+  "Registration": "Registration",
+  "Yes": "Yes",
   "login": {
     "buttontext": "Sign In",
     "connectionProblems": "Connection problems",
@@ -10,6 +18,9 @@
     "password": "Password",
     "title": "Sign in"
   },
-  "registration": "registration",
-  "text": "text"
+  "welcome": "Welcome",
+  "users":"Users list",
+  "products":"Products list",
+  "events":"All event",
+  "logout":"Log out"
 }
