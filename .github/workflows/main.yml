@@ -63,7 +63,8 @@ jobs:
       run:
         shell: bash
         working-directory: backend
-
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:${{ github.sha }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -72,16 +73,22 @@ jobs:
           java-version: 11
       - name: Run maven test
         run: mvn -B clean test
-      - name: Docker Build
-        uses: benjlevesque/actions-docker-gcr/build@v1.1
+
+      - name: Setup GCloud
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          image: iota-vajdasag-brand-b3e95c95/vajdasag-brand-app
-          dockerfile: backend/Dockerfile
-      - name: Docker Push
-        uses: benjlevesque/actions-docker-gcr/push@v1.1
-        with:
-          image: iota-vajdasag-brand-b3e95c95/vajdasag-brand-app
-          gcloud_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_IOTA_VAJDASAG_BRAND_B3E95C95 }}
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_email: ${{ secrets.GCP_EMAIL }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Build Docker image
+        run: docker build . -t $IMAGE_NAME
+
+      - name: Push Docker image
+        run: docker push $IMAGE_NAME
 
   deploy_staging:
     name: Deploy to staging
