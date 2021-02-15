@@ -3,6 +3,10 @@ package hu.flowacademy.vajdasagbrand.service;
 import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.keycloak.admin.client.Keycloak;
+import org.springframework.beans.factory.annotation.Autowired;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -14,6 +18,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -23,6 +28,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
 
+    public void deleteById(String id) throws ValidationException {
     public User userRegistrationData(User user, String password) throws ValidationException {
         log.info("UserService called with: {}", user);
         validateUserData(user);
@@ -39,13 +45,12 @@ public class UserService {
        if(user.isEmpty()) {
            throw new ValidationException("No user with given id: " + id);
        }
-       if(!user.get().getDeletedAt().equals(null)) {
+       if(user.get().getDeletedAt() != null) {
            throw new ValidationException("User already deleted");
        }
        User deleted = user.get();
        deleted.setDeletedAt(LocalDateTime.now());
        userRepository.save(deleted);
-       return deleted;
     }
 
     private void validateUserData(User user) throws ValidationException {
