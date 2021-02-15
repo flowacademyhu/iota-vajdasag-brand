@@ -12,10 +12,12 @@ import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import org.keycloak.admin.client.Keycloak;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +65,11 @@ public class KeycloakClientService {
                 keycloakPropertiesHolder.getKeycloakCredentialsSecret())
                 .tokenManager()
                 .getAccessToken();
+    }
+
+    public void deleteUser(String username) {
+        Keycloak keycloak = Keycloak.getInstance(serverurl, realm, adminusername, clientpassword, clientId, clientsecret);
+        keycloak.realm(realm).users().search(username).get(0).setEnabled(false);
     }
 
     public static String generatePassword(int numberOfDigits) {
