@@ -43,7 +43,7 @@ export default function App() {
                     <Login setTokenInState={writeToken} />
                   </Route>
                   <Route path="/company-admin">
-                    <div>{t("Companyadmin")}</div>
+                    <div>{t("companyAdmin")}</div>
                   </Route>
                   <Route path="/super-admin">
                     <SuperAdmin />

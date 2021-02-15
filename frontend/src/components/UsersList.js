@@ -11,10 +11,10 @@ const UsersList = () => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">{t("Name")}</th>
-            <th scope="col">{t("Email")}</th>
-            <th scope="col">{t("Accepted registration")}</th>
-            <th scope="col">{t("Date of registration")}</th>
+            <th scope="col">{t("name")}</th>
+            <th scope="col">{t("email")}</th>
+            <th scope="col">{t("acceptedRegistration")}</th>
+            <th scope="col">{t("dateOfRegistrion")}</th>
           </tr>
         </thead>
         <tbody>
