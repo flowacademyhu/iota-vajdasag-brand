@@ -11,11 +11,12 @@ import { useTranslation } from "react-i18next";
 import Menu from "./components/Menu.js";
 import { TokenStateHandler } from "./components/tokenHandler";
 import SuperAdmin from "./pages/SuperAdmin";
+import CompanyAdmin from "./pages/CompanyAdmin";
 
 export default function App() {
   const { t } = useTranslation();
   const { token, setTokenInState } = TokenStateHandler();
-  const loggedInAsSuperAdmin = false;
+  const loggedInAsSuperAdmin = true;
   const loggedInAsCompanyAdmin = false;
 
   console.log("token:" + token)
@@ -43,7 +44,7 @@ export default function App() {
                     <Login setTokenInState={setTokenInState} />
                   </Route>
                   <Route path="/company-admin">
-                    <div>{t("Companyadmin")}</div>
+                    <CompanyAdmin />
                   </Route>
                   <Route path="/super-admin">
                     <SuperAdmin />

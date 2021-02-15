@@ -1,23 +1,19 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import MenuComponent from "../components/menuComponent";
+import MenuComponent from "../components/MenuComponent";
 
 const menuItems = [
   {
-    path: "users",
     title: "users"
   },
   {
-    path: "products",
     title: "products"
   },
   {
-    path: "events",
     title: "events"
   },
   {
-    path: "logout",
     title: "logout"
   }
 ];
@@ -34,6 +30,7 @@ export default function Menu() {
                 activeClassName="active"
                 className="nav-link"
                 to="/super-admin/users"
+                // to={`/super-admin/${item.title}`}
               >
                 <MenuComponent title={t(item.title)}></MenuComponent>
               </Link>
