@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import MenuComponent from "../components/menuComponent";
+import MenuComponent from "../components/MenuComponent";
 
 const menuItems = [
   {
