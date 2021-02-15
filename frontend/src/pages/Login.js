@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
+import { useTokenStateHandler } from "../components/tokenHandler";
 
 
 
@@ -17,16 +18,18 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
         .required()
 }))
 
-const Login = ({ setTokenInState }) => {
+const Login = () => {
     const { t } = useTranslation();
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
+    const { writeToken } = useTokenStateHandler();
 
 
     const handleResponse = response => {
         sessionStorage.setItem("token", response.data)
-        setTokenInState(response.data)
-
+        console.log("handleResponse: ",response.data)
+        writeToken(response.data)
+        setIsSignInAccepted(true)        
     }
 
 
@@ -34,7 +37,6 @@ const Login = ({ setTokenInState }) => {
         try {
             const response = await login(value)
             handleResponse(response)
-            setIsSignInAccepted(true)
         } catch (error) {
             setIsSignInAccepted(false)
             if (error.response.status === 404) setErrorMessage(t("login.connectionProblems"))

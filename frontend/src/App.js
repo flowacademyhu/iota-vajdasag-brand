@@ -1,4 +1,3 @@
-import "./App.css";
 import Login from "./pages/Login";
 import {
   BrowserRouter as Router,
@@ -7,26 +6,26 @@ import {
   Redirect,
 } from "react-router-dom";
 import SwitchLanguage from "./components/SwitchLanguage";
+import React, { useState } from 'react';
 import { useTranslation } from "react-i18next";
 import Menu from "./components/Menu.js";
-import { useTokenStateHandler } from "./components/tokenHandler";
 import SuperAdmin from "./pages/SuperAdmin";
+import { TokenContext } from "./Authenticator";
 
 export default function App() {
   const { t } = useTranslation();
-  const { token, writeToken } = useTokenStateHandler();
+  const [token, setToken] = useState();
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
-
-  console.log("token:" + token)
 
 
   return (
     <>
-      <SwitchLanguage />
-      <Router>
-        <div className="container">
-          <div className="row">
+      <TokenContext.Provider value={[token, setToken]}>
+        <SwitchLanguage />
+        <Router>
+          <div className="container">
+            <div className="row">
               {token &&
                 (<div className="col-3">
                   <Menu />
@@ -40,7 +39,7 @@ export default function App() {
                     <div>{t("Registration")}</div>
                   </Route>
                   <Route path="/login">
-                    <Login setTokenInState={writeToken} />
+                    <Login />
                   </Route>
                   <Route path="/company-admin">
                     <div>{t("companyAdmin")}</div>
@@ -52,7 +51,8 @@ export default function App() {
               </div>
             </div>
           </div>
-      </Router>
+        </Router>
+      </TokenContext.Provider>
     </>
   );
 }

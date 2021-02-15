@@ -1,27 +1,32 @@
-import { useState } from "react";
+import { useContext} from "react";
+import  {TokenContext}  from "../Authenticator";
+
+
+
 
 export const useTokenStateHandler = () => {
-    const [token, setTokenInState] = useState();
+    const [ token, setToken ] = useContext(TokenContext);
+
 
     const getTokenFromStorage = () => {
         return sessionStorage.getItem("token");
     }
-    
-    const writeToken = (token) => {
-        sessionStorage.setItem("token", token)
-        setTokenInState(token)
-}
-    
+
+    const writeToken = (tokenInput) => {
+        console.log("writeToken incoming: ", tokenInput)
+        sessionStorage.setItem("token", tokenInput)
+        setToken(tokenInput)
+        console.log("A token az contextben-ban:" + token)
+    }
+
     const deleteToken = () => {
         sessionStorage.removeItem("token")
-        setTokenInState(null)
     }
 
     return {
-        token,
         getTokenFromStorage,
         writeToken,
-        deleteToken        
+        deleteToken
     }
 }
 
