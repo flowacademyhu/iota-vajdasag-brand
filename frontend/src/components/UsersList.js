@@ -10,16 +10,17 @@ const UsersList = () => {
   const [isSortAscending, setAscendingSort] = useState(true);
   const { users } = useUsers(searchKeyword, sortKey, isSortAscending);
 
+  const onColumnClick = (value) => {
+    setAscendingSort(!isSortAscending);
+    setSortKey(value);
+  };
+
   return (
     <div className="d-flex flex-row-reverse">
       <div className="col-9">
         <Searchbar setSearchKeyword={setSearchKeyword} />
         <table className="table table-striped">
-          <ListHeader
-            setSortKey={setSortKey}
-            setAscendingSort={setAscendingSort}
-            isSortAscending={isSortAscending}
-          />
+          <ListHeader onColumnClick={onColumnClick} />
           <tbody>
             {users?.map((user) => (
               <ListElement user={user} key={user.id} />

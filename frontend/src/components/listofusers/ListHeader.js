@@ -1,30 +1,24 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const ListHeader = ({ setSortKey, setAscendingSort, isSortAscending }) => {
+const ListHeader = ({onColumnClick}) => {
   const { t } = useTranslation();
-
-  const handleChange = (value) => {
-    setAscendingSort(!isSortAscending);
-    setSortKey(value);
-  };
 
   return (
     <thead>
       <tr>
-        <th scope="col" onClick={() => handleChange("name")}>
+        <th scope="col" onClick={() => onColumnClick("name")}>
           {t("name")}
         </th>
-        <th scope="col" onClick={() => handleChange("email")}>
+        <th scope="col" onClick={() => onColumnClick("email")}>
           {t("email")}
         </th>
-        <th scope="col" onClick={() => handleChange("isApproved")}>
+        <th scope="col" onClick={() => onColumnClick("isApproved")}>
           {t("approvedUser")}
         </th>
-        <th scope="col" onClick={() => handleChange("dateOfRegistration")}>
+        <th scope="col" onClick={() => onColumnClick("dateOfRegistration")}>
           {t("dateOfRegistration")}
         </th>
-        <th></th>
       </tr>
     </thead>
   );
