@@ -1,16 +1,11 @@
 import { useContext } from "react";
-import { TokenContext } from "../Authenticator";
+import { TokenContext } from "../TokenContext";
 
 
 
 
 export const useTokenStateHandler = () => {
-    const [token, setToken] = useContext(TokenContext);
-
-
-    const getTokenFromStorage = () => {
-        return sessionStorage.getItem("token");
-    }
+    const {setToken, token} = useContext(TokenContext);
 
     const writeToken = (tokenInput) => {
         console.log("writeToken incoming: ", tokenInput)
@@ -21,10 +16,10 @@ export const useTokenStateHandler = () => {
 
     const deleteToken = () => {
         sessionStorage.removeItem("token")
+        setToken(undefined)
     }
 
     return {
-        getTokenFromStorage,
         writeToken,
         deleteToken
     }

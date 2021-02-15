@@ -7,53 +7,60 @@ import {
 } from "react-router-dom";
 import SwitchLanguage from "./components/SwitchLanguage";
 import { useTranslation } from "react-i18next";
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Menu from "./components/Menu.js";
 import SuperAdmin from "./pages/SuperAdmin";
-import { TokenContext } from "./Authenticator";
+import { TokenContext, TokenProvider } from "./TokenContext";
 
-export default function App() {
+const Main = () => {
+  const { token } = useContext(TokenContext);
   const { t } = useTranslation();
-  const [token, setToken] = useState();
-  const TokenProviderValue = { token, setToken }
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
+  return (
+    <>
+      <SwitchLanguage />
+      <Router>
+        <div className="container">
+          <div className="row">
+            {token &&
+              (<div className="col-3">
+                <Menu />
+              </div>)}
+            {token ? <Redirect to="/super-admin" /> : <Redirect to="/login" />}
+            {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
+            {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
+            <div className="col">
+              <Switch>
+                <Route path="/registration">
+                  <div>{t("Registration")}</div>
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/company-admin">
+                  <div>{t("companyAdmin")}</div>
+                </Route>
+                <Route path="/super-admin">
+                  <SuperAdmin />
+                </Route>
+              </Switch>
+            </div>
+          </div>
+        </div>
+      </Router>
+    </>
+  );
+}
 
+
+export default function App() {
 
   return (
     <>
-      <TokenContext.Provider value={[TokenProviderValue.token, TokenProviderValue.setToken]}>
-        <SwitchLanguage />
-        <Router>
-          <div className="container">
-            <div className="row">
-              {token &&
-                (<div className="col-3">
-                  <Menu />
-                </div>)}
-              {token ? <Redirect to="/super-admin" /> : <Redirect to="/login" />}
-              {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
-              {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
-              <div className="col">
-                <Switch>
-                  <Route path="/registration">
-                    <div>{t("Registration")}</div>
-                  </Route>
-                  <Route path="/login">
-                    <Login />
-                  </Route>
-                  <Route path="/company-admin">
-                    <div>{t("companyAdmin")}</div>
-                  </Route>
-                  <Route path="/super-admin">
-                    <SuperAdmin />
-                  </Route>
-                </Switch>
-              </div>
-            </div>
-          </div>
-        </Router>
-      </TokenContext.Provider>
+      <TokenProvider>
+        <Main></Main>
+      </TokenProvider>
     </>
   );
 }
