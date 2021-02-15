@@ -8,15 +8,7 @@ const UsersList = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [sortKey, setSortKey] = useState("");
   const [isSortAscending, setAscendingSort] = useState(true);
-  const { users } = useUsers(searchKeyword);
-
-  const sortColumn = (a, b) => {
-    if (isSortAscending) {
-      return a[sortKey] > b[sortKey] ? 1 : -1;
-    } else {
-      return a[sortKey] < b[sortKey] ? 1 : -1;
-    }
-  };
+  const { users } = useUsers(searchKeyword, sortKey, isSortAscending);
 
   return (
     <div className="d-flex flex-row-reverse">
@@ -29,11 +21,9 @@ const UsersList = () => {
             isSortAscending={isSortAscending}
           />
           <tbody>
-            {users
-              ?.sort((a, b) => sortColumn(a, b))
-              .map((user) => (
-                <ListElement user={user} key={user.id} />
-              ))}
+            {users?.map((user) => (
+              <ListElement user={user} key={user.id} />
+            ))}
           </tbody>
         </table>
       </div>
