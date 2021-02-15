@@ -46,7 +46,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
           )
         )
     );
-  }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending]);
+  }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending, sortColumn]);
 
   return { users };
 };
