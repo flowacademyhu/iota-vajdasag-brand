@@ -29,8 +29,8 @@ public class UserService {
            throw new ValidationException("User already deleted");
        }
        User deleted = user.get();
-       keycloakClientService.deleteUser(deleted.getEmail());
-       deleted.setDeletedAt(LocalDateTime.now());
+       //keycloakClientService.deleteUser(deleted.getEmail());
+       deleted.setDeletedAt(LocalDateTime.now().withNano(0));
        userRepository.save(deleted);
     }
 }
