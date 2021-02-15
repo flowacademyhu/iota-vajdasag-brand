@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -54,5 +55,18 @@ public class UserService {
         if((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY){
             throw new ValidationException("Can not add tax number for individual members");
         }
+    }
+
+    public void approveRegistration(String userId) throws ValidationException {
+        log.info("Incoming registration request with the id: {}", userId);
+        Optional<User> registeredUser= userRepository.findById(userId);
+        if(registeredUser.isEmpty()) {
+            throw new ValidationException("User with the following id " + userId + " not found");
+        }
+        User activeUser = registeredUser.get();
+        log.debug("The user's current status is: {} ", activeUser.isEnabled());
+        activeUser.setEnabled(true);
+        userRepository.save(activeUser);
+        log.debug("The user's current status is: {} ", activeUser.isEnabled());
     }
 }

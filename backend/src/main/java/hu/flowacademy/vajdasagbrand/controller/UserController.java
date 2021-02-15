@@ -12,7 +12,10 @@ import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -37,5 +40,19 @@ public class UserController {
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
         userService.userRegistrationData(user);
+    }
+
+    @RolesAllowed("admin")
+    @PutMapping("/approval/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void approveRegistration(@PathVariable("id") String userId){
+        log.info("Incoming registration request with the id: {}", userId);
+        try {
+            userService.approveRegistration(userId);
+            log.debug("The requested user id is: {}", userId);
+        } catch (ValidationException e) {
+            log.error("Registration with the give id ({}) not found", userId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Registration with the given id not found");
+        }
     }
 }
