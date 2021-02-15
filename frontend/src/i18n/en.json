@@ -49,8 +49,8 @@
     "search": "Search"
   },
   "datasheet": {
-    "description": "Description",
-    "events": "Events",
+    "descripotion": "Description",
+    "Events": "Events",
     "address": "Address",
     "city": "City",
     "street": "Street",
