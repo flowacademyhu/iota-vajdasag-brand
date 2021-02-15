@@ -6,8 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import SwitchLanguage from "./components/SwitchLanguage";
-import React, { useState } from 'react';
 import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
 import Menu from "./components/Menu.js";
 import SuperAdmin from "./pages/SuperAdmin";
 import { TokenContext } from "./Authenticator";
@@ -15,13 +15,14 @@ import { TokenContext } from "./Authenticator";
 export default function App() {
   const { t } = useTranslation();
   const [token, setToken] = useState();
+  const TokenProviderValue = { token, setToken }
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
 
 
   return (
     <>
-      <TokenContext.Provider value={[token, setToken]}>
+      <TokenContext.Provider value={[TokenProviderValue.token, TokenProviderValue.setToken]}>
         <SwitchLanguage />
         <Router>
           <div className="container">

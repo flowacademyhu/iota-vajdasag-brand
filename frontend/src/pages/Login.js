@@ -27,9 +27,9 @@ const Login = () => {
 
     const handleResponse = response => {
         sessionStorage.setItem("token", response.data)
-        console.log("handleResponse: ",response.data)
+        console.log("handleResponse: ", response.data)
         writeToken(response.data)
-        setIsSignInAccepted(true)        
+        setIsSignInAccepted(true)
     }
 
 

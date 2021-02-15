@@ -1,11 +1,11 @@
-import { useContext} from "react";
-import  {TokenContext}  from "../Authenticator";
+import { useContext } from "react";
+import { TokenContext } from "../Authenticator";
 
 
 
 
 export const useTokenStateHandler = () => {
-    const [ token, setToken ] = useContext(TokenContext);
+    const [token, setToken] = useContext(TokenContext);
 
 
     const getTokenFromStorage = () => {
