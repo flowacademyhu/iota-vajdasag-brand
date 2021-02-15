@@ -11,6 +11,7 @@ import React, { useContext } from 'react';
 import Menu from "./components/Menu.js";
 import SuperAdmin from "./pages/SuperAdmin";
 import { TokenContext, TokenProvider } from "./TokenContext";
+import Logout from "./components/logout";
 
 const Main = () => {
   const { token } = useContext(TokenContext);
@@ -43,6 +44,9 @@ const Main = () => {
                 </Route>
                 <Route path="/super-admin">
                   <SuperAdmin />
+                </Route>
+                <Route path="/logout">
+                  <Logout/>
                 </Route>
               </Switch>
             </div>

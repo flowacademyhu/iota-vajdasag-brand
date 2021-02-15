@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
-const MenuComponent = ({title}) => {
-    return ( 
-        <h5>{title}</h5>
-     );
+const MenuComponent = ({ title, path }) => {
+    return (
+        <Link
+            activeClassName="active"
+            className="nav-link"
+            to={path}
+        >
+            <h1>{title}</h1>
+        </Link>
+    );
 }
- 
+
 export default MenuComponent;
