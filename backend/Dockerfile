@@ -2,7 +2,7 @@ FROM maven:3.6.3-openjdk-11-slim AS builder
 
 WORKDIR /build
 COPY . .
-RUN mvn clean package
+RUN mvn -B clean package
 
 FROM openjdk:11-slim
 
