@@ -15,6 +15,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final KeycloakClientService keycloakClientService;
 
     public User deleteById(String id) throws ValidationException {
        Optional<User> user = userRepository.findById(id);
@@ -25,6 +26,7 @@ public class UserService {
            throw new ValidationException("User already deleted");
        }
        User deleted = user.get();
+       keycloakClientService.deleteUser(deleted.getEmail());
        deleted.setDeletedAt(LocalDateTime.now());
        userRepository.save(deleted);
        return deleted;
