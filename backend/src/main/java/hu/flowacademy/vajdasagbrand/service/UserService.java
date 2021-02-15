@@ -7,13 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.Keycloak;
 import org.springframework.beans.factory.annotation.Autowired;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -28,7 +22,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
 
-    public void deleteById(String id) throws ValidationException {
     public User userRegistrationData(User user, String password) throws ValidationException {
         log.info("UserService called with: {}", user);
         validateUserData(user);
@@ -49,6 +42,7 @@ public class UserService {
            throw new ValidationException("User already deleted");
        }
        User deleted = user.get();
+       keycloakClientService.deleteUser(deleted.getEmail());
        deleted.setDeletedAt(LocalDateTime.now());
        userRepository.save(deleted);
     }
