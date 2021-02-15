@@ -13,5 +13,5 @@ export const getUsers = async () => {
 };
 
 export const login = (value) => {
-  return axios.post("http://localhost:3000/api", value);
+  return axios.post("http://localhost:3000/api/login", value);
 };
