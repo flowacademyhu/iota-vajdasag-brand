@@ -14,7 +14,7 @@ import SuperAdmin from "./pages/SuperAdmin";
 
 export default function App() {
   const { t } = useTranslation();
-  const { token, setTokenInState } = useTokenStateHandler();
+  const { token, writeToken } = useTokenStateHandler();
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
 
@@ -40,7 +40,7 @@ export default function App() {
                     <div>{t("Registration")}</div>
                   </Route>
                   <Route path="/login">
-                    <Login setTokenInState={setTokenInState} />
+                    <Login setTokenInState={writeToken} />
                   </Route>
                   <Route path="/company-admin">
                     <div>{t("Companyadmin")}</div>
