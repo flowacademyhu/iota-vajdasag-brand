@@ -73,7 +73,7 @@ jobs:
       - name: Run maven test
         run: mvn -B clean test
       - name: Build and push Docker image to GCR
-        uses: raccoondev/push-docker-gcr
+        uses: raccoondev/push-docker-gcr@v1
         with:
           gcr_host: eu.gcr.io
           image_name: vajdasag-brand-app
