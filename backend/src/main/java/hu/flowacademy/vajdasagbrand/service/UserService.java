@@ -1,13 +1,11 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.entity.Type;
-import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -36,6 +34,20 @@ public class UserService {
         return result;
     }
 
+    public User deleteById(String id) throws ValidationException {
+       Optional<User> user = userRepository.findById(id);
+       if(user.isEmpty()) {
+           throw new ValidationException("No user with given id: " + id);
+       }
+       if(!user.get().getDeletedAt().equals(null)) {
+           throw new ValidationException("User already deleted");
+       }
+       User deleted = user.get();
+       deleted.setDeletedAt(LocalDateTime.now());
+       userRepository.save(deleted);
+       return deleted;
+    }
+
     private void validateUserData(User user) throws ValidationException {
         if (!StringUtils.hasText(user.getFullName())) {
             throw new ValidationException("Didn't get full name");
@@ -55,18 +67,4 @@ public class UserService {
         if ((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY) {
             throw new ValidationException("Can not add tax number for individual members");
         }
-
-    public User deleteById(String id) throws ValidationException {
-       Optional<User> user = userRepository.findById(id);
-       if(user.isEmpty()) {
-           throw new ValidationException("No user with given id: " + id);
-       }
-       if(!user.get().getDeletedAt().equals(null)) {
-           throw new ValidationException("User already deleted");
-       }
-       User deleted = user.get();
-       deleted.setDeletedAt(LocalDateTime.now());
-       userRepository.save(deleted);
-       return deleted;
-    }
 }
