@@ -4,7 +4,7 @@ import { TokenContext } from "../TokenContext";
 
 
 
-export const useTokenStateHandler = () => {
+const useTokenStateHandler = () => {
     const {setToken, token} = useContext(TokenContext);
 
     const writeToken = (tokenInput) => {
@@ -24,4 +24,6 @@ export const useTokenStateHandler = () => {
         deleteToken
     }
 }
+
+export default useTokenStateHandler
 

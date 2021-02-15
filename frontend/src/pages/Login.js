@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
-import { useTokenStateHandler } from "../components/tokenHandler";
+import  useTokenStateHandler  from "../components/tokenHandler";
 
 
 
@@ -26,8 +26,6 @@ const Login = () => {
 
 
     const handleResponse = response => {
-        sessionStorage.setItem("token", response.data)
-        console.log("handleResponse: ", response.data)
         writeToken(response.data)
         setIsSignInAccepted(true)
     }
