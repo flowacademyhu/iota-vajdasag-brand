@@ -26,8 +26,8 @@ public class KeycloakClientService {
 
     public void createAccount(String email,String password) throws ValidationException {
         CredentialRepresentation credential = createCredentials(password);
-        RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getRealm2());
-        RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getUserRole()).toRepresentation();
+        RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm2());
+        RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).toRepresentation();
         javax.ws.rs.core.Response response = ourRealm.users().create(createUserRepresentation(email, credential));
         String userId = CreatedResponseUtil.getCreatedId(response);
         UserResource oneUser = ourRealm.users().get(userId);
@@ -56,11 +56,11 @@ public class KeycloakClientService {
 
     public AccessTokenResponse login(String email, String password) {
         return Keycloak.getInstance(
-                keycloakPropertiesHolder.getServerurl(),
-                keycloakPropertiesHolder.getRealm(),
+                keycloakPropertiesHolder.getKeycloakServerUrl(),
+                keycloakPropertiesHolder.getKeycloakRealm(),
                 email, password,
-                keycloakPropertiesHolder.getClientId(),
-                keycloakPropertiesHolder.getClientsecret())
+                keycloakPropertiesHolder.getKeycloakResource(),
+                keycloakPropertiesHolder.getKeycloakCredentialsSecret())
                 .tokenManager()
                 .getAccessToken();
     }

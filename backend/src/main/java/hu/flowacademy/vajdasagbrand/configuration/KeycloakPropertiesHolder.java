@@ -8,20 +8,32 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 public class KeycloakPropertiesHolder {
 
-    @Value("${keycloakBackendClient.realm_master}")
-    private String realm;
+    @Value("${keycloakBackendClient.serverUrl}")
+    private String keycloakBackendClientServerUrl;
+    @Value("${keycloakBackendClient.realm}")
+    private String keycloakBackendClientRealm;
     @Value("${keycloakBackendClient.realm2}")
-    private String realm2;
-    @Value("${keycloak.auth-server-url}")
-    private String serverurl;
+    private String keycloakBackendClientRealm2;
+    @Value("${keycloakBackendClient.realm_master}")
+    private String keycloakBackendClientRealmMaster;
     @Value("${keycloakBackendClient.adminusername}")
-    private String adminusername;
+    private String keycloakBackendClientAdminUserName;
     @Value("${keycloakBackendClient.adminpassword}")
-    private String clientpassword;
+    private String keycloakBackendClientAdminPassword;
+    @Value("${keycloakBackendClient.clientpassword}")
+    private String keycloakBackendClientClientPassword;
     @Value("${keycloakBackendClient.client-id}")
-    private String clientId;
-    @Value("${keycloak.credentials.secret}")
-    private String clientsecret;
+    private String keycloakBackendClientClientId;
     @Value("${keycloakBackendClient.user-role}")
-    private String userRole;
+    private String keycloakBackendClientUserRole;
+
+    @Value("${keycloak.realm}")
+    private String keycloakRealm;
+    @Value("${keycloak.auth-server-url}")
+    private String keycloakServerUrl;
+    @Value("${keycloak.resource}")
+    private String keycloakResource;
+    @Value("${keycloak.credentials.secret}")
+    private String keycloakCredentialsSecret;
+
 }
