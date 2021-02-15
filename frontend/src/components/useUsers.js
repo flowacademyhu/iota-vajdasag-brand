@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
 import { getUsers } from "../communications/userApi";
 
+/*
+* Removes all accents from words and makes them uppercase.
+**/
+const makeWordComparable = (keyword) => {
+  return keyword
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
+};
+
 const useUsers = (searchKeyword) => {
   const [listOfAllUsers, setListOfAllUsers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -13,13 +23,6 @@ const useUsers = (searchKeyword) => {
   useEffect(() => {
     fetchUsers();
   }, []);
-
-  const makeWordComparable = (keyword) => {
-    return keyword
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toUpperCase();
-  };
 
   useEffect(() => {
     setUsers(
