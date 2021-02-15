@@ -72,17 +72,15 @@ jobs:
           java-version: 11
       - name: Run maven test
         run: mvn -B clean test
-      - name: Build Docker image
-        run: docker build -t vajdasag-brand-app:${{ github.sha }} .
-      - name: Push Docker image to GCR
+      - name: Build and push Docker image to GCR
         uses: raccoondev/push-docker-gcr
         with:
           gcr_host: eu.gcr.io
           image_name: vajdasag-brand-app
           image_tag: ${{ github.sha }}
-          env:
-            GCLOUD_SERVICE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_IOTA_VAJDASAG_BRAND_B3E95C95 }}
-            GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+        env:
+          GCLOUD_SERVICE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_IOTA_VAJDASAG_BRAND_B3E95C95 }}
+          GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
 
   deploy_staging:
     name: Deploy to staging
