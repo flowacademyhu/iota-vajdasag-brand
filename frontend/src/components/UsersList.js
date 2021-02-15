@@ -20,7 +20,11 @@ const UsersList = () => {
       <div className="col-9">
         <Searchbar setSearchKeyword={setSearchKeyword} />
         <table className="table table-striped">
-          <ListHeader onColumnClick={onColumnClick} />
+          <ListHeader
+            onColumnClick={onColumnClick}
+            isSortAscending={isSortAscending}
+            sortKey={sortKey}
+          />
           <tbody>
             {users?.map((user) => (
               <ListElement user={user} key={user.id} />
