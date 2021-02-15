@@ -9,12 +9,12 @@ import {
 import SwitchLanguage from "./components/SwitchLanguage";
 import { useTranslation } from "react-i18next";
 import Menu from "./components/Menu.js";
-import { TokenStateHandler } from "./components/tokenHandler";
+import { useTokenStateHandler } from "./components/tokenHandler";
 import SuperAdmin from "./pages/SuperAdmin";
 
 export default function App() {
   const { t } = useTranslation();
-  const { token, setTokenInState } = TokenStateHandler();
+  const { token, setTokenInState } = useTokenStateHandler();
   const loggedInAsSuperAdmin = false;
   const loggedInAsCompanyAdmin = false;
 

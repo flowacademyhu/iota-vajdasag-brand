@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const TokenStateHandler = () => {
+export const useTokenStateHandler = () => {
     const [token, setTokenInState] = useState();
     return {
         token,
