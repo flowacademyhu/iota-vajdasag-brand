@@ -32,3 +32,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Development Local Configuration ###
+/src/main/resources/application-local.yml
+/src/main/resources/application-barbi.yml
+/testDb/

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Getter
 public class KeycloakPropertiesHolder {
+
     @Value("${keycloakBackendClient.serverUrl}")
     private String keycloakBackendClientServerUrl;
     @Value("${keycloakBackendClient.realm}")
@@ -25,6 +26,7 @@ public class KeycloakPropertiesHolder {
     private String keycloakBackendClientClientId;
     @Value("${keycloakBackendClient.user-role}")
     private String keycloakBackendClientUserRole;
+
     @Value("${keycloak.realm}")
     private String keycloakRealm;
     @Value("${keycloak.auth-server-url}")
@@ -33,4 +35,6 @@ public class KeycloakPropertiesHolder {
     private String keycloakResource;
     @Value("${keycloak.credentials.secret}")
     private String keycloakCredentialsSecret;
+
+
 }

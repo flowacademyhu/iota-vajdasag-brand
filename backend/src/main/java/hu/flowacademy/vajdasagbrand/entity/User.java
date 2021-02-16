@@ -1,7 +1,6 @@
 package hu.flowacademy.vajdasagbrand.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

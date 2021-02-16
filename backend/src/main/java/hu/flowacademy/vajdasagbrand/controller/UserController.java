@@ -2,7 +2,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.entity.User;
-import hu.flowacademy.vajdasagbrand.entity.UserDTO;
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;
 import hu.flowacademy.vajdasagbrand.service.UserService;
@@ -39,7 +39,7 @@ public class UserController {
         log.info("Incoming call with: {}", userDTO);
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
-        userService.userRegistrationData(user);
+        userService.userRegistrationData(user, userDTO.getPassword());
     }
 
    // @RolesAllowed("admin")

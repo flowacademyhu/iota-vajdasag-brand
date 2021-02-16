@@ -22,7 +22,8 @@ import java.util.List;
 public class KeycloakClientService {
     private final Keycloak keycloak;
     private final KeycloakPropertiesHolder keycloakPropertiesHolder;
-    public void createAccount(String email,String password) throws ValidationException {
+
+    public void createAccount(String email, String password) throws ValidationException {
         CredentialRepresentation credential = createCredentials(password);
         RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm2());
         RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).toRepresentation();
@@ -34,6 +35,7 @@ public class KeycloakClientService {
             throw new ValidationException("Username taken!");
         }
     }
+
     private UserRepresentation createUserRepresentation(String email, CredentialRepresentation credential) {
         UserRepresentation user = new UserRepresentation();
         user.setUsername(email);
@@ -66,4 +68,5 @@ public class KeycloakClientService {
         }
         return password.toString();
     }
+
 }

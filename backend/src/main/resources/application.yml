@@ -23,9 +23,9 @@ keycloakBackendClient:
   realm: VajdasagBrand
   realm2: VajdasagBrand
   realm_master: master
-  adminusername: initial1
-  adminpassword: initial1
-  clientpassword: gsdmnk
+  adminusername: admin
+  adminpassword: admin
+  clientpassword: _HLB2!2m8$#ghhk
   client-id: admin-cli
   user-role: realmuser
 
@@ -33,8 +33,8 @@ keycloak:
   realm: VajdasagBrand
   auth-server-url: http://localhost:8180/auth
   ssl-required: external
-  resource: ui-vajdasag-client
-  credentials.secret: aac16d76-6ace-409a-a5ef-8423b5fd688b
+  resource: VajdasagClient
+  credentials.secret: 37972d6d-1e0e-45ab-aff8-2d09db1714f5
   use-resource-role-mappings: true
   bearer-only: false
 
