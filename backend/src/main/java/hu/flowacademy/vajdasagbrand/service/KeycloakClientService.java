@@ -8,10 +8,6 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.AccessTokenResponse;
-import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.RoleRepresentation;
-import org.keycloak.representations.idm.UserRepresentation;
-import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -68,8 +64,14 @@ public class KeycloakClientService {
     }
 
     public void deleteUser(String username) {
-        Keycloak keycloak = Keycloak.getInstance(serverurl, realm, adminusername, clientpassword, clientId, clientsecret);
-        keycloak.realm(realm).users().search(username).get(0).setEnabled(false);
+        Keycloak keycloak = Keycloak.getInstance(keycloakBackendClientServerUrl,
+                keycloakBackendClientRealmMaster,
+                keycloakBackendClientRealmAdminUserName,
+                keycloakBackendClientRealmAdminPassword,
+                keycloakBackendClientRealmClientId);
+        UserRepresentation userdeleted = keycloak.realm(keycloakBackendClientRealm2).users().search(username).get(0);
+        userdeleted.setEnabled(false);
+        keycloak.realm(keycloakBackendClientRealm2).users().get(userdeleted.getId()).update(userdeleted);
     }
 
     public static String generatePassword(int numberOfDigits) {
