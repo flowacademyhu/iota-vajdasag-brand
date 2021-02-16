@@ -24,11 +24,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
 
-    public User userRegistrationData(User user,String password) throws ValidationException {
-        log.info("UserService called with: {}",user);
+    public User userRegistrationData(User user, String password) throws ValidationException {
+        log.info("UserService called with: {}", user);
         validateUserData(user);
 
-        keycloakClientService.createAccount(user.getEmail(),password);
+        keycloakClientService.createAccount(user.getEmail(), password);
         user.setRegisteredAt(LocalDateTime.now());
         User result = userRepository.save(user);
         log.info("The result is : {}", result);
@@ -39,19 +39,19 @@ public class UserService {
         if (!StringUtils.hasText(user.getFullName())) {
             throw new ValidationException("Didn't get full name");
         }
-        if(!StringUtils.hasText(user.getAddress())){
+        if (!StringUtils.hasText(user.getAddress())) {
             throw new ValidationException("Didn't get address");
         }
-        if(!StringUtils.hasText(user.getEmail())){
+        if (!StringUtils.hasText(user.getEmail())) {
             throw new ValidationException("Didn't get email");
         }
-        if(!EmailValidator.getInstance().isValid(user.getEmail())){
+        if (!EmailValidator.getInstance().isValid(user.getEmail())) {
             throw new ValidationException("Invalid email");
         }
-        if(!StringUtils.hasText(String.valueOf(user.getType()))) {
+        if (!StringUtils.hasText(String.valueOf(user.getType()))) {
             throw new ValidationException("Didn't get type");
         }
-        if((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY){
+        if ((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY) {
             throw new ValidationException("Can not add tax number for individual members");
         }
     }

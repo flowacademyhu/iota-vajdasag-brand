@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class KeycloakClientServiceTest {
-// TODO: keykloak nem createdet ad vissza
+    // TODO: keykloak nem createdet ad vissza
     @Mock
     private Keycloak keycloak;
 
@@ -43,7 +43,7 @@ class KeycloakClientServiceTest {
         givenKeycloakPropertiesHolderConfiguration();
         givenIntegratedKeycloak();
 
-        keycloakClientService.createAccount(email,password);
+        keycloakClientService.createAccount(email, password);
         verify(keycloak, times(1)).realm(anyString());
         verifyNoMoreInteractions(keycloak);
         verify(keycloakPropertiesHolder, times(1)).getRealm2();
@@ -51,7 +51,7 @@ class KeycloakClientServiceTest {
         verifyNoMoreInteractions(keycloakPropertiesHolder);
     }
 
-    private void givenUniqeEmail () {
+    private void givenUniqeEmail() {
         email = "barbika@gmail.com";
     }
 
@@ -60,7 +60,7 @@ class KeycloakClientServiceTest {
         when(keycloakPropertiesHolder.getUserRole()).thenReturn("userRole");
     }
 
-    private void givenIntegratedKeycloak(){
+    private void givenIntegratedKeycloak() {
         RealmResource realmResource = Mockito.mock(RealmResource.class);
         when(keycloak.realm(anyString())).thenReturn(realmResource);
         RolesResource rolesResource = Mockito.mock(RolesResource.class);

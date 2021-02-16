@@ -24,7 +24,7 @@ public class KeycloakClientService {
     private final Keycloak keycloak;
     private final KeycloakPropertiesHolder keycloakPropertiesHolder;
 
-    public void createAccount(String email,String password) throws ValidationException {
+    public void createAccount(String email, String password) throws ValidationException {
         CredentialRepresentation credential = createCredentials(password);
         RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getRealm2());
         RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getUserRole()).toRepresentation();
