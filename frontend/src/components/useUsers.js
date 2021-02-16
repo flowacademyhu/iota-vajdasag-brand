@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getUsers } from "../communications/userApi";
+import { getUsers, sendApproval } from "../communications/userApi";
 
 /*
  * Removes all accents from words and makes them uppercase.
@@ -23,6 +23,11 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const sendRegistrationApproval = (user) => {
+    console.log("useUsers sendRegistrationApproval", user.id);
+    sendApproval(user);
+  };
 
   const sortColumn = (a, b) => {
     if (sortKey === "") {
@@ -48,7 +53,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     );
   }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending]);
 
-  return { users };
+  return { users, sendRegistrationApproval };
 };
 
 export default useUsers;
