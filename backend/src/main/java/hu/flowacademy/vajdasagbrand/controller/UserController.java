@@ -36,7 +36,6 @@ public class UserController {
         log.info("Incoming call with: {}",userDTO);
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
-        String password= userDTO.getPassword();
-        userService.userRegistrationData(user, password);
+        userService.userRegistrationData(user, userDTO.getPassword());
     }
 }
