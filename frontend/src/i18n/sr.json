@@ -1,13 +1,24 @@
 {
+  "acceptedRegistration": "Prihvacena registracija",
+  "companyAdmin": "Firma admin",
+  "dateOfRegistrion": "Datum registracije",
+  "email": "Email",
+  "name": "Ime",
+  "no": "Ne",
+  "Registration": "Registracija",
+  "yes": "Da",
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
+
     "email": "E-mail adresa",
+
     "invalidData": "Pogresni podaci",
     "invalidPassword": "Pogresna lozinka",
     "invalidemail": "Pogresna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
+
     "passwordPH": "Morate uneti lozinku",
     "title": "Prijava"
   },

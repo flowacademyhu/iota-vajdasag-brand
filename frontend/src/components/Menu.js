@@ -1,40 +1,36 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import MenuComponent from "../components/MenuComponent";
 
 const menuItems = [
   {
-    path: "users",
-    title: "menu.users"
+    path: "/super-admin/users",
+    title: "users"
   },
   {
-    path: "products",
-    title: "menu.products"
+    path: "/super-admin/products",
+    title: "products"
   },
   {
-    path: "events",
-    title: "menu.events"
+    path: "/super-admin/events",
+    title: "events"
   },
   {
     path: "logout",
+    
     title: "menu.signout"
+    
   }
 ];
 
 export default function Menu() {
+  const { t } = useTranslation();
   return (
-    <div class="d-flex" id="wrapper">
-      <div class="bg-light border-right" id="sidebar-wrapper">
+    <div className="d-flex" id="wrapper">
+      <div className="bg-light border-right" id="sidebar-wrapper">
         <div className="list-group list-group-flush">
           {menuItems.map((item, index) => (
-            <div key={index} className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to={`/${item.path}`}
-              >
-                {item.title}
-              </NavLink>
-            </div>
+                <MenuComponent key={index} title={t(item.title)} path={item.path}></MenuComponent>
           ))}
         </div>
       </div>
