@@ -5,19 +5,20 @@ import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public Item itemRegistrationData(Item item) throws ValidationException {
+    public Item createItem(Item item) throws ValidationException {
         validateItemData(item);
 
-        Item itemResult = itemRepository.save(item);
-        return itemResult;
+        return itemRepository.save(item);
     }
 
     private void validateItemData(Item item) throws ValidationException {
@@ -39,10 +40,10 @@ public class ItemService {
         if(item.getCategory() == null) {
             throw new ValidationException("Didn't get category");
         }
-        if(!StringUtils.hasText(item.getCoordinate_x())) {
+        if(!StringUtils.hasText(item.getCoordinateX())) {
             throw new ValidationException("Didn't get coordinate_x");
         }
-        if(!StringUtils.hasText(item.getCoordinate_y())) {
+        if(!StringUtils.hasText(item.getCoordinateY())) {
             throw new ValidationException("Didn't get coordinate_y");
         }
         if(!StringUtils.hasText(item.getPhone())) {

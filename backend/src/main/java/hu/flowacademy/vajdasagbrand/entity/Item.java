@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -23,12 +20,14 @@ public class Item {
     private String id;
     private String name;
     private int score;
+    @Lob
     private String bio;
     private String address;
     private String city;
+    @Enumerated(EnumType.STRING)
     private Category category;
-    private String coordinate_x;
-    private String coordinate_y;
+    private String coordinateX;
+    private String coordinateY;
     private String phone;
     private String website;
     private String facebook;

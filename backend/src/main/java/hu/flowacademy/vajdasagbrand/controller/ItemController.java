@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,13 +19,13 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @PostMapping("/itemregistration")
+    @PostMapping("/items")
     @ResponseStatus(HttpStatus.CREATED)
-    @PermitAll
-    public void ItemRegistration(@RequestBody ItemDTO itemDTO) throws ValidationException {
+    @RolesAllowed({"admin", "superadmin"})
+    public void createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
         Item item = new Item();
         BeanUtils.copyProperties(itemDTO, item);
 
-        itemService.itemRegistrationData(item);
+        itemService.createItem(item);
     }
 }

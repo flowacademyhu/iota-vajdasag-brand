@@ -4,19 +4,15 @@ import hu.flowacademy.vajdasagbrand.entity.Category;
 import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ItemServiceTest {
@@ -44,7 +40,7 @@ class ItemServiceTest {
     public void givenItem_whenCreatingItem_thenCreatedSuccessfully() throws ValidationException {
         givenItemRepositorySavingItem();
         Item itemData = givenItem();
-        Item itemResult = itemService.itemRegistrationData(itemData);
+        Item itemResult = itemService.createItem(itemData);
         verify(itemRepository, times(1)).save(itemData);
         verifyNoMoreInteractions(itemRepository);
     }
@@ -53,84 +49,84 @@ class ItemServiceTest {
     public void givenItemMissingName_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingName();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingScore_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingScore();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingBio_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingBio();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingAddress_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingAddress();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingCity_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingCity();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingCategory_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingCategory();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingCoordinationX_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingCoordinate_x();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingCoordinationY_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingCoordinate_y();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingPhone_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingPhone();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() throws ValidationException {
         Item itemData = givenItemMissingWebsite();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingFacebook_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingFacebook();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     @Test
     public void givenItemMissingInstagram_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingInstagram();
 
-        assertThrows(ValidationException.class, () -> itemService.itemRegistrationData(itemData));
+        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
     private void givenItemRepositorySavingItem() {
@@ -150,8 +146,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -167,8 +163,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -183,8 +179,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -199,8 +195,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -215,8 +211,8 @@ class ItemServiceTest {
         item.setBio(BIO);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -231,8 +227,8 @@ class ItemServiceTest {
         item.setBio(BIO);
         item.setAddress(ADDRESS);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -247,8 +243,8 @@ class ItemServiceTest {
         item.setBio(BIO);
         item.setAddress(ADDRESS);
         item.setCity(CITY);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -264,7 +260,7 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -280,7 +276,7 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
+        item.setCoordinateX(COORDINATE_X);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
@@ -296,8 +292,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
@@ -312,8 +308,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
@@ -328,8 +324,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
@@ -344,8 +340,8 @@ class ItemServiceTest {
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
-        item.setCoordinate_x(COORDINATE_X);
-        item.setCoordinate_y(COORDINATE_Y);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
