@@ -44,7 +44,9 @@ public class UserService {
        User deleted = user.get();
        keycloakClientService.deleteUser(deleted.getEmail());
        deleted.setDeletedAt(LocalDateTime.now());
+       deleted.setEnabled(false);
        userRepository.save(deleted);
+       return deleted;
     }
 
     private void validateUserData(User user) throws ValidationException {
