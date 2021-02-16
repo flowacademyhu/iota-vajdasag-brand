@@ -43,8 +43,7 @@ public class UserController {
     }
 
     @RolesAllowed("admin")
-    @PutMapping("/approval/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/users/{id}/approval")
     public void approveRegistration(@PathVariable("id") String userId){
         log.info("Incoming registration request with the id: {}", userId);
         try {
