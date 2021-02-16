@@ -46,8 +46,8 @@ class KeycloakClientServiceTest {
         keycloakClientService.createAccount(email, password);
         verify(keycloak, times(1)).realm(anyString());
         verifyNoMoreInteractions(keycloak);
-        verify(keycloakPropertiesHolder, times(1)).getRealm2();
-        verify(keycloakPropertiesHolder, times(1)).getUserRole();
+        verify(keycloakPropertiesHolder, times(1)).getKeycloakBackendClientRealm2();
+        verify(keycloakPropertiesHolder, times(1)).getKeycloakBackendClientUserRole();
         verifyNoMoreInteractions(keycloakPropertiesHolder);
     }
 
@@ -56,8 +56,8 @@ class KeycloakClientServiceTest {
     }
 
     private void givenKeycloakPropertiesHolderConfiguration() {
-        when(keycloakPropertiesHolder.getRealm2()).thenReturn("realm2");
-        when(keycloakPropertiesHolder.getUserRole()).thenReturn("userRole");
+        when(keycloakPropertiesHolder.getKeycloakBackendClientRealm2()).thenReturn("realm2");
+        when(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).thenReturn("userRole");
     }
 
     private void givenIntegratedKeycloak() {
