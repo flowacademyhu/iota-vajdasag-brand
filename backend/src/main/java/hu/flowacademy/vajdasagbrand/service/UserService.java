@@ -59,14 +59,10 @@ public class UserService {
 
     public void approveRegistration(String userId) throws ValidationException {
         log.info("Incoming registration request with the id: {}", userId);
-        Optional<User> registeredUser= userRepository.findById(userId);
-        if(registeredUser.isEmpty()) {
-            throw new ValidationException("User with the following id " + userId + " not found");
-        }
-        User activeUser = registeredUser.get();
-        log.debug("The user's current status is: {} ", activeUser.isEnabled());
-        activeUser.setEnabled(true);
-        userRepository.save(activeUser);
-        log.debug("The user's current status is: {} ", activeUser.isEnabled());
+        User registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
+        log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+        registeredUser.setEnabled(true);
+        userRepository.save(registeredUser);
+        log.debug("The user's current status is: {} ", registeredUser.isEnabled());
     }
 }

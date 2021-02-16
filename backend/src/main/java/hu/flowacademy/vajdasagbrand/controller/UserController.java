@@ -29,29 +29,24 @@ public class UserController {
     @PermitAll
     @PostMapping("/login")
     public AccessTokenResponse login(@RequestBody LoginDto loginDto) {
-        return keycloakClientService.login(loginDto.getUsername(),loginDto.getPassword());
+        return keycloakClientService.login(loginDto.getUsername(), loginDto.getPassword());
     }
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     @PermitAll
     public void userRegistration(@RequestBody UserDTO userDTO) throws ValidationException {
-        log.info("Incoming call with: {}",userDTO);
+        log.info("Incoming call with: {}", userDTO);
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
         userService.userRegistrationData(user);
     }
 
-    @RolesAllowed("admin")
+   // @RolesAllowed("admin")
     @PutMapping("/users/{id}/approval")
-    public void approveRegistration(@PathVariable("id") String userId){
+    public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
         log.info("Incoming registration request with the id: {}", userId);
-        try {
-            userService.approveRegistration(userId);
-            log.debug("The requested user id is: {}", userId);
-        } catch (ValidationException e) {
-            log.error("Registration with the give id ({}) not found", userId);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Registration with the given id not found");
-        }
+        userService.approveRegistration(userId);
+        log.debug("The requested user id is: {}", userId);
     }
 }
