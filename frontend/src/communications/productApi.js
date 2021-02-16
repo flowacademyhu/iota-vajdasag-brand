@@ -3,8 +3,7 @@ import "./mockForProductApi";
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/products");
-    console.log(response.data.products);
+    const response = await axios.get("http://localhost:3000/api/products");    
     return response.data.products;
   } catch (error) {
     console.log(error)
@@ -13,5 +12,5 @@ export const getProducts = async () => {
 };
 
 export const login = (value) => {
-  return axios.post("http://localhost:3000/api", value);
+  return axios.post("http://localhost:3000/api/login", value);
 };

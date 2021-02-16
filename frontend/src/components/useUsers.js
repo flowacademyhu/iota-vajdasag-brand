@@ -1,17 +1,48 @@
 import { useState, useEffect } from "react";
 import { getUsers } from "../communications/userApi";
 
-const useUsers = () => {
+const makeWordComparable = (keyword) => {
+  return keyword
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
+};
+
+const useUsers = (searchKeyword, sortKey, isSortAscending) => {
+  const [listOfAllUsers, setListOfAllUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
     const fetchedUsers = await getUsers();
-    setUsers(fetchedUsers);
+    setListOfAllUsers(fetchedUsers);
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const sortColumn = (a, b) => {
+    if (sortKey === "") {
+      return 0;
+    }
+    if (isSortAscending) {
+      return a[sortKey] > b[sortKey] ? 1 : -1;
+    } else {
+      return a[sortKey] < b[sortKey] ? 1 : -1;
+    }
+  };
+  
+  useEffect(() => {
+    setUsers(
+      listOfAllUsers
+        ?.sort((a, b) => sortColumn(a, b))
+        .filter((user) =>
+          makeWordComparable(user.name).includes(
+            makeWordComparable(searchKeyword)
+          )
+        )
+    );
+  }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending,sortColumn]);
 
   return { users };
 };
