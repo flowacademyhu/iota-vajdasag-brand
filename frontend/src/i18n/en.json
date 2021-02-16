@@ -8,19 +8,76 @@
   "Registration": "Registration",
   "yes": "Yes",
   "login": {
-    "buttontext": "Sign In",
+    "buttontext": "Login",
     "connectionProblems": "Connection problems",
-    "email": "Email",
+    "email": "E-mail",
     "invalidData": "Wrong Email or Password",
     "invalidPassword": "The password is min. 8 characters",
     "invalidemail": "Invalid email",
     "noEmail": "Email is required",
     "password": "Password",
-    "title": "Sign in"
+    "title": "Login"
   },
-  "welcome": "Welcome",
-  "users":"Users list",
-  "products":"Products list",
-  "events":"All event",
-  "logout":"Log out"
+
+
+  "registration": {
+    "title": "Registration",
+    "fullName": "Name",
+    "privatePerson": "Private person",
+    "legalPerson": "Legal person",
+    "taxNumber": "Tax number",
+    "password": "Password",
+    "passwordConfirmation": "Password again",
+    "email": "E-mail",
+    "buttontext": "Registration",
+    "alreadyRegistered": "Already registered?",
+    "agreement": "I accept the",
+    "linkAszf": " GTC",
+    "and": " and the ",
+    "linkadat": " conditions.",
+    "address": "Address/Company seat",
+    "invalidemail": "Email address is not valid",
+    "login": "Login"
+  },
+  "companyAdmin": {
+    "newProduct": "New product",
+    "edit": "Edit",
+    "remove": "Remove",
+    "search": "Search"
+  },
+  "superAdmin": {
+    "createNewUser": "Create a new user",
+    "name": "Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "dateOfRegistration": "Date of registration",
+    "editBasicData": "Edit basic data",
+    "editProducts": "Edit products",
+    "delete": "Delete",
+    "confirmDelete": "Confirm delete?",
+    "search": "Search"
+  },
+  "datasheet": {
+    "description": "Description",
+    "events": "Events",
+    "address": "Address",
+    "city": "City",
+    "street": "Street",
+    "coordinates": "Coordinates ",
+    "contactPerson": "Contact person",
+    "phone": "Phone",
+    "website": "Website",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "gallery": "Gallery"
+  },
+  "forgotPW": {
+    "newPassword": "New password"
+  },
+  "menu": {
+    "users": "Users",
+    "products": "Products",
+    "events": "Events",
+    "signout": "Sign out"
+  }
 }
