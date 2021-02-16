@@ -2,7 +2,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.entity.User;
-import hu.flowacademy.vajdasagbrand.entity.UserDTO;
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;
 import hu.flowacademy.vajdasagbrand.service.UserService;

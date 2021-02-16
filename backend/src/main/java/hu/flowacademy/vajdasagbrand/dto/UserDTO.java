@@ -1,7 +1,8 @@
-package hu.flowacademy.vajdasagbrand.entity;
+package hu.flowacademy.vajdasagbrand.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import hu.flowacademy.vajdasagbrand.entity.Type;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
