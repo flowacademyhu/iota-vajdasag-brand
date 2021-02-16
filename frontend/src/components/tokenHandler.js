@@ -9,13 +9,13 @@ const useTokenStateHandler = () => {
 
     const writeToken = (tokenInput) => {
         console.log("writeToken incoming: ", tokenInput)
-        sessionStorage.setItem("token", tokenInput)
+        localStorage.setItem("token", tokenInput)
         setToken(tokenInput)
         console.log("A token az contextben-ban:" + token)
     }
 
     const deleteToken = () => {
-        sessionStorage.removeItem("token")
+        localStorage.removeItem("token")
         setToken(undefined)
     }
 
