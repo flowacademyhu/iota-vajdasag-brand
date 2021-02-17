@@ -7,8 +7,6 @@ import InputField from "../components/InputField";
 import { login } from "../communications/userApi";
 import  useTokenStateHandler  from "../components/tokenHandler";
 
-
-
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().shape({
     email: Yup.string()
         .email(invalidEmail)
