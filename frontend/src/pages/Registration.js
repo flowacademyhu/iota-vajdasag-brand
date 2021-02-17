@@ -63,7 +63,6 @@ export default function Registration() {
                 <InputField
                   label={t("registration.fullName")}
                   name="name"
-                  placeholder={t("registration.fullName")}
                   type="text"
                 />
               </div>
@@ -71,7 +70,6 @@ export default function Registration() {
                 <InputField
                   label={t("registration.email")}
                   name="email"
-                  placeholder={t("registration.email")}
                   type="email"
                 />
               </div>
@@ -79,7 +77,6 @@ export default function Registration() {
                 <InputField
                   label={t("registration.password")}
                   name="password"
-                  placeholder={t("registration.password")}
                   type="password"
                 />
               </div>
@@ -87,7 +84,6 @@ export default function Registration() {
                 <InputField
                   label={t("registration.passwordConfirmation")}
                   name="passwordConfirmation"
-                  placeholder={t("registration.passwordConfirmation")}
                   type="password"
                 />
               </div>
@@ -115,7 +111,6 @@ export default function Registration() {
                         </label>
                         <input
                           type="text"
-                          placeholder={t("registration.taxNumber")}
                           {...field}
                           className={`form-control ${
                             meta.touched && meta.error ? "is-invalid" : ""
@@ -133,7 +128,6 @@ export default function Registration() {
                 <InputField
                   label={t("registration.address")}
                   name="address"
-                  placeholder={t("registration.address")}
                   type="text"
                 />
               </div>
