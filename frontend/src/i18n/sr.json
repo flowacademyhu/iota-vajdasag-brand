@@ -1,0 +1,85 @@
+{
+  "acceptedRegistration": "Prihvacena registracija",
+  "companyAdmin": "Firma admin",
+  "dateOfRegistrion": "Datum registracije",
+  "email": "Email",
+  "name": "Ime",
+  "no": "Ne",
+  "Registration": "Registracija",
+  "yes": "Da",
+  "login": {
+    "buttontext": "Prijavite se",
+    "connectionProblems": "Problemi sa konekcijom",
+
+    "email": "E-mail adresa",
+
+    "invalidData": "Pogresni podaci",
+    "invalidPassword": "Pogresna lozinka",
+    "invalidemail": "Pogresna email adresa",
+    "noEmail": "Morate uneti email adresu",
+    "password": "Lozinka",
+
+    "passwordPH": "Morate uneti lozinku",
+    "title": "Prijava"
+  },
+  "registration": {
+    "title": "Registracija",
+    "fullName": "Ime i prezime",
+    "privatePerson": "Fizičko lice",
+    "legalPerson": "Pravno lice",
+    "taxNumber": "Poreski broj",
+    "password": "Lozinka",
+    "passwordConfirmation": "Lozinka ponovo",
+    "email": "E-mail adresa",
+    "buttontext": "Registration",
+    "alreadyRegistered": "Dali ste već registrovani?",
+    "agreement": "Prihvatam",
+    "linkAszf": "  Opšte uslove ugovora i",
+    "and": "  i",
+    "linkadat": " osnovne principe upravljanja podacima",
+    "address": "Adresa/Sedište",
+    "invalidemail": "E-mail adresa nije odgovarajuća",
+    "login": "Prijava"
+  },
+  "companyAdmin": {
+    "newProduct": "New product",
+    "edit": "Edit",
+    "remove": "Remove",
+    "search": "Search"
+  },
+  "superAdmin": {
+    "createNewUser": "Create a new user",
+    "name": "Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "dateOfRegistration": "Date of registration",
+    "editBasicData": "Edit basic data",
+    "editProducts": "Edit products",
+    "delete": "Delete",
+    "confirmDelete": "Confirm delete?",
+    "search": "Search"
+  },
+  "datasheet": {
+    "description": "Description",
+    "events": "Events",
+    "address": "Address",
+    "city": "City",
+    "street": "Street",
+    "coordinates": "Coordinates ",
+    "contactPerson": "Contact person",
+    "phone": "Phone",
+    "website": "Website",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "gallery": "Gallery"
+  },
+  "forgotPW": {
+    "newPassword": "New password"
+  },
+  "menu": {
+    "users": "Korisnici",
+    "products": "Proizvodi",
+    "events": "Događaji",
+    "signout": "Odjava"
+  }
+}

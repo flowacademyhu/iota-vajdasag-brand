@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -19,6 +20,22 @@ function App() {
         </Route>
       </Switch>
     </Router>
+=======
+import React from 'react';
+import { TokenProvider } from "./TokenContext";
+import Main from "./components/Main";
+
+
+
+
+export default function App() {
+  return (
+    <>
+      <TokenProvider>
+        <Main></Main>
+      </TokenProvider>
+    </>
+>>>>>>> master
   );
 }
 
