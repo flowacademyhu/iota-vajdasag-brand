@@ -1,26 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import useUsers from "../useUsers";
+import ApproveButton from "./ApproveButton";
 
 const ListElement = ({ user }) => {
   const { t } = useTranslation();
-  const { sendRegistrationApproval } = useUsers();
-
-  const ApproveButton = (user) => {
-    return user.isApproved ? (
-      <button type="button" className="btn btn-success" disabled>
-        {t("approveRegistration")}
-      </button>
-    ) : (
-      <button
-        type="button"
-        className="btn btn-success"
-        onClick={() => sendRegistrationApproval(user)}
-      >
-        {t("approveRegistration")}
-      </button>
-    );
-  };
+  
 
   return (
     <tr>
@@ -28,7 +12,9 @@ const ListElement = ({ user }) => {
       <td>{user.email}</td>
       <td>{user.isApproved ? t("yes") : t("no")}</td>
       <td>{user.dateOfRegistration}</td>
-      <td> {ApproveButton(user)} </td>
+      <td>
+        <ApproveButton user={user} />
+      </td>
     </tr>
   );
 };
