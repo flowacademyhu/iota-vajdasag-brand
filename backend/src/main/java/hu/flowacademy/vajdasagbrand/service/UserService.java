@@ -36,6 +36,7 @@ public class UserService {
         }
         deleted.setDeletedAt(LocalDateTime.now().withNano(0));
         deleted.setEnabled(false);
+        keycloakClientService.deleteUser(deleted.getEmail());
         userRepository.save(deleted);
         return deleted;
     }
