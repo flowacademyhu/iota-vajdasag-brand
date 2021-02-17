@@ -26,7 +26,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "i18n": "i18next-scanner"
+    "i18n": "i18next-scanner",
+    "code-style": "prettier --check .",
+    "code-style-fix": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +57,7 @@
   "devDependencies": {
     "i18next-scanner": "^3.0.0"
   },
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:3000",
+
+ "prettier": "^2.2.1"
 }

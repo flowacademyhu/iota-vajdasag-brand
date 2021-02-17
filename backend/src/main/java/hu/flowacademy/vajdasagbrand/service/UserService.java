@@ -1,28 +1,46 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Type;
+import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import javax.transaction.Transactional;
-
 import java.time.LocalDateTime;
+import java.util.Optional;
 
-@Service
 @Slf4j
+@Service
 @RequiredArgsConstructor
 @Transactional
 public class UserService {
 
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
+
+    public User deleteById(String id) throws ValidationException, UserNotEnabledException {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new ValidationException("No user with given id: " + id);
+        }
+        if (!user.get().isEnabled()) {
+            throw new UserNotEnabledException("User is not enabled");
+        }
+        User deleted = user.get();
+        if(!keycloakClientService.deleteUser(deleted.getEmail())) {
+            throw new ValidationException("No user with id in Keycloak");
+        }
+        deleted.setDeletedAt(LocalDateTime.now().withNano(0));
+        deleted.setEnabled(false);
+        keycloakClientService.deleteUser(deleted.getEmail());
+        userRepository.save(deleted);
+        return deleted;
+    }
 
     public User userRegistrationData(User user, String password) throws ValidationException {
         log.info("UserService called with: {}", user);

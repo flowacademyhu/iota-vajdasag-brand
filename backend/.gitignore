@@ -36,3 +36,4 @@ build/
 /src/main/resources/application-local.yml
 /src/main/resources/application-barbi.yml
 /testDb/
+/src/main/resources/application-dominik.yml
