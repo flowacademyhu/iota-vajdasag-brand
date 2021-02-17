@@ -33,10 +33,11 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     }
   }, []);
 
-  const sortColumn = (a, b) => {
-    if (sortKey === "") {
-      return 0;
-    }
+  const sortColumn = useCallback(
+    (a, b) => {
+      if (sortKey === "") {
+        return 0;
+      }
 
       if (isSortAscending) {
         return a[sortKey] > b[sortKey] ? 1 : -1;
