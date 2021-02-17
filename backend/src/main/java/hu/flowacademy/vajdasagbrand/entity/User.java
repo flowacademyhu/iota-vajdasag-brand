@@ -31,4 +31,6 @@ public class User {
     private boolean enabled;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime registeredAt;
+    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
+    private LocalDateTime deletedAt;
 }
