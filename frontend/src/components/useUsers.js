@@ -6,7 +6,7 @@ import { getUsers } from "../communications/userApi";
  **/
 const makeWordComparable = (keyword) => {
   return keyword
-    .normalize("NFD")
+    ?.normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toUpperCase();
 };
@@ -24,9 +24,13 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     fetchUsers();
   }, []);
 
-  const sendRegistrationApproval = (user) => {
-    console.log("useUsers sendRegistrationApproval", user.id);
-    sendApproval(user);
+  const sendRegistrationApproval = async (user) => {
+    const registrationStatus = await sendApproval(user);
+    
+    if (registrationStatus.status === 200) {
+      console.log("Fresh users list from BE.");
+      fetchUsers();
+    }
   };
 
   const sortColumn = (a, b) => {
