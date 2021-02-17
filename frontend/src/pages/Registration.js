@@ -2,46 +2,18 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
-import * as Yup from "yup";
+
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";
-import  "../communications/mockForUserApi";
+import "../communications/mockForUserApi";
 import PopUpModal from "../components/PopUpModal";
-
+import Validation from "../communications/Validation";
 
 export default function Registration() {
   const { t } = useTranslation();
   const [isSignUpAccepted, setIsSignUpAccepted] = useState();
   const [modalShow, setModalShow] = React.useState(false);
-
-  const schema = Yup.object().shape({
-    name: Yup.string().required(t("registration.nameRequired")),
-    email: Yup.string()
-      .email(t("registration.invalidemail"))
-      .required("Email is required"),
-    password: Yup.string()
-      .required("Required")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*_\-+()[\]{}></|"'.,:;]{8,}$/,
-        `Must Contain 8 Characters, One Uppercase, One Lowercase, One Number. 
-        Optional special characters are: !?@#$%^&*_-+()[]{}></|"'.,:; `
-      ),
-    passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password")],
-      t("registration.passwordMatch")
-    ),
-    entity: Yup.string(),
-    taxNumber: Yup.string().when("entity", {
-      is: "legalPerson",
-      then: Yup.string().required("Required"),
-      otherwise: Yup.string(),
-    }),
-    address: Yup.string().required("Required"),
-    acceptedTerms: Yup.boolean()
-      .required("Required")
-      .oneOf([true], "You must accept terms and conditions"),
-  });
 
   const handleSubmit = async (value) => {
     try {
@@ -78,7 +50,7 @@ export default function Registration() {
           entity: "privatePerson",
         }}
         onSubmit={handleSubmit}
-        validationSchema={schema}
+        //validationSchema={{Validation}}
       >
         {({ errors, touched }) => (
           <Form>

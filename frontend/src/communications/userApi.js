@@ -1,9 +1,9 @@
-import axios from "axios";
+import api from "./apiInstance";
 import "./mockForUserApi";
 
 export const getUsers = async () => {
   try {
-    const response = await axios.get("/users");
+    const response = await api.get("/users");
     console.log(response.data.users);
     return response.data.users;
   } catch (error) {
@@ -12,12 +12,12 @@ export const getUsers = async () => {
 };
 
 export const login = (value) => {
-  return axios.post("/login", value);
+  return api.post("/login", value);
 };
 
 export const signUp = async (value) => {
   console.log("api");
-  const response = await axios.post("http://localhost:3000/api/registration");
+  const response = await api.post("/registration");
   console.log(response);
   return response;
 };

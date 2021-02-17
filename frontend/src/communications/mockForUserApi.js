@@ -1,7 +1,7 @@
-import axios from "axios";
+import api from "./apiInstance";
 import MockAdapter from "axios-mock-adapter";
 
-const mock = new MockAdapter(axios);
+const mock = new MockAdapter(api);
 
 mock.onGet("/users").reply(200, {
   users: [
@@ -28,15 +28,12 @@ mock.onGet("/users").reply(200, {
     },
   ],
 });
-export const loginMock = () => {
-  const mock = new MockAdapter(axios);
-  mock
-    .onPost("http://localhost:3000/api/login", {
-      email: "teszt@teszt.com",
-      password: "12345678",
-    })
-    .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv");
-};
 
+mock
+  .onPost("/login", {
+    email: "teszt@teszt.com",
+    password: "12345678",
+  })
+  .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv");
 
-  mock.onPost("http://localhost:3000/api/registration").reply(201);
+mock.onPost("/registration").reply(201);
