@@ -1,6 +1,5 @@
 import axios from "axios";
 import "./mockForUserApi";
-import { signUpMock } from "./mockForUserApi";
 
 export const getUsers = async () => {
   try {
@@ -13,16 +12,12 @@ export const getUsers = async () => {
 };
 
 export const login = (value) => {
-  return axios.post("http://localhost:3000/api/login", value);
+  return axios.post("/login", value);
 };
 
 export const signUp = async (value) => {
   console.log("api");
-  signUpMock();
-  const response = await axios.post(
-    "http://localhost:3000/api/registration",
-    value
-  );
+  const response = await axios.post("http://localhost:3000/api/registration");
   console.log(response);
   return response;
 };

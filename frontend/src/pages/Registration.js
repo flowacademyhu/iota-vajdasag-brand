@@ -228,7 +228,6 @@ export default function Registration() {
       <div>
         <p className="text-center">{t("registration.alreadyRegistered")}</p>
       </div>
-
       <div>
         <Button
           className="btn btn-primary btn-block col-12"
