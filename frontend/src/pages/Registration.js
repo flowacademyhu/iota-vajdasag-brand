@@ -6,10 +6,9 @@ import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";
-import { signUpMock } from "../communications/mockForUserApi";
+import  "../communications/mockForUserApi";
 import PopUpModal from "../components/PopUpModal";
 
-signUpMock();
 
 export default function Registration() {
   const { t } = useTranslation();

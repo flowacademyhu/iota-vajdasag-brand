@@ -38,8 +38,5 @@ export const loginMock = () => {
     .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv");
 };
 
-export const signUpMock = () => {
-  const mock = new MockAdapter(axios);
-  console.log("singup mock");
+
   mock.onPost("http://localhost:3000/api/registration").reply(201);
-};
