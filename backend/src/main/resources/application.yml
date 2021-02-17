@@ -38,4 +38,4 @@ keycloak:
   use-resource-role-mappings: true
   bearer-only: false
 
-  
+
