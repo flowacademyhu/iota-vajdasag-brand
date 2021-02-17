@@ -4,9 +4,6 @@ const Button = ({ children, ...props  }) => (
   <button
   {...props}
   >
-  {/* //  onClick={onClick}
-  //   className={className}
-  //   type={type} */}
     {children}
   </button>
 );
