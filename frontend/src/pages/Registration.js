@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
-
+import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";
 import "../communications/mockForUserApi";
 import PopUpModal from "../components/PopUpModal";
-import Validation from "../communications/Validation";
+import schema from "../communications/Validation";
 
 export default function Registration() {
   const { t } = useTranslation();
@@ -50,7 +50,16 @@ export default function Registration() {
           entity: "privatePerson",
         }}
         onSubmit={handleSubmit}
-        //validationSchema={{Validation}}
+        validationSchema={schema(
+          t("registration.nameRequired"),
+          t("registration.invalidemail"),
+          t("Email is required"),
+          t("required"),
+          t("passwordFailMessage"),
+          t("mustAcceptTandT"),
+          t("registration.passwordMatch"),
+          t("required")
+        )}
       >
         {({ errors, touched }) => (
           <Form>

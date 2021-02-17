@@ -1,31 +1,38 @@
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 
-
-  const schema = Yup.object().shape({
-    name: Yup.string().required(t("registration.nameRequired")),
-    email: Yup.string()
-      .email(t("registration.invalidemail"))
-      .required(t("Email is required")),
+const schema = (
+  nameRequired,
+  invalidEmail,
+  emailRequired,
+  passwordRequired,
+  passwordFailMessage,
+  mustAcceptTandT,
+  regPasswordMatch,
+  required
+) =>
+  Yup.object().shape({
+    name: Yup.string().required( nameRequired ),
+    email: Yup.string().email( invalidEmail ).required(emailRequired),
     password: Yup.string()
-      .required(t("Required"))
+      .required( passwordRequired )
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*_\-+()[\]{}></|"'.,:;]{8,}$/,
-        t(`Must Contain 8 Characters, One Uppercase, One Lowercase, One Number. 
-        Optional special characters are: !?@#$%^&*_-+()[]{}></|"'.,:; `)
+         passwordFailMessage 
       ),
-    passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password")],
-      t("registration.passwordMatch")
+    passwordConfirmation: Yup.string().oneOf([Yup.ref("password")], 
+      regPasswordMatch,
     ),
     entity: Yup.string(),
     taxNumber: Yup.string().when("entity", {
       is: "legalPerson",
-      then: Yup.string().required(t("Required")),
+      then: Yup.string().required( required ),
       otherwise: Yup.string(),
     }),
-    address: Yup.string().required(t("Required")),
+    address: Yup.string().required( required ),
     acceptedTerms: Yup.boolean()
-      .required(t("Required"))
-      .oneOf([true], t("You must accept terms and conditions")),
+      .required( required )
+      .oneOf([true], mustAcceptTandT ), //
   });
+
+export default schema;
