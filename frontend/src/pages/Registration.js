@@ -11,20 +11,15 @@ import schema from "../communications/Validation";
 
 export default function Registration() {
   const { t } = useTranslation();
-  const [isSignUpAccepted, setIsSignUpAccepted] = useState();
+  const [signUpAccepted, setSignUpAccepted] = useState();
   const [modalShow, setModalShow] = React.useState(false);
 
   const handleSubmit = async (value) => {
     try {
-      console.log(value);
       const response = await signUp(value);
-      console.log(response.status);
-      setIsSignUpAccepted(response.status);
-      console.log(isSignUpAccepted);
+      setSignUpAccepted(response.status);
     } catch (error) {
-      console.log(error);
-      console.log("error in handlesubmit");
-      setIsSignUpAccepted(error.status);
+      setSignUpAccepted(error.status);
     } finally {
       setModalShow(true);
     }
@@ -182,7 +177,7 @@ export default function Registration() {
                 >
                   {t("registration.buttontext")}
                 </Button>
-                {isSignUpAccepted === 201 ? (
+                {signUpAccepted === 201 ? (
                   <PopUpModal
                     modalTitle={t("registration.modalTitle")}
                     modalBody={t("registration.modalBodyOK")}

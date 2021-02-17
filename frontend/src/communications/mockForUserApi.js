@@ -3,7 +3,7 @@ import MockAdapter from "axios-mock-adapter";
 
 const mock = new MockAdapter(api);
 
-mock.onGet("/users").reply(200, {
+mock.onGet("/api/users").reply(200, {
   users: [
     {
       id: 1,
@@ -37,3 +37,4 @@ mock
   .reply(200, "84848fhgvripuerh98r4gu9hg4ru9hrv");
 
 mock.onPost("/registration").reply(201);
+mock.onPut(`/users/2/approval`).reply(200);

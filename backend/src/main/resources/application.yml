@@ -21,12 +21,11 @@ spring:
 keycloakBackendClient:
   serverUrl: http://localhost:8180/auth
   realm: VajdasagBrand
+  realm2: VajdasagBrand
   realm_master: master
   adminusername: initial1
   adminpassword: initial1
   clientpassword: gsdmnk
-  adminusername: admin
-  adminpassword: admin
   client-id: admin-cli
   user-role: realmuser
 
@@ -36,9 +35,5 @@ keycloak:
   ssl-required: external
   resource: ui-vajdasag-client
   credentials.secret: aac16d76-6ace-409a-a5ef-8423b5fd688b
-  resource: VajdasagClient
-  credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
   use-resource-role-mappings: true
   bearer-only: false
-
-

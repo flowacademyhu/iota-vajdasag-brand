@@ -10,6 +10,7 @@ const InputField = ({ label, ...props }) => {
       <Field
         {...field}
         {...props}
+        placeholder={label}
         className={`form-control ${showError ? "is-invalid" : ""}`}
       ></Field>
       {showError && <div className="invalid-feedback">{meta.error}</div>}

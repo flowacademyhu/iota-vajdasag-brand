@@ -18,11 +18,11 @@ public class KeycloakConfiguration {
     public Keycloak keycloak() {
         return KeycloakBuilder
                 .builder()
-                .serverUrl(keycloakPropertiesHolder.getServerurl())
-                .realm(keycloakPropertiesHolder.getRealm())
-                .username(keycloakPropertiesHolder.getAdminusername())
-                .password(keycloakPropertiesHolder.getClientpassword())
-                .clientId(keycloakPropertiesHolder.getClientId())
+                .serverUrl(keycloakPropertiesHolder.getKeycloakBackendClientServerUrl())
+                .realm(keycloakPropertiesHolder.getKeycloakBackendClientRealmMaster())
+                .username(keycloakPropertiesHolder.getKeycloakBackendClientAdminUserName())
+                .password(keycloakPropertiesHolder.getKeycloakBackendClientAdminPassword())
+                .clientId(keycloakPropertiesHolder.getKeycloakBackendClientClientId())
                 .build();
     }
 }

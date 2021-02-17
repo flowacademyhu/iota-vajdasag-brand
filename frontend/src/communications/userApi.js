@@ -4,7 +4,6 @@ import "./mockForUserApi";
 export const getUsers = async () => {
   try {
     const response = await api.get("/users");
-    console.log(response.data.users);
     return response.data.users;
   } catch (error) {
     throw new Error("Failed to get users.");
@@ -16,8 +15,15 @@ export const login = (value) => {
 };
 
 export const signUp = async (value) => {
-  console.log("api");
   const response = await api.post("/registration");
-  console.log(response);
+  api.post("/login", value);
   return response;
+};
+
+export const sendApproval = async (userId) => {
+  try {
+    return await api.put(`/users/${userId}/approval`);
+  } catch (error) {
+    throw new Error("Registration approval miscarried.");
+  }
 };
