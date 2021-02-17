@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { getUsers, sendApproval } from "../communications/userApi";
+import { useState, useEffect, useCallback } from "react";
+import { getUsers } from "../communications/userApi";
 
 /*
  * Removes all accents from words and makes them uppercase.
@@ -33,17 +33,20 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     }
   };
 
-  const sortColumn = (a, b) => {
-    if (sortKey === "") {
-      return 0;
-    }
+  const sortColumn = useCallback(
+    (a, b) => {
+      if (sortKey === "") {
+        return 0;
+      }
 
-    if (isSortAscending) {
-      return a[sortKey] > b[sortKey] ? 1 : -1;
-    } else {
-      return a[sortKey] < b[sortKey] ? 1 : -1;
-    }
-  };
+      if (isSortAscending) {
+        return a[sortKey] > b[sortKey] ? 1 : -1;
+      } else {
+        return a[sortKey] < b[sortKey] ? 1 : -1;
+      }
+    },
+    [sortKey, isSortAscending],
+  )
 
   useEffect(() => {
     setUsers(
@@ -55,7 +58,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
           )
         )
     );
-  }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending]);
+  }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending, sortColumn]);
 
   return { users, sendRegistrationApproval };
 };
