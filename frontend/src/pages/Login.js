@@ -17,7 +17,7 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) => (Yup.object().s
         .required()
 }))
 
-const Login = ({ setTokenInState }) => {
+const Login = () => {
     const { t } = useTranslation();
     const [isSignInAccepted, setIsSignInAccepted] = useState()
     const [errorMessage, setErrorMessage] = useState()
@@ -27,7 +27,6 @@ const Login = ({ setTokenInState }) => {
     const handleResponse = response => {
         writeToken(response.data)
         setIsSignInAccepted(true)
-
     }
 
 
@@ -35,7 +34,6 @@ const Login = ({ setTokenInState }) => {
         try {
             const response = await login(value)
             handleResponse(response)
-            setIsSignInAccepted(true)
         } catch (error) {
             setIsSignInAccepted(false)
             if (error.response.status === 404) setErrorMessage(t("login.connectionProblems"))

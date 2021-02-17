@@ -1,20 +1,25 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import MenuComponent from "../components/MenuComponent";
 
 const menuItems = [
   {
+    path: "/super-admin/users",
     title: "users"
   },
   {
+    path: "/super-admin/products",
     title: "products"
   },
   {
+    path: "/super-admin/events",
     title: "events"
   },
   {
-    title: "logout"
+    path: "logout",
+    
+    title: "menu.signout"
+    
   }
 ];
 
@@ -25,16 +30,7 @@ export default function Menu() {
       <div className="bg-light border-right" id="sidebar-wrapper">
         <div className="list-group list-group-flush">
           {menuItems.map((item, index) => (
-            <div key={index} className="nav-item">
-              <Link
-                activeClassName="active"
-                className="nav-link"
-                to="/super-admin/users"
-                // to={`/super-admin/${item.title}`}
-              >
-                <MenuComponent title={t(item.title)}></MenuComponent>
-              </Link>
-            </div>
+                <MenuComponent key={index} title={t(item.title)} path={item.path}></MenuComponent>
           ))}
         </div>
       </div>

@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { TokenContext } from "../TokenContext";
 
-export const TokenStateHandler = () => {
-    const [token, setTokenInState] = useState();
+
+
+
+const useTokenStateHandler = () => {
+    const {setToken, token} = useContext(TokenContext);
+
+    const writeToken = (tokenInput) => {
+        console.log("writeToken incoming: ", tokenInput)
+        localStorage.setItem("token", tokenInput)
+        setToken(tokenInput)
+        console.log("A token az contextben-ban:" + token)
+    }
+
+    const deleteToken = () => {
+        localStorage.removeItem("token")
+        setToken(undefined)
+    }
+
     return {
-        token,
-        setTokenInState
+        writeToken,
+        deleteToken
     }
 }
 
-export const getTokenFromStorage = () => {
-    return sessionStorage.getItem("token");
-}
+export default useTokenStateHandler
 
-export const writeToken = (token) => (
-    sessionStorage.setItem("token", token)
-)
-
-export const deleteToken = () => {
-    sessionStorage.removeItem("token")
-}

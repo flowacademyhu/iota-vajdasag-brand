@@ -1,59 +1,16 @@
-import "./App.css";
-import Login from "./pages/Login";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-import SwitchLanguage from "./components/SwitchLanguage";
-import { useTranslation } from "react-i18next";
-import Menu from "./components/Menu.js";
-import { TokenStateHandler } from "./components/tokenHandler";
-import SuperAdmin from "./pages/SuperAdmin";
-import CompanyAdmin from "./pages/CompanyAdmin";
+import React from 'react';
+import { TokenProvider } from "./TokenContext";
+import Main from "./components/Main";
+
+
+
 
 export default function App() {
-  const { t } = useTranslation();
-  const { token, setTokenInState } = TokenStateHandler();
-  const loggedInAsSuperAdmin = true;
-  const loggedInAsCompanyAdmin = false;
-
-  console.log("token:" + token)
-
-
   return (
     <>
-      <SwitchLanguage />
-      <Router>
-        <div className="container">
-          <div className="row">
-              {token &&
-                (<div className="col-3">
-                  <Menu />
-                </div>)}
-              {token ? <Redirect to="/super-admin" /> : <Redirect to="/login" />}
-              {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
-              {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
-              <div className="col">
-                <Switch>
-                  <Route path="/registration">
-                    <div>{t("Registration")}</div>
-                  </Route>
-                  <Route path="/login">
-                    <Login setTokenInState={setTokenInState} />
-                  </Route>
-                  <Route path="/company-admin">
-                    <CompanyAdmin />
-                  </Route>
-                  <Route path="/super-admin">
-                    <SuperAdmin />
-                  </Route>
-                </Switch>
-              </div>
-            </div>
-          </div>
-      </Router>
+      <TokenProvider>
+        <Main></Main>
+      </TokenProvider>
     </>
   );
 }

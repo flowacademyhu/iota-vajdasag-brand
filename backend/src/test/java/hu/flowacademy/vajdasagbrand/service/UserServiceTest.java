@@ -22,6 +22,7 @@ import static org.mockito.Mockito.*;
 public class UserServiceTest {
 
     private static final String REGISTRATION_EMAIL = "email@123.com";
+    private static final String REGISTRATION_PASSWORD = "12345678";
     private static final String REGISTRATION_ID = "1234L";
     private static final String NEW_ADDRESS = "6724, Szeged Béka utca 2.";
     private static final String TAX_NUMBERCOMPANY = "165165413";
@@ -42,14 +43,14 @@ public class UserServiceTest {
         givenUserRepositorySavingUser();
         givenKeycloakClientServiceSavingUser();
         User userData = givenAUserIndividual();
-        User userResult = service.userRegistrationData(userData);
+        User userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
         Mockito.verify(userRepository, times(1)).save(userData);
         Mockito.verifyNoMoreInteractions(userRepository);
-        Mockito.verify(keycloakClientService, times(1)).createAccount(REGISTRATION_EMAIL);
+        Mockito.verify(keycloakClientService, times(1)).createAccount(REGISTRATION_EMAIL, REGISTRATION_PASSWORD);
         Mockito.verifyNoMoreInteractions(keycloakClientService);
 
         assertThat(userResult, notNullValue());
-        assertThat(userResult.getId(),is(REGISTRATION_ID));
+        assertThat(userResult.getId(), is(REGISTRATION_ID));
         assertThat(userResult.getAddress(), is(NEW_ADDRESS));
         assertThat(userResult.getEmail(), is(REGISTRATION_EMAIL));
         assertThat(userResult.getFullName(), is(FULL_NAME));
@@ -61,11 +62,11 @@ public class UserServiceTest {
     public void givenUserCompany_whenCreatingAccount_thenAccountCreatedSuccessfully() throws ValidationException {
         givenUserRepositorySavingUser();
         User userData = givenAUserCompany();
-        User userResult = service.userRegistrationData(userData);
+        User userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
         Mockito.verify(userRepository, times(1)).save(userData);
 
         assertThat(userResult, notNullValue());
-        assertThat(userResult.getId(),is(REGISTRATION_ID));
+        assertThat(userResult.getId(), is(REGISTRATION_ID));
         assertThat(userResult.getAddress(), is(NEW_ADDRESS));
         assertThat(userResult.getEmail(), is(REGISTRATION_EMAIL));
         assertThat(userResult.getFullName(), is(FULL_NAME));
@@ -77,32 +78,32 @@ public class UserServiceTest {
     public void givenUserMissingFullname_whenCreatingAccout_thenExceptionIsThrown() throws ValidationException {
         User userData = givenUserMissingFullname();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData));
+        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingEmail_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
-        User userData =givenUserMissingEmail();
+        User userData = givenUserMissingEmail();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData));
+        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingAddress_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
-        User userData =givenUserMissingAddress();
+        User userData = givenUserMissingAddress();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData));
+        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingTaxNumberAtCompanyType_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
-        User userData =givenUserMissingTaxNumberAtCompanyType();
+        User userData = givenUserMissingTaxNumberAtCompanyType();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData));
+        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     private void givenKeycloakClientServiceSavingUser() throws ValidationException {
-        doNothing().when(keycloakClientService).createAccount(anyString());
+        doNothing().when(keycloakClientService).createAccount(anyString(), anyString());
     }
 
     private void givenUserRepositorySavingUser() {
@@ -113,7 +114,7 @@ public class UserServiceTest {
         });
     }
 
-    private User givenAUserIndividual(){
+    private User givenAUserIndividual() {
 
         User user = new User();
         user.setFullName(FULL_NAME);
@@ -124,7 +125,7 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenAUserCompany(){
+    private User givenAUserCompany() {
 
         User user = new User();
         user.setFullName(FULL_NAME);
@@ -135,7 +136,7 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingFullname(){
+    private User givenUserMissingFullname() {
         User user = new User();
         user.setAddress(NEW_ADDRESS);
         user.setEmail(REGISTRATION_EMAIL);
@@ -144,7 +145,7 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingEmail(){
+    private User givenUserMissingEmail() {
         User user = new User();
         user.setAddress(NEW_ADDRESS);
         user.setFullName(FULL_NAME);
@@ -153,7 +154,7 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingAddress(){
+    private User givenUserMissingAddress() {
         User user = new User();
         user.setEmail(REGISTRATION_EMAIL);
         user.setFullName(FULL_NAME);
@@ -162,7 +163,7 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingTaxNumberAtCompanyType(){
+    private User givenUserMissingTaxNumberAtCompanyType() {
         User user = new User();
         user.setEmail(REGISTRATION_EMAIL);
         user.setFullName(FULL_NAME);
@@ -171,7 +172,6 @@ public class UserServiceTest {
         user.setType(Type.COMPANY);
         return user;
     }
-
 
 
 }

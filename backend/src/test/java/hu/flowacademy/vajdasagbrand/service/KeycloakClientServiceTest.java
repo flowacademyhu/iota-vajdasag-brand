@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class KeycloakClientServiceTest {
-// TODO: keykloak nem createdet ad vissza
+    // TODO: keykloak nem createdet ad vissza
     @Mock
     private Keycloak keycloak;
 
@@ -35,6 +35,7 @@ class KeycloakClientServiceTest {
     private KeycloakClientService keycloakClientService;
 
     private String email;
+    private String password;
 
     @Test
     public void givenConfiguredKeycloak_whenCallingCreatingAccount_thenUserIsCreated() throws ValidationException {
@@ -42,24 +43,24 @@ class KeycloakClientServiceTest {
         givenKeycloakPropertiesHolderConfiguration();
         givenIntegratedKeycloak();
 
-        keycloakClientService.createAccount(email);
+        keycloakClientService.createAccount(email, password);
         verify(keycloak, times(1)).realm(anyString());
         verifyNoMoreInteractions(keycloak);
-        verify(keycloakPropertiesHolder, times(1)).getRealm2();
-        verify(keycloakPropertiesHolder, times(1)).getUserRole();
+        verify(keycloakPropertiesHolder, times(1)).getKeycloakBackendClientRealm2();
+        verify(keycloakPropertiesHolder, times(1)).getKeycloakBackendClientUserRole();
         verifyNoMoreInteractions(keycloakPropertiesHolder);
     }
 
-    private void givenUniqeEmail () {
+    private void givenUniqeEmail() {
         email = "barbika@gmail.com";
     }
 
     private void givenKeycloakPropertiesHolderConfiguration() {
-        when(keycloakPropertiesHolder.getRealm2()).thenReturn("realm2");
-        when(keycloakPropertiesHolder.getUserRole()).thenReturn("userRole");
+        when(keycloakPropertiesHolder.getKeycloakBackendClientRealm2()).thenReturn("realm2");
+        when(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).thenReturn("userRole");
     }
 
-    private void givenIntegratedKeycloak(){
+    private void givenIntegratedKeycloak() {
         RealmResource realmResource = Mockito.mock(RealmResource.class);
         when(keycloak.realm(anyString())).thenReturn(realmResource);
         RolesResource rolesResource = Mockito.mock(RolesResource.class);

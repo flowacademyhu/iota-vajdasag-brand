@@ -10,7 +10,7 @@ const MenuComponent = ({ title, path }) => {
         >
             <h1>{title}</h1>
         </Link>
-     );
+    );
 }
- 
-export default menuComponent;
+
+export default MenuComponent;

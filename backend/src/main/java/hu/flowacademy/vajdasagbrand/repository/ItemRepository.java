@@ -1,9 +1,9 @@
 package hu.flowacademy.vajdasagbrand.repository;
 
-import hu.flowacademy.vajdasagbrand.entity.User;
+import hu.flowacademy.vajdasagbrand.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String>{
+public interface ItemRepository extends JpaRepository<Item, String>{
 }
