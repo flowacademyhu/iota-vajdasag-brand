@@ -17,7 +17,6 @@ const menuItems = [
   },
   {
     path: "logout",
-
     title: "menu.signout",
   },
 ];

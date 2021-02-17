@@ -9,7 +9,6 @@ export default function MyVerticallyCenteredModal(props) {
       centered
       animation={false}
     >
-      {/* <Modal.Header closeButton> */}
       <Modal.Title id="contained-modal-title-vcenter">
         {props.modalTitle}
       </Modal.Title>
