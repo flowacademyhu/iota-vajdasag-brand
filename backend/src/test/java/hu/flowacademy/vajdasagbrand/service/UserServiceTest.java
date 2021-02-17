@@ -2,30 +2,21 @@ package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Type;
 import hu.flowacademy.vajdasagbrand.entity.User;
+import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-<<<<<<< HEAD
-=======
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
->>>>>>> test cases for delete added
-
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.is;
-<<<<<<< HEAD
-=======
 import static org.junit.jupiter.api.Assertions.assertThrows;
->>>>>>> test cases for delete added
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -114,7 +105,7 @@ public class UserServiceTest {
     }
 
      @Test
-     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException {
+     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
          givenUserRepositoryWhenCallingDelete();
          User result = service.deleteById(REGISTRATION_ID);
          Mockito.verify(userRepository,times(1)).findById(REGISTRATION_ID);
@@ -137,10 +128,15 @@ public class UserServiceTest {
 
     @Test
     public void givenUserWithEnabledFalse_whenCallingDelete_thenExceptionIsThrown() {
-        givenAUserIndividual();
+        givenUserRepositoryReturningUser();
 
-        assertThrows(ValidationException.class, () -> service.deleteById(REGISTRATION_ID));
+        assertThrows(UserNotEnabledException.class, () -> service.deleteById(REGISTRATION_ID));
 
+    }
+
+    private void givenUserRepositoryReturningUser() {
+       User user = givenAUserIndividual();
+        when(userRepository.findById(anyString())).thenReturn(Optional.of(user));
     }
 
     @Test

@@ -12,16 +12,10 @@ public class KeycloakPropertiesHolder {
     private String keycloakBackendClientServerUrl;
     @Value("${keycloakBackendClient.realm}")
     private String keycloakBackendClientRealm;
-    @Value("${keycloakBackendClient.realm_master}")
-    private String keycloakBackendClientRealmMaster;
     @Value("${keycloakBackendClient.adminusername}")
     private String keycloakBackendClientAdminUserName;
     @Value("${keycloakBackendClient.adminpassword}")
     private String keycloakBackendClientAdminPassword;
-    @Value("${keycloakBackendClient.client-id}")
-    private String keycloakBackendClientClientId;
-    @Value("${keycloakBackendClient.user-role}")
-    private String keycloakBackendClientUserRole;
 
     @Value("${keycloak.realm}")
     private String keycloakRealm;

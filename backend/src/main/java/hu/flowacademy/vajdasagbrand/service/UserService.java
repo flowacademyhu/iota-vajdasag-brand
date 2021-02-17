@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Type;
+import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import lombok.AllArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.entity.User;
@@ -22,13 +23,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
 
-    public User deleteById(String id) throws ValidationException {
+    public User deleteById(String id) throws ValidationException, UserNotEnabledException {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new ValidationException("No user with given id: " + id);
         }
         if (!user.get().isEnabled()) {
-            throw new ValidationException("User already deleted");
+            throw new UserNotEnabledException("User is not enabled");
         }
         User deleted = user.get();
         if(!keycloakClientService.deleteUser(deleted.getEmail())) {
