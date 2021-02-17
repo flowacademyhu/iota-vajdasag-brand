@@ -24,11 +24,15 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     fetchUsers();
   }, []);
 
-  const sortColumn = useCallback(
-    (a, b) => {
-      if (sortKey === "") {
-        return 0;
-      }
+  const sendRegistrationApproval = (user) => {
+    console.log("useUsers sendRegistrationApproval", user.id);
+    sendApproval(user);
+  };
+
+  const sortColumn = (a, b) => {
+    if (sortKey === "") {
+      return 0;
+    }
 
       if (isSortAscending) {
         return a[sortKey] > b[sortKey] ? 1 : -1;
@@ -51,7 +55,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     );
   }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending, sortColumn]);
 
-  return { users };
+  return { users, sendRegistrationApproval };
 };
 
 export default useUsers;
