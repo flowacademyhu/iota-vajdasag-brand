@@ -11,10 +11,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+<<<<<<< HEAD
+=======
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+>>>>>>> test cases for delete added
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.is;
+<<<<<<< HEAD
+=======
+import static org.junit.jupiter.api.Assertions.assertThrows;
+>>>>>>> test cases for delete added
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -78,28 +89,65 @@ public class UserServiceTest {
     public void givenUserMissingFullname_whenCreatingAccout_thenExceptionIsThrown() throws ValidationException {
         User userData = givenUserMissingFullname();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
+        assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingEmail_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
         User userData = givenUserMissingEmail();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
+        assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingAddress_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
         User userData = givenUserMissingAddress();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
+        assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingTaxNumberAtCompanyType_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
         User userData = givenUserMissingTaxNumberAtCompanyType();
 
-        Assertions.assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
+        assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
+    }
+
+     @Test
+     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException {
+         givenUserRepositoryWhenCallingDelete();
+         User result = service.deleteById(REGISTRATION_ID);
+         Mockito.verify(userRepository,times(1)).findById(REGISTRATION_ID);
+         Mockito.verify(userRepository,times(1)).save(result);
+         Mockito.verifyNoMoreInteractions(userRepository);
+         Mockito.verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
+
+         assertThat(result, notNullValue());
+         assertThat(result.isEnabled(), is(false));
+         assertThat(result.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
+     }
+
+    @Test
+    public void givenAUserWithoutId_whenCallingDelete_thenExceptionIsThrown() {
+        givenAUserIndividual();
+
+        assertThrows(ValidationException.class, () -> service.deleteById(REGISTRATION_ID));
+
+    }
+
+    @Test
+    public void givenUserWithEnabledFalse_whenCallingDelete_thenExceptionIsThrown() {
+        givenAUserIndividual();
+
+        assertThrows(ValidationException.class, () -> service.deleteById(REGISTRATION_ID));
+
+    }
+
+    @Test
+    public void givenUserWithDeletedAtSetAlready_whenCallingDelete_thenExceptionIsThrown() {
+        givenAUserIndividualWithSetDeletedAt();
+
+        assertThrows(ValidationException.class, () -> service.deleteById(REGISTRATION_ID));
     }
 
     private void givenKeycloakClientServiceSavingUser() throws ValidationException {
@@ -114,6 +162,22 @@ public class UserServiceTest {
         });
     }
 
+    private void givenUserRepositoryWhenCallingDelete() throws ValidationException {
+        User user = givenAUserIndividual();
+        user.setId(REGISTRATION_ID);
+        user.setEnabled(true);
+        when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
+        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+        when(keycloakClientService.deleteUser(user.getEmail())).thenReturn(true);
+    }
+
+    private void givenUserRepositoryFindByIdEnabledFalse() {
+        User user = givenAUserIndividual();
+        user.setId(REGISTRATION_ID);
+        when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
+        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+    }
+
     private User givenAUserIndividual() {
 
         User user = new User();
@@ -122,6 +186,19 @@ public class UserServiceTest {
         user.setEmail(REGISTRATION_EMAIL);
         user.setType(Type.INDIVIDUAL);
         user.setTaxNumber(TAX_NUMBERINDIVIDUAL);
+        return user;
+    }
+
+    private User givenAUserIndividualWithSetDeletedAt() {
+
+        User user = new User();
+        user.setFullName(FULL_NAME);
+        user.setAddress(NEW_ADDRESS);
+        user.setEmail(REGISTRATION_EMAIL);
+        user.setType(Type.INDIVIDUAL);
+        user.setTaxNumber(TAX_NUMBERINDIVIDUAL);
+        user.setEnabled(true);
+        user.setDeletedAt(LocalDateTime.now());
         return user;
     }
 
