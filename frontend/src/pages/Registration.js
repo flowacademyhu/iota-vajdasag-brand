@@ -65,7 +65,7 @@ export default function Registration() {
                   name="name"
                   placeholder={t("registration.fullName")}
                   type="text"
-                ></InputField>
+                />
               </div>
               <div className="my-3">
                 <InputField
@@ -73,7 +73,7 @@ export default function Registration() {
                   name="email"
                   placeholder={t("registration.email")}
                   type="email"
-                ></InputField>
+                />
               </div>
               <div className="my-3">
                 <InputField
@@ -81,7 +81,7 @@ export default function Registration() {
                   name="password"
                   placeholder={t("registration.password")}
                   type="password"
-                ></InputField>
+                />
               </div>
               <div className="my-3">
                 <InputField
@@ -89,7 +89,7 @@ export default function Registration() {
                   name="passwordConfirmation"
                   placeholder={t("registration.passwordConfirmation")}
                   type="password"
-                ></InputField>
+                />
               </div>
               <div className="my-3 form-check-inline">
                 <div>
@@ -135,7 +135,7 @@ export default function Registration() {
                   name="address"
                   placeholder={t("registration.address")}
                   type="text"
-                ></InputField>
+                />
               </div>
               <div className="my-3 form-check">
                 <Field
