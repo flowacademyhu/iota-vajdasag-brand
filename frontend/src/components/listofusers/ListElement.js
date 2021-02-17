@@ -1,17 +1,23 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import useUsers from "../useUsers";
 
 const ListElement = ({ user }) => {
   const { t } = useTranslation();
+  const { sendRegistrationApproval } = useUsers();
 
   const ApproveButton = (user) => {
     return user.isApproved ? (
-      <button type="button" class="btn btn-success" disabled>
-        {t("approve")}
+      <button type="button" className="btn btn-success" disabled>
+        {t("approveRegistration")}
       </button>
     ) : (
-      <button type="button" class="btn btn-success">
-        {t("approve")}
+      <button
+        type="button"
+        className="btn btn-success"
+        onClick={() => sendRegistrationApproval(user)}
+      >
+        {t("approveRegistration")}
       </button>
     );
   };
