@@ -14,7 +14,7 @@ const ApproveButton = ({ user }) => {
     <button
       type="button"
       className="btn btn-success"
-      onClick={() => sendRegistrationApproval(user)}
+      onClick={() => sendRegistrationApproval(userId)}
     >
       {t("approveRegistration")}
     </button>
