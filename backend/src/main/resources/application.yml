@@ -37,3 +37,5 @@ keycloak:
   credentials.secret: aac16d76-6ace-409a-a5ef-8423b5fd688b
   use-resource-role-mappings: true
   bearer-only: false
+
+  
