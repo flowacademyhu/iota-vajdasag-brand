@@ -6,11 +6,7 @@ const ApproveButton = ({ user }) => {
   const { sendRegistrationApproval } = useUsers();
   const { t } = useTranslation();
 
-  return user.isApproved ? (
-    <button type="button" className="btn btn-success" disabled>
-      {t("approveRegistration")}
-    </button>
-  ) : (
+  return !user.isApproved ? (
     <button
       type="button"
       className="btn btn-success"
@@ -18,6 +14,8 @@ const ApproveButton = ({ user }) => {
     >
       {t("approveRegistration")}
     </button>
+  ) : (
+    ""
   );
 };
 
