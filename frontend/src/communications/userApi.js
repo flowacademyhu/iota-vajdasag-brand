@@ -6,7 +6,7 @@ export const getUsers = async () => {
     const response = await axios.get("http://localhost:3000/api/users");
     return response.data.users;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw new Error("Failed to get users.");
   }
 };
