@@ -14,3 +14,12 @@ export const getUsers = async () => {
 export const login = (value) => {
   return axios.post("http://localhost:3000/api/login", value);
 };
+
+export const sendApproval = async (user) => {
+  try {
+    const response = await axios.put(`http://localhost:3000/users/${user.id}/approval`);
+    console.log(response);
+  } catch (error) {
+    throw new Error("Registration approval miscarried.");
+  }
+};
