@@ -45,14 +45,10 @@ export default function Registration() {
         }}
         onSubmit={handleSubmit}
         validationSchema={schema(
-          t("registration.nameRequired"),
+          t("registration.required"),
           t("registration.invalidemail"),
-          t("Email is required"),
-          t("required"),
-          t("passwordFailMessage"),
-          t("mustAcceptTandT"),
+          t("registration.passwordFailMessage"),
           t("registration.passwordMatch"),
-          t("required")
         )}
       >
         {({ errors, touched }) => (
@@ -170,7 +166,7 @@ export default function Registration() {
                 </Button>
                 {signUpAccepted === 201 ? (
                   <PopUpModal
-                    modalTitle={t("registration.modalTitle")}
+                    modalTitle={t("registration.title")}
                     modalBody={t("registration.modalBodyOK")}
                     modalButton={t("registration.modalButton")}
                     show={modalShow}
@@ -178,7 +174,7 @@ export default function Registration() {
                   />
                 ) : (
                   <PopUpModal
-                    modalTitle={t("registration.modalTitle")}
+                    modalTitle={t("registration.title")}
                     modalBody={t("registration.modalBodyError")}
                     modalButton={t("registration.modalButton")}
                     show={modalShow}
@@ -196,7 +192,7 @@ export default function Registration() {
       </div>
       <div>
         <Button variant="primary" type="button" onClick={redirect} block>
-          {t("registration.login")}
+          {t("login.buttontext")}
         </Button>
       </div>
     </div>

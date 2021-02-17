@@ -1,24 +1,23 @@
 {
-  "acceptedRegistration": "Prihvacena registracija",
-  "companyAdmin": "Firma admin",
-  "dateOfRegistrion": "Datum registracije",
-  "email": "Email",
-  "name": "Ime",
-  "no": "Ne",
-  "Registration": "Registracija",
-  "yes": "Da",
+  "accepted" : {
+    "acceptedRegistration": "Prihvacena registracija",
+    "companyAdmin": "Firma admin",
+    "dateOfRegistrion": "Datum registracije",
+    "email": "Email",
+    "name": "Ime",
+    "no": "Ne",
+    "Registration": "Registracija",
+    "yes": "Da"
+},
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
-
     "email": "E-mail adresa",
-
     "invalidData": "Pogresni podaci",
     "invalidPassword": "Pogresna lozinka",
     "invalidemail": "Pogresna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
-
     "passwordPH": "Morate uneti lozinku",
     "title": "Prijava"
   },
@@ -39,7 +38,12 @@
     "linkadat": " osnovne principe upravljanja podacima",
     "address": "Adresa/Sedište",
     "invalidemail": "E-mail adresa nije odgovarajuća",
-    "login": "Prijava"
+    "passwordFailMessage" : "",
+    "required" : "Popunjavanje polja je obavezno!",
+    "passwordMatch" : "",
+    "modalBodyOK" : "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",
+    "modalBodyError" : "Neuspešna regisztracija!",
+    "modalButton" : "OK"
   },
   "companyAdmin": {
     "newProduct": "New product",

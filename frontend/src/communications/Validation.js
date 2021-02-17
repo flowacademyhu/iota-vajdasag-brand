@@ -1,20 +1,16 @@
 import * as Yup from "yup";
 
 const schema = (
-  nameRequired,
+  required,
   invalidEmail,
-  emailRequired,
-  passwordRequired,
   passwordFailMessage,
-  mustAcceptTandT,
   regPasswordMatch,
-  required
 ) =>
   Yup.object().shape({
-    name: Yup.string().required(nameRequired),
-    email: Yup.string().email(invalidEmail).required(emailRequired),
+    name: Yup.string().required(required),
+    email: Yup.string().email(invalidEmail).required(required),
     password: Yup.string()
-      .required(passwordRequired)
+      .required(required)
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*_\-+()[\]{}></|"'.,:;]{8,}$/,
         passwordFailMessage
@@ -32,7 +28,7 @@ const schema = (
     address: Yup.string().required(required),
     acceptedTerms: Yup.boolean()
       .required(required)
-      .oneOf([true], mustAcceptTandT),
+      .oneOf([true], required),
   });
 
 export default schema;
