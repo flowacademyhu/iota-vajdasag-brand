@@ -4,7 +4,6 @@ import ApproveButton from "./ApproveButton";
 
 const ListElement = ({ user }) => {
   const { t } = useTranslation();
-  
 
   return (
     <tr>
