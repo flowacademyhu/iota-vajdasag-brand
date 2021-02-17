@@ -26,4 +26,9 @@ public class GlobalExceptionHandler extends Exception {
         log.error("Validation error:", ex);
         return new ResponseEntity<>(List.of(ex.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(UserNotEnabledException.class)
+    public final ResponseEntity<Object> handleNotEnabledException(UserNotEnabledException e) {
+        log.error("User not enabled:", e);
+        return new ResponseEntity<>(List.of(e.getLocalizedMessage()), HttpStatus.NOT_ACCEPTABLE);
+    }
 }

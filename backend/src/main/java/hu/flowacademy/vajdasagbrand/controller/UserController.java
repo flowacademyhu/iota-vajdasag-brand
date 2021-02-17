@@ -34,16 +34,9 @@ public class UserController {
     }
 
     @RolesAllowed("SuperAdmin")
-    @DeleteMapping("/delete-user/{id}")
-    public User deleteUser(@PathVariable("id") String id) {
-        try {
-            User user = userService.deleteById(id);
-            return user;
-        } catch (ValidationException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
-        } catch (UserNotEnabledException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "User status is not correct");
-        }
+    @DeleteMapping("/users/{id}")
+    public User deleteUser(@PathVariable("id") String id) throws ValidationException, UserNotEnabledException {
+        return userService.deleteById(id);
     }
 
     @PostMapping("/registration")

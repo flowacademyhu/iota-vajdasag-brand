@@ -2,7 +2,7 @@ package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Type;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Transactional
 public class UserService {
 
