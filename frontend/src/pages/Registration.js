@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
-import Button from "../components/Button";
+import { Button } from "react-bootstrap";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";
 import "../communications/mockForUserApi";
@@ -171,10 +171,7 @@ export default function Registration() {
                 ) : null}
               </div>
               <div>
-                <Button
-                  className="btn btn-primary btn-block col-12"
-                  type="submit"
-                >
+                <Button variant="primary" type="submit" block>
                   {t("registration.buttontext")}
                 </Button>
                 {signUpAccepted === 201 ? (
@@ -204,11 +201,7 @@ export default function Registration() {
         <p className="text-center">{t("registration.alreadyRegistered")}</p>
       </div>
       <div>
-        <Button
-          className="btn btn-primary btn-block col-12"
-          type="button"
-          onClick={redirect}
-        >
+        <Button variant="primary" type="button" onClick={redirect} block>
           {t("registration.login")}
         </Button>
       </div>

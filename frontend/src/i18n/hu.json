@@ -28,7 +28,7 @@
     "password": "Jelszó",
     "passwordConfirmation": "Jelszó mégegyszer",
     "email": "Email cím",
-    "buttontext": "Registration",
+    "buttontext": "Regisztráció",
     "alreadyRegistered": "Regisztrált már?",
     "agreement": "Elfogadom az",
     "linkAszf": " ÁSZF-et",
@@ -78,5 +78,5 @@
     "products": "Termékek",
     "events": "Események",
     "signout": "Kijelentkezés"
-  } 
+  }
 }

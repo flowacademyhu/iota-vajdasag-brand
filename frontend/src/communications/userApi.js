@@ -15,9 +15,7 @@ export const login = (value) => {
 };
 
 export const signUp = async (value) => {
-  const response = await api.post("/registration");
-  api.post("/login", value);
-  return response;
+  return await api.post("/registration");
 };
 
 export const sendApproval = async (userId) => {
