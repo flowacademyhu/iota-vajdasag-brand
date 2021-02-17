@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useTranslation } from "react-i18next";
-import * as Yup from "yup";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import { signUp } from "../communications/userApi";

@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import * as Yup from "yup";
 
 const schema = (
