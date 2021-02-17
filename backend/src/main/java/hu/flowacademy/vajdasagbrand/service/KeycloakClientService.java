@@ -7,13 +7,14 @@ import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
+import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.AccessTokenResponse;
-import org.springframework.beans.factory.annotation.Value;
+import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 import java.util.List;
-import org.keycloak.admin.client.Keycloak;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class KeycloakClientService {
 
     public void createAccount(String email, String password) throws ValidationException {
         CredentialRepresentation credential = createCredentials(password);
-        RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm2());
+        RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm());
         RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).toRepresentation();
         javax.ws.rs.core.Response response = ourRealm.users().create(createUserRepresentation(email, credential));
         String userId = CreatedResponseUtil.getCreatedId(response);
@@ -33,6 +34,27 @@ public class KeycloakClientService {
         if (response.getStatus() != HttpStatus.CREATED.value()) {
             throw new ValidationException("Username taken!");
         }
+    }
+
+    public AccessTokenResponse login(String email, String password) {
+        return Keycloak.getInstance(
+                keycloakPropertiesHolder.getKeycloakServerUrl(),
+                keycloakPropertiesHolder.getKeycloakRealm(),
+                email, password,
+                keycloakPropertiesHolder.getKeycloakResource(),
+                keycloakPropertiesHolder.getKeycloakCredentialsSecret())
+                .tokenManager()
+                .getAccessToken();
+    }
+
+    public boolean deleteUser(String username) {
+        UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
+        List<UserRepresentation> listOfUsers = resource.search(username);
+        if(listOfUsers.isEmpty()) return false;
+        UserRepresentation userToBeDeleted = listOfUsers.get(0);
+        userToBeDeleted.setEnabled(false);
+        resource.get(userToBeDeleted.getId()).update(userToBeDeleted);
+        return true;
     }
 
     private UserRepresentation createUserRepresentation(String email, CredentialRepresentation credential) {
@@ -50,28 +72,6 @@ public class KeycloakClientService {
         credential.setValue(password);
         credential.setTemporary(false);
         return credential;
-    }
-
-    public AccessTokenResponse login(String email, String password) {
-        return Keycloak.getInstance(
-                keycloakPropertiesHolder.getKeycloakServerUrl(),
-                keycloakPropertiesHolder.getKeycloakRealm(),
-                email, password,
-                keycloakPropertiesHolder.getKeycloakResource(),
-                keycloakPropertiesHolder.getKeycloakCredentialsSecret())
-                .tokenManager()
-                .getAccessToken();
-    }
-
-    public void deleteUser(String username) {
-        Keycloak keycloak = Keycloak.getInstance(keycloakBackendClientServerUrl,
-                keycloakBackendClientRealmMaster,
-                keycloakBackendClientRealmAdminUserName,
-                keycloakBackendClientRealmAdminPassword,
-                keycloakBackendClientRealmClientId);
-        UserRepresentation userdeleted = keycloak.realm(keycloakBackendClientRealm2).users().search(username).get(0);
-        userdeleted.setEnabled(false);
-        keycloak.realm(keycloakBackendClientRealm2).users().get(userdeleted.getId()).update(userdeleted);
     }
 
     public static String generatePassword(int numberOfDigits) {
