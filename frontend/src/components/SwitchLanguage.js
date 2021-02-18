@@ -11,7 +11,7 @@ const SwitchLanguage = () => {
   }
 
   return (
-    <div className="col-2 float-right">
+    <div className="col-3 float-right">
       <select
         className="form-select mb-3"
         value={actualLanguage}

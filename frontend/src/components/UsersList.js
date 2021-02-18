@@ -16,22 +16,20 @@ const UsersList = () => {
   }
 
   return (
-    <div className="d-flex flex-row-reverse">
-      <div className="col-9">
-        <Searchbar setSearchKeyword={setSearchKeyword} />
-        <table className="table table-striped">
-          <ListHeader
-            onColumnClick={onColumnClick}
-            isSortAscending={isSortAscending}
-            sortKey={sortKey}
-          />
-          <tbody>
-            {users?.map((user) => (
-              <ListElement user={user} key={user.id} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div>
+      <Searchbar setSearchKeyword={setSearchKeyword} />
+      <table className="table table-striped">
+        <ListHeader
+          onColumnClick={onColumnClick}
+          isSortAscending={isSortAscending}
+          sortKey={sortKey}
+        />
+        <tbody>
+          {users?.map((user) => (
+            <ListElement user={user} key={user.id} />
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }

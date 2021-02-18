@@ -13,15 +13,24 @@ import SuperAdmin from '../pages/SuperAdmin'
 import { TokenContext } from '../TokenContext'
 import Logout from './logout'
 import Registration from '../pages/Registration'
+import JusoftLogo from '../media/jusoftSmall.png'
 
 const Main = () => {
   const { token } = useContext(TokenContext)
   const { t } = useTranslation()
   const loggedInAsSuperAdmin = false
   const loggedInAsCompanyAdmin = false
+
   return (
     <>
-      <SwitchLanguage />
+      <div className="container header">
+        <div className="row">
+          <div className="col-9">
+            <img src={JusoftLogo} alt="Jusoft logo" className="jusoftLogo" />
+          </div>
+          <SwitchLanguage />
+        </div>
+      </div>
       <Router>
         <div className="container">
           <div className="row">
