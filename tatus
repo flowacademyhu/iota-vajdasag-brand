@@ -1,0 +1,914 @@
+[33mcommit b2c14207f4ca7f66079481ad819619825d273225[m[33m ([m[1;36mHEAD -> [m[1;32m47-nyelvi-fájl-frissítése[m[33m)[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Mon Feb 15 12:38:04 2021 +0100
+
+    Revert "fixed typos"
+    
+    This reverts commit db05c1572aa5bb7f495c66f696ca196fe5be6d0f.
+
+[33mcommit 3a3ac42e5b90c884b954b93a6f9106f8e4b120b7[m[33m ([m[1;31morigin/47-nyelvi-fájl-frissítése[m[33m)[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Mon Feb 15 12:19:14 2021 +0100
+
+    fixed typos
+
+[33mcommit db05c1572aa5bb7f495c66f696ca196fe5be6d0f[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Sun Feb 14 16:35:05 2021 +0100
+
+    fixed typos
+
+[33mcommit 1a8080670f29442c2dd7cb09e8467f5dd8c2d535[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Sun Feb 14 15:22:12 2021 +0100
+
+    added menu translation
+
+[33mcommit 5246ce5192243e1c937a573b733ce5024bbdbb65[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Sun Feb 14 14:27:49 2021 +0100
+
+    added all fileds in english
+
+[33mcommit 0f0659dcc2ba84ea5e402eee134db05217747960[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Sun Feb 14 14:04:37 2021 +0100
+
+    login and registration translations added
+
+[33mcommit 3b368031a1cb255c1cddeeb52462a73786554afb[m[33m ([m[1;32mmaster[m[33m, [m[1;32m28-cégregisztráció-jóváhagyása[m[33m)[m
+Merge: 4569a54 2b60486
+Author: hbarbi11 <73103582+hbarbi11@users.noreply.github.com>
+Date:   Fri Feb 12 15:41:45 2021 +0100
+
+    Merge pull request #46 from flowacademyhu/26-regisztracio
+    
+    !26-regisztracio
+
+[33mcommit 2b60486e0db69c12a754809f97f91f1bab0993e7[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Fri Feb 12 15:37:09 2021 +0100
+
+    created tests for Keycloak, fixed pw review
+
+[33mcommit a0489fcece7e073520197906f896f9d1c0c58224[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Fri Feb 12 14:05:49 2021 +0100
+
+    fixed pr review
+
+[33mcommit 5476e0f861dead571e4c715bb6d176dbe69d171a[m
+Merge: a5bead9 4569a54
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Fri Feb 12 13:42:05 2021 +0100
+
+    Merge branch 'master'
+    
+    Conflicts:
+            backend/pom.xml
+            backend/src/main/java/hu/flowacademy/vajdasagbrand/configuration/KeycloakSecurityConfig.java
+            backend/src/main/java/hu/flowacademy/vajdasagbrand/controller/UserController.java
+            backend/src/main/java/hu/flowacademy/vajdasagbrand/service/KeycloakClientService.java
+            backend/src/main/resources/application.yml
+
+[33mcommit a5bead946659e9cd56e2c09e95d892bc6b5ba51a[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Fri Feb 12 13:27:51 2021 +0100
+
+     implement userRegistration with keycloak
+
+[33mcommit 4569a54e463c9f7ebd59803b0dfb4d73fde57587[m
+Merge: 98053be e2349ba
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Fri Feb 12 10:41:34 2021 +0100
+
+    Merge pull request #45 from flowacademyhu/43-menu-update
+    
+    !43-menu-update
+
+[33mcommit 98053be314f00529260751612c4b830fd9f30518[m
+Merge: 92e5623 16874f9
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Fri Feb 12 10:40:08 2021 +0100
+
+    Merge pull request #41 from flowacademyhu/9-felhasznalok-listaja
+    
+    !9-felhasznalok-listaja
+
+[33mcommit 16874f960a9b613c3088286ee9d0fff1134d09f3[m[33m ([m[1;31morigin/9-felhasznalok-listaja[m[33m)[m
+Author: Robert Boros <robbie13.boros@gmail.com>
+Date:   Fri Feb 12 09:20:01 2021 +0100
+
+    Merge pull request #42 from flowacademyhu/25-authentikacio
+    
+    !25-authentikacio
+
+[33mcommit 07c3ade0ba283baf3b50f42ab211e4b3abaf34ff[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Fri Feb 12 10:21:39 2021 +0100
+
+    Simplified import mockApi to avoid warning
+
+[33mcommit e2349ba99cf239cbd8e492fa3dd39274ac10c7de[m[33m ([m[1;31morigin/43-menu-update[m[33m)[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Fri Feb 12 10:10:46 2021 +0100
+
+    resolving further conflicts
+
+[33mcommit 78d8db774f609a5363fab516351ab0eae67b059c[m
+Merge: 593cec2 ca1c262
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Fri Feb 12 10:06:44 2021 +0100
+
+    Merge branch 'master' into 43-menu-update
+    resolving conflicts
+
+[33mcommit 1ab2ab74d5c391f32dde610aae318f774ad503f7[m
+Merge: 3e5d7e7 92e5623
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Fri Feb 12 09:52:33 2021 +0100
+
+    Resolved merge conflict
+
+[33mcommit 593cec27122e6b8f3fc7d1d25017718ca526bc57[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Fri Feb 12 09:20:25 2021 +0100
+
+    resolving conflict
+
+[33mcommit 92e56239e8edab003bcb5c382f2d9eb0cbb34c59[m
+Merge: ca1c262 aae3835
+Author: Robert Boros <robbie13.boros@gmail.com>
+Date:   Fri Feb 12 09:20:01 2021 +0100
+
+    Merge pull request #42 from flowacademyhu/25-authentikacio
+    
+    !25-authentikacio
+
+[33mcommit aae3835d30d8b206af0d16fa968f14e9f806eb31[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Fri Feb 12 09:15:49 2021 +0100
+
+    removed code related to account creation
+
+[33mcommit 3e5d7e7b165e8d0fbef2d27425d42dd690407d48[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 21:25:35 2021 +0100
+
+    Removed an unnecessary useUsers hook function from implementation in 'UsersList'
+
+[33mcommit 9280f5f9745cf513bdcc53185d11c53d0beef9bf[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 21:21:33 2021 +0100
+
+    Added exception to API call, removed callbacks and instead it returns fetched data
+
+[33mcommit ca1c262b77c8e7c4dfe68ffcd862fa75da402ec8[m
+Merge: 12d0491 3073533
+Author: SiposGergo <prosipinho@gmail.com>
+Date:   Thu Feb 11 17:44:21 2021 +0100
+
+    Merge pull request #39 from flowacademyhu/5-login-oldal
+    
+    !5-login-oldal
+
+[33mcommit 3073533f049dfe2bd8a4f2788eefe75a65cb973a[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 17:42:26 2021 +0100
+
+    add login.test.js for merging
+
+[33mcommit da879de60bbaec4bd644d38d1f9dbdff43eeb4b6[m
+Merge: e454e89 5dcd147
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 17:38:24 2021 +0100
+
+    Merge branch '5-login-oldal' of github.com:flowacademyhu/iota-vajdasag-brand into 5-login-oldal
+
+[33mcommit e454e8931a4a23dae89a0139b70fd7b5f89d6d0b[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 17:38:05 2021 +0100
+
+    refactor
+
+[33mcommit 5dcd147767c11c96f13d83d474f3de83509b28dd[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 17:33:17 2021 +0100
+
+    delete logintest.js
+
+[33mcommit 4b4249bd4ed88475ae8cc0c17807ef5783dd1c56[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 17:28:05 2021 +0100
+
+    refactor
+
+[33mcommit bacd2be044b13a1cc84cde80516c35ebefa69982[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 17:21:45 2021 +0100
+
+    upgrade language file // upgrade test
+
+[33mcommit b4e2981b07f956b6c6e86bb79444bd9a52013b70[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Thu Feb 11 17:21:11 2021 +0100
+
+    redirecting to Login page before logging in
+
+[33mcommit 34f1135c3c529e103bce745cfaadc27bb6cad62d[m
+Merge: 221428d 12d0491
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:49:54 2021 +0100
+
+    Merge branch 'master' into 5-login-oldal
+
+[33mcommit 221428d3f8abc787588a5b75fdb4cc42d3a0bde4[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:35:53 2021 +0100
+
+    clear test log for token
+
+[33mcommit 5a1a365b5ec3f829ef769d727257bd69e3cf6664[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:35:11 2021 +0100
+
+    repair build failer
+
+[33mcommit eb861238ceaf28b308e1ff6ff6d2818f3ebf83a5[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:29:09 2021 +0100
+
+    change error message
+
+[33mcommit db9f8a290ff30afce0d504521b882368da5c57d1[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:28:07 2021 +0100
+
+    clearing console.log
+
+[33mcommit c1ef4d1bd1839651f3c3150dfe5f2ff97f81c0b4[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:27:12 2021 +0100
+
+    clear window from call sessionStorage
+
+[33mcommit 979131cf86a74ed249e15f1abc5be3b665b41ff4[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:25:46 2021 +0100
+
+    change password creteria in yup //  change login test // rename button design to className
+
+[33mcommit e74284c209fa8e1ffec2023ab611ed0cbf193b52[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 16:15:30 2021 +0100
+
+    configuring keycloak registration
+
+[33mcommit 12d0491a46f4be9c02a12712fbd578dacb22a9b1[m
+Merge: f2d7c89 73b2684
+Author: SiposGergo <prosipinho@gmail.com>
+Date:   Thu Feb 11 16:03:10 2021 +0100
+
+    Merge pull request #38 from flowacademyhu/4-menu
+    
+    !4-menu
+
+[33mcommit 7ca88e16475b94ebf0abdc55c8a7701456e372bb[m
+Merge: ba5a2ea 8901b1b
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 15:52:06 2021 +0100
+
+    Merge remote-tracking branch 'origin/26-regisztracio' into 26-regisztracio
+    
+    # Conflicts:
+    #       backend/pom.xml
+    #       backend/src/main/java/hu/flowacademy/vajdasagbrand/controller/UserController.java
+    #       backend/src/main/java/hu/flowacademy/vajdasagbrand/service/KeycloakClientService.java
+    #       backend/src/main/java/hu/flowacademy/vajdasagbrand/service/UserService.java
+    #       backend/src/main/resources/application.yml
+
+[33mcommit 8901b1b8351a7897479dcacbf517d3c06fb54a54[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Thu Feb 11 15:46:20 2021 +0100
+
+    created KeycloakClientService but not the latest version
+
+[33mcommit 3baa8626392e8088eef07f97bb7367a99947e83c[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Thu Feb 11 15:45:30 2021 +0100
+
+    got keycloak
+
+[33mcommit ba5a2ea35c28d7b82a49e34d79a8c401272920cf[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 15:44:31 2021 +0100
+
+    adding keycloak user registration
+
+[33mcommit 7facca3b9a1963ea9ccb320d06af2b51c523ee7e[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Thu Feb 11 15:43:44 2021 +0100
+
+    userReg gets validations
+
+[33mcommit de4a972252da2172e05097cacc7ebfdfed25a559[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Thu Feb 11 15:42:19 2021 +0100
+
+    changed exception methods
+
+[33mcommit 812c7ca8d83f55dbafc3d5cc57e514b4cd98f4f8[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Thu Feb 11 15:40:55 2021 +0100
+
+    changed User to void
+
+[33mcommit c59d8aa02c4debe90b963cee800ea7adf24c3aeb[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Thu Feb 11 15:40:04 2021 +0100
+
+    added commons-validator dependencies
+
+[33mcommit 4349fdd36d2d32e9530d0b834c92c5c9ebfc1d97[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 15:26:07 2021 +0100
+
+    Renamed 'elem' to 'user' in map function, 'approvedUser' to 'isApproved'
+
+[33mcommit 99f8c2378c1e6771a42575fe33426466941c29be[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 15:23:04 2021 +0100
+
+    Moved setUsers to corresponding API call
+
+[33mcommit e57fe44e427253cd40fa65e236f4aa4f23c572dc[m[33m ([m[1;31morigin/25-authentikacio[m[33m)[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 15:12:16 2021 +0100
+
+    unnecessary whitespaces removed
+
+[33mcommit 602dc8991b8e64cebddbb3f48abef796f2b53cae[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 15:11:25 2021 +0100
+
+    Created useUsers hook for fetching and working with users, renamed API call to getUsers
+
+[33mcommit 69b726466c924ea1aea645feb579158685bcf25a[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 15:11:05 2021 +0100
+
+    application.yaml added
+
+[33mcommit 73b268425dfd06901eb16588024458cb7931ab62[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Thu Feb 11 15:06:09 2021 +0100
+
+    menu sidebar only shows when we are logged in thanks to redirection
+
+[33mcommit 9aeb46b621044208758dafcf425436e60e422303[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 14:04:31 2021 +0100
+
+    pom.xml updated
+
+[33mcommit 228a3154badd75a10b5c1df67e3cb7d797e8a543[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 14:00:59 2021 +0100
+
+    Removed unnecessary functions in mock API file, and imported it in regular API calls file
+
+[33mcommit d57316195b75668fe14a0bfbbfd18b166064663c[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Thu Feb 11 13:52:13 2021 +0100
+
+    change token storage from state to sessionStorage
+
+[33mcommit d0576072d22c7aa37a1a2b228dd828039ea5cc54[m
+Merge: 5c2ef2b f2d7c89
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Thu Feb 11 13:49:48 2021 +0100
+
+    Merge branch 'master' into 4-menu
+
+[33mcommit 7f06cf44bc4289afef81426578ffd1b2abd55728[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 13:37:15 2021 +0100
+
+    keycloakclientservice refactored and keycloaksecuritycofig refactored
+
+[33mcommit f2d7c899673c93382208461c9c6c0dc697587798[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Wed Feb 10 14:55:30 2021 +0100
+
+    Fix localization
+
+[33mcommit 15abc896871eae00af998f3cd80a12229dc55a81[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Wed Feb 10 14:36:23 2021 +0100
+
+    Added scanner to basic i18n
+
+[33mcommit 564bf6fb994880499864a194fc7ef8cec472356d[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Tue Feb 9 14:17:53 2021 +0100
+
+    Added language switch component
+
+[33mcommit f74315d4c3baddeda412baa2e2092d54ea4c8f7c[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Tue Feb 9 14:15:57 2021 +0100
+
+    Created separate JSON for translations
+
+[33mcommit d66086640618944cb888fc59da43e345d441d967[m
+Author: Tóth Tibor <73103517+ttiborgh@users.noreply.github.com>
+Date:   Tue Feb 9 13:54:23 2021 +0100
+
+    Delete .gitignore~
+    
+    Deleted unnecessary gitignore
+
+[33mcommit a3c3b6d1148d3d19d5567c4e6ba772791cc9807c[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Tue Feb 9 13:52:14 2021 +0100
+
+    Added gitignore
+
+[33mcommit 1c3e53f6b25884587c2ee9f957475b5831ecde98[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Tue Feb 9 13:47:43 2021 +0100
+
+    Added basic texts for testing, default lang to HUN, deleted comments
+
+[33mcommit 1f451349774d03f1ece0af3da7b479b7b5e69a47[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Tue Feb 9 10:48:55 2021 +0100
+
+    Added bootstrap to index.html
+
+[33mcommit e78b8f4406526e47fe2b2a1968ed40ce8b0f020e[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 12:59:51 2021 +0100
+
+    logindto and exceptionhandler added
+
+[33mcommit 6d80f5ac239096f5666a6bf3ee7c9fb995d17a4b[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 12:12:27 2021 +0100
+
+    Removed mock API implementation from UsersList to API call file
+
+[33mcommit 5f517f719a6fdcb88a0114e2359f7e5064563f36[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 11:44:06 2021 +0100
+
+    UserController with login
+
+[33mcommit 235048fb184c19ab02c62d5e74b28c92c253fec2[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Thu Feb 11 11:42:18 2021 +0100
+
+    KeyCloakClientService added
+
+[33mcommit 2bba68ceca6aea977addd70284a0aca00940ccd2[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 11:17:07 2021 +0100
+
+    Added basic error handling to API call when fetching users from BE
+
+[33mcommit 58f86b909dcb799e03552e7d576497c6c987dd20[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 11:04:16 2021 +0100
+
+    Added i18n built-in translation function (t) to texts
+
+[33mcommit fc44a5cf71ec7ff7f8d0b1c6aa79c01c2cde3c33[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 10:57:23 2021 +0100
+
+    Implemented API calls in UsersList, organised table items into ListElement
+
+[33mcommit 76d6eb8a432a9a285adceb70e6df15b51aea0054[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Thu Feb 11 10:52:55 2021 +0100
+
+    Organised API calls into separate files
+
+[33mcommit 7620b1075a2baafcfb686e1670ae9d885aeed185[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 23:56:04 2021 +0100
+
+    formating button component
+
+[33mcommit 51b2f40c177f42391cbf9ef7e33a34cc5ccc6de6[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 23:52:20 2021 +0100
+
+    Add mockForUserApi.js // change tests because of language
+
+[33mcommit 27c88ed69e2d5b05c8466f1981b6385585bf9eec[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 23:38:17 2021 +0100
+
+    creating userApi.js
+
+[33mcommit 4361530995b298856a92433566e66006c4ec5691[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 23:25:54 2021 +0100
+
+    handle login error
+
+[33mcommit 01210f5b62ee60fcb8878575387c11576e44cfc3[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 22:55:24 2021 +0100
+
+    repair location of SignUpSchema
+
+[33mcommit f5db66aa43fc9c3f6627f8de6311222e1fa092c1[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 22:37:37 2021 +0100
+
+    cut out i18n.changeLanguage
+
+[33mcommit 5c2ef2b61ed1b14db524c70fb24ee9688d29cb20[m
+Merge: 162ea32 40395ef
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Wed Feb 10 17:19:10 2021 +0100
+
+    Merge branch 'master' into 4-menu
+
+[33mcommit 6590a3f5f319d379d049db81a0c80cc6bc63f4a4[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 17:05:03 2021 +0100
+
+    Writing GlobalExceptionHandler, change User, save incoming data to the database
+
+[33mcommit 74f9ccf43c6adf0bf38ef43039a34ce7502a3964[m
+Author: Tibi <tothtibi30@gmail.com>
+Date:   Wed Feb 10 17:03:18 2021 +0100
+
+    Created UsersList component with mock axios call and bootstrap design
+
+[33mcommit 5a65d060193b52ef0939d177263da5e813b27042[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:08:45 2021 +0100
+
+    created UserController with annotations
+
+[33mcommit 419839f25869a9ae8659f358ee5238d69783611f[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:08:14 2021 +0100
+
+    Exception class
+
+[33mcommit 2fef88ed9551dec18c68af1fd09ba693752cd601[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:07:22 2021 +0100
+
+    created UserService
+
+[33mcommit b17d632c15e20e7a78ee89f1af450876fee7eaac[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:06:37 2021 +0100
+
+    application.yml config
+
+[33mcommit b16e0970f6b4e4c305e407bb7004cb7a66996366[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:05:41 2021 +0100
+
+    created UserRepository
+
+[33mcommit 864013797d750b38d7bc2a0b594651d521ed29be[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:05:20 2021 +0100
+
+    created ValidationException class which is extends Exception
+
+[33mcommit 213b5267f159b8c3b62e9cc603b48f28d6ea20bc[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:04:37 2021 +0100
+
+    created User class
+
+[33mcommit 092847d6966d9efc9402c93f6839257c511aab2d[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:02:59 2021 +0100
+
+    created Type enum class for type of roll
+
+[33mcommit 96da173839ef61dc98e1ac0bf1cd199adebeaffa[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 16:01:26 2021 +0100
+
+    created keycloakSecurityConfig class with annotations
+
+[33mcommit 73f2a70b92c8ee1830936064615f24c4a170517c[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Wed Feb 10 15:59:50 2021 +0100
+
+    application.yaml config
+
+[33mcommit 40395ef2e9fd80739f4a20f209ff62a1f9530363[m
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Wed Feb 10 15:16:37 2021 +0100
+
+    Add missing channelId to Firebase deployment
+
+[33mcommit df49edf509514840d3261b785f45829b35f71adf[m
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Wed Feb 10 15:12:41 2021 +0100
+
+    Add Firebase deployment step
+
+[33mcommit f8157170cc7918fba39a6065562d9a75ff227e50[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Wed Feb 10 15:08:11 2021 +0100
+
+    Add Firebase config
+
+[33mcommit 162ea32a7fea3b722fd2984a690d0b9dc878d336[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Wed Feb 10 11:36:04 2021 +0100
+
+    removed .vscode directory
+
+[33mcommit b66deb1d4fdeb95c90702c9f83d9165d97f46649[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Wed Feb 10 10:53:03 2021 +0100
+
+    menu items restructured into array of objects, navlink generalized
+
+[33mcommit fc948e22c7350f84903741b0d12f3e4758d10ea8[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 01:42:32 2021 +0100
+
+    clear warnings
+
+[33mcommit 3dc09461653d53888de544cae01b4501dae79130[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 01:31:16 2021 +0100
+
+    adding tests
+
+[33mcommit 9e82eb57c00f4d99e21e6be26fdd60c4215dd110[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 00:55:00 2021 +0100
+
+    cleaning code
+
+[33mcommit d4f5cb6ca872b83a26a7c1b8d61b63b557c41cc8[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Wed Feb 10 00:53:20 2021 +0100
+
+    adding InputField component
+
+[33mcommit 8b04e9f1b8aaf9180fbf82cb5f807e7929fa26c3[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Tue Feb 9 17:19:32 2021 +0100
+
+    add validation
+
+[33mcommit 0cadb4d2bb9011d7bdfcc6b425cfe6bf8fc7b99c[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Tue Feb 9 16:03:15 2021 +0100
+
+    menu route added to app.js
+
+[33mcommit 1e541d28a04304f1124d39e0cc3c25a1112d5155[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Tue Feb 9 15:25:53 2021 +0100
+
+    adding a button component, addig login component
+
+[33mcommit 4b1dfbeb3e9a39e31eeec54f19ddea7daf8b1374[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Tue Feb 9 15:16:32 2021 +0100
+
+    each menu component navigates to their own path
+
+[33mcommit 165e8e3d266644ddcf973b8164b6e1c0172dcc47[m
+Merge: e8aeb2b eb1a628
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Tue Feb 9 14:18:26 2021 +0100
+
+    Merge branch 'master' into 4-menu for rebasing
+
+[33mcommit 408043e2f1cc78ed7f3085732b034c53579dbbce[m
+Author: Hegedűs Barbara <hegedusbarby@gmail.com>
+Date:   Tue Feb 9 13:51:48 2021 +0100
+
+    created: user entity and user repository
+
+[33mcommit 87e9d3f1d97111c61c0ec811a08ebcd993a78224[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Tue Feb 9 13:44:41 2021 +0100
+
+    config file for keycloak added
+
+[33mcommit e8aeb2bdc975a86f3c9febbfe706e9d9b9a275d4[m
+Author: fhrmt <feher.mate.944@gmail.com>
+Date:   Tue Feb 9 11:07:10 2021 +0100
+
+    menu sidebar items naming convention
+
+[33mcommit eb1a6282f7514a5f3d16fcc5c94b4eb911762905[m
+Merge: 5561696 086660e
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Tue Feb 9 10:55:21 2021 +0100
+
+    Merge pull request #36 from flowacademyhu/3-routing-beallitasa
+    
+    3 routing beallitasa
+
+[33mcommit 086660ec0cfbb5722ca1d46f26c7935508b80498[m
+Merge: 8f4b4df 5561696
+Author: gosidominik <66671100+gosidominik@users.noreply.github.com>
+Date:   Tue Feb 9 10:43:44 2021 +0100
+
+    Merge branch 'master' into 3-routing-beallitasa
+
+[33mcommit 5561696c92474203b62ab520feb7868758c11201[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Tue Feb 9 09:49:50 2021 +0100
+
+    bugfux gor build problems change i18n to i18next
+
+[33mcommit 2a86afdfa6da8f5fb7efaf741187ff47a87c93ed[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Tue Feb 9 09:29:05 2021 +0100
+
+    buxfix for i18n import
+
+[33mcommit d41a1583e1dc837c980e254f93fa28ba3cc20a08[m
+Author: pakaikarolina <pakaikarolina@gmail.com>
+Date:   Tue Feb 9 09:19:55 2021 +0100
+
+    i18n.js moved from config to src
+
+[33mcommit afd759b53db5847a05e3f081bca463a9c22707d6[m
+Author: zterhes <zterhes1@gmail.com>
+Date:   Mon Feb 8 16:52:44 2021 +0100
+
+    Initail commit for frondEnd
+
+[33mcommit 8f4b4dfb5ce748e7f140a1963bcade8fb7dc8879[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Tue Feb 9 09:53:20 2021 +0100
+
+    Link removed from import
+
+[33mcommit 93e912afdca822ca3bf66d854f8e0c66fd0a4513[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Tue Feb 9 09:49:15 2021 +0100
+
+    string test removed from App.test.js
+
+[33mcommit 6d176e5a13c748e2103665505152ee2880f704a3[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Tue Feb 9 09:18:20 2021 +0100
+
+    path updated to lower-case
+
+[33mcommit 8ae8fe02676f6a0c6f3a0d94b1954eaa4d7ee49d[m
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Tue Feb 9 09:13:30 2021 +0100
+
+    Run build for all commits
+
+[33mcommit 2c8ad9ed3b86279b2bfc98594692ac901e161fcb[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Tue Feb 9 09:09:14 2021 +0100
+
+    Rrouter moved from index.js to App.js
+
+[33mcommit 464313b2791e930b7fdcbdd7e0833b7f879cec9a[m[33m ([m[1;32m3-routing-beallitasa[m[33m)[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Mon Feb 8 20:43:14 2021 +0100
+
+    Switch and Route components added to App.js according to required interfaces
+
+[33mcommit 6f6e03ef7190b99cbe14bf757ad5d1fde06eb2e8[m
+Author: Dominik <gosidominik@gmail.com>
+Date:   Mon Feb 8 19:46:31 2021 +0100
+
+    router-dom
+    
+    react-router-dom added to dependencies, App component wrapped in Router component in index.js
+
+[33mcommit 77dfb16f0c4f68a47f2c9b4ec1fda516f159f1e1[m
+Author: Attila Kesztyűs <62293585+akesztyus@users.noreply.github.com>
+Date:   Mon Feb 8 16:50:36 2021 +0100
+
+    Delete spring related file as content moved to main.yml
+
+[33mcommit 20461337fbc941e10b3e8af651e23a7ae78e913c[m
+Author: Attila Kesztyűs <62293585+akesztyus@users.noreply.github.com>
+Date:   Mon Feb 8 16:49:45 2021 +0100
+
+    Move backend job to this
+
+[33mcommit 33f69c6de1b49e55824afefd94c6fa9a40bdb1f3[m
+Merge: 9d23abb fdacc58
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Mon Feb 8 15:36:46 2021 +0100
+
+    Merge pull request #34 from flowacademyhu/backend-init
+    
+    Backend init
+
+[33mcommit fdacc5835f44885deb3b69d2fb34d1ba6d15782f[m
+Author: Robert Boros <robbie13.boros@gmail.com>
+Date:   Sat Feb 6 18:28:05 2021 +0100
+
+    add ci
+
+[33mcommit 7f73fcbeebc31d65ba171f521193fdffd539bd71[m
+Author: Robert Boros <robbie13.boros@gmail.com>
+Date:   Sat Feb 6 18:27:39 2021 +0100
+
+    setup basic config
+
+[33mcommit 9d23abb6cd4b0aab49f61b8344e6af8997322d6d[m[33m ([m[1;31morigin/!5-login-oldal[m[33m, [m[1;32m!5-login-oldal[m[33m)[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 19:25:50 2021 +0100
+
+    Add placeholder for the backend code
+
+[33mcommit a4bbcce9c6b86a0a34adcc84c12d96257f3b1fad[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 19:23:58 2021 +0100
+
+    Archive frontend bundle
+
+[33mcommit 8a8ae03fb79019afb04ed63f903d49e671a45f10[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 19:20:13 2021 +0100
+
+    Fix coverage script
+
+[33mcommit eaeef71d2ce8127f9a9cf3743e96e11629bfa5c1[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 19:18:30 2021 +0100
+
+    Archive code coverage after tests
+
+[33mcommit 29a8f4f6bafb23d917ee0842f844ae8327ae829e[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 19:17:12 2021 +0100
+
+    Publish coverage results
+
+[33mcommit 4b595870216a3a82bf81556356239962ebf6e1e4[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 19:10:41 2021 +0100
+
+    Run tests during CI
+
+[33mcommit e2478efea5dd3871f18f2b62b0fc5dbc34c0da35[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:54:32 2021 +0100
+
+    Fix build cache hash
+
+[33mcommit 2196d710f59c5277d38a0055f97965a7cbeed371[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:52:17 2021 +0100
+
+    Add name to checkout step
+
+[33mcommit 67c2365d32648043dafbb599a5060305a652cb2e[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:51:50 2021 +0100
+
+    Cache node modules
+
+[33mcommit 383e8b86b87b69d4accef14be368a1994d4abccb[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:48:42 2021 +0100
+
+    Fix frontend build script
+
+[33mcommit 35c724811770b095361f771013a83f5846e232b3[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:46:55 2021 +0100
+
+    Build frontend with CI
+
+[33mcommit 1384ec49ab49bc7200fedcdf82487ac7248cef6f[m
+Author: Roland Németh <6uliver@gmail.com>
+Date:   Mon Jan 18 18:38:59 2021 +0100
+
+    Create basic workflow file
+
+[33mcommit b421152cba42d5659449314dcfa535ec9aec3006[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:36:55 2021 +0100
+
+    Add basic React app with CRA
+
+[33mcommit be81a598b68fdcd48d26b5fd2394a649a5756a0a[m
+Author: Roland Németh <info@nemethroland.hu>
+Date:   Mon Jan 18 18:29:43 2021 +0100
+
+    Initial commit

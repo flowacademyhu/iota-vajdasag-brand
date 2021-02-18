@@ -1,4 +1,12 @@
 {
+  "acceptedRegistration": "Sikeres regisztráció",
+  "companyAdmin": "Cég Admin",
+  "dateOfRegistrion": "Regisztráció dátuma",
+  "email": "Email",
+  "name": "Név",
+  "no": "Nem",
+  "Registration": "Regisztráció",
+  "yes": "Igen",
   "login": {
     "buttontext": "Bejelentkezés",
     "connectionProblems": "Kapcsolati probléma",
@@ -10,6 +18,7 @@
     "password": "Jelszó",
     "title": "Belépés"
   },
+
   "registration": {
     "title": "Regisztráció",
     "fullName": "Név",

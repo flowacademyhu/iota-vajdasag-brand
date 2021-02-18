@@ -47,7 +47,6 @@ class KeycloakClientServiceTest {
         verify(keycloak, times(1)).realm(anyString());
         verifyNoMoreInteractions(keycloak);
         verify(keycloakPropertiesHolder, times(1)).getKeycloakBackendClientRealm();
-        verify(keycloakPropertiesHolder, times(1)).getKeycloakBackendClientUserRole();
         verifyNoMoreInteractions(keycloakPropertiesHolder);
     }
 
@@ -57,7 +56,6 @@ class KeycloakClientServiceTest {
 
     private void givenKeycloakPropertiesHolderConfiguration() {
         when(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).thenReturn("realm");
-        when(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).thenReturn("userRole");
     }
 
     private void givenIntegratedKeycloak() {

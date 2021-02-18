@@ -21,21 +21,15 @@ spring:
 keycloakBackendClient:
   serverUrl: http://localhost:8180/auth
   realm: VajdasagBrand
-  realm2: VajdasagBrand
-  realm_master: master
   adminusername: admin
   adminpassword: admin
-  clientpassword: _HLB2!2m8$#ghhk
-  client-id: admin-cli
-  user-role: realmuser
 
 keycloak:
   realm: VajdasagBrand
   auth-server-url: http://localhost:8180/auth
   ssl-required: external
   resource: VajdasagClient
-  credentials.secret: 37972d6d-1e0e-45ab-aff8-2d09db1714f5
+  credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
   use-resource-role-mappings: true
   bearer-only: false
-
 

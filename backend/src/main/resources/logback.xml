@@ -16,10 +16,9 @@
         </encoder>
     </appender>
 
-    <logger name="com.flow" level="debug"/>
+    <logger name="hu.flowacademy" level="debug"/>
     <logger name="ch.qos.logback" level="warn"/>
     <logger name="org.hibernate.SQL" level="debug" />
-    <logger name="org.jboss.resteasy" level="trace" />
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" />
     <root level="info">
         <appender-ref ref="CConsole"/>

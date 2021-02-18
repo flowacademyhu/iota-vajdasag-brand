@@ -3,10 +3,10 @@ package hu.flowacademy.vajdasagbrand.service;
 import hu.flowacademy.vajdasagbrand.configuration.KeycloakPropertiesHolder;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.resource.RealmResource;
-import org.keycloak.admin.client.resource.UserResource;
+import org.keycloak.admin.client.resource.*;
 import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
@@ -14,19 +14,23 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class KeycloakClientService {
+
+    private static final String KEYCLOAK_USER_ROLE_NAME = "realmuser";
     private final Keycloak keycloak;
     private final KeycloakPropertiesHolder keycloakPropertiesHolder;
 
     public void createAccount(String email, String password) throws ValidationException {
         CredentialRepresentation credential = createCredentials(password);
         RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm());
-        RoleRepresentation roleToUse = ourRealm.roles().get(keycloakPropertiesHolder.getKeycloakBackendClientUserRole()).toRepresentation();
+        RolesResource rolesResource = ourRealm.roles();
+        RoleRepresentation roleToUse = getOrCreateRole(rolesResource, KEYCLOAK_USER_ROLE_NAME);
         javax.ws.rs.core.Response response = ourRealm.users().create(createUserRepresentation(email, credential));
         String userId = CreatedResponseUtil.getCreatedId(response);
         UserResource oneUser = ourRealm.users().get(userId);
@@ -47,6 +51,15 @@ public class KeycloakClientService {
                 .getAccessToken();
     }
 
+    public boolean deleteUser(String username) {
+        UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
+        List<UserRepresentation> listOfUsers = resource.search(username);
+        if(listOfUsers.isEmpty()) return false;
+        UserRepresentation userToBeDeleted = listOfUsers.get(0);
+        userToBeDeleted.setEnabled(false);
+        resource.get(userToBeDeleted.getId()).update(userToBeDeleted);
+        return true;
+    }
 
     private UserRepresentation createUserRepresentation(String email, CredentialRepresentation credential) {
         UserRepresentation user = new UserRepresentation();
@@ -63,5 +76,19 @@ public class KeycloakClientService {
         credential.setValue(password);
         credential.setTemporary(false);
         return credential;
+    }
+
+    private RoleRepresentation getOrCreateRole(RolesResource rolesResource, String r) {
+        try {
+            return rolesResource.get(r).toRepresentation();
+        } catch (NotFoundException e) {
+            log.warn("Role not found, creating it for {}: {}", r, e.getMessage());
+        }
+        return createRoleRepresentation(rolesResource, r);
+    }
+    private RoleRepresentation createRoleRepresentation(RolesResource rolesResource, String r) {
+        RoleRepresentation roleRep = new RoleRepresentation(r, "", false);
+        rolesResource.create(roleRep);
+        return rolesResource.get(r).toRepresentation();
     }
 }
