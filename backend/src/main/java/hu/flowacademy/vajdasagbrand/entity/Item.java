@@ -32,4 +32,5 @@ public class Item {
     private String website;
     private String facebook;
     private String instagram;
+    private boolean isDeleted;
 }
