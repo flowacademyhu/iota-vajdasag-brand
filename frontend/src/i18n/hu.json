@@ -8,7 +8,8 @@
     "Registration": "Regisztráció",
     "yes": "Igen",
     "actions": "Lehetőségek",
-    "approveRegistration": "Regisztráció jóváhagyása"
+    "approveRegistration": "Regisztráció jóváhagyása",
+    "search": "Keresés"
   },
   "login": {
     "buttontext": "Bejelentkezés",
