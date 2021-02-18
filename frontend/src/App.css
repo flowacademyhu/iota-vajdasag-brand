@@ -1,8 +1,18 @@
-.searchbar {
-  width: 450px !important;
-  margin: 5px;
+.header {
+  background-color: #222222;
 }
 
-.header {
-  margin-bottom: 10px;
+.nav-link {
+  color:rgba(255, 255, 255, 1);
+  background-color: #222222;
+  border-bottom: 1px solid;
+}
+
+.nav-link:hover {
+  background-color: #16A181;
+  color: #FFFFFF;
+}
+
+.nav-link.active {
+  background-color: #16A181;
 }
