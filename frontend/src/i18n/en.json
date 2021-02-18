@@ -8,7 +8,8 @@
     "registration": "Registration",
     "yes": "Yes",
     "actions": "Actions",
-    "approveRegistration": "Approve registration"
+    "approveRegistration": "Approve registration",
+    "search": "Search"
   },
   "login": {
     "buttontext": "Login",

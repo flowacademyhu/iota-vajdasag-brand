@@ -9,7 +9,8 @@
     "Registration": "Registracija",
     "yes": "Da",
     "actions": "Actions",
-    "approveRegistration": "Approve registration"
+    "approveRegistration": "Approve registration",
+    "search": "Pretraga"
   },
   "login": {
     "buttontext": "Prijavite se",
