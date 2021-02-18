@@ -26,6 +26,20 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
+    public Item deleteById(String id) throws ValidationException {
+        Optional<Item> item = itemRepository.findById(id);
+        if(item.isEmpty()) {
+            throw new ValidationException("No item found with given id");
+        }
+        if(item.get().isDeleted()) {
+            throw new ValidationException("Item already deleted");
+        }
+        Item deleted = item.get();
+        deleted.setDeleted(true);
+        itemRepository.save(deleted);
+        return deleted;
+    }
+
     private void validateItemData(Item item) throws ValidationException {
         if (!StringUtils.hasText(item.getName())) {
             throw new ValidationException("Didn't get name");
@@ -63,19 +77,5 @@ public class ItemService {
         if(!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("Didn't get instagram");
         }
-    }
-
-    public Item deleteById(String id) throws ValidationException {
-        Optional<Item> item = itemRepository.findById(id);
-        if(item.isEmpty()) {
-            throw new ValidationException("No item found with given id");
-        }
-        if(item.get().isDeleted()) {
-            throw new ValidationException("Item already deleted");
-        }
-        Item deleted = item.get();
-        deleted.setDeleted(true);
-        itemRepository.save(deleted);
-        return deleted;
     }
 }
