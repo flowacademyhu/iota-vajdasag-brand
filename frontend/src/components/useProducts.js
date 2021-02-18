@@ -1,19 +1,22 @@
-import { useState, useEffect } from "react";
-import { getProducts } from "../communications/productApi";
+import { useState, useEffect, useCallback } from 'react'
+import { getProducts } from '../communications/productApi'
+
+
 
 const useProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [listOfAllProducts, setListOfAllProducts] = useState([])
 
   const fetchProducts = async () => {
-    const fetchedProducts = await getProducts();
-    setProducts(fetchedProducts);
-  };
+    const fetchedProducts = await getProducts()
+    console.log(fetchedProducts);
+    setListOfAllProducts(fetchedProducts)
+  }
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts()
+  }, [])
 
-  return { products };
-};
+  return { listOfAllProducts }
+}
 
-export default useProducts;
+export default useProducts

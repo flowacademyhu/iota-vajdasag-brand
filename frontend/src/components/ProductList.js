@@ -1,29 +1,26 @@
-import React from "react";
-import ListElement from "./listOfProducts/ListElement";
-import { useTranslation } from "react-i18next";
-import useProducts from "./useProducts";
+import React, { useState } from 'react'
+import useProducts from './useProducts'
+import ListElement from './listOfProducts/ListElement'
+import ListHeader from './listOfProducts/ListHeader'
 
 const ProductList = () => {
-  const { products } = useProducts();
-  const { t } = useTranslation();
+  const { listOfAllProducts } = useProducts()
 
   return (
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">{t("title")}</th>
-            <th scope="col">{t("address")}</th>
-            <th scope="col">{t("city")}</th>
-            <th scope="col">{t("category")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products?.map((product) => (
-            <ListElement product={product} key={product.id} />
-          ))}
-        </tbody>
-      </table>
-  );
-};
+    <div className="d-flex flex-row-reverse">
+      <div className="col-9">
+        <table className="table table-striped">
+          <ListHeader />
+          <tbody>
+            {listOfAllProducts?.map((product) => (
+              <ListElement product={product} key={product.id} />
+            ))}
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  )
+}
 
-export default ProductList;
+export default ProductList
