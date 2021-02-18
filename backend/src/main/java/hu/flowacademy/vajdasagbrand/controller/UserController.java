@@ -11,11 +11,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 
 
 @Slf4j
@@ -30,7 +33,7 @@ public class UserController {
     @PermitAll
     @PostMapping("/login")
     public AccessTokenResponse login(@RequestBody LoginDto loginDto) {
-        return keycloakClientService.login(loginDto.getUsername(),loginDto.getPassword());
+        return keycloakClientService.login(loginDto.getUsername(), loginDto.getPassword());
     }
 
     @RolesAllowed("SuperAdmin")
@@ -47,5 +50,12 @@ public class UserController {
         BeanUtils.copyProperties(userDTO, user);
         log.debug("user {}", user);
         userService.userRegistrationData(user, userDTO.getPassword());
+    }
+
+    @RolesAllowed("SuperAdmin")
+    @GetMapping("/getUsers")
+    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) String order_by,
+                               @RequestParam(value = "page") int pageNum) {
+        return userService.getUsers(order_by, pageNum);
     }
 }

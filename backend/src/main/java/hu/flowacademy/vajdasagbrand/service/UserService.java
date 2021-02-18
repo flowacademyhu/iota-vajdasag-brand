@@ -8,10 +8,15 @@ import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -32,7 +37,7 @@ public class UserService {
             throw new UserNotEnabledException("User is not enabled");
         }
         User deleted = user.get();
-        if(!keycloakClientService.deleteUser(deleted.getEmail())) {
+        if (!keycloakClientService.deleteUser(deleted.getEmail())) {
             throw new ValidationException("No user with id in Keycloak");
         }
         deleted.setDeletedAt(LocalDateTime.now().withNano(0));
@@ -71,6 +76,15 @@ public class UserService {
         }
         if ((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY) {
             throw new ValidationException("Can not add tax number for individual members");
+        }
+    }
+
+    public Page<User> getUsers(String order_by,int pageNum) {
+        if (order_by == null){
+            return userRepository.findAll(PageRequest.of(pageNum, 10));
+        }
+        else{
+            return userRepository.findAll(PageRequest.of(pageNum, 10, Sort.by(Sort.Direction.ASC, "seatNumber")));
         }
     }
 }
