@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -54,8 +55,12 @@ public class UserController {
 
     @RolesAllowed("SuperAdmin")
     @GetMapping("/getUsers")
-    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) String order_by,
-                               @RequestParam(value = "page") int pageNum) {
-        return userService.getUsers(order_by, pageNum);
+    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
+                               @RequestParam(value = "page") Optional<Integer> pageNum,
+                               @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
+        return userService.getUsers(
+                orderBy.orElse("registeredAt"),
+                pageNum.orElse(0),
+                limit.orElse(10));
     }
 }

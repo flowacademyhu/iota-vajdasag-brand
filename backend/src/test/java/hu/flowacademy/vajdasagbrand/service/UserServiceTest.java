@@ -247,4 +247,7 @@ public class UserServiceTest {
     }
 
 
+    @Test
+    void getUsers() {
+    }
 }

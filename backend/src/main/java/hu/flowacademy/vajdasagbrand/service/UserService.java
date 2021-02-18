@@ -79,12 +79,7 @@ public class UserService {
         }
     }
 
-    public Page<User> getUsers(String order_by,int pageNum) {
-        if (order_by == null){
-            return userRepository.findAll(PageRequest.of(pageNum, 10));
-        }
-        else{
-            return userRepository.findAll(PageRequest.of(pageNum, 10, Sort.by(Sort.Direction.ASC, "seatNumber")));
-        }
+    public Page<User> getUsers(String orderBy, int pageNum, int limit) {
+        return userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
     }
 }
