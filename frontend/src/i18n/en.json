@@ -7,7 +7,7 @@
     "no": "No",
     "Registration": "Registration",
     "yes": "Yes"
-},
+  },
   "login": {
     "buttontext": "Login",
     "connectionProblems": "Connection problems",
@@ -36,12 +36,12 @@
     "linkadat": " data management principles",
     "address": "Address/Company seat",
     "invalidemail": "Email address is not valid",
-    "passwordFailMessage" : "Incorrect password! Please enter a password that matches the following: at least 8 characters; at least one uppercase and one lowercase letter; at least one number; cannot contain spaces; valid other characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
-    "required" : "Required field!",
-    "passwordMatch" : "The passwords don't match",
-    "modalBodyOK" : "Successful registration, please check your e-mail!",
-    "modalBodyError" : "Registration failed!",
-    "modalButton" : "OK"
+    "passwordFailMessage": "Incorrect password! Please enter a password that matches the following: at least 8 characters; at least one uppercase and one lowercase letter; at least one number; cannot contain spaces; valid other characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
+    "required": "Required field!",
+    "passwordMatch": "The passwords don't match",
+    "modalBodyOK": "Successful registration, please check your e-mail!",
+    "modalBodyError": "Registration failed!",
+    "modalButton": "OK"
   },
   "companyAdmin": {
     "newProduct": "New product",

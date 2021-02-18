@@ -1,5 +1,5 @@
 {
-  "accepted" : {
+  "accepted": {
     "acceptedRegistration": "Prihvacena registracija",
     "companyAdmin": "Firma admin",
     "dateOfRegistrion": "Datum registracije",
@@ -8,7 +8,7 @@
     "no": "Ne",
     "Registration": "Registracija",
     "yes": "Da"
-},
+  },
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
@@ -38,12 +38,12 @@
     "linkadat": " osnovne principe upravljanja podacima",
     "address": "Adresa/Sedište",
     "invalidemail": "E-mail adresa nije odgovarajuća",
-    "passwordFailMessage" : "Pogrešna lozinka.Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
-    "required" : "Popunjavanje polja je obavezno!",
-    "passwordMatch" : "",
-    "modalBodyOK" : "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",
-    "modalBodyError" : "Neuspešna regisztracija!",
-    "modalButton" : "OK"
+    "passwordFailMessage": "Pogrešna lozinka.Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
+    "required": "Popunjavanje polja je obavezno!",
+    "passwordMatch": "",
+    "modalBodyOK": "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",
+    "modalBodyError": "Neuspešna regisztracija!",
+    "modalButton": "OK"
   },
   "companyAdmin": {
     "newProduct": "New product",

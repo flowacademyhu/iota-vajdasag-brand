@@ -1,11 +1,11 @@
-import React from "react";
-import useUsers from "../../components/useUsers";
-import { useTranslation } from "react-i18next";
-import { Button } from "react-bootstrap";
+import React from 'react'
+import useUsers from '../../components/useUsers'
+import { useTranslation } from 'react-i18next'
+import { Button } from 'react-bootstrap'
 
 const ApproveButton = ({ user }) => {
-  const { sendRegistrationApproval } = useUsers();
-  const { t } = useTranslation();
+  const { sendRegistrationApproval } = useUsers()
+  const { t } = useTranslation()
 
   return !user.isApproved ? (
     <Button
@@ -13,11 +13,11 @@ const ApproveButton = ({ user }) => {
       variant="success"
       onClick={() => sendRegistrationApproval(user.id)}
     >
-      {t("approveRegistration")}
+      {t('approveRegistration')}
     </Button>
   ) : (
-    ""
-  );
-};
+    ''
+  )
+}
 
-export default ApproveButton;
+export default ApproveButton

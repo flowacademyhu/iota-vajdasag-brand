@@ -1,10 +1,10 @@
-import * as Yup from "yup";
+import * as Yup from 'yup'
 
 const schema = (
   required,
   invalidEmail,
   passwordFailMessage,
-  regPasswordMatch,
+  regPasswordMatch
 ) =>
   Yup.object().shape({
     name: Yup.string().required(required),
@@ -16,19 +16,17 @@ const schema = (
         passwordFailMessage
       ),
     passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password")],
+      [Yup.ref('password')],
       regPasswordMatch
     ),
     entity: Yup.string(),
-    taxNumber: Yup.string().when("entity", {
-      is: "legalPerson",
+    taxNumber: Yup.string().when('entity', {
+      is: 'legalPerson',
       then: Yup.string().required(required),
       otherwise: Yup.string(),
     }),
     address: Yup.string().required(required),
-    acceptedTerms: Yup.boolean()
-      .required(required)
-      .oneOf([true], required),
-  });
+    acceptedTerms: Yup.boolean().required(required).oneOf([true], required),
+  })
 
-export default schema;
+export default schema

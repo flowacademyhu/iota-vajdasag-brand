@@ -1,84 +1,84 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Formik, Form, Field } from "formik";
-import { useTranslation } from "react-i18next";
-import { Button } from "react-bootstrap";
-import InputField from "../components/InputField";
-import { signUp } from "../communications/userApi";
-import "../communications/mockForUserApi";
-import PopUpModal from "../components/PopUpModal";
-import schema from "../communications/Validation";
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Formik, Form, Field } from 'formik'
+import { useTranslation } from 'react-i18next'
+import { Button } from 'react-bootstrap'
+import InputField from '../components/InputField'
+import { signUp } from '../communications/userApi'
+import '../communications/mockForUserApi'
+import PopUpModal from '../components/PopUpModal'
+import schema from '../communications/Validation'
 
 export default function Registration() {
-  const { t } = useTranslation();
-  const [signUpAccepted, setSignUpAccepted] = useState();
-  const [modalShow, setModalShow] = React.useState(false);
+  const { t } = useTranslation()
+  const [signUpAccepted, setSignUpAccepted] = useState()
+  const [modalShow, setModalShow] = React.useState(false)
 
   const handleSubmit = async (value) => {
     try {
-      const response = await signUp(value);
-      setSignUpAccepted(response.status);
+      const response = await signUp(value)
+      setSignUpAccepted(response.status)
     } catch (error) {
-      setSignUpAccepted(error.status);
+      setSignUpAccepted(error.status)
     } finally {
-      setModalShow(true);
+      setModalShow(true)
     }
-  };
+  }
 
-  let history = useHistory();
+  let history = useHistory()
   const redirect = () => {
-    history.push("/login");
-  };
+    history.push('/login')
+  }
 
   return (
     <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
       <Formik
         initialValues={{
-          name: "",
-          email: "",
-          password: "",
-          passwordConfirmation: "",
-          address: "",
-          taxNumber: "",
+          name: '',
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+          address: '',
+          taxNumber: '',
           acceptedTerms: false,
-          entity: "privatePerson",
+          entity: 'privatePerson',
         }}
         onSubmit={handleSubmit}
         validationSchema={schema(
-          t("registration.required"),
-          t("registration.invalidemail"),
-          t("registration.passwordFailMessage"),
-          t("registration.passwordMatch"),
+          t('registration.required'),
+          t('registration.invalidemail'),
+          t('registration.passwordFailMessage'),
+          t('registration.passwordMatch')
         )}
       >
         {({ errors, touched }) => (
           <Form>
-            <h1 className="text-center">{t("registration.title")}</h1>
+            <h1 className="text-center">{t('registration.title')}</h1>
             <div>
               <div className="my-3">
                 <InputField
-                  label={t("registration.fullName")}
+                  label={t('registration.fullName')}
                   name="name"
                   type="text"
                 />
               </div>
               <div className="my-3">
                 <InputField
-                  label={t("registration.email")}
+                  label={t('registration.email')}
                   name="email"
                   type="email"
                 />
               </div>
               <div className="my-3">
                 <InputField
-                  label={t("registration.password")}
+                  label={t('registration.password')}
                   name="password"
                   type="password"
                 />
               </div>
               <div className="my-3">
                 <InputField
-                  label={t("registration.passwordConfirmation")}
+                  label={t('registration.passwordConfirmation')}
                   name="passwordConfirmation"
                   type="password"
                 />
@@ -86,30 +86,30 @@ export default function Registration() {
               <div className="my-3 form-check-inline">
                 <div>
                   <label>
-                    <Field name="entity" type="radio" value="privatePerson" />{" "}
-                    {t("registration.privatePerson")}
+                    <Field name="entity" type="radio" value="privatePerson" />{' '}
+                    {t('registration.privatePerson')}
                   </label>
                 </div>
                 <div>
                   <label>
-                    <Field name="entity" type="radio" value="legalPerson" />{" "}
-                    {t("registration.legalPerson")}
+                    <Field name="entity" type="radio" value="legalPerson" />{' '}
+                    {t('registration.legalPerson')}
                   </label>
                 </div>
               </div>
               <div className="my-3">
                 <Field name="taxNumber">
                   {({ field, form: { values }, meta }) =>
-                    values.entity === "legalPerson" && (
+                    values.entity === 'legalPerson' && (
                       <>
                         <label htmlFor="taxNumber">
-                          {t("registration.taxNumber")}
+                          {t('registration.taxNumber')}
                         </label>
                         <input
                           type="text"
                           {...field}
                           className={`form-control ${
-                            meta.touched && meta.error ? "is-invalid" : ""
+                            meta.touched && meta.error ? 'is-invalid' : ''
                           }`}
                         />
                         {meta.touched && meta.error && (
@@ -122,7 +122,7 @@ export default function Registration() {
               </div>
               <div>
                 <InputField
-                  label={t("registration.address")}
+                  label={t('registration.address')}
                   name="address"
                   type="text"
                 />
@@ -131,29 +131,29 @@ export default function Registration() {
                 <Field
                   className={`form-check-input ${
                     errors.acceptedTerms && touched.acceptedTerms
-                      ? "is-invalid"
-                      : ""
+                      ? 'is-invalid'
+                      : ''
                   }`}
                   type="checkbox"
                   name="acceptedTerms"
                   id="acceptedTerms"
                 />
                 <label className="form-check-label" htmlFor="acceptedTerms">
-                  {t("registration.agreement")}
+                  {t('registration.agreement')}
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
                     href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf"
                   >
-                    {t("registration.linkadat")}
+                    {t('registration.linkadat')}
                   </a>
-                  {t("registration.and")}
+                  {t('registration.and')}
                   <a
                     rel="noopener noreferrer"
                     target="_blank"
                     href="https://jusoft.hu/docs/Adatkezelesi%20tajekoztato_Jusoft.pdf"
                   >
-                    {t("registration.linkAszf")}
+                    {t('registration.linkAszf')}
                   </a>
                 </label>
                 {errors.acceptedTerms && touched.acceptedTerms ? (
@@ -162,21 +162,21 @@ export default function Registration() {
               </div>
               <div>
                 <Button variant="primary" type="submit" block>
-                  {t("registration.buttontext")}
+                  {t('registration.buttontext')}
                 </Button>
                 {signUpAccepted === 201 ? (
                   <PopUpModal
-                    modalTitle={t("registration.title")}
-                    modalBody={t("registration.modalBodyOK")}
-                    modalButton={t("registration.modalButton")}
+                    modalTitle={t('registration.title')}
+                    modalBody={t('registration.modalBodyOK')}
+                    modalButton={t('registration.modalButton')}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                   />
                 ) : (
                   <PopUpModal
-                    modalTitle={t("registration.title")}
-                    modalBody={t("registration.modalBodyError")}
-                    modalButton={t("registration.modalButton")}
+                    modalTitle={t('registration.title')}
+                    modalBody={t('registration.modalBodyError')}
+                    modalButton={t('registration.modalButton')}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                   />
@@ -188,13 +188,13 @@ export default function Registration() {
       </Formik>
       <hr></hr>
       <div>
-        <p className="text-center">{t("registration.alreadyRegistered")}</p>
+        <p className="text-center">{t('registration.alreadyRegistered')}</p>
       </div>
       <div>
         <Button variant="primary" type="button" onClick={redirect} block>
-          {t("login.buttontext")}
+          {t('login.buttontext')}
         </Button>
       </div>
     </div>
-  );
+  )
 }

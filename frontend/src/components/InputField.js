@@ -1,8 +1,8 @@
-import { Field, useField } from "formik";
+import { Field, useField } from 'formik'
 
 const InputField = ({ label, ...props }) => {
-  const [field, meta] = useField(props.name);
-  const showError = meta.touched && meta.error;
+  const [field, meta] = useField(props.name)
+  const showError = meta.touched && meta.error
 
   return (
     <>
@@ -11,11 +11,11 @@ const InputField = ({ label, ...props }) => {
         {...field}
         {...props}
         placeholder={label}
-        className={`form-control ${showError ? "is-invalid" : ""}`}
+        className={`form-control ${showError ? 'is-invalid' : ''}`}
       ></Field>
       {showError && <div className="invalid-feedback">{meta.error}</div>}
     </>
-  );
-};
+  )
+}
 
-export default InputField;
+export default InputField

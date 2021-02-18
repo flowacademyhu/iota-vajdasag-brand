@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import useUsers from "./useUsers";
-import ListElement from "./listofusers/ListElement";
-import Searchbar from "./listofusers/Searchbar";
-import ListHeader from "./listofusers/ListHeader";
+import React, { useState } from 'react'
+import useUsers from './useUsers'
+import ListElement from './listofusers/ListElement'
+import Searchbar from './listofusers/Searchbar'
+import ListHeader from './listofusers/ListHeader'
 
 const UsersList = () => {
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [sortKey, setSortKey] = useState("");
-  const [isSortAscending, setAscendingSort] = useState(true);
-  const { users } = useUsers(searchKeyword, sortKey, isSortAscending);
+  const [searchKeyword, setSearchKeyword] = useState('')
+  const [sortKey, setSortKey] = useState('')
+  const [isSortAscending, setAscendingSort] = useState(true)
+  const { users } = useUsers(searchKeyword, sortKey, isSortAscending)
 
   const onColumnClick = (value) => {
-    setAscendingSort(!isSortAscending);
-    setSortKey(value);
-  };
+    setAscendingSort(!isSortAscending)
+    setSortKey(value)
+  }
 
   return (
     <div className="d-flex flex-row-reverse">
@@ -33,7 +33,7 @@ const UsersList = () => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UsersList;
+export default UsersList
