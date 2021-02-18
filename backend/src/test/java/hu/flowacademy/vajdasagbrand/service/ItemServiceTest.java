@@ -4,12 +4,17 @@ import hu.flowacademy.vajdasagbrand.entity.Category;
 import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -129,12 +134,52 @@ class ItemServiceTest {
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
+    @Test
+    public void givenExistingItem_whenCallingDelete_thenItemDeletedSuccessfully() throws ValidationException {
+        givenItemRepositoryWhenCallingDelete();
+        Item deleted = itemService.deleteById(REGISTRATION_ID);
+        verify(itemRepository, times(1)).findById(REGISTRATION_ID);
+        verify(itemRepository, times(1)).save(deleted);
+        verifyNoMoreInteractions(itemRepository);
+
+        assertThat(deleted, notNullValue());
+        assertThat(deleted.isDeleted(), is(true));
+    }
+
+    @Test
+    public void givenUnExistingId_whenCallingDelete_thenExceptionIsThrown() {
+        givenItem();
+
+        assertThrows(ValidationException.class, () -> itemService.deleteById(REGISTRATION_ID));
+    }
+
+    @Test
+    public void givenAlreadyDeletedItem_whenCallingDelete_thenExceptionIsThrown() {
+        givenItemRepositoryWhenCallingDeleteOnAlreadyDeletedItem();
+
+        assertThrows(ValidationException.class, () -> itemService.deleteById(REGISTRATION_ID));
+    }
+
     private void givenItemRepositorySavingItem() {
         when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> {
             Item created = invocationOnMock.getArgument(0);
             created.setId(REGISTRATION_ID);
             return created;
         });
+    }
+
+    private void givenItemRepositoryWhenCallingDelete() {
+        Item itemToBeDeleted = givenItem();
+        itemToBeDeleted.setId(REGISTRATION_ID);
+        when(itemRepository.findById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
+        when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+    }
+
+    private void givenItemRepositoryWhenCallingDeleteOnAlreadyDeletedItem() {
+        Item itemToBeDeleted = givenItem();
+        itemToBeDeleted.setId(REGISTRATION_ID);
+        itemToBeDeleted.setDeleted(true);
+        when(itemRepository.findById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
     }
 
     private Item givenItem(){
