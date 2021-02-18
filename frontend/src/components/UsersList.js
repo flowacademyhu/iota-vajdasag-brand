@@ -16,9 +16,9 @@ const UsersList = () => {
   }
 
   return (
-    <div>
+    <div className="table-responsive">
       <Searchbar setSearchKeyword={setSearchKeyword} />
-      <table className="table table-striped">
+      <table className="table table-striped table-sm">
         <ListHeader
           onColumnClick={onColumnClick}
           isSortAscending={isSortAscending}

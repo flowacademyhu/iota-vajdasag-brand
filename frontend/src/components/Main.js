@@ -13,7 +13,7 @@ import SuperAdmin from '../pages/SuperAdmin'
 import { TokenContext } from '../TokenContext'
 import Logout from './logout'
 import Registration from '../pages/Registration'
-import JusoftLogo from '../media/jusoftSmall.png'
+import JusoftLogo from '../media/jusoftdark1.png'
 
 const Main = () => {
   const { token } = useContext(TokenContext)
@@ -23,16 +23,16 @@ const Main = () => {
 
   return (
     <>
-      <div className="container header">
+      <div className="container-fluid m-0 header">
         <div className="row">
           <div className="col-9">
-            <img src={JusoftLogo} alt="Jusoft logo" className="jusoftLogo" />
+            <img src={JusoftLogo} alt="Jusoft logo" />
           </div>
           <SwitchLanguage />
         </div>
       </div>
       <Router>
-        <div className="container">
+        <div className="container-fluid p-0">
           <div className="row">
             {token && (
               <div className="col-3">
