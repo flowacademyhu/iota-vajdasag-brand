@@ -4,12 +4,20 @@ import hu.flowacademy.vajdasagbrand.entity.Category;
 import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -21,6 +29,7 @@ class ItemServiceTest {
     private static final String NAME = "Something";
     private static final String BIO = "Something useful thing";
     private static final int SCORE = 50;
+    private static final int SCOREUPDATE = -50;
     private static final String ADDRESS = "6771 Szeged, Makai út 5.";
     private static final String CITY = "Szeged";
     private static final String COORDINATE_X = "21353.35146";
@@ -42,6 +51,28 @@ class ItemServiceTest {
         Item itemData = givenItem();
         Item itemResult = itemService.createItem(itemData);
         verify(itemRepository, times(1)).save(itemData);
+        verifyNoMoreInteractions(itemRepository);
+    }
+
+    @Test
+    public void givenNewWorksheetObject_whenUpdateWorksheet_thenWorksheetUpdated() throws ValidationException {
+        givenExistingItemWhenUpdate();
+        Item item = givenItemWithId();
+        Item updatedWorksheet = itemService.updateItem(item, REGISTRATION_ID);
+        verify(itemRepository, times(1)).save(updatedWorksheet);
+        assertThat(updatedWorksheet, notNullValue());
+        assertThat(updatedWorksheet.getId(), is(item.getId()));
+        assertThat(updatedWorksheet.getName(), is(item.getName()));
+        assertThat(updatedWorksheet.getBio(), is(item.getBio()));
+        assertThat(updatedWorksheet.getScore(), is(item.getScore()));
+        assertThat(updatedWorksheet.getAddress(), is(item.getAddress()));
+        assertThat(updatedWorksheet.getCity(), is(item.getCity()));
+        assertThat(updatedWorksheet.getCategory(), is(item.getCategory()));
+        assertThat(updatedWorksheet.getCoordinateX(), is(item.getCoordinateX()));
+        assertThat(updatedWorksheet.getCoordinateY(), is(item.getCoordinateY()));
+        assertThat(updatedWorksheet.getPhone(), is(item.getPhone()));
+        assertThat(updatedWorksheet.getFacebook(), is(item.getFacebook()));
+        assertThat(updatedWorksheet.getInstagram(), is(item.getInstagram()));
         verifyNoMoreInteractions(itemRepository);
     }
 
@@ -129,6 +160,90 @@ class ItemServiceTest {
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
 
+    @Test
+    public void givenItemMissingName_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingName();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingScore_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingScore();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingBio_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingBio();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingAddress_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingAddress();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingCity_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingCity();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingCategory_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingCategory();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingCoordinateX_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingCoordinate_x();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingCoordinateY_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingCoordinate_y();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingPhone_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingPhone();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingWebsite_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingWebsite();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingFacebook_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingFacebook();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenItemMissingInstagram_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingInstagram();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
     private void givenItemRepositorySavingItem() {
         when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> {
             Item created = invocationOnMock.getArgument(0);
@@ -141,6 +256,26 @@ class ItemServiceTest {
 
         Item item = new Item();
         item.setName(NAME);
+        item.setScore(SCORE);
+        item.setBio(BIO);
+        item.setAddress(ADDRESS);
+        item.setCity(CITY);
+        item.setCategory(Category.ATTRACTION);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
+        item.setPhone(PHONE);
+        item.setWebsite(WEBSITE);
+        item.setFacebook(FACEBOOK);
+        item.setInstagram(INSTAGRAM);
+
+        return item;
+    }
+
+    private Item givenItemWithId(){
+
+        Item item = new Item();
+        item.setName(NAME);
+        item.setId(REGISTRATION_ID);
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
@@ -176,6 +311,7 @@ class ItemServiceTest {
         Item item = new Item();
         item.setName(NAME);
         item.setBio(BIO);
+        item.setScore(SCOREUPDATE);
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
@@ -346,6 +482,13 @@ class ItemServiceTest {
         item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         return item;
+    }
+
+    private void givenExistingItemWhenUpdate() {
+        Item item = givenItem();
+        item.setId(REGISTRATION_ID);
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(item));
+        when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 
 }

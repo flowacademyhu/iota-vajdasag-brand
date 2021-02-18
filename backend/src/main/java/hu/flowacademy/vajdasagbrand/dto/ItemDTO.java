@@ -18,8 +18,8 @@ public class ItemDTO {
     private String city;
     private String email;
     private Category category;
-    private String coordinate_x;
-    private String coordinate_y;
+    private String coordinateX;
+    private String coordinateY;
     private String phone;
     private String website;
     private String facebook;

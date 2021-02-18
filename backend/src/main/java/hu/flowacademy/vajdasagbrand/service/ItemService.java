@@ -21,6 +21,14 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
+    public Item updateItem (Item item, String id) throws ValidationException {
+
+        validateItemData(item);
+        Item founded = itemRepository.findById(id).orElseThrow(() -> new ValidationException("Can not find this id"));
+        modifyItems(item, founded);
+        return itemRepository.save(founded);
+    }
+
     private void validateItemData(Item item) throws ValidationException {
         if (!StringUtils.hasText(item.getName())) {
             throw new ValidationException("Didn't get name");
@@ -28,7 +36,7 @@ public class ItemService {
         if(!StringUtils.hasText(item.getBio())){
             throw new ValidationException("Didn't get bio");
         }
-        if(item.getScore() == 0 || item.getScore() > 100) {
+        if(item.getScore() < 0) {
             throw new ValidationException("Impossible value");
         }
         if(!StringUtils.hasText(item.getAddress())){
@@ -58,6 +66,21 @@ public class ItemService {
         if(!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("Didn't get instagram");
         }
+    }
+
+    private void modifyItems(Item item, Item tempItem) {
+            tempItem.setName(item.getName());
+            tempItem.setBio(item.getBio());
+            tempItem.setScore(item.getScore());
+            tempItem.setAddress(item.getAddress());
+            tempItem.setCity(item.getCity());
+            tempItem.setCategory(item.getCategory());
+            tempItem.setCoordinateX(item.getCoordinateX());
+            tempItem.setCoordinateY(item.getCoordinateY());
+            tempItem.setPhone(item.getPhone());
+            tempItem.setWebsite(item.getWebsite());
+            tempItem.setFacebook(item.getFacebook());
+            tempItem.setInstagram(item.getInstagram());
     }
 
 }
