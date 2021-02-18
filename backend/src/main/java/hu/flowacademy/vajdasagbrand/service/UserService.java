@@ -1,5 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import com.google.common.base.Verify;
 import hu.flowacademy.vajdasagbrand.entity.Type;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import lombok.RequiredArgsConstructor;
@@ -8,10 +9,14 @@ import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -80,6 +85,13 @@ public class UserService {
         log.debug("The user's current status is: {} ", registeredUser.isEnabled());
         registeredUser.setEnabled(true);
         userRepository.save(registeredUser);
+        keycloakClientService.enableUser(registeredUser.getEmail());
         log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+    }
+
+    public void sendVerificationEmail(String userId) {
+
+        log.debug("Sending email verification for id {}", userId);
+
     }
 }

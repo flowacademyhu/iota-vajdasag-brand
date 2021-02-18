@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 
@@ -49,7 +50,7 @@ public class UserController {
         userService.userRegistrationData(user, userDTO.getPassword());
     }
 
-   // @RolesAllowed("admin")
+    @RolesAllowed("SuperAdmin")
     @PutMapping("/users/{id}/approval")
     public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
         log.info("Incoming registration request with the id: {}", userId);

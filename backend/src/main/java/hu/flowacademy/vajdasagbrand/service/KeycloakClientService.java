@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.configuration.KeycloakPropertiesHolder;
+import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,11 +51,20 @@ public class KeycloakClientService {
                 .tokenManager()
                 .getAccessToken();
     }
+    public boolean enableUser(String username) {
+        UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
+        List<UserRepresentation> listOfUsers = resource.search(username);
+        if (listOfUsers.isEmpty()) return false;
+        UserRepresentation userToEnable = listOfUsers.get(0);
+        userToEnable.setEnabled(true);
+        resource.get(userToEnable.getId()).update(userToEnable);
+        return true;
+    }
 
     public boolean deleteUser(String username) {
         UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
         List<UserRepresentation> listOfUsers = resource.search(username);
-        if(listOfUsers.isEmpty()) return false;
+        if (listOfUsers.isEmpty()) return false;
         UserRepresentation userToBeDeleted = listOfUsers.get(0);
         userToBeDeleted.setEnabled(false);
         resource.get(userToBeDeleted.getId()).update(userToBeDeleted);
@@ -86,6 +96,7 @@ public class KeycloakClientService {
         }
         return createRoleRepresentation(rolesResource, r);
     }
+
     private RoleRepresentation createRoleRepresentation(RolesResource rolesResource, String r) {
         RoleRepresentation roleRep = new RoleRepresentation(r, "", false);
         rolesResource.create(roleRep);
