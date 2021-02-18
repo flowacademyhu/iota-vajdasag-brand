@@ -5,15 +5,15 @@ import MenuComponent from '../components/MenuComponent'
 const menuItems = [
   {
     path: '/super-admin/users',
-    title: 'users',
+    title: 'menu.users',
   },
   {
     path: '/super-admin/products',
-    title: 'products',
+    title: 'menu.products',
   },
   {
     path: '/super-admin/events',
-    title: 'events',
+    title: 'menu.events',
   },
   {
     path: 'logout',

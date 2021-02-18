@@ -1,12 +1,14 @@
 {
   "accepted": {
     "acceptedRegistration": "Sikeres regisztráció",
-    "dateOfRegistrion": "Regisztráció dátuma",
-    "email": "Email",
+    "dateOfRegistration": "Regisztráció dátuma",
+    "email": "E-mail",
     "name": "Név",
     "no": "Nem",
     "Registration": "Regisztráció",
-    "yes": "Igen"
+    "yes": "Igen",
+    "actions": "Lehetőségek",
+    "approveRegistration": "Regisztráció jóváhagyása"
   },
   "login": {
     "buttontext": "Bejelentkezés",

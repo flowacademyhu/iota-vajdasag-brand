@@ -1,12 +1,14 @@
 {
   "accepted": {
     "acceptedRegistration": "Accepted registration",
-    "dateOfRegistrion": "Date of registration",
+    "dateOfRegistration": "Date of registration",
     "email": "Email",
     "name": "Name",
     "no": "No",
-    "Registration": "Registration",
-    "yes": "Yes"
+    "registration": "Registration",
+    "yes": "Yes",
+    "actions": "Actions",
+    "approveRegistration": "Approve registration"
   },
   "login": {
     "buttontext": "Login",
