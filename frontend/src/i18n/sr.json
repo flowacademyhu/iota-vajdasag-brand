@@ -38,7 +38,7 @@
     "linkadat": " osnovne principe upravljanja podacima",
     "address": "Adresa/Sedište",
     "invalidemail": "E-mail adresa nije odgovarajuća",
-    "passwordFailMessage" : "",
+    "passwordFailMessage" : "Pogrešna lozinka.Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
     "required" : "Popunjavanje polja je obavezno!",
     "passwordMatch" : "",
     "modalBodyOK" : "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",

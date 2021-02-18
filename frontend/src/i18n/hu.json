@@ -36,7 +36,7 @@
     "linkadat": " adatkezelési alapelveket",
     "address": "Lakcím/Székhely",
     "invalidemail": "Az email cím nem megfelelő",
-    "passwordFailMessage" : "",
+    "passwordFailMessage" : "Nem megfelelő jelszó! Kérjük, olyan jelszót adjon meg ami megfelel az alábbiaknak: legalább 8 karakter; legalább egy nagybetű és egy kisbetű; legalább egy szám; szóközt nem tartalmazhat; érvényes egyéb karakterek: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
     "required" : "A mező kitöltése kötelező!",
     "passwordMatch" : "",
     "modalBodyOK" : "Sikeres regisztráció, kérjük, figyelje a beérkező leveleit!",
