@@ -55,9 +55,8 @@
     ]
   },
   "devDependencies": {
-    "i18next-scanner": "^3.0.0"
+    "i18next-scanner": "^3.0.0",
+    "prettier": "^2.2.1"
   },
-  "proxy": "http://localhost:3000",
-
- "prettier": "^2.2.1"
+  "proxy": "http://localhost:3000"
 }

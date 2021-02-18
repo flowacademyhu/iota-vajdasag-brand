@@ -12,7 +12,6 @@ export default function MyVerticallyCenteredModal(props) {
       <Modal.Title id="contained-modal-title-vcenter">
         {props.modalTitle}
       </Modal.Title>
-      {/* </Modal.Header> */}
       <Modal.Body>
         <p>{props.modalBody}</p>
       </Modal.Body>
