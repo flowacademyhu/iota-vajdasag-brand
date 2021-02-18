@@ -1,11 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { SortDown, SortUpAlt } from 'react-bootstrap-icons'
 
 const ListHeader = () => {
   const { t } = useTranslation()
-
-  const ProductHeaders = ['title', 'address', 'city', 'category']
 
   return (
     <thead>

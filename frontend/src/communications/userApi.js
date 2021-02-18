@@ -3,11 +3,12 @@ import "./mockForUserApi";
 
 export const getUsers = async () => {
   try {
+    console.log("belemegy a tryba");
     const response = await axios.get("http://localhost:3000/api/users");
     return response.data.users;
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to get users.");
+    //throw new Error("Failed to get users.");
   }
 };
 

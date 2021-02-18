@@ -12,12 +12,13 @@ const SuperAdmin = () => {
             <Route exact path="/super-admin">
                 <h1>{t("welcome")}</h1>
             </Route>
-            <Route path="/super-admin/users">
+            <Route path="/super-admin/users" exact>
                 <UsersList />
             </Route>
             <Route path="/super-admin/products">
                 <ProductList />
             </Route>
+            
         </>
     );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useProducts from './useProducts'
 import ListElement from './listOfProducts/ListElement'
 import ListHeader from './listOfProducts/ListHeader'

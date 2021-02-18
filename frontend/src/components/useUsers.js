@@ -14,8 +14,12 @@ const makeWordComparable = (keyword) => {
 const useUsers = (searchKeyword, sortKey, isSortAscending) => {
   const [listOfAllUsers, setListOfAllUsers] = useState([])
   const [users, setUsers] = useState([])
+
   const fetchUsers = async () => {
+    console.log('na mi van')
     const fetchedUsers = await getUsers()
+    console.log('na mi van2')
+
     setListOfAllUsers(fetchedUsers)
   }
 
