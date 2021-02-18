@@ -11,11 +11,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -30,6 +40,9 @@ public class UserServiceTest {
     private static final String TAX_NUMBERCOMPANY = "165165413";
     private static final String TAX_NUMBERINDIVIDUAL = "";
     private static final String FULL_NAME = "Hello Péter";
+
+    @Autowired
+    private TestEntityManager entityManager;
 
     @Mock
     private UserRepository userRepository;
@@ -104,19 +117,19 @@ public class UserServiceTest {
         assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
-     @Test
-     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
-         givenUserRepositoryWhenCallingDelete();
-         User result = service.deleteById(REGISTRATION_ID);
-         Mockito.verify(userRepository,times(1)).findById(REGISTRATION_ID);
-         Mockito.verify(userRepository,times(1)).save(result);
-         Mockito.verifyNoMoreInteractions(userRepository);
-         Mockito.verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
+    @Test
+    public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
+        givenUserRepositoryWhenCallingDelete();
+        User result = service.deleteById(REGISTRATION_ID);
+        Mockito.verify(userRepository, times(1)).findById(REGISTRATION_ID);
+        Mockito.verify(userRepository, times(1)).save(result);
+        Mockito.verifyNoMoreInteractions(userRepository);
+        Mockito.verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
 
-         assertThat(result, notNullValue());
-         assertThat(result.isEnabled(), is(false));
-         assertThat(result.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
-     }
+        assertThat(result, notNullValue());
+        assertThat(result.isEnabled(), is(false));
+        assertThat(result.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
+    }
 
     @Test
     public void givenAUserWithoutId_whenCallingDelete_thenExceptionIsThrown() {
@@ -135,7 +148,7 @@ public class UserServiceTest {
     }
 
     private void givenUserRepositoryReturningUser() {
-       User user = givenAUserIndividual();
+        User user = givenAUserIndividual();
         when(userRepository.findById(anyString())).thenReturn(Optional.of(user));
     }
 
@@ -144,6 +157,19 @@ public class UserServiceTest {
         givenAUserIndividualWithSetDeletedAt();
 
         assertThrows(ValidationException.class, () -> service.deleteById(REGISTRATION_ID));
+    }
+
+
+    @Test
+    void givenThreeUsers_whenCallingFindAll_thenDataCommes() {
+        Page tasks = mock(Page.class);
+        Mockito.when(this.userRepository.findAll(org.mockito.Matchers.isA(Pageable.class))).thenReturn(tasks);
+        int pageNum = 0;
+        int limit = 3;
+        String orderBy = "registeredAt";
+        Page<User> result = userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
+
+        assertThat(result, notNullValue());
     }
 
     private void givenKeycloakClientServiceSavingUser() throws ValidationException {
@@ -247,7 +273,4 @@ public class UserServiceTest {
     }
 
 
-    @Test
-    void getUsers() {
-    }
 }
