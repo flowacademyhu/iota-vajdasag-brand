@@ -24,7 +24,7 @@ const Menu = () => {
             <Newspaper /> {t('menu.events')}
           </h4>
         </NavLink>
-        <NavLink className="nav-link" to="logout">
+        <NavLink className="nav-link" activeClassName="activeNavLink" to="logout">
           <h4>
             <ArrowBarLeft /> {t('menu.signout')}
           </h4>
