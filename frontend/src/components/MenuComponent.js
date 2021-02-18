@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const MenuComponent = ({ title, path }) => {
     return (
         <Link
-            activeClassName="active"
             className="nav-link"
             to={path}
         >

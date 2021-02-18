@@ -14,15 +14,18 @@ public class KeycloakConfiguration {
 
     private final KeycloakPropertiesHolder keycloakPropertiesHolder;
 
+    private static final String KEYCLOAK_MASTER_REALM = "master";
+    private static final String KEYCLOAK_CLIENT_ID = "admin-cli";
+
     @Bean
     public Keycloak keycloak() {
         return KeycloakBuilder
                 .builder()
                 .serverUrl(keycloakPropertiesHolder.getKeycloakBackendClientServerUrl())
-                .realm(keycloakPropertiesHolder.getKeycloakBackendClientRealmMaster())
+                .realm(KEYCLOAK_MASTER_REALM)
                 .username(keycloakPropertiesHolder.getKeycloakBackendClientAdminUserName())
                 .password(keycloakPropertiesHolder.getKeycloakBackendClientAdminPassword())
-                .clientId(keycloakPropertiesHolder.getKeycloakBackendClientClientId())
+                .clientId(KEYCLOAK_CLIENT_ID)
                 .build();
     }
 }
