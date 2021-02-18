@@ -1,19 +1,20 @@
 import React from "react";
 import useUsers from "../../components/useUsers";
 import { useTranslation } from "react-i18next";
+import { Button } from "react-bootstrap";
 
 const ApproveButton = ({ user }) => {
   const { sendRegistrationApproval } = useUsers();
   const { t } = useTranslation();
 
   return !user.isApproved ? (
-    <button
+    <Button
       type="button"
-      className="btn btn-success"
+      variant="success"
       onClick={() => sendRegistrationApproval(user.id)}
     >
       {t("approveRegistration")}
-    </button>
+    </Button>
   ) : (
     ""
   );

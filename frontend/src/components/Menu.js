@@ -5,22 +5,20 @@ import MenuComponent from "../components/MenuComponent";
 const menuItems = [
   {
     path: "/super-admin/users",
-    title: "users"
+    title: "users",
   },
   {
     path: "/super-admin/products",
-    title: "products"
+    title: "products",
   },
   {
     path: "/super-admin/events",
-    title: "events"
+    title: "events",
   },
   {
     path: "logout",
-    
-    title: "menu.signout"
-    
-  }
+    title: "menu.signout",
+  },
 ];
 
 export default function Menu() {
@@ -30,7 +28,11 @@ export default function Menu() {
       <div className="bg-light border-right" id="sidebar-wrapper">
         <div className="list-group list-group-flush">
           {menuItems.map((item, index) => (
-                <MenuComponent key={index} title={t(item.title)} path={item.path}></MenuComponent>
+            <MenuComponent
+              key={index}
+              title={t(item.title)}
+              path={item.path}
+            ></MenuComponent>
           ))}
         </div>
       </div>

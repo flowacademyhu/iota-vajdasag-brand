@@ -1,24 +1,23 @@
 {
-  "acceptedRegistration": "Prihvacena registracija",
-  "companyAdmin": "Firma admin",
-  "dateOfRegistrion": "Datum registracije",
-  "email": "Email",
-  "name": "Ime",
-  "no": "Ne",
-  "Registration": "Registracija",
-  "yes": "Da",
+  "accepted" : {
+    "acceptedRegistration": "Prihvacena registracija",
+    "companyAdmin": "Firma admin",
+    "dateOfRegistrion": "Datum registracije",
+    "email": "Email",
+    "name": "Ime",
+    "no": "Ne",
+    "Registration": "Registracija",
+    "yes": "Da"
+},
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
-
     "email": "E-mail adresa",
-
     "invalidData": "Pogresni podaci",
     "invalidPassword": "Pogresna lozinka",
     "invalidemail": "Pogresna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
-
     "passwordPH": "Morate uneti lozinku",
     "title": "Prijava"
   },
@@ -31,15 +30,20 @@
     "password": "Lozinka",
     "passwordConfirmation": "Lozinka ponovo",
     "email": "E-mail adresa",
-    "buttontext": "Registration",
+    "buttontext": "Registracija",
     "alreadyRegistered": "Dali ste već registrovani?",
     "agreement": "Prihvatam",
-    "linkAszf": "  Opšte uslove ugovora i",
+    "linkAszf": "  Opšte uslove ugovora",
     "and": "  i",
     "linkadat": " osnovne principe upravljanja podacima",
     "address": "Adresa/Sedište",
     "invalidemail": "E-mail adresa nije odgovarajuća",
-    "login": "Prijava"
+    "passwordFailMessage" : "Pogrešna lozinka.Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
+    "required" : "Popunjavanje polja je obavezno!",
+    "passwordMatch" : "",
+    "modalBodyOK" : "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",
+    "modalBodyError" : "Neuspešna regisztracija!",
+    "modalButton" : "OK"
   },
   "companyAdmin": {
     "newProduct": "New product",
