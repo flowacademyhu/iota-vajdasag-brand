@@ -9,7 +9,7 @@ const ListElement = ({ user }) => {
     <tr>
       <td>{user.name}</td>
       <td>{user.email}</td>
-      <td>{user.isApproved ? t('yes') : t('no')}</td>
+      <td>{user.isApproved ? t('accepted.yes') : t('accepted.no')}</td>
       <td>{user.dateOfRegistration}</td>
       <td>
         <ApproveButton user={user} />

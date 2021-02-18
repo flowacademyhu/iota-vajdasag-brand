@@ -1,13 +1,15 @@
 {
   "accepted": {
-    "acceptedRegistration": "Prihvacena registracija",
+    "acceptedRegistration": "Prihvaćena registracija",
     "companyAdmin": "Firma admin",
-    "dateOfRegistrion": "Datum registracije",
+    "dateOfRegistration": "Datum registracije",
     "email": "Email",
     "name": "Ime",
     "no": "Ne",
     "Registration": "Registracija",
-    "yes": "Da"
+    "yes": "Da",
+    "actions": "Actions",
+    "approveRegistration": "Approve registration"
   },
   "login": {
     "buttontext": "Prijavite se",

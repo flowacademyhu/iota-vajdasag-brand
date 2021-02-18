@@ -15,22 +15,22 @@ const ListHeader = ({ onColumnClick, isSortAscending, sortKey }) => {
     <thead>
       <tr>
         <th scope="col" onClick={() => onColumnClick('name')}>
-          {t('name')}
+          {t('accepted.name')}
           {SortingSign('name')}
         </th>
         <th scope="col" onClick={() => onColumnClick('email')}>
-          {t('email')}
+          {t('accepted.email')}
           {SortingSign('email')}
         </th>
         <th scope="col" onClick={() => onColumnClick('isApproved')}>
-          {t('approvedUser')}
+          {t('accepted.acceptedRegistration')}
           {SortingSign('isApproved')}
         </th>
         <th scope="col" onClick={() => onColumnClick('dateOfRegistration')}>
-          {t('dateOfRegistration')}
+          {t('accepted.dateOfRegistration')}
           {SortingSign('dateOfRegistration')}
         </th>
-        <th> {t('actions')}</th>
+        <th> {t('accepted.actions')}</th>
       </tr>
     </thead>
   )
