@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-/home/karo/Documents/Flow Academy oktató anyagok/Projects/Vajdasag brand/iota-vajdasag-brand/backend/src/main/resources/application.yml
+
 
 ### STS ###
 .apt_generated
