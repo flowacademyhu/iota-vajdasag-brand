@@ -4,13 +4,18 @@ import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class ItemService {
 
     private final ItemRepository itemRepository;
@@ -60,4 +65,17 @@ public class ItemService {
         }
     }
 
+    public Item deleteById(String id) throws ValidationException {
+        Optional<Item> item = itemRepository.findById(id);
+        if(item.isEmpty()) {
+            throw new ValidationException("No item found with given id");
+        }
+        if(item.get().isDeleted()) {
+            throw new ValidationException("Item already deleted");
+        }
+        Item deleted = item.get();
+        deleted.setDeleted(true);
+        itemRepository.save(deleted);
+        return deleted;
+    }
 }
