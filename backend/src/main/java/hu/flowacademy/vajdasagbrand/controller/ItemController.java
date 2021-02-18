@@ -28,4 +28,10 @@ public class ItemController {
 
         itemService.createItem(item);
     }
+
+    @DeleteMapping("/delete")
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    public Item deleteItem(@PathVariable("id") String id) {
+        return itemService.deleteById(id);
+    }
 }
