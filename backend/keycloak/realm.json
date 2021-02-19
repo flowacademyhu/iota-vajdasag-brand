@@ -1252,7 +1252,15 @@
     "xXSSProtection" : "1; mode=block",
     "strictTransportSecurity" : "max-age=31536000; includeSubDomains"
   },
-  "smtpServer" : { },
+  "smtpServer": {
+    "starttls": "true",
+    "auth": "true",
+    "port": "587",
+    "host": "smtp.gmail.com",
+    "from": "vajdasagjusoft@gmail.com",
+    "ssl": "",
+    "user": "vajdasagjusoft@gmail.com"
+  },
   "eventsEnabled" : false,
   "eventsListeners" : [ "jboss-logging" ],
   "enabledEventTypes" : [ ],
