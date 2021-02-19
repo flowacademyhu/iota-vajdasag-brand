@@ -7,9 +7,11 @@
     "actions": "Mogućnosti"
   },
   "userListElement": {
+    "close": "Zatvori",
     "approveRegistration": "Potvrda registracije",
     "no": "Ne",
     "yes": "Da",
+    "unsuccessful": "Neuspešno brisanje",
     "delete": "Brisanje registracije",
     "confirmDelete": "Sigurno želite brisanje?",
     "confirmDeleteTitle": "Brisanje naloga"

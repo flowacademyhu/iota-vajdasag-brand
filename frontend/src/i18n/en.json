@@ -7,14 +7,14 @@
     "actions": "Actions"
   },
   "userListElement": {
+    "close": "Close",
     "approveRegistration": "Approve registration",
     "no": "No",
     "yes": "Yes",
     "unsuccessful": "Unsuccessful deletion.",
-    "close": "Close",
     "delete": "Delete registration",
-    "confirmDelete": "Confirm delete?",
-    "confirmDeleteTitle": "Confirm delete"
+    "confirmDelete": "Are you sure you want to delete the user?",
+    "confirmDeleteTitle": "Confirm deletion"
   },
   "searchbar": {
     "search": "Search"

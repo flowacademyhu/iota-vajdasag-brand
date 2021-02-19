@@ -7,9 +7,11 @@
     "actions": "Lehetőségek"
   },
   "userListElement": {
+    "close": "Bezárás",
     "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",
     "yes": "Igen",
+    "unsuccessful": "Sikertelen törlés.",
     "delete": "Regisztráció törlése",
     "confirmDelete": "Biztosan törli?",
     "confirmDeleteTitle": "Törlés megerősítése"
