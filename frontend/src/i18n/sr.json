@@ -1,21 +1,26 @@
 {
-  "accepted": {
-    "acceptedRegistration": "Prihvacena registracija",
-    "companyAdmin": "Firma admin",
-    "dateOfRegistrion": "Datum registracije",
+  "userListHeader": {
+    "acceptedRegistration": "Prihvaćena registracija",
+    "dateOfRegistration": "Datum registracije",
     "email": "Email",
     "name": "Ime",
+    "actions": "Mogućnosti"
+  },
+  "userListElement": {
+    "approveRegistration": "Approve registration",
     "no": "Ne",
-    "Registration": "Registracija",
     "yes": "Da"
+  },
+  "searchbar": {
+    "search": "Pretraga"
   },
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
     "email": "E-mail adresa",
-    "invalidData": "Pogresni podaci",
-    "invalidPassword": "Pogresna lozinka",
-    "invalidemail": "Pogresna email adresa",
+    "invalidData": "Pogrešni podaci",
+    "invalidPassword": "Pogrešna lozinka",
+    "invalidemail": "Pogrešna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
     "passwordPH": "Morate uneti lozinku",
@@ -38,7 +43,7 @@
     "linkadat": " osnovne principe upravljanja podacima",
     "address": "Adresa/Sedište",
     "invalidemail": "E-mail adresa nije odgovarajuća",
-    "passwordFailMessage": "Pogrešna lozinka.Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
+    "passwordFailMessage": "Pogrešna lozinka. Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
     "required": "Popunjavanje polja je obavezno!",
     "passwordMatch": "",
     "modalBodyOK": "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",

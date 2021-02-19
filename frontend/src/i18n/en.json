@@ -1,12 +1,18 @@
 {
-  "accepted": {
+  "userListHeader": {
     "acceptedRegistration": "Accepted registration",
-    "dateOfRegistrion": "Date of registration",
+    "dateOfRegistration": "Date of registration",
     "email": "Email",
     "name": "Name",
+    "actions": "Actions"
+  },
+  "userListElement": {
+    "approveRegistration": "Approve registration",
     "no": "No",
-    "Registration": "Registration",
     "yes": "Yes"
+  },
+  "searchbar": {
+    "search": "Search"
   },
   "login": {
     "buttontext": "Login",

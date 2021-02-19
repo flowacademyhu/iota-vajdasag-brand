@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const MenuComponent = ({ title, path }) => {
+const MenuComponent = ({ title, path, Icon }) => {
   return (
-    <Link className="nav-link" to={path}>
-      <h1>{title}</h1>
-    </Link>
+    <NavLink className="nav-link" to={path}>
+      <h4>
+        <Icon /> {title}
+      </h4>
+    </NavLink>
   )
 }
 
