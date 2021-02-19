@@ -47,7 +47,9 @@ const Main = () => {
                   <div>{t('companyAdmin')}</div>
                 </Route>
                 <Route path="/super-admin">
-                  <SuperAdmin />
+                  <div className="col-9">
+                    <SuperAdmin />
+                  </div>
                 </Route>
                 <Route path="/logout">
                   <Logout />
