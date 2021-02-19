@@ -29,6 +29,33 @@ mock.onGet('/users').reply(200, {
   ],
 })
 
+mock.onGet('/products').reply(200, {
+  products: [
+    {
+      id: 1,
+      title: "Hami Étterem",
+      address: "Zenta, Egyik utca 2.",
+      city: "Zenta",
+      category: "gastronomy",
+    },
+    {
+      id: 2,
+      title: "Pihenő Szálló",
+      address: "Zenta, Másik utca 4.",
+      city: "Zenta",
+      category: "accommodation",
+    },
+    {
+      id: 3,
+      title: "Városnéző körút",
+      address: "Zenta, Fő tér 2.",
+      city: "Zenta",
+      category: "freeTime",
+    },
+  ],
+})
+
+
 mock
   .onPost('/login', {
     email: 'teszt@teszt.com',

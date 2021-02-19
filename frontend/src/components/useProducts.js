@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getProducts } from '../communications/productApi'
+import { getProducts } from '../communications/userApi'
 
 
 

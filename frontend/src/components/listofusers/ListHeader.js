@@ -31,6 +31,7 @@ const ListHeader = ({ onColumnClick, isSortAscending, sortKey }) => {
           {SortingSign('dateOfRegistration')}
         </th>
         <th> {t('actions')}</th>
+        <th> {t('theirProducts')}</th>
       </tr>
     </thead>
   )

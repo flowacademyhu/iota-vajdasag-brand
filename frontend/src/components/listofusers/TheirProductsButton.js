@@ -1,6 +1,6 @@
 import React from 'react'
-import useUsers from '../../components/useUsers'
-import useProducts from '../../components/useProducts'
+import useUsers from '../useUsers'
+import useProducts from '../useProducts'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
 {/*
@@ -26,3 +26,18 @@ export default ApproveButton
 
 const TheirProducts = ({user, })
 */}
+
+const TheirProductsButton = ({user, products}) => {
+  const 
+  return (
+    <Button
+    type="button"
+      variant="success"
+      onClick={() => (user.id)}
+      >
+      {t('products')}
+      </Button>
+  ) : (
+    ''
+  )
+}
