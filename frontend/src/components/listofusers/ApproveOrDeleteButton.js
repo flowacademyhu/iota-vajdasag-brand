@@ -17,7 +17,7 @@ const ApproveOrDeleteButton = ({ user }) => {
       {t('userListElement.approveRegistration')}
     </Button>
   ) : (
-    <DeleteModalButton/>
+    <DeleteModalButton userId={user.id}/>
   )
 }
 
