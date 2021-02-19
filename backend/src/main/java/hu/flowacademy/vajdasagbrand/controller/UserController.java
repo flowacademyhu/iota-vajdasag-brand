@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,14 @@ public class UserController {
 
     private final KeycloakClientService keycloakClientService;
     private final UserService userService;
+
+    @Value("${userController.defaultOrderCategory}")
+    private String defaultOrderCategory;
+    @Value("${userController.defaultPageNumber}")
+    private int defaultPageNumber;
+    @Value("${userController.defaultPageLimit}")
+    private int defaultPageLimit;
+
 
     @PermitAll
     @PostMapping("/login")
@@ -59,8 +68,8 @@ public class UserController {
                                @RequestParam(value = "page") Optional<Integer> pageNum,
                                @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
         return userService.getUsers(
-                orderBy.orElse("registeredAt"),
-                pageNum.orElse(0),
-                limit.orElse(10));
+                orderBy.orElse(defaultOrderCategory),
+                pageNum.orElse(defaultPageNumber),
+                limit.orElse(defaultPageLimit));
     }
 }
