@@ -17,7 +17,8 @@
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
-    "title": "Belépés"
+    "title": "Belépés",
+    "notRegistered":"Még nem regisztrált?"
   },
   "registration": {
     "title": "Regisztráció",
