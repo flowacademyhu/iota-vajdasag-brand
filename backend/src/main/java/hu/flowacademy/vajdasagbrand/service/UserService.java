@@ -80,17 +80,18 @@ public class UserService {
     }
 
     public void approveRegistration(String userId) throws ValidationException {
-        log.info("Incoming registration request with the id: {}", userId);
+        log.info("Incoming approve registration request with the id: {}", userId);
         User registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
         log.debug("The user's current status is: {} ", registeredUser.isEnabled());
-        registeredUser.setEnabled(true);
-        userRepository.save(registeredUser);
-        keycloakClientService.enableUser(registeredUser.getEmail());
-        log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+        boolean isEnabled = keycloakClientService.enableUser(registeredUser.getEmail());
+        if (isEnabled) {
+            registeredUser.setEnabled(true);
+            userRepository.save(registeredUser);
+            log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+        }
     }
 
     public void sendVerificationEmail(String userId) {
-
         log.debug("Sending email verification for id {}", userId);
 
     }
