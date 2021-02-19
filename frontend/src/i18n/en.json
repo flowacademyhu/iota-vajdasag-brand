@@ -9,7 +9,12 @@
   "userListElement": {
     "approveRegistration": "Approve registration",
     "no": "No",
-    "yes": "Yes"
+    "yes": "Yes",
+    "unsuccessful": "Unsuccessful deletion.",
+    "close": "Close",
+    "delete": "Delete registration",
+    "confirmDelete": "Confirm delete?",
+    "confirmDeleteTitle": "Confirm delete"
   },
   "searchbar": {
     "search": "Search"
@@ -63,8 +68,6 @@
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
     "editProducts": "Edit products",
-    "delete": "Delete",
-    "confirmDelete": "Confirm delete?",
     "search": "Search"
   },
   "datasheet": {
