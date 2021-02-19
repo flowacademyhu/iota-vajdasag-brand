@@ -57,7 +57,6 @@ const Main = () => {
               </Switch>
             ) : (
               <>
-                <Redirect to="/login" />
                 <Switch>
                   <Route path="/login">
                     <Login />
@@ -65,6 +64,7 @@ const Main = () => {
                   <Route path="/registration">
                     <Registration />
                   </Route>
+                  <Redirect to="/login" />
                 </Switch>
               </>
             )}
