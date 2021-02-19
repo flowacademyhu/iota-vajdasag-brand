@@ -25,6 +25,9 @@ public class ItemService {
 
     public Item deleteById(String id) throws ValidationException {
         Item deleted = findFirstByIdAndDeletedAtNotNull(id);
+        if (deleted.getDeletedAt() != null) {
+            throw new ValidationException("Item already deleted");
+        }
         deleted.setDeletedAt(LocalDateTime.now().withNano(0));
         itemRepository.save(deleted);
         return deleted;
@@ -93,9 +96,6 @@ public class ItemService {
 
     private Item findFirstByIdAndDeletedAtNotNull(String id) throws ValidationException {
         Optional<Item> toBeDeleted = itemRepository.findById(id);
-        if (toBeDeleted.orElseThrow(() -> new ValidationException("No item found with given id")).getDeletedAt() != null) {
-            throw new ValidationException("Item already deleted");
-        }
-        return toBeDeleted.get();
+        return toBeDeleted.orElseThrow(() -> new ValidationException("No item found with given id"));
     }
 }
