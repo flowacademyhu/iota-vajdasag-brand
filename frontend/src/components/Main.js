@@ -28,7 +28,9 @@ const Main = () => {
           <div className="col-9">
             <img src={JusoftLogo} alt="Jusoft logo" />
           </div>
-          <SwitchLanguage />
+          <div className="col-3 d-flex justify-content-center">
+            <SwitchLanguage />
+          </div>
         </div>
       </div>
       <Router>
