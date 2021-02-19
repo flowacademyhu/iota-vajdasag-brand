@@ -161,7 +161,7 @@ class ItemServiceTest {
     public void givenExistingItem_whenCallingDelete_thenItemDeletedSuccessfully() throws ValidationException {
         givenItemRepositoryWhenCallingDelete();
         Item deleted = itemService.deleteById(REGISTRATION_ID);
-        verify(itemRepository, times(1)).findById(REGISTRATION_ID);
+        verify(itemRepository, times(1)).findFirstByIdAndDeletedAtNull(REGISTRATION_ID);
         verify(itemRepository, times(1)).save(deleted);
         verifyNoMoreInteractions(itemRepository);
 
@@ -172,13 +172,6 @@ class ItemServiceTest {
     @Test
     public void givenUnExistingId_whenCallingDelete_thenExceptionIsThrown() {
         givenItem();
-
-        assertThrows(ValidationException.class, () -> itemService.deleteById(REGISTRATION_ID));
-    }
-
-    @Test
-    public void givenAlreadyDeletedItem_whenCallingDelete_thenExceptionIsThrown() {
-        givenItemRepositoryWhenCallingDeleteOnAlreadyDeletedItem();
 
         assertThrows(ValidationException.class, () -> itemService.deleteById(REGISTRATION_ID));
     }
@@ -278,15 +271,8 @@ class ItemServiceTest {
     private void givenItemRepositoryWhenCallingDelete() {
         Item itemToBeDeleted = givenItem();
         itemToBeDeleted.setId(REGISTRATION_ID);
-        when(itemRepository.findById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
+        when(itemRepository.findFirstByIdAndDeletedAtNull(anyString())).thenReturn(Optional.of(itemToBeDeleted));
         when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
-    }
-
-    private void givenItemRepositoryWhenCallingDeleteOnAlreadyDeletedItem() {
-        Item itemToBeDeleted = givenItem();
-        itemToBeDeleted.setId(REGISTRATION_ID);
-        itemToBeDeleted.setDeletedAt(LocalDateTime.now().withNano(0));
-        when(itemRepository.findById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
     }
 
     private Item givenItem(){
