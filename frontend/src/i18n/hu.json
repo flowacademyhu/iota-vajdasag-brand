@@ -1,14 +1,17 @@
 {
-  "accepted": {
+  "userListHeader": {
     "acceptedRegistration": "Sikeres regisztráció",
     "dateOfRegistration": "Regisztráció dátuma",
     "email": "E-mail",
     "name": "Név",
-    "no": "Nem",
-    "Registration": "Regisztráció",
-    "yes": "Igen",
-    "actions": "Lehetőségek",
+    "actions": "Lehetőségek"
+  },
+  "userListElement": {
     "approveRegistration": "Regisztráció jóváhagyása",
+    "no": "Nem",
+    "yes": "Igen"
+  },
+  "searchbar": {
     "search": "Keresés"
   },
   "login": {
