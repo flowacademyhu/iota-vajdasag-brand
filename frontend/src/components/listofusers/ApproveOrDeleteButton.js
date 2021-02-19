@@ -1,9 +1,10 @@
 import React from 'react'
-import useUsers from '../../components/useUsers'
+import useUsers from '../useUsers'
 import { useTranslation } from 'react-i18next'
+import DeleteModalButton from "./DeleteModalButton"
 import { Button } from 'react-bootstrap'
 
-const ApproveButton = ({ user }) => {
+const ApproveOrDeleteButton = ({ user }) => {
   const { sendRegistrationApproval } = useUsers()
   const { t } = useTranslation()
 
@@ -16,8 +17,8 @@ const ApproveButton = ({ user }) => {
       {t('userListElement.approveRegistration')}
     </Button>
   ) : (
-    ''
+    <DeleteModalButton/>
   )
 }
 
-export default ApproveButton
+export default ApproveOrDeleteButton
