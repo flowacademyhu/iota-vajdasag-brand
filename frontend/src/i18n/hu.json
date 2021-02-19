@@ -9,7 +9,10 @@
   "userListElement": {
     "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",
-    "yes": "Igen"
+    "yes": "Igen",
+    "delete": "Regisztráció törlése",
+    "confirmDelete": "Biztosan törli?",
+    "confirmDeleteTitle": "Törlés megerősítése"
   },
   "searchbar": {
     "search": "Keresés"
@@ -63,8 +66,6 @@
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
     "editProducts": "Edit products",
-    "delete": "Delete",
-    "confirmDelete": "Confirm delete?",
     "search": "Search"
   },
   "datasheet": {
