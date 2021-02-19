@@ -5,17 +5,19 @@ import DeletionFailedModal from './DeletionFailedModal'
 import { deleteUserRegistration } from '../../communications/userApi'
 import useUsers from '../useUsers'
 
-const DeleteModalButton = () => {
+const DeleteModalButton = ({ userId }) => {
   const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
   const [showFailureModal, setShowFailureModal] = useState(false)
   const { fetchUsers } = useUsers()
   const { t } = useTranslation()
 
   const deleteUser = () => {
-    const response = deleteUserRegistration()
-    fetchUsers()
-    if (response.data.status !== 200) {
-      setShowConfirmDeletion(false)
+    setShowConfirmDeletion(false)
+    const responseStatus = deleteUserRegistration(userId)
+
+    if (responseStatus === 200) {
+      fetchUsers()
+    } else {
       setShowFailureModal(true)
     }
   }
@@ -43,10 +45,10 @@ const DeleteModalButton = () => {
             variant="secondary"
             onClick={() => setShowConfirmDeletion(false)}
           >
-            Close
+            {t('userListElement.close')}
           </Button>
           <Button variant="danger" onClick={deleteUser}>
-            Delete user
+          {t('userListElement.delete')}
           </Button>
         </Modal.Footer>
       </Modal>
