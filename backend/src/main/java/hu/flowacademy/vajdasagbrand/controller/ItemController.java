@@ -19,7 +19,7 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @RolesAllowed("SuperAdmin, CegAdmin")
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/items")
     @ResponseStatus(HttpStatus.CREATED)
     public void createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
@@ -35,7 +35,7 @@ public class ItemController {
         return itemService.deleteById(id);
     }
 
-    @RolesAllowed("SuperAdmin, CegAdmin")
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PutMapping("/items/{id}")
     public Item updateItem(@PathVariable("id") String id,
                            @RequestBody Item item) throws ValidationException {
