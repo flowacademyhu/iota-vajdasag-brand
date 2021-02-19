@@ -60,7 +60,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     )
   }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending, sortColumn])
 
-  return { users, sendRegistrationApproval }
+  return { users, fetchUsers, sendRegistrationApproval }
 }
 
 export default useUsers
