@@ -24,13 +24,10 @@ public class ItemService {
     }
 
     public Item deleteById(String id) throws ValidationException {
-        Item deleted = findFirstByIdAndDeletedAtNotNull(id);
-        if (deleted.getDeletedAt() != null) {
-            throw new ValidationException("Item already deleted");
-        }
-        deleted.setDeletedAt(LocalDateTime.now().withNano(0));
-        itemRepository.save(deleted);
-        return deleted;
+        Item toBeDeleted = itemRepository.findFirstByIdAndDeletedAtNull(id).orElseThrow(
+                () -> new ValidationException("No item found with given id"));
+        toBeDeleted.setDeletedAt(LocalDateTime.now().withNano(0));
+        return itemRepository.save(toBeDeleted);
     }
 
     public Item updateItem(Item item, String id) throws ValidationException {
@@ -92,10 +89,5 @@ public class ItemService {
         tempItem.setWebsite(item.getWebsite());
         tempItem.setFacebook(item.getFacebook());
         tempItem.setInstagram(item.getInstagram());
-    }
-
-    private Item findFirstByIdAndDeletedAtNotNull(String id) throws ValidationException {
-        Optional<Item> toBeDeleted = itemRepository.findById(id);
-        return toBeDeleted.orElseThrow(() -> new ValidationException("No item found with given id"));
     }
 }
