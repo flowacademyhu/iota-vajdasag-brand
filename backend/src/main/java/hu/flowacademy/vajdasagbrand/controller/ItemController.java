@@ -16,7 +16,6 @@ import javax.annotation.security.RolesAllowed;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
-@Slf4j
 public class ItemController {
 
     private final ItemService itemService;
