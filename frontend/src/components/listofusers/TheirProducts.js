@@ -1,8 +1,9 @@
 import React from 'react'
 import useUsers from '../../components/useUsers'
+import useProducts from '../../components/useProducts'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
-
+{/*
 const ApproveButton = ({ user }) => {
   const { sendRegistrationApproval } = useUsers()
   const { t } = useTranslation()
@@ -21,3 +22,7 @@ const ApproveButton = ({ user }) => {
 }
 
 export default ApproveButton
+
+
+const TheirProducts = ({user, })
+*/}

@@ -1,25 +1,27 @@
-import axios from "axios";
-import "./mockForUserApi";
+import api from './apiInstance'
+import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
-    console.log("belemegy a tryba");
-    const response = await axios.get("http://localhost:3000/api/users");
-    return response.data.users;
+    const response = await api.get('/users')
+    return response.data.users
   } catch (error) {
-    console.log(error);
-    //throw new Error("Failed to get users.");
+    //throw new Error('Failed to get users.')
   }
-};
+}
 
 export const login = (value) => {
-  return axios.post("http://localhost:3000/api/login", value);
-};
+  return api.post('/login', value)
+}
+
+export const signUp = async (value) => {
+  return await api.post('/registration')
+}
 
 export const sendApproval = async (userId) => {
   try {
-    return await axios.put(`http://localhost:3000/users/${userId}/approval`);
+    return await api.put(`/users/${userId}/approval`)
   } catch (error) {
-    throw new Error("Registration approval miscarried.");
+    throw new Error('Registration approval miscarried.')
   }
-};
+}

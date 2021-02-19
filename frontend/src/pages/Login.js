@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
-import Button from '../components/Button'
+import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import { login } from '../communications/userApi'
 import useTokenStateHandler from '../components/tokenHandler'
@@ -72,7 +72,7 @@ const Login = () => {
                 type="password"
               ></InputField>
             </div>
-            <Button className="btn btn-primary btn-block col-12" type="submit">
+            <Button variant="primary" type="submit">
               {t('login.buttontext')}
             </Button>
             {!isSignInAccepted && (

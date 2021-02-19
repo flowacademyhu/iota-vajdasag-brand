@@ -1,12 +1,15 @@
-import axios from 'axios'
+import api from './apiInstance'
 import './mockForProductApi'
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/products')
+    const response = await api.get('/products')
+    
+      console.log(response.data.products);
+        
     return response.data.products
+    
   } catch (error) {
-    console.log(error)
     throw new Error('Failed to get products.')
   }
 }
