@@ -1,11 +1,13 @@
 package hu.flowacademy.vajdasagbrand.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -32,5 +34,6 @@ public class Item {
     private String website;
     private String facebook;
     private String instagram;
-    private boolean isDeleted;
+    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
+    private LocalDateTime deletedAt;
 }
