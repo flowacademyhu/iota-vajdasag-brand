@@ -1,21 +1,21 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import ApproveButton from "./ApproveButton";
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import ApproveButton from './ApproveButton'
 
 const ListElement = ({ user }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <tr>
       <td>{user.name}</td>
       <td>{user.email}</td>
-      <td>{user.isApproved ? t("yes") : t("no")}</td>
+      <td>{user.isApproved ? t('yes') : t('no')}</td>
       <td>{user.dateOfRegistration}</td>
       <td>
         <ApproveButton user={user} />
       </td>
     </tr>
-  );
-};
+  )
+}
 
-export default ListElement;
+export default ListElement

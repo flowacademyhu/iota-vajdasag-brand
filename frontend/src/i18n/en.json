@@ -1,12 +1,13 @@
 {
-  "acceptedRegistration": "Accepted registration",
-  "companyAdmin": "Company Admin",
-  "dateOfRegistrion": "Date of registration",
-  "email": "Email",
-  "name": "Name",
-  "no": "No",
-  "Registration": "Registration",
-  "yes": "Yes",
+  "accepted": {
+    "acceptedRegistration": "Accepted registration",
+    "dateOfRegistrion": "Date of registration",
+    "email": "Email",
+    "name": "Name",
+    "no": "No",
+    "Registration": "Registration",
+    "yes": "Yes"
+  },
   "login": {
     "buttontext": "Login",
     "connectionProblems": "Connection problems",
@@ -18,8 +19,6 @@
     "password": "Password",
     "title": "Login"
   },
-
-
   "registration": {
     "title": "Registration",
     "fullName": "Name",
@@ -34,10 +33,15 @@
     "agreement": "I accept the",
     "linkAszf": " GTC",
     "and": " and the ",
-    "linkadat": " conditions.",
+    "linkadat": " data management principles",
     "address": "Address/Company seat",
     "invalidemail": "Email address is not valid",
-    "login": "Login"
+    "passwordFailMessage": "Incorrect password! Please enter a password that matches the following: at least 8 characters; at least one uppercase and one lowercase letter; at least one number; cannot contain spaces; valid other characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
+    "required": "Required field!",
+    "passwordMatch": "The passwords don't match",
+    "modalBodyOK": "Successful registration, please check your e-mail!",
+    "modalBodyError": "Registration failed!",
+    "modalButton": "OK"
   },
   "companyAdmin": {
     "newProduct": "New product",

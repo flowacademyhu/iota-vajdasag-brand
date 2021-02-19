@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
-
+import React, { useState } from 'react'
 
 export const TokenContext = React.createContext()
 
-
 export const TokenProvider = ({ children }) => {
-    const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem('token'))
 
-    return (
-        <TokenContext.Provider value={{token, setToken}}>
-            {children}
-        </TokenContext.Provider>
-    );
+  return (
+    <TokenContext.Provider value={{ token, setToken }}>
+      {children}
+    </TokenContext.Provider>
+  )
 }
-
-
