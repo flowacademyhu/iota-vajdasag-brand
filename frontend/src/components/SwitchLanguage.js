@@ -11,17 +11,15 @@ const SwitchLanguage = () => {
   }
 
   return (
-    <div className="col-2 float-right">
-      <select
-        className="form-select mb-3"
-        value={actualLanguage}
-        onChange={handleChange}
-      >
-        <option value="hu">🇭🇺 Magyar</option>
-        <option value="sr">🇷🇸 Српски</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-    </div>
+    <select
+      className="form-select m-4"
+      value={actualLanguage}
+      onChange={handleChange}
+    >
+      <option value="hu">🇭🇺 Magyar</option>
+      <option value="sr">🇷🇸 Српски</option>
+      <option value="en">🇬🇧 English</option>
+    </select>
   )
 }
 
