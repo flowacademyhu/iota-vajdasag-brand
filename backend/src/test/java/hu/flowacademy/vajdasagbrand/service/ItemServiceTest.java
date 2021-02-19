@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -143,7 +144,7 @@ class ItemServiceTest {
         verifyNoMoreInteractions(itemRepository);
 
         assertThat(deleted, notNullValue());
-        assertThat(deleted.isDeleted(), is(true));
+        assertThat(deleted.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
     }
 
     @Test
@@ -178,7 +179,7 @@ class ItemServiceTest {
     private void givenItemRepositoryWhenCallingDeleteOnAlreadyDeletedItem() {
         Item itemToBeDeleted = givenItem();
         itemToBeDeleted.setId(REGISTRATION_ID);
-        itemToBeDeleted.setDeleted(true);
+        itemToBeDeleted.setDeletedAt(LocalDateTime.now().withNano(0));
         when(itemRepository.findById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
     }
 
