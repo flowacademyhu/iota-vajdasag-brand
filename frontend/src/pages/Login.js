@@ -6,6 +6,8 @@ import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import { login } from '../communications/userApi'
 import useTokenStateHandler from '../components/tokenHandler'
+import { useHistory } from 'react-router-dom'
+
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
   Yup.object().shape({
@@ -16,12 +18,18 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
 const Login = () => {
   const { t } = useTranslation()
   const [isSignInAccepted, setIsSignInAccepted] = useState()
+  const [isNeedRegigistered,setIsNeedRegistered]=useState(false)
   const [errorMessage, setErrorMessage] = useState()
   const { writeToken } = useTokenStateHandler()
 
   const handleResponse = (response) => {
     writeToken(response.data)
     setIsSignInAccepted(true)
+  }
+
+  let history = useHistory()
+  const handleRegButton = () => {
+    history.push('/registration')
   }
 
   async function handleSubmit(value) {
@@ -78,6 +86,8 @@ const Login = () => {
             {!isSignInAccepted && (
               <h5 className="text-danger text-center my-3">{errorMessage}</h5>
             )}
+            <h6 className="text-center">{t("registration.alreadyRegistered")}</h6>
+            <Button type="button" onClick={handleRegButton}>{t("registration.title")}</Button>
           </div>
         </Form>
       </Formik>

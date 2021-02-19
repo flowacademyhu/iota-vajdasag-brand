@@ -24,7 +24,7 @@
     "noEmail": "Email is required",
     "password": "Password",
     "title": "Login"
-  },
+    },
   "registration": {
     "title": "Registration",
     "fullName": "Name",
