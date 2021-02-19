@@ -57,18 +57,18 @@ const Main = () => {
               </Switch>
             ) : (
               <>
-              <Redirect to="/login"/>
-              <Switch>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/registration">
-                  <Registration/>
-                </Route>
-              </Switch>
+                <Redirect to="/login" />
+                <Switch>
+                  <Route path="/login">
+                    <Login />
+                  </Route>
+                  <Route path="/registration">
+                    <Registration />
+                  </Route>
+                </Switch>
               </>
             )}
-            
+
             {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
             {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
           </div>

@@ -24,7 +24,7 @@
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
     "title": "Belépés",
-    "notRegistered":"Még nem regisztrált?"
+    "notRegistered": "Még nem regisztrált?"
   },
   "registration": {
     "title": "Regisztráció",
