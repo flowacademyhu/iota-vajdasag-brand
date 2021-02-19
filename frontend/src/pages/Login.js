@@ -17,7 +17,6 @@ const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
 const Login = () => {
   const { t } = useTranslation()
   const [isSignInAccepted, setIsSignInAccepted] = useState()
-  const [isNeedRegigistered, setIsNeedRegistered] = useState(false)
   const [errorMessage, setErrorMessage] = useState()
   const { writeToken } = useTokenStateHandler()
 
