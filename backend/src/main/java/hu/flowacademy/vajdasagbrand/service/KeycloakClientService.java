@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.WebApplicationException;
 import java.util.List;
 
 @Service
@@ -41,6 +42,26 @@ public class KeycloakClientService {
         }
     }
 
+    public boolean sendVerificationEmail(String username) {
+        try {
+            RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm());
+            UsersResource resource = ourRealm.users();
+            List<UserRepresentation> listOfUsers = resource.search(username);
+            if (listOfUsers.isEmpty())
+                return false;
+
+            UserRepresentation user = listOfUsers.get(0);
+            UserResource oneUser = resource.get(user.getId());
+            log.info("Successfully retrieved user with id {}", user.getId());
+            oneUser.executeActionsEmail(List.of("UPDATE_PASSWORD"));
+
+        } catch (WebApplicationException e) {
+            log.error("Error when sending verify email request: " + e.getMessage(), e);
+            return false;
+        }
+        return true;
+    }
+
     public AccessTokenResponse login(String email, String password) {
         return Keycloak.getInstance(
                 keycloakPropertiesHolder.getKeycloakServerUrl(),
@@ -51,6 +72,7 @@ public class KeycloakClientService {
                 .tokenManager()
                 .getAccessToken();
     }
+
     public boolean enableUser(String username) {
         UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
         List<UserRepresentation> listOfUsers = resource.search(username);
