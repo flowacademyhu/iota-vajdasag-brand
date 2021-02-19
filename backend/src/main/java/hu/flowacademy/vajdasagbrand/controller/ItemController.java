@@ -30,13 +30,10 @@ public class ItemController {
         itemService.createItem(item);
     }
 
+    @RolesAllowed("SuperAdmin, CegAdmin")
     @PutMapping("/items/{id}")
-    public Item updateItem (@PathVariable("id") String id,
-            @RequestBody Item item) throws ValidationException {
-        try {
-            return itemService.updateItem(item, id);
-        } catch (ValidationException e) {
-            throw new ValidationException("Can not update item datas");
-        }
+    public Item updateItem(@PathVariable("id") String id,
+                           @RequestBody Item item) throws ValidationException {
+        return itemService.updateItem(item, id);
     }
 }

@@ -252,7 +252,7 @@ class ItemServiceTest {
         });
     }
 
-    private Item givenItem(){
+    private Item givenItem() {
 
         Item item = new Item();
         item.setName(NAME);
@@ -271,7 +271,7 @@ class ItemServiceTest {
         return item;
     }
 
-    private Item givenItemWithId(){
+    private Item givenItemWithId() {
 
         Item item = new Item();
         item.setName(NAME);
