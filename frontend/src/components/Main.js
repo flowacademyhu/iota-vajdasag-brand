@@ -57,10 +57,7 @@ const Main = () => {
               </Switch>
             ) : (
               <Switch>
-                <Route path="/registration">
-                  <Registration />
-                </Route>
-                <Route path="/login">
+                <Route path="/">
                   <Login />
                 </Route>
               </Switch>
