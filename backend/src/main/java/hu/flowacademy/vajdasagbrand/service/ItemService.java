@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -23,15 +25,8 @@ public class ItemService {
     }
 
     public Item deleteById(String id) throws ValidationException {
-        Optional<Item> item = itemRepository.findById(id);
-        if(item.isEmpty()) {
-            throw new ValidationException("No item found with given id");
-        }
-        if(item.get().isDeleted()) {
-            throw new ValidationException("Item already deleted");
-        }
-        Item deleted = item.get();
-        deleted.setDeleted(true);
+        Item deleted = findFirstByIdAndDeletedAtNotNull(id);
+        deleted.setDeletedAt(LocalDateTime.now().withNano(0));
         itemRepository.save(deleted);
         return deleted;
     }
@@ -73,5 +68,13 @@ public class ItemService {
         if(!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("Didn't get instagram");
         }
+    }
+
+    private Item findFirstByIdAndDeletedAtNotNull(String id) throws ValidationException {
+        Optional<Item> toBeDeleted = itemRepository.findById(id);
+        if (toBeDeleted.orElseThrow(() -> new ValidationException("No item found with given id")).getDeletedAt() != null) {
+            throw new ValidationException("Item already deleted");
+        }
+        return toBeDeleted.get();
     }
 }
