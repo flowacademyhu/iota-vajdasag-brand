@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -29,6 +28,13 @@ public class ItemService {
         deleted.setDeletedAt(LocalDateTime.now().withNano(0));
         itemRepository.save(deleted);
         return deleted;
+    }
+
+    public Item updateItem(Item item, String id) throws ValidationException {
+        validateItemData(item);
+        Item founded = itemRepository.findById(id).orElseThrow(() -> new ValidationException("Can not find this id"));
+        modifyItems(item, founded);
+        return itemRepository.save(founded);
     }
 
     private void validateItemData(Item item) throws ValidationException {
@@ -68,6 +74,21 @@ public class ItemService {
         if(!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("Didn't get instagram");
         }
+    }
+
+    private void modifyItems(Item item, Item tempItem) {
+        tempItem.setName(item.getName());
+        tempItem.setBio(item.getBio());
+        tempItem.setScore(item.getScore());
+        tempItem.setAddress(item.getAddress());
+        tempItem.setCity(item.getCity());
+        tempItem.setCategory(item.getCategory());
+        tempItem.setCoordinateX(item.getCoordinateX());
+        tempItem.setCoordinateY(item.getCoordinateY());
+        tempItem.setPhone(item.getPhone());
+        tempItem.setWebsite(item.getWebsite());
+        tempItem.setFacebook(item.getFacebook());
+        tempItem.setInstagram(item.getInstagram());
     }
 
     private Item findFirstByIdAndDeletedAtNotNull(String id) throws ValidationException {
