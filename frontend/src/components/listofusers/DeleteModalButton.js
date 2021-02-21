@@ -11,9 +11,9 @@ const DeleteModalButton = ({ userId }) => {
   const { fetchUsers } = useUsers()
   const { t } = useTranslation()
 
-  const deleteUser = () => {
+  const deleteUser = async () => {
     setShowConfirmDeletion(false)
-    const responseStatus = deleteUserRegistration(userId)
+    const responseStatus = await deleteUserRegistration(userId)
 
     if (responseStatus === 200) {
       fetchUsers()
@@ -48,7 +48,7 @@ const DeleteModalButton = ({ userId }) => {
             {t('userListElement.close')}
           </Button>
           <Button variant="danger" onClick={deleteUser}>
-          {t('userListElement.delete')}
+            {t('userListElement.delete')}
           </Button>
         </Modal.Footer>
       </Modal>
