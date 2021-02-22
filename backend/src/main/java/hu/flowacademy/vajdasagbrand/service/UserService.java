@@ -75,7 +75,7 @@ public class UserService {
         }
     }
 
-    public void approveRegistration(String userId) throws ValidationException {
+    public boolean approveRegistration(String userId) throws ValidationException {
         log.info("Incoming approve registration request with the id: {}", userId);
         User registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
         log.debug("The user's current status is: {} ", registeredUser.isEnabled());
@@ -83,11 +83,14 @@ public class UserService {
             registeredUser.setEnabled(true);
             userRepository.save(registeredUser);
             log.debug("The user's current status is: {} ", registeredUser.isEnabled());
-            approvalEmail(registeredUser.getEmail());
+            sendApprovalEmail(registeredUser.getEmail());
+            keycloakClientService.sendVerificationEmail(registeredUser.getEmail());
+            return true;
         }
+        return false;
     }
 
-    public void approvalEmail(String email) {
+    public void sendApprovalEmail(String email) {
         log.debug("Sending approval email to: {}", email);
         emailService.sendMessage(email, "Registration approval", "Your registration is approved, you can login now");
     }

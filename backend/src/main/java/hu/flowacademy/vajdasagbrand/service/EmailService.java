@@ -1,5 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.configuration.EmailConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +14,12 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender emailSender;
+    @Autowired
+    private EmailConfiguration emailConfiguration;
 
     public void sendMessage(String to, String subject, String text) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("vajdasagjusoft@gmail.com");
+        mailMessage.setFrom(emailConfiguration.getUsername());
         mailMessage.setTo(to);
         mailMessage.setSubject(subject);
         mailMessage.setText(text);
