@@ -1,24 +1,21 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 import useUsers from '../useUsers'
 import { useTranslation } from 'react-i18next'
-import DeleteModalButton from './DeleteModalButton'
-import { Button } from 'react-bootstrap'
 
-const ApproveOrDeleteButton = ({ user }) => {
+const ApproveButton = ({userId}) => {
   const { sendRegistrationApproval } = useUsers()
   const { t } = useTranslation()
 
-  return !user.isApproved ? (
+  return (
     <Button
       type="button"
       variant="success"
-      onClick={() => sendRegistrationApproval(user.id)}
+      onClick={() => sendRegistrationApproval(userId)}
     >
       {t('userListElement.approveRegistration')}
     </Button>
-  ) : (
-    <DeleteModalButton userId={user.id} />
   )
 }
 
-export default ApproveOrDeleteButton
+export default ApproveButton

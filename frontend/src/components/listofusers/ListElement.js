@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import ApproveOrDeleteButton from './ApproveOrDeleteButton'
+import OperationButtons from './OperationButtons'
 
 const ListElement = ({ user }) => {
   const { t } = useTranslation()
@@ -14,7 +14,7 @@ const ListElement = ({ user }) => {
       </td>
       <td>{user.dateOfRegistration}</td>
       <td>
-        <ApproveOrDeleteButton user={user} />
+        <OperationButtons user={user} />
       </td>
     </tr>
   )
