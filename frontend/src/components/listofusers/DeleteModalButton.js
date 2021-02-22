@@ -13,11 +13,10 @@ const DeleteModalButton = ({ userId }) => {
 
   const deleteUser = async () => {
     setShowConfirmDeletion(false)
-    const responseStatus = await deleteUserRegistration(userId)
-
-    if (responseStatus === 200) {
+    try {
+      await deleteUserRegistration(userId)
       fetchUsers()
-    } else {
+    } catch (error) {
       setShowFailureModal(true)
     }
   }
