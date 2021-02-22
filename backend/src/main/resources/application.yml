@@ -48,3 +48,8 @@ keycloak:
   use-resource-role-mappings: true
   bearer-only: false
 
+userController:
+  defaultOrderCategory: registeredAt
+  defaultPageNumber: 0
+  defaultPageLimit: 10
+

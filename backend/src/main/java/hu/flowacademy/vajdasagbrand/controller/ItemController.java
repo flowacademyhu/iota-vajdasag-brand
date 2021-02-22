@@ -19,13 +19,26 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/items")
     @ResponseStatus(HttpStatus.CREATED)
-    @RolesAllowed({"admin", "superadmin"})
     public void createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
         Item item = new Item();
         BeanUtils.copyProperties(itemDTO, item);
 
         itemService.createItem(item);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    public Item deleteItem(@PathVariable("id") String id) throws ValidationException {
+        return itemService.deleteById(id);
+    }
+
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @PutMapping("/items/{id}")
+    public Item updateItem(@PathVariable("id") String id,
+                           @RequestBody Item item) throws ValidationException {
+        return itemService.updateItem(item, id);
     }
 }

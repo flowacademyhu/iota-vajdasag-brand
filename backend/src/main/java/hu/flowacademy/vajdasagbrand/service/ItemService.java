@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +21,19 @@ public class ItemService {
         validateItemData(item);
 
         return itemRepository.save(item);
+    }
+
+    public Item deleteById(String id) throws ValidationException {
+        return itemRepository.save(itemRepository.findFirstByIdAndDeletedAtNull(id).orElseThrow(
+                () -> new ValidationException("No item found with given id"))
+                .toBuilder().deletedAt(LocalDateTime.now()).build());
+    }
+
+    public Item updateItem(Item item, String id) throws ValidationException {
+        validateItemData(item);
+        Item founded = itemRepository.findById(id).orElseThrow(() -> new ValidationException("Can not find this id"));
+        modifyItems(item, founded);
+        return itemRepository.save(founded);
     }
 
     private void validateItemData(Item item) throws ValidationException {
@@ -60,4 +75,18 @@ public class ItemService {
         }
     }
 
+    private void modifyItems(Item item, Item tempItem) {
+        tempItem.setName(item.getName());
+        tempItem.setBio(item.getBio());
+        tempItem.setScore(item.getScore());
+        tempItem.setAddress(item.getAddress());
+        tempItem.setCity(item.getCity());
+        tempItem.setCategory(item.getCategory());
+        tempItem.setCoordinateX(item.getCoordinateX());
+        tempItem.setCoordinateY(item.getCoordinateY());
+        tempItem.setPhone(item.getPhone());
+        tempItem.setWebsite(item.getWebsite());
+        tempItem.setFacebook(item.getFacebook());
+        tempItem.setInstagram(item.getInstagram());
+    }
 }

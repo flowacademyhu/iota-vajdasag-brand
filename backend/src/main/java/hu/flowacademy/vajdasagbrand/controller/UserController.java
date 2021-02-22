@@ -11,12 +11,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -27,6 +31,14 @@ public class UserController {
 
     private final KeycloakClientService keycloakClientService;
     private final UserService userService;
+
+    @Value("${userController.defaultOrderCategory}")
+    private String defaultOrderCategory;
+    @Value("${userController.defaultPageNumber}")
+    private int defaultPageNumber;
+    @Value("${userController.defaultPageLimit}")
+    private int defaultPageLimit;
+
 
     @PermitAll
     @PostMapping("/login")
@@ -56,5 +68,16 @@ public class UserController {
         log.info("Incoming registration request with the id: {}", userId);
         userService.approveRegistration(userId);
         log.debug("The requested user id is: {}", userId);
+    }
+
+    @RolesAllowed("SuperAdmin")
+    @GetMapping("/getUsers")
+    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
+                               @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
+                               @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
+        return userService.getUsers(
+                orderBy.orElse(defaultOrderCategory),
+                pageNum.orElse(defaultPageNumber),
+                limit.orElse(defaultPageLimit));
     }
 }
