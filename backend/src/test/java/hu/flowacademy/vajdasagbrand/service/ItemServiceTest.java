@@ -15,6 +15,7 @@ import java.util.UUID;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -166,7 +167,7 @@ class ItemServiceTest {
         verifyNoMoreInteractions(itemRepository);
 
         assertThat(deleted, notNullValue());
-        assertThat(deleted.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
+        assertNotNull(deleted.getDeletedAt());
     }
 
     @Test
