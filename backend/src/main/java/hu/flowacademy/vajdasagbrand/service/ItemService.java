@@ -1,14 +1,21 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -88,5 +95,31 @@ public class ItemService {
         tempItem.setWebsite(item.getWebsite());
         tempItem.setFacebook(item.getFacebook());
         tempItem.setInstagram(item.getInstagram());
+    }
+
+    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication) throws ValidationException {
+        List<String> roles = new ArrayList<>();
+
+        if (authentication.isPresent()) {
+            roles = authentication.get().getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .collect(Collectors.toList());
+        } else {
+            throw new ValidationException("User has no authorization.");
+        }
+
+        if (roles.contains("ROLE_SuperAdmin")) {
+            return itemRepository.findAll().stream()
+                    .map(item -> new SuperAdminItemDTO(item.getAddress(), item.getCity(),
+                            item.getCategory(), item.getName()))
+                    .collect(Collectors.toList());
+        } else if (roles.contains("ROLE_CegAdmin")) {
+            return itemRepository.findAll().stream()
+                    .map(item -> new CegAdminItemDTO(item.getAddress(), item.getCity(),
+                            item.getCategory()))
+                    .collect(Collectors.toList());
+        } else {
+            throw new ValidationException("User has no authorization.");
+        }
     }
 }
