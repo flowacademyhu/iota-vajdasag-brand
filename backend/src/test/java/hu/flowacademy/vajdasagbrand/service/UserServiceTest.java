@@ -37,6 +37,9 @@ public class UserServiceTest {
     @Mock
     private KeycloakClientService keycloakClientService;
 
+    @Mock
+    private EmailService emailService;
+
     @InjectMocks
     private UserService service;
 
@@ -104,7 +107,22 @@ public class UserServiceTest {
         assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
-     @Test
+    @Test
+    public void givenUserDisabled_whenCallingApproveAccount_thenUserIsEnabled() throws ValidationException {
+        givenUserRepositoryAndKeycloakForEnableUser();
+
+        boolean result = service.approveRegistration(REGISTRATION_ID);
+        assertThat(result, is(true));
+        Mockito.verify(userRepository,times(1)).findById(REGISTRATION_ID);
+        Mockito.verifyNoMoreInteractions(userRepository);
+        Mockito.verify(emailService, times(1)).sendMessage(eq(REGISTRATION_EMAIL), anyString(), anyString());
+        Mockito.verifyNoMoreInteractions(emailService);
+        Mockito.verify(keycloakClientService, times(1)).enableUser(REGISTRATION_EMAIL);
+        Mockito.verify(keycloakClientService, times(1)).sendVerificationEmail(REGISTRATION_EMAIL);
+        Mockito.verifyNoMoreInteractions(keycloakClientService);
+    }
+
+    @Test
      public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
          givenUserRepositoryWhenCallingDelete();
          User result = service.deleteById(REGISTRATION_ID);
@@ -165,6 +183,16 @@ public class UserServiceTest {
         when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
         when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
         when(keycloakClientService.deleteUser(user.getEmail())).thenReturn(true);
+    }
+
+    private void givenUserRepositoryAndKeycloakForEnableUser() {
+        User user = givenAUserIndividual();
+        user.setId(REGISTRATION_ID);
+        user.setEnabled(false);
+        when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
+        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+        when(keycloakClientService.enableUser(REGISTRATION_EMAIL)).thenReturn(true);
+        when(keycloakClientService.sendVerificationEmail(REGISTRATION_EMAIL)).thenReturn(true);
     }
 
     private void givenUserRepositoryFindByIdEnabledFalse() {

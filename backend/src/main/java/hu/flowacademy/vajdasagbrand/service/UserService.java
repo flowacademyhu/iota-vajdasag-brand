@@ -83,8 +83,8 @@ public class UserService {
             registeredUser.setEnabled(true);
             userRepository.save(registeredUser);
             log.debug("The user's current status is: {} ", registeredUser.isEnabled());
-            sendApprovalEmail(registeredUser.getEmail());
             keycloakClientService.sendVerificationEmail(registeredUser.getEmail());
+            sendApprovalEmail(registeredUser.getEmail());
             return true;
         }
         return false;
@@ -92,6 +92,6 @@ public class UserService {
 
     public void sendApprovalEmail(String email) {
         log.debug("Sending approval email to: {}", email);
-        emailService.sendMessage(email, "Registration approval", "Your registration is approved, you can login now");
+        emailService.sendMessage(email, "Registration approval", "Dear Customer! \nYour registration is approved, you can login now");
     }
 }
