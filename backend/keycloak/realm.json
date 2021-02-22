@@ -1259,7 +1259,8 @@
     "host": "smtp.gmail.com",
     "from": "vajdasagjusoft@gmail.com",
     "ssl": "",
-    "user": "vajdasagjusoft@gmail.com"
+    "user": "vajdasagjusoft@gmail.com",
+    "password" : "vtejyevwlqixdrtz"
   },
   "eventsEnabled" : false,
   "eventsListeners" : [ "jboss-logging" ],
