@@ -1,10 +1,9 @@
 import api from './apiInstance'
 //import './mockForUserApi'
 
-
-api.interceptors.request.use(x => {
-  console.log("header: " + JSON.stringify(x.headers))
-  console.log("data: " + JSON.stringify(x.data))
+api.interceptors.request.use((x) => {
+  console.log('header: ' + JSON.stringify(x.headers))
+  console.log('data: ' + JSON.stringify(x.data))
   return x
 })
 export const getUsers = async () => {
@@ -22,14 +21,14 @@ export const login = (value) => {
 
 export const signUp = async (value, type) => {
   const data = {
-    "full_name": value.name,
-    "tax_number": value.taxNumber,
-    "address": value.address,
-    "email": value.email,
-    "type":type,
-    "password":value.password
+    full_name: value.name,
+    tax_number: value.taxNumber,
+    address: value.address,
+    email: value.email,
+    type: type,
+    password: value.password,
   }
-  console.log("data: "+JSON.stringify(data))
+  console.log('data: ' + JSON.stringify(data))
   return await api.post('/registration', data)
 }
 

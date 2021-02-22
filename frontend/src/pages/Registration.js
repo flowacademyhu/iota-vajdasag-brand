@@ -16,9 +16,9 @@ export default function Registration() {
 
   const handleSubmit = async (value) => {
     try {
-      let type;
-      value.taxNumber === "" ? type = "INDIVIDUAL" : type = "COMPANY"
-      const response = await signUp(value,type)
+      let type
+      value.taxNumber === '' ? (type = 'INDIVIDUAL') : (type = 'COMPANY')
+      const response = await signUp(value, type)
       setSignUpAccepted(response.status)
     } catch (error) {
       setSignUpAccepted(error.status)
@@ -110,8 +110,9 @@ export default function Registration() {
                         <input
                           type="text"
                           {...field}
-                          className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''
-                            }`}
+                          className={`form-control ${
+                            meta.touched && meta.error ? 'is-invalid' : ''
+                          }`}
                         />
                         {meta.touched && meta.error && (
                           <div className="invalid-feedback">{meta.error}</div>
@@ -130,10 +131,11 @@ export default function Registration() {
               </div>
               <div className="my-3 form-check">
                 <Field
-                  className={`form-check-input ${errors.acceptedTerms && touched.acceptedTerms
+                  className={`form-check-input ${
+                    errors.acceptedTerms && touched.acceptedTerms
                       ? 'is-invalid'
                       : ''
-                    }`}
+                  }`}
                   type="checkbox"
                   name="acceptedTerms"
                   id="acceptedTerms"
@@ -173,14 +175,14 @@ export default function Registration() {
                     onHide={() => setModalShow(false)}
                   />
                 ) : (
-                    <PopUpModal
-                      modalTitle={t('registration.title')}
-                      modalBody={t('registration.modalBodyError')}
-                      modalButton={t('registration.modalButton')}
-                      show={modalShow}
-                      onHide={() => setModalShow(false)}
-                    />
-                  )}
+                  <PopUpModal
+                    modalTitle={t('registration.title')}
+                    modalBody={t('registration.modalBodyError')}
+                    modalButton={t('registration.modalButton')}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                )}
               </div>
             </div>
           </Form>
