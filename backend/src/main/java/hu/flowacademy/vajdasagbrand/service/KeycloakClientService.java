@@ -56,7 +56,7 @@ public class KeycloakClientService {
             oneUser.executeActionsEmail(List.of("UPDATE_PASSWORD"));
 
         } catch (WebApplicationException e) {
-            log.error("Error when sending verify email request: " + e.getMessage(), e);
+            log.error("Error when sending verification email request: " + e.getMessage(), e);
             return false;
         }
         return true;

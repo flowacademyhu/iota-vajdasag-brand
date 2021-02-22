@@ -1,6 +1,5 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import com.google.common.base.Verify;
 import hu.flowacademy.vajdasagbrand.entity.Type;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import lombok.RequiredArgsConstructor;
@@ -9,14 +8,10 @@ import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.keycloak.admin.client.KeycloakBuilder;
-import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -27,6 +22,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
+    private final EmailService emailService;
 
     public User deleteById(String id) throws ValidationException, UserNotEnabledException {
         Optional<User> user = userRepository.findById(id);
@@ -83,16 +79,16 @@ public class UserService {
         log.info("Incoming approve registration request with the id: {}", userId);
         User registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
         log.debug("The user's current status is: {} ", registeredUser.isEnabled());
-        boolean isEnabled = keycloakClientService.enableUser(registeredUser.getEmail());
-        if (isEnabled) {
+        if (keycloakClientService.enableUser(registeredUser.getEmail())) {
             registeredUser.setEnabled(true);
             userRepository.save(registeredUser);
             log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+            approvalEmail(registeredUser.getEmail());
         }
     }
 
-    public void sendVerificationEmail(String userId) {
-        log.debug("Sending email verification for id {}", userId);
-
+    public void approvalEmail(String email) {
+        log.debug("Sending approval email to: {}", email);
+        emailService.sendMessage(email, "Registration approval", "Your registration is approved, you can login now");
     }
 }
