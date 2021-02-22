@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom'
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
   Yup.object().shape({
-    email: Yup.string().email(invalidEmail).required(noEmail),
+    username: Yup.string().email(invalidEmail).required(noEmail),
     password: Yup.string().min(8, invalidPassword).required(),
   })
 
@@ -21,7 +21,7 @@ const Login = () => {
   const { writeToken } = useTokenStateHandler()
 
   const handleResponse = (response) => {
-    writeToken(response.data)
+    writeToken(response.data.access_token)
     setIsSignInAccepted(true)
   }
 
@@ -32,6 +32,7 @@ const Login = () => {
 
   async function handleSubmit(value) {
     try {
+      console.log('value', value)
       const response = await login(value)
       console.log(response)
       handleResponse(response)
