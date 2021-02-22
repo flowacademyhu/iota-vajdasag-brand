@@ -1,14 +1,14 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const SwitchLanguage = () => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation()
 
-  const actualLanguage = i18n.language;
+  const actualLanguage = i18n.language
 
   const handleChange = (e) => {
-    i18n.changeLanguage(e.target.value);
-  };
+    i18n.changeLanguage(e.target.value)
+  }
 
   return (
     <div className="col-2 float-right">
@@ -22,7 +22,7 @@ const SwitchLanguage = () => {
         <option value="en">🇬🇧 English</option>
       </select>
     </div>
-  );
-};
+  )
+}
 
-export default SwitchLanguage;
+export default SwitchLanguage

@@ -1,9 +1,6 @@
-import React from 'react';
-import { TokenProvider } from "./TokenContext";
-import Main from "./components/Main";
-
-
-
+import React from 'react'
+import { TokenProvider } from './TokenContext'
+import Main from './components/Main'
 
 export default function App() {
   return (
@@ -12,5 +9,5 @@ export default function App() {
         <Main></Main>
       </TokenProvider>
     </>
-  );
+  )
 }
