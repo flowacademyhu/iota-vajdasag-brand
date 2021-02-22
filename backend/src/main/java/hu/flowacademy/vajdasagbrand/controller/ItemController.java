@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -20,7 +19,7 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @RolesAllowed("SuperAdmin, CegAdmin")
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/items")
     @ResponseStatus(HttpStatus.CREATED)
     public void createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
@@ -30,7 +29,13 @@ public class ItemController {
         itemService.createItem(item);
     }
 
-    @RolesAllowed("SuperAdmin, CegAdmin")
+    @DeleteMapping("/delete/{id}")
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    public Item deleteItem(@PathVariable("id") String id) throws ValidationException {
+        return itemService.deleteById(id);
+    }
+
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PutMapping("/items/{id}")
     public Item updateItem(@PathVariable("id") String id,
                            @RequestBody Item item) throws ValidationException {
