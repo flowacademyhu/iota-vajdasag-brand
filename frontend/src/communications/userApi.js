@@ -9,7 +9,7 @@ api.interceptors.request.use(x => {
 })
 export const getUsers = async () => {
   try {
-    const response = await api.get('/users')
+    const response = await api.get('/getUsers')
     return response.data.users
   } catch (error) {
     throw new Error('Failed to get users.')
