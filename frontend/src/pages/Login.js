@@ -33,8 +33,10 @@ const Login = () => {
   async function handleSubmit(value) {
     try {
       const response = await login(value)
+      console.log(response)
       handleResponse(response)
     } catch (error) {
+      console.log(error)
       setIsSignInAccepted(false)
       if (error.response.status === 404)
         setErrorMessage(t('login.connectionProblems'))
@@ -47,7 +49,7 @@ const Login = () => {
     <div>
       <Formik
         initialValues={{
-          email: '',
+          username: '',
           password: '',
         }}
         onSubmit={handleSubmit}
@@ -63,7 +65,7 @@ const Login = () => {
             <div className="my-3">
               <InputField
                 label={t('login.email')}
-                name="email"
+                name="username"
                 id="email"
                 placeholder={t('login.email')}
                 type="email"
