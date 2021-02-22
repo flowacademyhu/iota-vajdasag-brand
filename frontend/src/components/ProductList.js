@@ -9,12 +9,12 @@ const ProductList = () => {
   //const listOfAllProducts = getProducts();
   return (
     
-    <div className="d-flex flex-row-reverse">
+    <div className="table-responsive">
       <div className="col-9">
       {
   console.log(listOfAllProducts)
     }
-        <table className="table table-striped">
+      <table className="table table-striped table-sm">
           <ListHeader />
           <tbody>
             {listOfAllProducts?.map((product) => (

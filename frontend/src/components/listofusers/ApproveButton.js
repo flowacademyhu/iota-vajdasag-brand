@@ -13,7 +13,7 @@ const ApproveButton = ({ user }) => {
       variant="success"
       onClick={() => sendRegistrationApproval(user.id)}
     >
-      {t('approveRegistration')}
+      {t('userListElement.approveRegistration')}
     </Button>
   ) : (
     ''

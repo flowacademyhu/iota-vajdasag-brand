@@ -1,41 +1,48 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import MenuComponent from '../components/MenuComponent'
+import MenuComponent from './MenuComponent'
+import { People, Newspaper, Shop, ArrowBarLeft } from 'react-bootstrap-icons'
 
 const menuItems = [
   {
     path: '/super-admin/users',
-    title: 'users',
+    title: 'menu.users',
+    icon: People,
   },
   {
     path: '/super-admin/products',
-    title: 'products',
+    title: 'menu.products',
+    icon: Shop,
   },
   {
     path: '/super-admin/events',
-    title: 'events',
+    title: 'menu.events',
+    icon: Newspaper,
   },
   {
     path: 'logout',
     title: 'menu.signout',
+    icon: ArrowBarLeft,
   },
 ]
 
-export default function Menu() {
+const Menu = () => {
   const { t } = useTranslation()
+
   return (
-    <div className="d-flex" id="wrapper">
-      <div className="bg-light border-right" id="sidebar-wrapper">
-        <div className="list-group list-group-flush">
-          {menuItems.map((item, index) => (
-            <MenuComponent
-              key={index}
-              title={t(item.title)}
-              path={item.path}
-            ></MenuComponent>
-          ))}
-        </div>
+    <div className="border-right">
+      <div className="list-group">
+        {menuItems.map((item, index) => (
+          <MenuComponent
+            key={index}
+            Icon={item.icon}
+            title={t(item.title)}
+            path={item.path}
+          />
+        ))}
       </div>
     </div>
   )
 }
+
+export default Menu

@@ -1,12 +1,19 @@
 {
-  "accepted": {
+  "userListHeader": {
     "acceptedRegistration": "Sikeres regisztráció",
-    "dateOfRegistrion": "Regisztráció dátuma",
-    "email": "Email",
+    "dateOfRegistration": "Regisztráció dátuma",
+    "email": "E-mail",
     "name": "Név",
+    "actions": "Lehetőségek",
+    "products": "Termékek"
+  },
+  "userListElement": {
+    "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",
-    "Registration": "Regisztráció",
     "yes": "Igen"
+  },
+  "searchbar": {
+    "search": "Keresés"
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -17,7 +24,8 @@
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
-    "title": "Belépés"
+    "title": "Belépés",
+    "notRegistered": "Még nem regisztrált?"
   },
   "registration": {
     "title": "Regisztráció",
