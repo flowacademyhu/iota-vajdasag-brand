@@ -24,10 +24,9 @@ public class ItemService {
     }
 
     public Item deleteById(String id) throws ValidationException {
-        Item toBeDeleted = itemRepository.findFirstByIdAndDeletedAtNull(id).orElseThrow(
-                () -> new ValidationException("No item found with given id"));
-        toBeDeleted.setDeletedAt(LocalDateTime.now().withNano(0));
-        return itemRepository.save(toBeDeleted);
+        return itemRepository.save(itemRepository.findFirstByIdAndDeletedAtNull(id).orElseThrow(
+                () -> new ValidationException("No item found with given id"))
+                .toBuilder().deletedAt(LocalDateTime.now()).build());
     }
 
     public Item updateItem(Item item, String id) throws ValidationException {
