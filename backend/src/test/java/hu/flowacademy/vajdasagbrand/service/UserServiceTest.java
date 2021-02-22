@@ -137,21 +137,12 @@ public class UserServiceTest {
 
     @Test
      public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
-         givenUserRepositoryWhenCallingDelete();
-         User result = service.deleteById(REGISTRATION_ID);
-         Mockito.verify(userRepository,times(1)).findById(REGISTRATION_ID);
-         Mockito.verify(userRepository,times(1)).save(result);
-         Mockito.verifyNoMoreInteractions(userRepository);
-         Mockito.verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
-    @Test
-    public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
         givenUserRepositoryWhenCallingDelete();
         User result = service.deleteById(REGISTRATION_ID);
         Mockito.verify(userRepository, times(1)).findById(REGISTRATION_ID);
         Mockito.verify(userRepository, times(1)).save(result);
         Mockito.verifyNoMoreInteractions(userRepository);
         Mockito.verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
-
         assertThat(result, notNullValue());
         assertThat(result.isEnabled(), is(false));
         assertThat(result.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
@@ -170,7 +161,6 @@ public class UserServiceTest {
         givenUserRepositoryReturningUser();
 
         assertThrows(UserNotEnabledException.class, () -> service.deleteById(REGISTRATION_ID));
-
     }
 
     private void givenUserRepositoryReturningUser() {
