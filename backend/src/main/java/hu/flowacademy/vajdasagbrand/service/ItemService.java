@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +19,14 @@ public class ItemService {
 
     public Item createItem(Item item) throws ValidationException {
         validateItemData(item);
+
         return itemRepository.save(item);
+    }
+
+    public Item deleteById(String id) throws ValidationException {
+        return itemRepository.save(itemRepository.findFirstByIdAndDeletedAtNull(id).orElseThrow(
+                () -> new ValidationException("No item found with given id"))
+                .toBuilder().deletedAt(LocalDateTime.now()).build());
     }
 
     public Item updateItem(Item item, String id) throws ValidationException {
@@ -31,37 +40,37 @@ public class ItemService {
         if (!StringUtils.hasText(item.getName())) {
             throw new ValidationException("Didn't get name");
         }
-        if (!StringUtils.hasText(item.getBio())) {
+        if(!StringUtils.hasText(item.getBio())){
             throw new ValidationException("Didn't get bio");
         }
-        if (item.getScore() < 0) {
+        if(item.getScore() == 0 || item.getScore() > 100) {
             throw new ValidationException("Impossible value");
         }
-        if (!StringUtils.hasText(item.getAddress())) {
+        if(!StringUtils.hasText(item.getAddress())){
             throw new ValidationException("Didn't get address");
         }
-        if (!StringUtils.hasText(item.getCity())) {
+        if(!StringUtils.hasText(item.getCity())){
             throw new ValidationException("Didn't get city");
         }
-        if (item.getCategory() == null) {
+        if(item.getCategory() == null) {
             throw new ValidationException("Didn't get category");
         }
-        if (!StringUtils.hasText(item.getCoordinateX())) {
+        if(!StringUtils.hasText(item.getCoordinateX())) {
             throw new ValidationException("Didn't get coordinate_x");
         }
-        if (!StringUtils.hasText(item.getCoordinateY())) {
+        if(!StringUtils.hasText(item.getCoordinateY())) {
             throw new ValidationException("Didn't get coordinate_y");
         }
-        if (!StringUtils.hasText(item.getPhone())) {
+        if(!StringUtils.hasText(item.getPhone())) {
             throw new ValidationException("Didn't get phone");
         }
-        if (!StringUtils.hasText(item.getWebsite())) {
+        if(!StringUtils.hasText(item.getWebsite())) {
             throw new ValidationException("Didn't get website");
         }
-        if (!StringUtils.hasText(item.getFacebook())) {
+        if(!StringUtils.hasText(item.getFacebook())) {
             throw new ValidationException("Didn't get facebook");
         }
-        if (!StringUtils.hasText(item.getInstagram())) {
+        if(!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("Didn't get instagram");
         }
     }
@@ -80,5 +89,4 @@ public class ItemService {
         tempItem.setFacebook(item.getFacebook());
         tempItem.setInstagram(item.getInstagram());
     }
-
 }

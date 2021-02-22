@@ -4,20 +4,18 @@ import hu.flowacademy.vajdasagbrand.entity.Category;
 import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -161,6 +159,25 @@ class ItemServiceTest {
     }
 
     @Test
+    public void givenExistingItem_whenCallingDelete_thenItemDeletedSuccessfully() throws ValidationException {
+        givenItemRepositoryWhenCallingDelete();
+        Item deleted = itemService.deleteById(REGISTRATION_ID);
+        verify(itemRepository, times(1)).findFirstByIdAndDeletedAtNull(REGISTRATION_ID);
+        verify(itemRepository, times(1)).save(deleted);
+        verifyNoMoreInteractions(itemRepository);
+
+        assertThat(deleted, notNullValue());
+        assertNotNull(deleted.getDeletedAt());
+    }
+
+    @Test
+    public void givenUnExistingId_whenCallingDelete_thenExceptionIsThrown() {
+        givenItem();
+
+        assertThrows(ValidationException.class, () -> itemService.deleteById(REGISTRATION_ID));
+    }
+
+    @Test
     public void givenItemMissingName_whenUpdatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingName();
 
@@ -252,7 +269,14 @@ class ItemServiceTest {
         });
     }
 
-    private Item givenItem() {
+    private void givenItemRepositoryWhenCallingDelete() {
+        Item itemToBeDeleted = givenItem();
+        itemToBeDeleted.setId(REGISTRATION_ID);
+        when(itemRepository.findFirstByIdAndDeletedAtNull(anyString())).thenReturn(Optional.of(itemToBeDeleted));
+        when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+    }
+
+    private Item givenItem(){
 
         Item item = new Item();
         item.setName(NAME);
@@ -311,7 +335,6 @@ class ItemServiceTest {
         Item item = new Item();
         item.setName(NAME);
         item.setBio(BIO);
-        item.setScore(SCOREUPDATE);
         item.setAddress(ADDRESS);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
