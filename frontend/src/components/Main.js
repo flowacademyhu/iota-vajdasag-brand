@@ -14,6 +14,7 @@ import { TokenContext } from '../TokenContext'
 import Logout from './logout'
 import Registration from '../pages/Registration'
 import JusoftLogo from '../media/jusoftdark1.png'
+import DeleteProductButton from '../components/listofproducts/DeleteProductButton'
 
 const Main = () => {
   const { token } = useContext(TokenContext)
@@ -53,6 +54,9 @@ const Main = () => {
                 </Route>
                 <Route path="/logout">
                   <Logout />
+                </Route>
+                <Route path="/testComponents">
+                  <DeleteProductButton/>
                 </Route>
               </Switch>
             ) : (
