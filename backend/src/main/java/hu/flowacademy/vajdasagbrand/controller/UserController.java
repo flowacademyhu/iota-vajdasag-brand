@@ -66,8 +66,7 @@ public class UserController {
 
     @RolesAllowed("SuperAdmin")
     @GetMapping("/getUsers")
-    public Page<User> getUsers(Authentication authentication,
-                               @RequestParam(value = "order_by", required = false) Optional<String> orderBy,
+    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
                                @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
                                @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
 
