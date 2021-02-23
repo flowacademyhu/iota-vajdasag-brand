@@ -1,7 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.configuration.KeycloakPropertiesHolder;
-import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +11,8 @@ import org.keycloak.representations.AccessTokenResponse;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.WebApplicationException;
 import java.util.List;
@@ -26,9 +23,7 @@ import java.util.List;
 public class KeycloakClientService {
 
     private static final String KEYCLOAK_USER_ROLE_NAME = "realmuser";
-    @Autowired
     private final Keycloak keycloak;
-    @Autowired
     private final KeycloakPropertiesHolder keycloakPropertiesHolder;
 
     public void createAccount(String email, String password) throws ValidationException {
@@ -56,7 +51,6 @@ public class KeycloakClientService {
             UserRepresentation user = listOfUsers.get(0);
             UserResource oneUser = resource.get(user.getId());
             log.info("Successfully retrieved user with id {}", user.getId());
-            //oneUser.executeActionsEmail(List.of("UPDATE_PASSWORD", "VERIFY_EMAIL"));
             oneUser.executeActionsEmail(List.of("VERIFY_EMAIL"));
         } catch (WebApplicationException e) {
             log.error("Error when sending verification email request: " + e.getMessage(), e);
