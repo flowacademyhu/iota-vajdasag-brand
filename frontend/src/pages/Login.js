@@ -32,12 +32,9 @@ const Login = () => {
 
   async function handleSubmit(value) {
     try {
-      console.log('value', value)
       const response = await login(value)
-      console.log(response)
       handleResponse(response)
     } catch (error) {
-      console.log(error)
       setIsSignInAccepted(false)
       if (error.response.status === 404)
         setErrorMessage(t('login.connectionProblems'))
