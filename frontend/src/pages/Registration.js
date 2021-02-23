@@ -16,8 +16,7 @@ export default function Registration() {
 
   const handleSubmit = async (value) => {
     try {
-      let type
-      value.taxNumber === '' ? (type = 'INDIVIDUAL') : (type = 'COMPANY')
+      let type = value.taxNumber === '' ? 'INDIVIDUAL' : 'COMPANY'
       const response = await signUp(value, type)
       setSignUpAccepted(response.status)
     } catch (error) {
