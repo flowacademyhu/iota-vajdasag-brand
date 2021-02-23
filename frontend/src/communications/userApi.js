@@ -32,3 +32,10 @@ export const deleteUserRegistration = async (userId) => {
     throw new Error('The deletion was unsuccessful.')
   }
 }
+
+export const deleteProduct = async (id) => {
+  const response = await api.delete(`/products/${id}`)
+  if (response.status !== 200) {
+    throw new Error('The deletion was unsuccessful.')
+  }
+}
