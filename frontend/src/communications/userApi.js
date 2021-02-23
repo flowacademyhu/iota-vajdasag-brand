@@ -25,3 +25,10 @@ export const sendApproval = async (userId) => {
     throw new Error('Registration approval miscarried.')
   }
 }
+
+export const deleteUserRegistration = async (userId) => {
+  const response = await api.delete(`/users/${userId}`)
+  if (response.status !== 200) {
+    throw new Error('The deletion was unsuccessful.')
+  }
+}
