@@ -9,6 +9,7 @@ const ListElement = ({ product }) => {
       <td>{product.address}</td>
       <td>{product.city}</td>
       <td>{product.category}</td>
+      <td>{product.name}</td>
     </tr>
   )
 }

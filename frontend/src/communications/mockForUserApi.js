@@ -32,6 +32,7 @@ mock.onGet('/users').reply(200, {
 mock.onGet('/products').reply(200, {
   products: [
     {
+      userId: 1,
       id: 1,
       title: "Hami Étterem",
       address: "Zenta, Egyik utca 2.",
@@ -39,6 +40,7 @@ mock.onGet('/products').reply(200, {
       category: "gastronomy",
     },
     {
+      userId: 2,
       id: 2,
       title: "Pihenő Szálló",
       address: "Zenta, Másik utca 4.",
@@ -46,11 +48,44 @@ mock.onGet('/products').reply(200, {
       category: "accommodation",
     },
     {
+      userId: 3,
       id: 3,
       title: "Városnéző körút",
       address: "Zenta, Fő tér 2.",
       city: "Zenta",
       category: "freeTime",
+    },
+  ],
+})
+
+mock.onGet('/products/1').reply(200, {
+  products: [
+    {
+      userId: 1,
+      id: 1,
+      title: "Hami Étterem",
+      address: "Zenta, Egyik utca 2.",
+      city: "Zenta",
+      category: "gastronomy",
+      name: "Hami Zrt."
+    },
+    {
+      userId: 1,
+      id: 2,
+      title: "Hami Szálló",
+      address: "Zenta, Másik utca 4.",
+      city: "Zenta",
+      category: "accommodation",
+      name: "Hami Zrt."
+    },
+    {
+      userId: 1,
+      id: 3,
+      title: "Hami körút",
+      address: "Zenta, Fő tér 2.",
+      city: "Zenta",
+      category: "freeTime",
+      name: "Hami Zrt."
     },
   ],
 })

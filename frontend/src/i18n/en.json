@@ -1,19 +1,11 @@
 {
-  "userListHeader": {
-    "acceptedRegistration": "Accepted registration",
-    "dateOfRegistration": "Date of registration",
-    "email": "Email",
-    "name": "Name",
-    "actions": "Actions",
-    "products": "Products"
-  },
-  "userListElement": {
-    "approveRegistration": "Approve registration",
-    "no": "No",
-    "yes": "Yes",
-    "products": "Products"
-  },
-  "searchbar": {
+  "address": "address",
+  "category": "category",
+  "city": "city",
+  "companyAdmin": {
+    "edit": "Edit",
+    "newProduct": "New product",
+    "remove": "Remove",
     "search": "Search"
   },
   "login": {
@@ -27,69 +19,55 @@
     "password": "Password",
     "title": "Login"
   },
+  "name": "name",
+  "product": {
+    "address": "address",
+    "category": "category",
+    "city": "city",
+    "title": "title"
+  },
   "registration": {
-    "title": "Registration",
+    "address": "Address/Company seat",
+    "agreement": "I accept the",
+    "alreadyRegistered": "Already registered?",
+    "and": " and the ",
+    "buttontext": "Registration",
+    "email": "E-mail",
     "fullName": "Name",
-    "privatePerson": "Private person",
+    "invalidemail": "Email address is not valid",
     "legalPerson": "Legal person",
-    "taxNumber": "Tax number",
+    "linkAszf": " GTC",
+    "linkadat": " data management principles",
+    "modalBodyError": "Registration failed!",
+    "modalBodyOK": "Successful registration, please check your e-mail!",
+    "modalButton": "OK",
     "password": "Password",
     "passwordConfirmation": "Password again",
-    "email": "E-mail",
-    "buttontext": "Registration",
-    "alreadyRegistered": "Already registered?",
-    "agreement": "I accept the",
-    "linkAszf": " GTC",
-    "and": " and the ",
-    "linkadat": " data management principles",
-    "address": "Address/Company seat",
-    "invalidemail": "Email address is not valid",
     "passwordFailMessage": "Incorrect password! Please enter a password that matches the following: at least 8 characters; at least one uppercase and one lowercase letter; at least one number; cannot contain spaces; valid other characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
-    "required": "Required field!",
     "passwordMatch": "The passwords don't match",
-    "modalBodyOK": "Successful registration, please check your e-mail!",
-    "modalBodyError": "Registration failed!",
-    "modalButton": "OK"
+    "privatePerson": "Private person",
+    "required": "Required field!",
+    "taxNumber": "Tax number",
+    "title": "Registration"
   },
-  "companyAdmin": {
-    "newProduct": "New product",
-    "edit": "Edit",
-    "remove": "Remove",
+  "search": "search",
+  "searchbar": {
     "search": "Search"
   },
-  "superAdmin": {
-    "createNewUser": "Create a new user",
-    "name": "Name",
-    "active": "Active",
-    "inactive": "Inactive",
-    "dateOfRegistration": "Date of registration",
-    "editBasicData": "Edit basic data",
-    "editProducts": "Edit products",
-    "delete": "Delete",
-    "confirmDelete": "Confirm delete?",
-    "search": "Search"
-  },
-  "datasheet": {
-    "description": "Description",
-    "events": "Events",
-    "address": "Address",
-    "city": "City",
-    "street": "Street",
-    "coordinates": "Coordinates ",
-    "contactPerson": "Contact person",
-    "phone": "Phone",
-    "website": "Website",
-    "facebook": "Facebook",
-    "instagram": "Instagram",
-    "gallery": "Gallery"
-  },
-  "forgotPW": {
-    "newPassword": "New password"
-  },
-  "menu": {
-    "users": "Users",
+  "title": "title",
+  "userListElement": {
+    "approveRegistration": "Approve registration",
+    "no": "No",
     "products": "Products",
-    "events": "Events",
-    "signout": "Sign out"
-  }
+    "yes": "Yes"
+  },
+  "userListHeader": {
+    "acceptedRegistration": "Accepted registration",
+    "actions": "Actions",
+    "dateOfRegistration": "Date of registration",
+    "email": "Email",
+    "name": "Name",
+    "products": "Products"
+  },
+  "welcome": "welcome"
 }

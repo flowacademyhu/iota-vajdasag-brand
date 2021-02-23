@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
-import { getProducts } from '../communications/userApi'
+import { getAllProducts, getProductsByUserId } from '../communications/userApi'
+import { BrowserRouter as useParams } from 'react-router-dom'
 
-
-
-const useProducts = () => {
+export const GetProducts = () => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
 
   const fetchProducts = async () => {
-    const fetchedProducts = await getProducts()
-    console.log(fetchedProducts);
+    const fetchedProducts = await getAllProducts()
+    console.log(fetchedProducts)
     setListOfAllProducts(fetchedProducts)
   }
 
@@ -19,4 +18,18 @@ const useProducts = () => {
   return { listOfAllProducts }
 }
 
-export default useProducts
+export const GetProductsById = () => {
+
+  const [usersProducts, setUsersProducts] = useState([])
+
+  const fetchUserProducts = async () => {
+    const fetchedUserProducts = await getProductsByUserId(1)
+    setUsersProducts(fetchedUserProducts)
+  }
+
+  useEffect(() => {
+    fetchUserProducts()
+  }, [])
+
+  return { usersProducts }
+}

@@ -1,19 +1,12 @@
 {
-  "userListHeader": {
-    "acceptedRegistration": "Sikeres regisztráció",
-    "dateOfRegistration": "Regisztráció dátuma",
-    "email": "E-mail",
-    "name": "Név",
-    "actions": "Lehetőségek",
-    "products": "Termékek"
-  },
-  "userListElement": {
-    "approveRegistration": "Regisztráció jóváhagyása",
-    "no": "Nem",
-    "yes": "Igen"
-  },
-  "searchbar": {
-    "search": "Keresés"
+  "address": "address",
+  "category": "category",
+  "city": "city",
+  "companyAdmin": {
+    "edit": "Edit",
+    "newProduct": "New product",
+    "remove": "Remove",
+    "search": "Search"
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -24,72 +17,57 @@
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
-    "title": "Belépés",
-    "notRegistered": "Még nem regisztrált?"
+    "title": "Belépés"
+  },
+  "name": "name",
+  "product": {
+    "address": "address",
+    "category": "category",
+    "city": "city",
+    "titletitle": "titletitle"
   },
   "registration": {
-    "title": "Regisztráció",
+    "address": "Lakcím/Székhely",
+    "agreement": "Elfogadom az",
+    "alreadyRegistered": "Regisztrált már?",
+    "and": " és az",
+    "buttontext": "Regisztráció",
+    "email": "Email cím",
     "fullName": "Név",
-    "privatePerson": "Magánszemély",
+    "invalidemail": "Az email cím nem megfelelő",
     "legalPerson": "Jogi személy",
-    "taxNumber": "Adószám",
+    "linkAszf": " ÁSZF-et",
+    "linkadat": " adatkezelési alapelveket",
+    "modalBodyError": "Sikertelen regisztráció!",
+    "modalBodyOK": "Sikeres regisztráció, kérjük, figyelje a beérkező leveleit!",
+    "modalButton": "OK",
     "password": "Jelszó",
     "passwordConfirmation": "Jelszó mégegyszer",
-    "email": "Email cím",
-    "buttontext": "Regisztráció",
-    "alreadyRegistered": "Regisztrált már?",
-    "agreement": "Elfogadom az",
-    "linkAszf": " ÁSZF-et",
-    "and": " és az",
-    "linkadat": " adatkezelési alapelveket",
-    "address": "Lakcím/Székhely",
-    "invalidemail": "Az email cím nem megfelelő",
     "passwordFailMessage": "Nem megfelelő jelszó! Kérjük, olyan jelszót adjon meg ami megfelel az alábbiaknak: legalább 8 karakter; legalább egy nagybetű és egy kisbetű; legalább egy szám; szóközt nem tartalmazhat; érvényes egyéb karakterek: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
-    "required": "A mező kitöltése kötelező!",
     "passwordMatch": "",
-    "modalBodyOK": "Sikeres regisztráció, kérjük, figyelje a beérkező leveleit!",
-    "modalBodyError": "Sikertelen regisztráció!",
-    "modalButton": "OK"
+    "privatePerson": "Magánszemély",
+    "required": "A mező kitöltése kötelező!",
+    "taxNumber": "Adószám",
+    "title": "Regisztráció"
   },
-  "companyAdmin": {
-    "newProduct": "New product",
-    "edit": "Edit",
-    "remove": "Remove",
-    "search": "Search"
+  "search": "search",
+  "searchbar": {
+    "search": "Keresés"
   },
-  "superAdmin": {
-    "createNewUser": "Create a new user",
-    "name": "Name",
-    "active": "Active",
-    "inactive": "Inactive",
-    "dateOfRegistration": "Date of registration",
-    "editBasicData": "Edit basic data",
-    "editProducts": "Edit products",
-    "delete": "Delete",
-    "confirmDelete": "Confirm delete?",
-    "search": "Search"
+  "title": "title",
+  "userListElement": {
+    "approveRegistration": "Regisztráció jóváhagyása",
+    "no": "Nem",
+    "products": "products",
+    "yes": "Igen"
   },
-  "datasheet": {
-    "description": "Description",
-    "events": "Events",
-    "address": "Address",
-    "city": "City",
-    "street": "Street",
-    "coordinates": "Coordinates ",
-    "contactPerson": "Contact person",
-    "phone": "Phone",
-    "website": "Website",
-    "facebook": "Facebook",
-    "instagram": "Instagram",
-    "gallery": "Gallery"
+  "userListHeader": {
+    "acceptedRegistration": "Sikeres regisztráció",
+    "actions": "Lehetőségek",
+    "dateOfRegistration": "Regisztráció dátuma",
+    "email": "E-mail",
+    "name": "Név",
+    "products": "Termékek"
   },
-  "forgotPW": {
-    "newPassword": "New password"
-  },
-  "menu": {
-    "users": "Felhasználók",
-    "products": "Termékek",
-    "events": "Események",
-    "signout": "Kijelentkezés"
-  }
+  "welcome": "welcome"
 }

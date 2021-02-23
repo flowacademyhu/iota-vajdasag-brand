@@ -7,10 +7,11 @@ const ListHeader = () => {
   return (
     <thead>
       <tr>
-        <th scope="col">{t('product.titletitle')}</th>
-        <th scope="col">{t('product.address')}</th>
-        <th scope="col">{t('product.city')}</th>
-        <th scope="col">{t('product.category')}</th>
+        <th scope="col">{t('title')}</th>
+        <th scope="col">{t('address')}</th>
+        <th scope="col">{t('city')}</th>
+        <th scope="col">{t('category')}</th>
+        <th scope="col">{t('name')}</th>
       </tr>
     </thead>
   )
