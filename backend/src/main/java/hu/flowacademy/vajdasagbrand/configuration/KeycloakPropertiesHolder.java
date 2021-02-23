@@ -25,5 +25,4 @@ public class KeycloakPropertiesHolder {
     private String keycloakResource;
     @Value("${keycloak.credentials.secret}")
     private String keycloakCredentialsSecret;
-
 }
