@@ -46,20 +46,18 @@ public class KeycloakClientService {
         try {
             RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm());
             UsersResource resource = ourRealm.users();
-            List<UserRepresentation> listOfUsers = resource.search(username);
-            if (listOfUsers.isEmpty())
-                return false;
-
-            UserRepresentation user = listOfUsers.get(0);
-            UserResource oneUser = resource.get(user.getId());
-            log.info("Successfully retrieved user with id {}", user.getId());
-            //oneUser.executeActionsEmail(List.of("UPDATE_PASSWORD", "VERIFY_EMAIL"));
-            oneUser.executeActionsEmail(List.of("VERIFY_EMAIL"));
+            return resource
+                    .search(username)
+                    .stream()
+                    .findFirst()
+                    .map(oneUser ->  {
+                        resource.get(oneUser.getId()).executeActionsEmail(List.of("VERIFY_EMAIL"));
+                        return oneUser;
+                    })
+                    .isPresent();
         } catch (WebApplicationException e) {
-            log.error("Error when sending verification email request: " + e.getMessage(), e);
             return false;
         }
-        return true;
     }
 
     public AccessTokenResponse login(String email, String password) {
