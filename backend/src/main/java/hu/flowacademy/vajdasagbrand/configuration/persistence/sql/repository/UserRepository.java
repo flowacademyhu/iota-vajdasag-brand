@@ -1,6 +1,6 @@
-package hu.flowacademy.vajdasagbrand.repository;
+package hu.flowacademy.vajdasagbrand.configuration.persistence.sql.repository;
 
-import hu.flowacademy.vajdasagbrand.entity.User;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
