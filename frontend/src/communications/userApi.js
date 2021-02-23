@@ -15,16 +15,14 @@ export const login = (value) => {
 }
 
 export const signUp = async (value, type) => {
-  const data = {
+  return await api.post('/registration', {
     full_name: value.name,
     tax_number: value.taxNumber,
     address: value.address,
     email: value.email,
     type: type,
     password: value.password,
-  }
-  console.log('data: ' + JSON.stringify(data))
-  return await api.post('/registration', data)
+  })
 }
 
 export const sendApproval = async (userId) => {
