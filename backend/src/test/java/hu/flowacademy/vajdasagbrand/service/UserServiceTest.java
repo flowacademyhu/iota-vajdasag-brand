@@ -125,12 +125,12 @@ public class UserServiceTest {
 
         boolean result = service.approveRegistration(REGISTRATION_ID);
         assertTrue(result);
-        verify(userRepository,times(1)).findById(REGISTRATION_ID);
+        verify(userRepository).findById(REGISTRATION_ID);
         verifyNoMoreInteractions(userRepository);
-        verify(emailService, times(1)).sendMessage(eq(REGISTRATION_EMAIL), anyString(), anyString());
+        verify(emailService).sendMessage(eq(REGISTRATION_EMAIL), anyString(), anyString());
         verifyNoMoreInteractions(emailService);
-        verify(keycloakClientService, times(1)).enableUser(REGISTRATION_EMAIL);
-        verify(keycloakClientService, times(1)).sendVerificationEmail(REGISTRATION_EMAIL);
+        verify(keycloakClientService).enableUser(REGISTRATION_EMAIL);
+        verify(keycloakClientService).sendVerificationEmail(REGISTRATION_EMAIL);
         verifyNoMoreInteractions(keycloakClientService);
     }
 
