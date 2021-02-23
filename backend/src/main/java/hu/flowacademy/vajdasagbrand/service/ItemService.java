@@ -11,8 +11,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,37 +47,37 @@ public class ItemService {
         if (!StringUtils.hasText(item.getName())) {
             throw new ValidationException("Didn't get name");
         }
-        if(!StringUtils.hasText(item.getBio())){
+        if (!StringUtils.hasText(item.getBio())) {
             throw new ValidationException("Didn't get bio");
         }
-        if(item.getScore() == 0 || item.getScore() > 100) {
+        if (item.getScore() == 0 || item.getScore() > 100) {
             throw new ValidationException("Impossible value");
         }
-        if(!StringUtils.hasText(item.getAddress())){
+        if (!StringUtils.hasText(item.getAddress())) {
             throw new ValidationException("Didn't get address");
         }
-        if(!StringUtils.hasText(item.getCity())){
+        if (!StringUtils.hasText(item.getCity())) {
             throw new ValidationException("Didn't get city");
         }
-        if(item.getCategory() == null) {
+        if (item.getCategory() == null) {
             throw new ValidationException("Didn't get category");
         }
-        if(!StringUtils.hasText(item.getCoordinateX())) {
+        if (!StringUtils.hasText(item.getCoordinateX())) {
             throw new ValidationException("Didn't get coordinate_x");
         }
-        if(!StringUtils.hasText(item.getCoordinateY())) {
+        if (!StringUtils.hasText(item.getCoordinateY())) {
             throw new ValidationException("Didn't get coordinate_y");
         }
-        if(!StringUtils.hasText(item.getPhone())) {
+        if (!StringUtils.hasText(item.getPhone())) {
             throw new ValidationException("Didn't get phone");
         }
-        if(!StringUtils.hasText(item.getWebsite())) {
+        if (!StringUtils.hasText(item.getWebsite())) {
             throw new ValidationException("Didn't get website");
         }
-        if(!StringUtils.hasText(item.getFacebook())) {
+        if (!StringUtils.hasText(item.getFacebook())) {
             throw new ValidationException("Didn't get facebook");
         }
-        if(!StringUtils.hasText(item.getInstagram())) {
+        if (!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("Didn't get instagram");
         }
     }
@@ -98,15 +98,11 @@ public class ItemService {
     }
 
     public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication) throws ValidationException {
-        List<String> roles = new ArrayList<>();
-
-        if (authentication.isPresent()) {
-            roles = authentication.get().getAuthorities().stream()
-                    .map(GrantedAuthority::getAuthority)
-                    .collect(Collectors.toList());
-        } else {
-            throw new ValidationException("User has no authorization.");
-        }
+        List<String> roles = authentication.map(Authentication::getAuthorities)
+                .map(grantedAuthorities -> grantedAuthorities
+                        .stream().map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new ValidationException("User has no authorization"));
 
         if (roles.contains("ROLE_SuperAdmin")) {
             return itemRepository.findAll().stream()
