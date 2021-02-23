@@ -13,9 +13,11 @@ import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.WebApplicationException;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 @Slf4j
@@ -51,6 +53,7 @@ public class KeycloakClientService {
             UserRepresentation user = listOfUsers.get(0);
             UserResource oneUser = resource.get(user.getId());
             log.info("Successfully retrieved user with id {}", user.getId());
+            //oneUser.executeActionsEmail(List.of("UPDATE_PASSWORD", "VERIFY_EMAIL"));
             oneUser.executeActionsEmail(List.of("VERIFY_EMAIL"));
         } catch (WebApplicationException e) {
             log.error("Error when sending verification email request: " + e.getMessage(), e);
@@ -72,12 +75,16 @@ public class KeycloakClientService {
 
     public boolean enableUser(String username) {
         UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
-        List<UserRepresentation> listOfUsers = resource.search(username);
-        if (listOfUsers.isEmpty()) return false;
-        UserRepresentation userToEnable = listOfUsers.get(0);
-        userToEnable.setEnabled(true);
-        resource.get(userToEnable.getId()).update(userToEnable);
-        return true;
+        return resource
+                .search(username)
+                .stream()
+                .findFirst()
+                .map(userToEnable ->  {
+                    userToEnable.setEnabled(true);
+                    resource.get(userToEnable.getId()).update(userToEnable);
+                    return userToEnable;
+                })
+                .isPresent();
     }
 
     public boolean deleteUser(String username) {
