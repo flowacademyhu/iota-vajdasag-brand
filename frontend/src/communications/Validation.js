@@ -15,10 +15,9 @@ const schema = (
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!?@#$%^&*_\-+()[\]{}></|"'.,:;]{8,}$/,
         passwordFailMessage
       ),
-    passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref('password')],
-      regPasswordMatch
-    ).required(required),
+    passwordConfirmation: Yup.string()
+      .oneOf([Yup.ref('password')], regPasswordMatch)
+      .required(required),
     entity: Yup.string(),
     taxNumber: Yup.string().when('entity', {
       is: 'legalPerson',
