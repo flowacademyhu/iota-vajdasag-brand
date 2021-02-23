@@ -56,7 +56,7 @@ const Main = () => {
                   <Logout />
                 </Route>
                 <Route path="/testComponents">
-                  <DeleteProductButton/>
+                  <DeleteProductButton />
                 </Route>
               </Switch>
             ) : (

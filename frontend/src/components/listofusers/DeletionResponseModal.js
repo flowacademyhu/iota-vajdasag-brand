@@ -2,7 +2,11 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
 
-const DeletionResponseModal = ({ setShowResponseModal, showResponseModal, title }) => {
+const DeletionResponseModal = ({
+  setShowResponseModal,
+  showResponseModal,
+  title,
+}) => {
   const { t } = useTranslation()
 
   return (
