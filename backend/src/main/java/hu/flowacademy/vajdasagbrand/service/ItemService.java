@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private static final String SUPERADMIN = "ROLE_SuperAdmin";
+    private static final String CEGADMIN = "ROLE_CegAdmin";
 
     public Item createItem(Item item) throws ValidationException {
         validateItemData(item);
@@ -104,13 +106,13 @@ public class ItemService {
                         .collect(Collectors.toList()))
                 .orElseThrow(() -> new ValidationException("User has no authorization"));
 
-        if (roles.contains("ROLE_SuperAdmin")) {
+        if (roles.contains(SUPERADMIN)) {
             return itemRepository.findAll().stream()
                     .map(this::createSuperAdminDTO).collect(Collectors.toList());
-        } else if (roles.contains("ROLE_CegAdmin")) {
+        } else if (roles.contains(CEGADMIN)) {
             return itemRepository.findAll().stream()
                     .map(this::createCegAdminDTO)
-                            .collect(Collectors.toList());
+                    .collect(Collectors.toList());
         } else {
             throw new ValidationException("User has no authorization.");
         }
