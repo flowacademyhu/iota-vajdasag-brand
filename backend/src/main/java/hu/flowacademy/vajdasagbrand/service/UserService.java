@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Type;
+import hu.flowacademy.vajdasagbrand.exception.GlobalExceptionHandler;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -92,7 +93,9 @@ public class UserService {
             sendApprovalEmail(registeredUser.getEmail());
             return true;
         }
-        return false;
+        else {
+            throw new ValidationException("Validation didn't succeed");
+        }
     }
 
     public void sendApprovalEmail(String email) {
