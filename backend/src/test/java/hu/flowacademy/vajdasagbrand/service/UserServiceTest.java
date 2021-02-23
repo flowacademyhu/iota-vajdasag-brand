@@ -1,10 +1,11 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.entity.Type;
-import hu.flowacademy.vajdasagbrand.entity.User;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Type;
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.repository.UserRepository;
+import hu.flowacademy.vajdasagbrand.repository.CommonUserRepository;
+import hu.flowacademy.vajdasagbrand.repository.UserRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,15 +18,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
-
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -45,7 +42,7 @@ public class UserServiceTest {
     private TestEntityManager entityManager;
 
     @Mock
-    private UserRepository userRepository;
+    private UserRepositoryImpl userRepository;
 
     @Mock
     private KeycloakClientService keycloakClientService;
@@ -57,8 +54,8 @@ public class UserServiceTest {
     public void givenUser_whenCreatingAccount_thenAccountCreatedSuccessfully() throws ValidationException {
         givenUserRepositorySavingUser();
         givenKeycloakClientServiceSavingUser();
-        User userData = givenAUserIndividual();
-        User userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
+        UserDTO userData = givenAUserIndividual();
+        UserDTO userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
         Mockito.verify(userRepository, times(1)).save(userData);
         Mockito.verifyNoMoreInteractions(userRepository);
         Mockito.verify(keycloakClientService, times(1)).createAccount(REGISTRATION_EMAIL, REGISTRATION_PASSWORD);
@@ -76,8 +73,8 @@ public class UserServiceTest {
     @Test
     public void givenUserCompany_whenCreatingAccount_thenAccountCreatedSuccessfully() throws ValidationException {
         givenUserRepositorySavingUser();
-        User userData = givenAUserCompany();
-        User userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
+        UserDTO userData = givenAUserCompany();
+        UserDTO userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
         Mockito.verify(userRepository, times(1)).save(userData);
 
         assertThat(userResult, notNullValue());
@@ -91,28 +88,28 @@ public class UserServiceTest {
 
     @Test
     public void givenUserMissingFullname_whenCreatingAccout_thenExceptionIsThrown() throws ValidationException {
-        User userData = givenUserMissingFullname();
+        UserDTO userData = givenUserMissingFullname();
 
         assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingEmail_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
-        User userData = givenUserMissingEmail();
+        UserDTO userData = givenUserMissingEmail();
 
         assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingAddress_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
-        User userData = givenUserMissingAddress();
+        UserDTO userData = givenUserMissingAddress();
 
         assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
 
     @Test
     public void givenUserMissingTaxNumberAtCompanyType_whenCreatingAccount_thenExceptionIsThrown() throws ValidationException {
-        User userData = givenUserMissingTaxNumberAtCompanyType();
+        UserDTO userData = givenUserMissingTaxNumberAtCompanyType();
 
         assertThrows(ValidationException.class, () -> service.userRegistrationData(userData, REGISTRATION_PASSWORD));
     }
@@ -120,7 +117,7 @@ public class UserServiceTest {
     @Test
     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
         givenUserRepositoryWhenCallingDelete();
-        User result = service.deleteById(REGISTRATION_ID);
+        UserDTO result = service.deleteById(REGISTRATION_ID);
         Mockito.verify(userRepository, times(1)).findById(REGISTRATION_ID);
         Mockito.verify(userRepository, times(1)).save(result);
         Mockito.verifyNoMoreInteractions(userRepository);
@@ -148,7 +145,7 @@ public class UserServiceTest {
     }
 
     private void givenUserRepositoryReturningUser() {
-        User user = givenAUserIndividual();
+        UserDTO user = givenAUserIndividual();
         when(userRepository.findById(anyString())).thenReturn(Optional.of(user));
     }
 
@@ -167,7 +164,7 @@ public class UserServiceTest {
         int pageNum = 0;
         int limit = 3;
         String orderBy = "registeredAt";
-        Page<User> result = userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
+        Page<UserDTO> result = userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
 
         assertThat(result, notNullValue());
     }
@@ -177,32 +174,32 @@ public class UserServiceTest {
     }
 
     private void givenUserRepositorySavingUser() {
-        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> {
-            User created = invocationOnMock.getArgument(0);
+        when(userRepository.save(any(UserDTO.class))).thenAnswer(invocationOnMock -> {
+            UserDTO created = invocationOnMock.getArgument(0);
             created.setId(REGISTRATION_ID);
             return created;
         });
     }
 
     private void givenUserRepositoryWhenCallingDelete() throws ValidationException {
-        User user = givenAUserIndividual();
+        UserDTO user = givenAUserIndividual();
         user.setId(REGISTRATION_ID);
         user.setEnabled(true);
         when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
-        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+        when(userRepository.save(any(UserDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
         when(keycloakClientService.deleteUser(user.getEmail())).thenReturn(true);
     }
 
     private void givenUserRepositoryFindByIdEnabledFalse() {
-        User user = givenAUserIndividual();
+        UserDTO user = givenAUserIndividual();
         user.setId(REGISTRATION_ID);
         when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
-        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+        when(userRepository.save(any(UserDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 
-    private User givenAUserIndividual() {
+    private UserDTO givenAUserIndividual() {
 
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setFullName(FULL_NAME);
         user.setAddress(NEW_ADDRESS);
         user.setEmail(REGISTRATION_EMAIL);
@@ -211,9 +208,9 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenAUserIndividualWithSetDeletedAt() {
+    private UserDTO givenAUserIndividualWithSetDeletedAt() {
 
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setFullName(FULL_NAME);
         user.setAddress(NEW_ADDRESS);
         user.setEmail(REGISTRATION_EMAIL);
@@ -224,9 +221,9 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenAUserCompany() {
+    private UserDTO givenAUserCompany() {
 
-        User user = new User();
+        UserDTO user = new UserDTO();
         user.setFullName(FULL_NAME);
         user.setAddress(NEW_ADDRESS);
         user.setEmail(REGISTRATION_EMAIL);
@@ -235,8 +232,8 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingFullname() {
-        User user = new User();
+    private UserDTO givenUserMissingFullname() {
+        UserDTO user = new UserDTO();
         user.setAddress(NEW_ADDRESS);
         user.setEmail(REGISTRATION_EMAIL);
         user.setTaxNumber(TAX_NUMBERCOMPANY);
@@ -244,8 +241,8 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingEmail() {
-        User user = new User();
+    private UserDTO givenUserMissingEmail() {
+        UserDTO user = new UserDTO();
         user.setAddress(NEW_ADDRESS);
         user.setFullName(FULL_NAME);
         user.setTaxNumber(TAX_NUMBERCOMPANY);
@@ -253,8 +250,8 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingAddress() {
-        User user = new User();
+    private UserDTO givenUserMissingAddress() {
+        UserDTO user = new UserDTO();
         user.setEmail(REGISTRATION_EMAIL);
         user.setFullName(FULL_NAME);
         user.setTaxNumber(TAX_NUMBERCOMPANY);
@@ -262,8 +259,8 @@ public class UserServiceTest {
         return user;
     }
 
-    private User givenUserMissingTaxNumberAtCompanyType() {
-        User user = new User();
+    private UserDTO givenUserMissingTaxNumberAtCompanyType() {
+        UserDTO user = new UserDTO();
         user.setEmail(REGISTRATION_EMAIL);
         user.setFullName(FULL_NAME);
         user.setTaxNumber(TAX_NUMBERINDIVIDUAL);
