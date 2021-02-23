@@ -1,32 +1,47 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import DeletionFailedModal from './DeletionFailedModal'
+import DeletionResponsedModal from './DeletionResponseModal'
 import { deleteUserRegistration } from '../../communications/userApi'
 import useUsers from '../useUsers'
 
 const DeleteModalButton = ({ userId }) => {
   const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
-  const [showFailureModal, setShowFailureModal] = useState(false)
+  const [showResponseModal, setShowResponseModal] = useState(false)
+  const [responseModalTitle, setResponseModalTitle] = useState("")
   const { fetchUsers } = useUsers()
   const { t } = useTranslation()
+
+  const confirmModalHandler = (session) => {
+    let output;
+    if (session) {
+        setResponseModalTitle(t('userListElement.successful'))
+    } else {
+        setResponseModalTitle(t('userListElement.unsuccessful'))
+    }
+    setShowResponseModal(true)
+    return output
+}
 
   const deleteUser = async () => {
     setShowConfirmDeletion(false)
     try {
       await deleteUserRegistration(userId)
+      confirmModalHandler(true)
       fetchUsers()
     } catch (error) {
-      setShowFailureModal(true)
+      setShowResponseModal(true)
+      confirmModalHandler(false)
     }
   }
 
   return (
     <>
-      <DeletionFailedModal
-        setShowFailureModal={setShowFailureModal}
-        showFailureModal={showFailureModal}
-      ></DeletionFailedModal>
+      <DeletionResponsedModal
+        setShowResponseModal={setShowResponseModal}
+        showResponseModal={showResponseModal}
+        title={responseModalTitle}
+      ></DeletionResponsedModal>
       <Button variant="danger" onClick={() => setShowConfirmDeletion(true)}>
         {t('userListElement.delete')}
       </Button>
