@@ -18,7 +18,7 @@ const schema = (
     passwordConfirmation: Yup.string().oneOf(
       [Yup.ref('password')],
       regPasswordMatch
-    ),
+    ).required(required),
     entity: Yup.string(),
     taxNumber: Yup.string().when('entity', {
       is: 'legalPerson',

@@ -1,4 +1,4 @@
-import api from './apiInstance'
-import MockAdapter from 'axios-mock-adapter'
+// import api from './apiInstance'
+// import MockAdapter from 'axios-mock-adapter'
 
-const mock = new MockAdapter(api)
+// const mock = new MockAdapter(api)
