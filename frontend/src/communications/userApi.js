@@ -1,11 +1,6 @@
 import api from './apiInstance'
 //import './mockForUserApi'
 
-api.interceptors.request.use((x) => {
-  console.log('header: ' + JSON.stringify(x.headers))
-  console.log('data: ' + JSON.stringify(x.data))
-  return x
-})
 export const getUsers = async () => {
   try {
     const response = await api.get('/getUsers')
