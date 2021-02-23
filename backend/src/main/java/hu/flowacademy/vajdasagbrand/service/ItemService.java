@@ -106,16 +106,23 @@ public class ItemService {
 
         if (roles.contains("ROLE_SuperAdmin")) {
             return itemRepository.findAll().stream()
-                    .map(item -> new SuperAdminItemDTO(item.getAddress(), item.getCity(),
-                            item.getCategory(), item.getName()))
-                    .collect(Collectors.toList());
+                    .map(this::createSuperAdminDTO).collect(Collectors.toList());
         } else if (roles.contains("ROLE_CegAdmin")) {
             return itemRepository.findAll().stream()
-                    .map(item -> new CegAdminItemDTO(item.getAddress(), item.getCity(),
-                            item.getCategory()))
-                    .collect(Collectors.toList());
+                    .map(this::createCegAdminDTO)
+                            .collect(Collectors.toList());
         } else {
             throw new ValidationException("User has no authorization.");
         }
+    }
+
+    public SuperAdminItemDTO createSuperAdminDTO(Item item) {
+        return new SuperAdminItemDTO(item.getAddress(), item.getCity(),
+                item.getCategory(), item.getName());
+    }
+
+    public CegAdminItemDTO createCegAdminDTO(Item item) {
+        return new CegAdminItemDTO(item.getAddress(), item.getCity(),
+                item.getCategory());
     }
 }
