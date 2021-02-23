@@ -7,6 +7,7 @@ import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.ItemRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -43,7 +44,7 @@ class ItemServiceTest {
     private static final String EMAIL = "kispista@email.com";
 
     @Mock
-    private CommonItemRepository itemRepository;
+    private ItemRepositoryImpl itemRepository;
 
     @InjectMocks
     private ItemService itemService;
