@@ -43,6 +43,7 @@ class ItemServiceTest {
     private static final String WEBSITE = "www.hotelglass.com";
     private static final String FACEBOOK = "www.facebook.com/hotelglass";
     private static final String INSTAGRAM = "www.instagram.com/hotelglass";
+    private static final String OWNER = "Something";
 
     @Mock
     private ItemRepository itemRepository;
@@ -315,7 +316,7 @@ class ItemServiceTest {
     }
 
     private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
-        return List.of(new SuperAdminItemDTO(ADDRESS, CITY, Category.ATTRACTION, NAME));
+        return List.of(new SuperAdminItemDTO(ADDRESS, CITY, Category.ATTRACTION, OWNER));
     }
 
     private List<CegAdminItemDTO> givenCegAdminItemDTO() {
