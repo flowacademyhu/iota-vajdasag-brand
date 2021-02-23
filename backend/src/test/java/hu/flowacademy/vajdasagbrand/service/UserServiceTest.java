@@ -25,8 +25,7 @@ import java.util.Optional;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -62,10 +61,10 @@ public class UserServiceTest {
         givenKeycloakClientServiceSavingUser();
         User userData = givenAUserIndividual();
         User userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
-        Mockito.verify(userRepository, times(1)).save(userData);
-        Mockito.verifyNoMoreInteractions(userRepository);
-        Mockito.verify(keycloakClientService, times(1)).createAccount(REGISTRATION_EMAIL, REGISTRATION_PASSWORD);
-        Mockito.verifyNoMoreInteractions(keycloakClientService);
+        verify(userRepository, times(1)).save(userData);
+        verifyNoMoreInteractions(userRepository);
+        verify(keycloakClientService, times(1)).createAccount(REGISTRATION_EMAIL, REGISTRATION_PASSWORD);
+        verifyNoMoreInteractions(keycloakClientService);
 
         assertThat(userResult, notNullValue());
         assertThat(userResult.getId(), is(REGISTRATION_ID));
@@ -81,7 +80,7 @@ public class UserServiceTest {
         givenUserRepositorySavingUser();
         User userData = givenAUserCompany();
         User userResult = service.userRegistrationData(userData, REGISTRATION_PASSWORD);
-        Mockito.verify(userRepository, times(1)).save(userData);
+        verify(userRepository, times(1)).save(userData);
 
         assertThat(userResult, notNullValue());
         assertThat(userResult.getId(), is(REGISTRATION_ID));
@@ -125,24 +124,24 @@ public class UserServiceTest {
         givenUserRepositoryAndKeycloakForEnableUser();
 
         boolean result = service.approveRegistration(REGISTRATION_ID);
-        assertThat(result, is(true));
-        Mockito.verify(userRepository,times(1)).findById(REGISTRATION_ID);
-        Mockito.verifyNoMoreInteractions(userRepository);
-        Mockito.verify(emailService, times(1)).sendMessage(eq(REGISTRATION_EMAIL), anyString(), anyString());
-        Mockito.verifyNoMoreInteractions(emailService);
-        Mockito.verify(keycloakClientService, times(1)).enableUser(REGISTRATION_EMAIL);
-        Mockito.verify(keycloakClientService, times(1)).sendVerificationEmail(REGISTRATION_EMAIL);
-        Mockito.verifyNoMoreInteractions(keycloakClientService);
+        assertTrue(result);
+        verify(userRepository,times(1)).findById(REGISTRATION_ID);
+        verifyNoMoreInteractions(userRepository);
+        verify(emailService, times(1)).sendMessage(eq(REGISTRATION_EMAIL), anyString(), anyString());
+        verifyNoMoreInteractions(emailService);
+        verify(keycloakClientService, times(1)).enableUser(REGISTRATION_EMAIL);
+        verify(keycloakClientService, times(1)).sendVerificationEmail(REGISTRATION_EMAIL);
+        verifyNoMoreInteractions(keycloakClientService);
     }
 
     @Test
      public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
         givenUserRepositoryWhenCallingDelete();
         User result = service.deleteById(REGISTRATION_ID);
-        Mockito.verify(userRepository, times(1)).findById(REGISTRATION_ID);
-        Mockito.verify(userRepository, times(1)).save(result);
-        Mockito.verifyNoMoreInteractions(userRepository);
-        Mockito.verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
+        verify(userRepository, times(1)).findById(REGISTRATION_ID);
+        verify(userRepository, times(1)).save(result);
+        verifyNoMoreInteractions(userRepository);
+        verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
         assertThat(result, notNullValue());
         assertThat(result.isEnabled(), is(false));
         assertThat(result.getDeletedAt(), is(LocalDateTime.now().withNano(0)));
@@ -179,7 +178,7 @@ public class UserServiceTest {
     @Test
     void givenThreeUsers_whenCallingFindAll_thenDataCommes() {
         Page tasks = mock(Page.class);
-        Mockito.when(this.userRepository.findAll(org.mockito.Matchers.isA(Pageable.class))).thenReturn(tasks);
+        when(this.userRepository.findAll(org.mockito.Matchers.isA(Pageable.class))).thenReturn(tasks);
         int pageNum = 0;
         int limit = 3;
         String orderBy = "registeredAt";
