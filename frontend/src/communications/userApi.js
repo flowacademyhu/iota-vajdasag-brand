@@ -15,7 +15,6 @@ export const login = (value) => {
 }
 
 export const signUp = async (value, type) => {
-  console.log('reg')
   return await api.post('/registration', {
     full_name: value.name,
     tax_number: value.taxNumber,

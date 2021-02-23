@@ -32,9 +32,7 @@ const Login = () => {
 
   async function handleSubmit(value) {
     try {
-      console.log('login a hívás előtt')
       const response = await login(value)
-      console.log('login a hívás után')
       handleResponse(response)
     } catch (error) {
       setIsSignInAccepted(false)
