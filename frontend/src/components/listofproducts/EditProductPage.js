@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
@@ -6,26 +6,32 @@ import InputField from '../InputField'
 import SelectCategory from './SelectCategory'
 import validationEdit from '../../communications/validationEdit'
 import { updateProductData } from '../../communications/userApi'
+import ResponseModal from '../modals/ResponseModal'
 
 const EditProductPage = () => {
+  const [showResponseModal, setShowResponseModal] = useState(false)
+  const [responseModalTitle, setResponseModalTitle] = useState('')
   const { t } = useTranslation()
 
   const handleSubmit = async (value) => {
     try {
       await updateProductData(value)
+      setResponseModalTitle(t('editProduct.successfulEdition'))
     } catch (error) {
       console.log(error)
+      setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
     }
+    setShowResponseModal(true)
   }
 
   return (
     <div className="m-5">
       <Formik
         initialValues={{
-        //   id: '82efc7bc-547e-4800-b4b2-68b742bdd33e',
-        //   name: 'Bubuka',
-        //   score: 2,
-        //   bio: 'Konditorei',
+          //   id: '82efc7bc-547e-4800-b4b2-68b742bdd33e',
+          //   name: 'Bubuka',
+          //   score: 2,
+          //   bio: 'Konditorei',
           address: '',
           city: '',
           category: '',
@@ -117,12 +123,17 @@ const EditProductPage = () => {
                 type="text"
               ></InputField>
             </div>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" size="lg">
               {t('editProduct.save')}
             </Button>
           </div>
         </Form>
       </Formik>
+      <ResponseModal
+        setShowResponseModal={setShowResponseModal}
+        showResponseModal={showResponseModal}
+        title={responseModalTitle}
+      />
     </div>
   )
 }
