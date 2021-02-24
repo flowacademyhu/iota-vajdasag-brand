@@ -83,6 +83,7 @@ public class ItemService {
         tempItem.setBio(item.getBio());
         tempItem.setScore(item.getScore());
         tempItem.setAddress(item.getAddress());
+        tempItem.setContact(item.getContact());
         tempItem.setCity(item.getCity());
         tempItem.setCategory(item.getCategory());
         tempItem.setCoordinateX(item.getCoordinateX());
