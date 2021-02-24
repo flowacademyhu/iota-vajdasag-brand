@@ -1,22 +1,14 @@
 {
-  "userListHeader": {
-    "acceptedRegistration": "Accepted registration",
-    "dateOfRegistration": "Date of registration",
-    "email": "Email",
-    "name": "Name",
-    "actions": "Actions"
+  "menu": {
+    "signout": "Logout",
+    "events": "Events",
+    "products": "Products",
+    "users": "Users"
   },
-  "userListElement": {
-    "close": "Close",
-    "approveRegistration": "Approve registration",
-    "no": "No",
-    "yes": "Yes",
-    "unsuccessful": "Unsuccessful deletion.",
-    "delete": "Delete registration",
-    "confirmDelete": "Are you sure you want to delete the user?",
-    "confirmDeleteTitle": "Confirm deletion"
-  },
-  "searchbar": {
+  "companyAdmin": {
+    "edit": "Edit",
+    "newProduct": "New product",
+    "remove": "Remove",
     "search": "Search"
   },
   "login": {
@@ -30,67 +22,56 @@
     "password": "Password",
     "title": "Login"
   },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
+  },
   "registration": {
-    "title": "Registration",
+    "address": "Address/Company seat",
+    "agreement": "I accept the",
+    "alreadyRegistered": "Already registered?",
+    "and": " and the ",
+    "buttontext": "Registration",
+    "email": "E-mail",
     "fullName": "Name",
-    "privatePerson": "Private person",
+    "invalidemail": "Email address is not valid",
     "legalPerson": "Legal person",
-    "taxNumber": "Tax number",
+    "linkAszf": " GTC",
+    "linkadat": " data management principles",
+    "modalBodyError": "Registration failed!",
+    "modalBodyOK": "Successful registration, please check your e-mail!",
+    "modalButton": "OK",
     "password": "Password",
     "passwordConfirmation": "Password again",
-    "email": "E-mail",
-    "buttontext": "Registration",
-    "alreadyRegistered": "Already registered?",
-    "agreement": "I accept the",
-    "linkAszf": " GTC",
-    "and": " and the ",
-    "linkadat": " data management principles",
-    "address": "Address/Company seat",
-    "invalidemail": "Email address is not valid",
     "passwordFailMessage": "Incorrect password! Please enter a password that matches the following: at least 8 characters; at least one uppercase and one lowercase letter; at least one number; cannot contain spaces; valid other characters: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
-    "required": "Required field!",
     "passwordMatch": "The passwords don't match",
-    "modalBodyOK": "Successful registration, please check your e-mail!",
-    "modalBodyError": "Registration failed!",
-    "modalButton": "OK"
+    "privatePerson": "Private person",
+    "required": "Required field!",
+    "taxNumber": "Tax number",
+    "title": "Registration"
   },
-  "companyAdmin": {
-    "newProduct": "New product",
-    "edit": "Edit",
-    "remove": "Remove",
+  "searchbar": {
     "search": "Search"
   },
-  "superAdmin": {
-    "createNewUser": "Create a new user",
-    "name": "Name",
-    "active": "Active",
-    "inactive": "Inactive",
+  "userListElement": {
+    "approveRegistration": "Approve registration",
+    "close": "Close",
+    "confirmDelete": "Are you sure you want to delete the user?",
+    "confirmDeleteTitle": "Confirm deletion",
+    "delete": "Delete registration",
+    "no": "No",
+    "successful": "Successful deletion.",
+    "unsuccessful": "Unsuccessful deletion.",
+    "yes": "Yes"
+  },
+  "userListHeader": {
+    "acceptedRegistration": "Accepted registration",
+    "actions": "Actions",
     "dateOfRegistration": "Date of registration",
-    "editBasicData": "Edit basic data",
-    "editProducts": "Edit products",
-    "search": "Search"
+    "email": "Email",
+    "name": "Name"
   },
-  "datasheet": {
-    "description": "Description",
-    "events": "Events",
-    "address": "Address",
-    "city": "City",
-    "street": "Street",
-    "coordinates": "Coordinates ",
-    "contactPerson": "Contact person",
-    "phone": "Phone",
-    "website": "Website",
-    "facebook": "Facebook",
-    "instagram": "Instagram",
-    "gallery": "Gallery"
-  },
-  "forgotPW": {
-    "newPassword": "New password"
-  },
-  "menu": {
-    "users": "Users",
-    "products": "Products",
-    "events": "Events",
-    "signout": "Sign out"
-  }
+  "welcome": "welcome"
 }
