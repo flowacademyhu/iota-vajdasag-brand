@@ -65,9 +65,16 @@ public class UserController {
     }
 
     @RolesAllowed("SuperAdmin")
-    @GetMapping("/getUsers")
-    public Page<User> getUsers(Authentication authentication,
-                               @RequestParam(value = "order_by", required = false) Optional<String> orderBy,
+    @PutMapping("/users/{id}/approval")
+    public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
+        log.info("Incoming registration request with the id: {}", userId);
+        userService.approveRegistration(userId);
+        log.debug("The requested user id is: {}", userId);
+    }
+
+    @RolesAllowed("SuperAdmin")
+    @GetMapping("/users")
+    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
                                @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
                                @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
 
