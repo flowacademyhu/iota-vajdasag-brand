@@ -40,6 +40,13 @@ export const deleteUserRegistration = async (userId) => {
   }
 }
 
+export const deleteProduct = async (id) => {
+  const response = await api.delete(`/products/${id}`)
+  if (response.status !== 200) {
+    throw new Error('The deletion was unsuccessful.')
+  }
+}
+
 export const updateProductData = async (value) => {
   const response = await api.put("/items/c0d7a883-926a-4623-9ee3-706b895a2d5e", value)
   if (response.status !== 200) {
