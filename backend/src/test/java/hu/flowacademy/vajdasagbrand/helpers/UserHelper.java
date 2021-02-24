@@ -1,6 +1,5 @@
 package hu.flowacademy.vajdasagbrand.helpers;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.Role;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
