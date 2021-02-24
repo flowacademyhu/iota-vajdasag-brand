@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import InputField from '../InputField'
 import SelectCategory from './SelectCategory'
 import validationEdit from '../../communications/validationEdit'
@@ -12,16 +13,18 @@ const EditProductPage = () => {
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
   const { t } = useTranslation()
+  let history = useHistory()
 
   const handleSubmit = async (value) => {
     try {
       await updateProductData(value)
       setResponseModalTitle(t('editProduct.successfulEdition'))
+      setShowResponseModal(true)
     } catch (error) {
-      console.log(error)
       setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
+      setShowResponseModal(true)
+      history.push('/super-admin/events')
     }
-    setShowResponseModal(true)
   }
 
   return (
@@ -55,7 +58,7 @@ const EditProductPage = () => {
                 id="address"
                 placeholder={t('editProduct.address')}
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <InputField
@@ -64,7 +67,7 @@ const EditProductPage = () => {
                 id="city"
                 placeholder={t('editProduct.city')}
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <SelectCategory />
@@ -76,7 +79,7 @@ const EditProductPage = () => {
                 id="coordinateX"
                 placeholder={t('editProduct.coordinateX')}
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <InputField
@@ -85,7 +88,7 @@ const EditProductPage = () => {
                 id="coordinateY"
                 placeholder={t('editProduct.coordinateY')}
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <InputField
@@ -94,7 +97,7 @@ const EditProductPage = () => {
                 id="phone"
                 placeholder={t('editProduct.phone')}
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <InputField
@@ -103,7 +106,7 @@ const EditProductPage = () => {
                 id="website"
                 placeholder={t('editProduct.website')}
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <InputField
@@ -112,7 +115,7 @@ const EditProductPage = () => {
                 id="facebook"
                 placeholder="Facebook"
                 type="text"
-              ></InputField>
+              />
             </div>
             <div className="my-2">
               <InputField
@@ -121,7 +124,7 @@ const EditProductPage = () => {
                 id="instagram"
                 placeholder="Instagram"
                 type="text"
-              ></InputField>
+              />
             </div>
             <Button variant="primary" type="submit" size="lg">
               {t('editProduct.save')}
