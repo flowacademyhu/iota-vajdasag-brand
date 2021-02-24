@@ -4,19 +4,28 @@ import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
 import InputField from '../InputField'
 import SelectCategory from './SelectCategory'
-import validationEdit from "../../communications/validationEdit"
+import validationEdit from '../../communications/validationEdit'
+import { updateProductData } from '../../communications/userApi'
 
 const EditProductPage = () => {
   const { t } = useTranslation()
 
-  const handleSubmit = (value) => {
-    console.log('value', value)
+  const handleSubmit = async (value) => {
+    try {
+      await updateProductData(value)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <div className="m-5">
       <Formik
         initialValues={{
+        //   id: '82efc7bc-547e-4800-b4b2-68b742bdd33e',
+        //   name: 'Bubuka',
+        //   score: 2,
+        //   bio: 'Konditorei',
           address: '',
           city: '',
           category: '',
