@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
+
     @JsonProperty("full_name")
     private String fullName;
     @JsonProperty("tax_number")
