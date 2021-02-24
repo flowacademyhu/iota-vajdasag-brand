@@ -15,4 +15,3 @@ const mock = new MockAdapter(api)
 mock.onPut(`/users/2/approval`).reply(200)
 mock.onDelete('/users/1').reply(200)
 mock.onDelete('/users/3').reply(201)
-
