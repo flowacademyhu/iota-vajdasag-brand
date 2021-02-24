@@ -14,14 +14,10 @@ export const login = (value) => {
   return api.post('/login', value)
 }
 
-<<<<<<< HEAD
 export const forgetpassword = (value) => {
   return api.post('/forgetpassword', value)
 }
 
-export const signUp = async (value) => {
-  return await api.post('/registration')
-=======
 export const signUp = async (value, type) => {
   return await api.post('/registration', {
     full_name: value.name,
@@ -31,7 +27,6 @@ export const signUp = async (value, type) => {
     type: type,
     password: value.password,
   })
->>>>>>> master
 }
 
 export const sendApproval = async (userId) => {
