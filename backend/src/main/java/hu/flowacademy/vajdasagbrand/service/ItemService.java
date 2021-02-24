@@ -43,7 +43,7 @@ public class ItemService {
         if(!StringUtils.hasText(item.getBio())){
             throw new ValidationException("Didn't get bio");
         }
-        if(item.getScore() == 0 || item.getScore() > 100) {
+        if(item.getScore() < 0) {
             throw new ValidationException("Impossible value");
         }
         if(!StringUtils.hasText(item.getAddress())){

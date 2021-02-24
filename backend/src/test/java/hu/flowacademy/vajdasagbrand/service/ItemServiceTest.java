@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 import static org.hamcrest.CoreMatchers.is;
@@ -28,6 +27,7 @@ class ItemServiceTest {
     private static final String BIO = "Something useful thing";
     private static final int SCORE = 50;
     private static final int SCOREUPDATE = -50;
+    private static final String CONTACT = "Contact name";
     private static final String ADDRESS = "6771 Szeged, Makai út 5.";
     private static final String CITY = "Szeged";
     private static final String COORDINATE_X = "21353.35146";
@@ -47,30 +47,31 @@ class ItemServiceTest {
     public void givenItem_whenCreatingItem_thenCreatedSuccessfully() throws ValidationException {
         givenItemRepositorySavingItem();
         Item itemData = givenItem();
-        Item itemResult = itemService.createItem(itemData);
+        itemService.createItem(itemData);
         verify(itemRepository, times(1)).save(itemData);
         verifyNoMoreInteractions(itemRepository);
     }
 
     @Test
-    public void givenNewWorksheetObject_whenUpdateWorksheet_thenWorksheetUpdated() throws ValidationException {
+    public void givenNewItemObject_whenUpdateItem_thenItemUpdated() throws ValidationException {
         givenExistingItemWhenUpdate();
         Item item = givenItemWithId();
-        Item updatedWorksheet = itemService.updateItem(item, REGISTRATION_ID);
-        verify(itemRepository, times(1)).save(updatedWorksheet);
-        assertThat(updatedWorksheet, notNullValue());
-        assertThat(updatedWorksheet.getId(), is(item.getId()));
-        assertThat(updatedWorksheet.getName(), is(item.getName()));
-        assertThat(updatedWorksheet.getBio(), is(item.getBio()));
-        assertThat(updatedWorksheet.getScore(), is(item.getScore()));
-        assertThat(updatedWorksheet.getAddress(), is(item.getAddress()));
-        assertThat(updatedWorksheet.getCity(), is(item.getCity()));
-        assertThat(updatedWorksheet.getCategory(), is(item.getCategory()));
-        assertThat(updatedWorksheet.getCoordinateX(), is(item.getCoordinateX()));
-        assertThat(updatedWorksheet.getCoordinateY(), is(item.getCoordinateY()));
-        assertThat(updatedWorksheet.getPhone(), is(item.getPhone()));
-        assertThat(updatedWorksheet.getFacebook(), is(item.getFacebook()));
-        assertThat(updatedWorksheet.getInstagram(), is(item.getInstagram()));
+        Item updatedItem = itemService.updateItem(item, REGISTRATION_ID);
+        verify(itemRepository, times(1)).save(updatedItem);
+        assertThat(updatedItem, notNullValue());
+        assertThat(updatedItem.getId(), is(item.getId()));
+        assertThat(updatedItem.getName(), is(item.getName()));
+        assertThat(updatedItem.getBio(), is(item.getBio()));
+        assertThat(updatedItem.getScore(), is(item.getScore()));
+        assertThat(updatedItem.getAddress(), is(item.getAddress()));
+        assertThat(updatedItem.getContact(), is(item.getContact()));
+        assertThat(updatedItem.getCity(), is(item.getCity()));
+        assertThat(updatedItem.getCategory(), is(item.getCategory()));
+        assertThat(updatedItem.getCoordinateX(), is(item.getCoordinateX()));
+        assertThat(updatedItem.getCoordinateY(), is(item.getCoordinateY()));
+        assertThat(updatedItem.getPhone(), is(item.getPhone()));
+        assertThat(updatedItem.getFacebook(), is(item.getFacebook()));
+        assertThat(updatedItem.getInstagram(), is(item.getInstagram()));
         verifyNoMoreInteractions(itemRepository);
     }
 
@@ -138,7 +139,7 @@ class ItemServiceTest {
     }
 
     @Test
-    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() throws ValidationException {
+    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() {
         Item itemData = givenItemMissingWebsite();
 
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
@@ -261,6 +262,13 @@ class ItemServiceTest {
         assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
     }
 
+    @Test
+    public void givenItemMissingContact_whenUpdatingItem_thenExceptionIsThrown() {
+        Item itemData = givenItemMissingContact();
+
+        assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
     private void givenItemRepositorySavingItem() {
         when(itemRepository.save(any(Item.class))).thenAnswer(invocationOnMock -> {
             Item created = invocationOnMock.getArgument(0);
@@ -283,6 +291,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -303,6 +312,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -320,6 +330,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -336,6 +347,8 @@ class ItemServiceTest {
         item.setName(NAME);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
+        item.setScore(SCOREUPDATE);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -353,6 +366,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setAddress(ADDRESS);
         item.setCity(CITY);
+        item.setContact(CONTACT);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
@@ -369,6 +383,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setCity(CITY);
+        item.setContact(CONTACT);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
@@ -385,6 +400,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
@@ -401,6 +417,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
@@ -417,6 +434,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateY(COORDINATE_Y);
@@ -433,6 +451,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -449,6 +468,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -465,6 +485,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -481,6 +502,7 @@ class ItemServiceTest {
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
         item.setCategory(Category.ATTRACTION);
         item.setCoordinateX(COORDINATE_X);
@@ -492,6 +514,23 @@ class ItemServiceTest {
     }
 
     private Item givenItemMissingInstagram() {
+        Item item = new Item();
+        item.setName(NAME);
+        item.setScore(SCORE);
+        item.setBio(BIO);
+        item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
+        item.setCity(CITY);
+        item.setCategory(Category.ATTRACTION);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
+        item.setPhone(PHONE);
+        item.setWebsite(WEBSITE);
+        item.setFacebook(FACEBOOK);
+        return item;
+    }
+
+    private Item givenItemMissingContact() {
         Item item = new Item();
         item.setName(NAME);
         item.setScore(SCORE);

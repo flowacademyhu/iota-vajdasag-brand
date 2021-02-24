@@ -27,6 +27,7 @@ public class Item {
     @Lob
     private String bio;
     private String address;
+    private String contact;
     private String city;
     @Enumerated(EnumType.STRING)
     private Category category;

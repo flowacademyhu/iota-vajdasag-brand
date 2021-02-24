@@ -15,6 +15,7 @@ public class ItemDTO {
     private int score;
     private String bio;
     private String address;
+    private String contact;
     private String city;
     private String email;
     private Category category;
