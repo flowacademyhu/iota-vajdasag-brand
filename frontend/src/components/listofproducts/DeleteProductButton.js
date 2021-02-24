@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next/'
 import DeletionResponseModal from '../modals/DeletionResponseModal'
 import { deleteProduct } from '../../communications/userApi'
 
-const DeleteModalButton = ({ productId }) => {
+const DeleteProductButton = ({ productId }) => {
   const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
@@ -66,4 +66,4 @@ const DeleteModalButton = ({ productId }) => {
   )
 }
 
-export default DeleteModalButton
+export default DeleteProductButton
