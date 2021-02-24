@@ -1,5 +1,6 @@
 package hu.flowacademy.vajdasagbrand.controller;
 
+import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
@@ -7,10 +8,13 @@ import hu.flowacademy.vajdasagbrand.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -40,5 +44,11 @@ public class ItemController {
     public Item updateItem(@PathVariable("id") String id,
                            @RequestBody Item item) throws ValidationException {
         return itemService.updateItem(item, id);
+    }
+
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @GetMapping("/products")
+    public List<CegAdminItemDTO> getProducts(Authentication authentication) throws ValidationException {
+        return itemService.listProducts(Optional.ofNullable(authentication));
     }
 }
