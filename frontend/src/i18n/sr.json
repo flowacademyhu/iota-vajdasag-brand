@@ -10,7 +10,7 @@
     "buttontext": "Promenite lozinku",
     "noserver": "Server greška, vratite se kasnije",
     "title": "Promena lozinke",
-    "nouser":"Korisnik nije pronađen"
+    "nouser": "Korisnik nije pronađen"
   },
   "login": {
     "buttontext": "Prijavite se",
@@ -22,8 +22,7 @@
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
     "title": "Prijava",
-    "forgetpassword":"Zaboravljena lozinka"
-
+    "forgetpassword": "Zaboravljena lozinka"
   },
   "registration": {
     "address": "Adresa/Sedište",

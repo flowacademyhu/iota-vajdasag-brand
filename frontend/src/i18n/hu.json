@@ -10,7 +10,7 @@
     "buttontext": "Jelszó megváltoztatása",
     "noserver": "Szerver hiba, kérjük jöjjön vissza később",
     "title": "Jelszó megváltoztatása",
-    "nouser":"A felhasználó nem található"
+    "nouser": "A felhasználó nem található"
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -22,7 +22,7 @@
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
     "title": "Belépés",
-    "forgetpassword":"Elfelejtett jelszó"
+    "forgetpassword": "Elfelejtett jelszó"
   },
   "registration": {
     "address": "Lakcím/Székhely",
