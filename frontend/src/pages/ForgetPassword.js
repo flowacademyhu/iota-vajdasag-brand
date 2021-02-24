@@ -1,39 +1,92 @@
-import React, { useState } from 'react';
+import * as Yup from 'yup'
+import React, { useState } from 'react'
+import { Formik, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { string } from "yup";
 import { Button } from 'react-bootstrap'
+import InputField from '../components/InputField'
+import { forgetpassword } from '../communications/userApi'
+
+
+
+
+const ForgetPasswordSchema = (invalidEmail, noEmail) =>
+    Yup.object().shape({
+        email: Yup.string().email(invalidEmail).required(noEmail)
+    })
+
 
 
 
 const ForgetPassword = () => {
+    const [error, setError] = useState()
+    const [isAccepted, setIsAccepted] = useState(false)
     const { t } = useTranslation()
-    const [email, setEmail] = useState("");
-    const [valid, setValid] = useState();
 
-    const handleSubmit = () => {
-        setValid(
-            string()
-                .email()
-                .isValidSync(email)
-        );
-        if (valid) {
-            console.log(email)
+    const handleSubmit = async (value) => {
+        console.log(value)
+        try {
+            await forgetpassword(value)
+            setIsAccepted(true)
+            
+            console.log(isAccepted)
+        } catch (e) {
+            if (e.response.status === 400) setError("no user")
+            if(e.response.status === 404 || e.response.status === 500) setError("no server")
+            console.log(e)
         }
     }
 
-    const handleChange = e => {
-        const value = e.currentTarget.value;
-        setEmail(value);
-    };
+    const MyForm = ({ email, title, invalidemail, noEmail, buttontext }) => (
+        <Formik
+            initialValues={{
+                email: '',
+            }}
+            onSubmit={handleSubmit}
+            validationSchema={ForgetPasswordSchema(
+                invalidemail,
+                noEmail
+            )}
+        >
+            <Form>
+                <h3 className="text-center">{title}</h3>
+                <div className="my-3">
+                    <InputField
+                        label={email}
+                        name="email"
+                        id="email"
+                        placeholder={email}
+                        type="email"
+                    ></InputField>
+                </div>
+                <div className="text-center">
+                <Button variant="primary" type="submit">
+                    {buttontext}
+                </Button>
+                </div>
+            </Form>
+        </Formik>
+    )
+
+    const Page = () => {
+        if (isAccepted) {
+            return <h1 className="text-center">{t("forgetpassword.accepted")}</h1>
+        } else if (!isAccepted && error) {
+            if (error === "no user") {
+                return <h1 className="text-center">{t('forgetpassword.nouser')}</h1>
+            } else {
+                return <h1 className="text-center">{t('forgetpassword.noserver')}</h1>
+            }
+        }
+        else {
+            return <MyForm title={t('forgetpassword.title')} email={t('login.email')} invalidemail={t('login.invalidemail')} noEmail={t('login.noEmail')} buttontext={t('forgetpassword.buttontext')} />
+        }
+    }
 
     return (
-        <>
-            <input type="text" value={email} onChange={handleChange} />
-            <h1>{valid ? "is email" : "is not email"}</h1>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
-                {t('login.buttontext')}
-            </Button>
-        </>
+        <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
+            <Page />
+        </div>
+
     );
 }
 
