@@ -387,11 +387,11 @@
   "users" : [ {
     "id" : "34f79041-5e38-49d7-83ba-4fadaca1dd3c",
     "createdTimestamp" : 1613407073550,
-    "username" : "barbi@gmail.com",
+    "username" : "superadmin@gmail.com",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "barbi@gmail.com",
+    "email" : "superadmin@gmail.com",
     "credentials" : [ {
       "id" : "692d0271-2fe8-4c22-ae62-5bf70e70ff79",
       "type" : "password",
@@ -401,7 +401,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser" ],
+    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser", "realmadmin" ],
     "clientRoles" : {
       "account" : [ "view-profile", "manage-account" ]
     },
