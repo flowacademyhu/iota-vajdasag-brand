@@ -106,9 +106,5 @@ public class UserService {
         return userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
     }
 
-    public Optional<UserDTO> findByEmail(String email) {
-        return userRepository.findFirstByEmail(email);
-    }
-
 }
 
