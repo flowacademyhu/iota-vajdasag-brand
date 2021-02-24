@@ -13,14 +13,12 @@ const DeleteModalButton = ({ userId }) => {
   const { t } = useTranslation()
 
   const confirmModalHandler = (session) => {
-    let output
     if (session) {
       setResponseModalTitle(t('userListElement.successful'))
     } else {
       setResponseModalTitle(t('userListElement.unsuccessful'))
     }
     setShowResponseModal(true)
-    return output
   }
 
   const deleteUser = async () => {
