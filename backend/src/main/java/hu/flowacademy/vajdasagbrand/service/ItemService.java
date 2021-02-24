@@ -49,6 +49,9 @@ public class ItemService {
         if(!StringUtils.hasText(item.getAddress())){
             throw new ValidationException("Didn't get address");
         }
+        if(!StringUtils.hasText(item.getContact())){
+            throw new ValidationException("Didn't get address");
+        }
         if(!StringUtils.hasText(item.getCity())){
             throw new ValidationException("Didn't get city");
         }
