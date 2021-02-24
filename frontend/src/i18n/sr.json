@@ -1,18 +1,15 @@
 {
-  "userListHeader": {
-    "acceptedRegistration": "Prihvaćena registracija",
-    "dateOfRegistration": "Datum registracije",
-    "email": "Email",
-    "name": "Ime",
-    "actions": "Mogućnosti"
+  "menu": {
+    "users": "Korisnici",
+    "products": "Proizvodi",
+    "events": "Događaji",
+    "signout": "Odjava"
   },
-  "userListElement": {
-    "approveRegistration": "Approve registration",
-    "no": "Ne",
-    "yes": "Da"
-  },
-  "searchbar": {
-    "search": "Pretraga"
+  "companyAdmin": {
+    "edit": "Edit",
+    "newProduct": "New product",
+    "remove": "Remove",
+    "search": "Search"
   },
   "login": {
     "buttontext": "Prijavite se",
@@ -23,72 +20,58 @@
     "invalidemail": "Pogrešna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
-    "passwordPH": "Morate uneti lozinku",
     "title": "Prijava"
   },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
+  },
   "registration": {
-    "title": "Registracija",
+    "address": "Adresa/Sedište",
+    "agreement": "Prihvatam",
+    "alreadyRegistered": "Dali ste već registrovani?",
+    "and": "  i",
+    "buttontext": "Registracija",
+    "email": "E-mail adresa",
     "fullName": "Ime i prezime",
-    "privatePerson": "Fizičko lice",
+    "invalidemail": "E-mail adresa nije odgovarajuća",
     "legalPerson": "Pravno lice",
-    "taxNumber": "Poreski broj",
+    "linkAszf": "  Opšte uslove ugovora",
+    "linkadat": " osnovne principe upravljanja podacima",
+    "modalBodyError": "Neuspešna regisztracija!",
+    "modalBodyOK": "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",
+    "modalButton": "OK",
     "password": "Lozinka",
     "passwordConfirmation": "Lozinka ponovo",
-    "email": "E-mail adresa",
-    "buttontext": "Registracija",
-    "alreadyRegistered": "Dali ste već registrovani?",
-    "agreement": "Prihvatam",
-    "linkAszf": "  Opšte uslove ugovora",
-    "and": "  i",
-    "linkadat": " osnovne principe upravljanja podacima",
-    "address": "Adresa/Sedište",
-    "invalidemail": "E-mail adresa nije odgovarajuća",
     "passwordFailMessage": "Pogrešna lozinka. Molimo, da formirate takvu lozinku, koja sadrži: najmanje 8 karaktera; najmanje jedno veliko i jedno malo slovo; najmanje jedan broj; razmak ne može da sadrži; važeći drugi karakteri: ~ ! ? @ # $ % ^ & * _ - + ( ) [ ] { } > < / \\ | \" ' . , : ;",
-    "required": "Popunjavanje polja je obavezno!",
     "passwordMatch": "",
-    "modalBodyOK": "Uspešna registracija! Molim Vas pogledajte dolazne pošte!",
-    "modalBodyError": "Neuspešna regisztracija!",
-    "modalButton": "OK"
+    "privatePerson": "Fizičko lice",
+    "required": "Popunjavanje polja je obavezno!",
+    "taxNumber": "Poreski broj",
+    "title": "Registracija"
   },
-  "companyAdmin": {
-    "newProduct": "New product",
-    "edit": "Edit",
-    "remove": "Remove",
-    "search": "Search"
+  "searchbar": {
+    "search": "Pretraga"
   },
-  "superAdmin": {
-    "createNewUser": "Create a new user",
-    "name": "Name",
-    "active": "Active",
-    "inactive": "Inactive",
-    "dateOfRegistration": "Date of registration",
-    "editBasicData": "Edit basic data",
-    "editProducts": "Edit products",
-    "delete": "Delete",
-    "confirmDelete": "Confirm delete?",
-    "search": "Search"
+  "userListElement": {
+    "approveRegistration": "Potvrda registracije",
+    "close": "Zatvori",
+    "confirmDelete": "Sigurno želite brisanje?",
+    "confirmDeleteTitle": "Brisanje naloga",
+    "delete": "Brisanje registracije",
+    "no": "Ne",
+    "successful": "Uspešno brisanje",
+    "unsuccessful": "Neuspešno brisanje",
+    "yes": "Da"
   },
-  "datasheet": {
-    "description": "Description",
-    "events": "Events",
-    "address": "Address",
-    "city": "City",
-    "street": "Street",
-    "coordinates": "Coordinates ",
-    "contactPerson": "Contact person",
-    "phone": "Phone",
-    "website": "Website",
-    "facebook": "Facebook",
-    "instagram": "Instagram",
-    "gallery": "Gallery"
+  "userListHeader": {
+    "acceptedRegistration": "Prihvaćena registracija",
+    "actions": "Mogućnosti",
+    "dateOfRegistration": "Datum registracije",
+    "email": "Email",
+    "name": "Ime"
   },
-  "forgotPW": {
-    "newPassword": "New password"
-  },
-  "menu": {
-    "users": "Korisnici",
-    "products": "Proizvodi",
-    "events": "Događaji",
-    "signout": "Odjava"
-  }
+  "welcome": "welcome"
 }
