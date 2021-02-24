@@ -50,7 +50,7 @@ public class KeycloakClientService {
                     .search(username)
                     .stream()
                     .findFirst()
-                    .map(oneUser ->  {
+                    .map(oneUser -> {
                         resource.get(oneUser.getId()).executeActionsEmail(List.of("VERIFY_EMAIL"));
                         return oneUser;
                     })
@@ -77,7 +77,7 @@ public class KeycloakClientService {
                 .search(username)
                 .stream()
                 .findFirst()
-                .map(userToEnable ->  {
+                .map(userToEnable -> {
                     userToEnable.setEnabled(true);
                     resource.get(userToEnable.getId()).update(userToEnable);
                     return userToEnable;
