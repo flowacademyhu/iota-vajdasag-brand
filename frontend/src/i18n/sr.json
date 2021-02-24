@@ -7,9 +7,14 @@
     "actions": "Mogućnosti"
   },
   "userListElement": {
-    "approveRegistration": "Approve registration",
+    "close": "Zatvori",
+    "approveRegistration": "Potvrda registracije",
     "no": "Ne",
-    "yes": "Da"
+    "yes": "Da",
+    "unsuccessful": "Neuspešno brisanje",
+    "delete": "Brisanje registracije",
+    "confirmDelete": "Sigurno želite brisanje?",
+    "confirmDeleteTitle": "Brisanje naloga"
   },
   "searchbar": {
     "search": "Pretraga"
@@ -64,8 +69,6 @@
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
     "editProducts": "Edit products",
-    "delete": "Delete",
-    "confirmDelete": "Confirm delete?",
     "search": "Search"
   },
   "datasheet": {
