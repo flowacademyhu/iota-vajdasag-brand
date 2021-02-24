@@ -1,9 +1,9 @@
 import api from './apiInstance'
-import './mockForUserApi'
+//import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
-    const response = await api.get('/users')
+    const response = await api.get('/getUsers')
     return response.data.users
   } catch (error) {
     throw new Error('Failed to get users.')
@@ -14,12 +14,24 @@ export const login = (value) => {
   return api.post('/login', value)
 }
 
+<<<<<<< HEAD
 export const forgetpassword = (value) => {
   return api.post('/forgetpassword', value)
 }
 
 export const signUp = async (value) => {
   return await api.post('/registration')
+=======
+export const signUp = async (value, type) => {
+  return await api.post('/registration', {
+    full_name: value.name,
+    tax_number: value.taxNumber,
+    address: value.address,
+    email: value.email,
+    type: type,
+    password: value.password,
+  })
+>>>>>>> master
 }
 
 export const sendApproval = async (userId) => {

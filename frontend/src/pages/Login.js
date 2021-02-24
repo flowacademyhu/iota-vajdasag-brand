@@ -10,7 +10,7 @@ import { useHistory,Link } from 'react-router-dom'
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
   Yup.object().shape({
-    email: Yup.string().email(invalidEmail).required(noEmail),
+    username: Yup.string().email(invalidEmail).required(noEmail),
     password: Yup.string().min(8, invalidPassword).required(),
   })
 
@@ -21,7 +21,7 @@ const Login = () => {
   const { writeToken } = useTokenStateHandler()
 
   const handleResponse = (response) => {
-    writeToken(response.data)
+    writeToken(response.data.access_token)
     setIsSignInAccepted(true)
   }
 
@@ -47,7 +47,7 @@ const Login = () => {
     <div>
       <Formik
         initialValues={{
-          email: '',
+          username: '',
           password: '',
         }}
         onSubmit={handleSubmit}
@@ -63,7 +63,7 @@ const Login = () => {
             <div className="my-3">
               <InputField
                 label={t('login.email')}
-                name="email"
+                name="username"
                 id="email"
                 placeholder={t('login.email')}
                 type="email"
