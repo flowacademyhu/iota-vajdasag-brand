@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import DeletionResponsedModal from './DeletionResponseModal'
+import DeletionResponsedModal from '../modals/DeletionResponseModal'
 import { deleteUserRegistration } from '../../communications/userApi'
 import useUsers from '../useUsers'
 

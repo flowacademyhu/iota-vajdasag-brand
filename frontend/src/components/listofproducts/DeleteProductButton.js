@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import DeletionResponseModal from '../listofusers/DeletionResponseModal'
+import DeletionResponseModal from '../modals/DeletionResponseModal'
 import { deleteProduct } from '../../communications/userApi'
 
 const DeleteModalButton = ({ productId }) => {
