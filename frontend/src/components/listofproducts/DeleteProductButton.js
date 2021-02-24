@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import DeletionResponseModal from '../modals/DeletionResponseModal'
+import ResponseModal from '../modals/ResponseModal'
 import { deleteProduct } from '../../communications/userApi'
 
 const DeleteProductButton = ({ productId }) => {
@@ -31,11 +31,11 @@ const DeleteProductButton = ({ productId }) => {
 
   return (
     <>
-      <DeletionResponseModal
+      <ResponseModal
         setShowResponseModal={setShowResponseModal}
         showResponseModal={showResponseModal}
         title={responseModalTitle}
-      ></DeletionResponseModal>
+      ></ResponseModal>
       <Button variant="danger" onClick={() => setShowConfirmDeletion(true)}>
         {t('productList.delete')}
       </Button>
