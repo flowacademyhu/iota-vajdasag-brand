@@ -57,11 +57,25 @@
   "searchbar": {
     "search": "Search"
   },
+  "superAdmin": {
+    "createNewUser": "Create a new user",
+    "name": "Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "dateOfRegistration": "Date of registration",
+    "editBasicData": "Edit basic data",
+    "editProducts": "Edit products"
+  },
   "userListElement": {
+    "close": "Close",
     "approveRegistration": "Approve registration",
     "no": "No",
-    "products": "Products",
-    "yes": "Yes"
+    "yes": "Yes",
+    "unsuccessful": "Unsuccessful deletion.",
+    "delete": "Delete registration",
+    "confirmDelete": "Are you sure you want to delete the user?",
+    "confirmDeleteTitle": "Confirm deletion",
+    "products": "Products"
   },
   "userListHeader": {
     "acceptedRegistration": "Accepted registration",
@@ -70,5 +84,5 @@
     "email": "Email",
     "name": "Name"
   },
-  "welcome": "welcome"
+  "welcome": "Welcome"
 }

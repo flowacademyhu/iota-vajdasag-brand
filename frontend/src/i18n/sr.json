@@ -1,9 +1,9 @@
 {
   "companyAdmin": {
-    "edit": "Edit",
-    "newProduct": "New product",
-    "remove": "Remove",
-    "search": "Search"
+    "edit": "Uređivanje",
+    "newProduct": "Novi proizvod",
+    "remove": "Brisanje",
+    "search": "Pretraga"
   },
   "login": {
     "buttontext": "Prijavite se",
@@ -16,11 +16,19 @@
     "password": "Lozinka",
     "title": "Prijava"
   },
+  "menu": {
+    "users": "Korisnici",
+    "products": "Proizvodi",
+    "events": "Događaji",
+    "signout": "Odjava"
+  },
   "product": {
     "address": "address",
     "category": "category",
+    "subcategory": "subcategory",
     "city": "city",
-    "title": "title"
+    "title": "title",
+    "name": "Ime"
   },
   "registration": {
     "address": "Adresa/Sedište",
@@ -49,19 +57,32 @@
   "searchbar": {
     "search": "Pretraga"
   },
+  "superAdmin": {
+    "createNewUser": "Create a new user",
+    "name": "Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "dateOfRegistration": "Date of registration",
+    "editBasicData": "Edit basic data",
+    "editProducts": "Edit products"
+  },
   "userListElement": {
-    "approveRegistration": "Approve registration",
+    "close": "Zatvori",
+    "approveRegistration": "Potvrda registracije",
     "no": "Ne",
-    "products": "products",
-    "yes": "Da"
+    "yes": "Da",
+    "unsuccessful": "Neuspešno brisanje",
+    "delete": "Brisanje registracije",
+    "confirmDelete": "Sigurno želite brisanje?",
+    "confirmDeleteTitle": "Brisanje naloga",
+    "products": "Proizvodi"
   },
   "userListHeader": {
     "acceptedRegistration": "Prihvaćena registracija",
-    "actions": "Mogućnosti",
     "dateOfRegistration": "Datum registracije",
     "email": "Email",
     "name": "Ime",
-    "products": "Proizvodi"
+    "actions": "Mogućnosti"
   },
   "welcome": "welcome"
 }

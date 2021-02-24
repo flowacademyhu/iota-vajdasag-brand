@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Type;
+import hu.flowacademy.vajdasagbrand.exception.GlobalExceptionHandler;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -27,6 +28,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
+    private final EmailService emailService;
 
     public User deleteById(String id) throws ValidationException, UserNotEnabledException {
         Optional<User> user = userRepository.findById(id);
@@ -77,6 +79,28 @@ public class UserService {
         if ((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY) {
             throw new ValidationException("Can not add tax number for individual members");
         }
+    }
+
+    public boolean approveRegistration(String userId) throws ValidationException {
+        log.info("Incoming approve registration request with the id: {}", userId);
+        User registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
+        log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+        if (keycloakClientService.enableUser(registeredUser.getEmail())) {
+            registeredUser.setEnabled(true);
+            userRepository.save(registeredUser);
+            log.debug("The user's current status is: {} ", registeredUser.isEnabled());
+            keycloakClientService.sendVerificationEmail(registeredUser.getEmail());
+            sendApprovalEmail(registeredUser.getEmail());
+            return true;
+        }
+        else {
+            throw new ValidationException("Validation didn't succeed");
+        }
+    }
+
+    public void sendApprovalEmail(String email) {
+        log.debug("Sending approval email to: {}", email);
+        emailService.sendMessage(email, "Registration approval", "Dear Customer! \nYour registration is approved, you can login now");
     }
 
     public Page<User> getUsers(String orderBy, int pageNum, int limit) {

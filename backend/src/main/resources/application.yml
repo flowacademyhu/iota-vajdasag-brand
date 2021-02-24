@@ -18,6 +18,21 @@ spring:
     console:
       enabled: true
 
+
+  mail:
+    username: vajdasagjusoft@gmail.com
+    password: vtejyevwlqixdrtz
+    host: smtp.gmail.com
+    port: 465
+    properties:
+      mail.smtp.starttls.enable: true
+      mail.transport.protocol: smtp
+      mail.smtp.auth: true
+      #mail.debug: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.gmail.com
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+
 keycloakBackendClient:
   serverUrl: http://localhost:8180/auth
   realm: VajdasagBrand

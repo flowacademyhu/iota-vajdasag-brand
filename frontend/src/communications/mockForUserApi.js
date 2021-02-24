@@ -23,7 +23,7 @@ mock.onGet('/users').reply(200, {
       id: 3,
       name: 'Alma',
       email: 'w@hun.ko',
-      isApproved: false,
+      isApproved: true,
       dateOfRegistration: 1999,
     },
   ],
@@ -108,3 +108,5 @@ mock
 
 mock.onPost('/registration').reply(201)
 mock.onPut(`/users/2/approval`).reply(200)
+mock.onDelete('/users/1').reply(200)
+mock.onDelete('/users/3').reply(201)

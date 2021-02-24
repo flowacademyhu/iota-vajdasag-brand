@@ -18,16 +18,16 @@ export const GetProducts = () => {
 }
 
 export const GetProductsById = () => {
-  const [usersProducts, setUsersProducts] = useState([])
+  const [companysProducts, setCompanysProducts] = useState([])
 
   const fetchUserProducts = async () => {
     const fetchedUserProducts = await getProductsByUserId(1)
-    setUsersProducts(fetchedUserProducts)
+    setCompanysProducts(fetchedUserProducts)
   }
 
   useEffect(() => {
     fetchUserProducts()
   }, [])
 
-  return { usersProducts }
+  return { companysProducts }
 }

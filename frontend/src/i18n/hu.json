@@ -1,9 +1,9 @@
 {
   "companyAdmin": {
-    "edit": "Edit",
-    "newProduct": "New product",
-    "remove": "Remove",
-    "search": "Search"
+    "edit": "Szerkeszt",
+    "newProduct": "Új termék",
+    "remove": "Töröl",
+    "search": "Keresés"
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -16,11 +16,19 @@
     "password": "Jelszó",
     "title": "Belépés"
   },
+  "menu": {
+    "users": "Felhazsnálók",
+    "products": "Termékek",
+    "events": "Események",
+    "signout": "Kijelentkezés"
+  },
   "product": {
-    "address": "address",
-    "category": "category",
-    "city": "city",
-    "title": "title"
+    "address": "Cím",
+    "category": "Kategória",
+    "subcategory": "Alkategória",
+    "city": "Város",
+    "title": "Név",
+    "name": "Név"
   },
   "registration": {
     "address": "Lakcím/Székhely",
@@ -49,19 +57,32 @@
   "searchbar": {
     "search": "Keresés"
   },
+  "superAdmin": {
+    "createNewUser": "Új felhasználó létrehozása",
+    "name": "Név",
+    "active": "Aktív",
+    "inactive": "Inaktív",
+    "dateOfRegistration": "Regisztráció időpontja",
+    "editBasicData": "Alapadatok szerkesztése",
+    "editProducts": "Termékek szerkesztése"
+  },
   "userListElement": {
+    "close": "Bezárás",
     "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",
-    "products": "products",
-    "yes": "Igen"
+    "yes": "Igen",
+    "unsuccessful": "Sikertelen törlés.",
+    "delete": "Regiszttráció törlése",
+    "confirmDelete": "Biztosan törölni akarja a felhazsnálót?",
+    "confirmDeleteTitle": "Törlés Megerősítése",
+    "products": "Termékek"
   },
   "userListHeader": {
     "acceptedRegistration": "Sikeres regisztráció",
     "actions": "Lehetőségek",
     "dateOfRegistration": "Regisztráció dátuma",
     "email": "E-mail",
-    "name": "Név",
-    "products": "Termékek"
+    "name": "Név"
   },
-  "welcome": "welcome"
+  "welcome": "Üdvözöljük"
 }
