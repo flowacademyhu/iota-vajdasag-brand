@@ -29,12 +29,19 @@ mock.onGet('/api/users').reply(200, {
   ],
 })
 
-mock
-  .onPost('/login', {
+mock.onPost('/login', {
     email: 'teszt@teszt.com',
     password: '12345678',
   })
   .reply(200, '84848fhgvripuerh98r4gu9hg4ru9hrv')
+
+  mock.onPost('/forgetpassword',{
+    email: 'teszt@teszt.com',
+  }).reply(200)
+
+  mock.onPost('/forgetpassword',{
+    email: 't@teszt.com',
+  }).reply(400)
 
 mock.onPost('/registration').reply(201)
 mock.onPut(`/users/2/approval`).reply(200)
