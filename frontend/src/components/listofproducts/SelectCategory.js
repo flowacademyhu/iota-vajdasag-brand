@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next'
 
 const SelectCategory = () => {
   const { t } = useTranslation()
+
   return (
     <>
-      <label htmlFor="location">{t('editProduct.selectCategory')}</label>
-      <Field component="select" id="location" name="location">
+      <label htmlFor="category">{t('editProduct.selectCategory')}</label>
+      <Field as="select" name="category">
         <option value="ATTRACTION">{t('editProduct.selectAttraction')}</option>
         <option value="GASTRONOMY">{t('editProduct.selectGastronomy')}</option>
         <option value="HOTEL">{t('editProduct.selectHotel')}</option>
