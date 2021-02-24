@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class SuperAdminItemDTO extends CegAdminItemDTO{
     private String owner;
 
-    public SuperAdminItemDTO(String address, String city, Category category, String owner) {
-        super(address, city, category);
+    public SuperAdminItemDTO(String id, String address, String city, Category category, String owner) {
+        super(id, address, city, category);
         this.owner = owner;
     }
 }

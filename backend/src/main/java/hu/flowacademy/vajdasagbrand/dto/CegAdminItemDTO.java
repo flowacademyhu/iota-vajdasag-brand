@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CegAdminItemDTO {
+    private String id;
     private String address;
     private String city;
     private Category category;

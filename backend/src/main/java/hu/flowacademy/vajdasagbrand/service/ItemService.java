@@ -119,12 +119,12 @@ public class ItemService {
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(Item item) {
-        return new SuperAdminItemDTO(item.getAddress(), item.getCity(),
+        return new SuperAdminItemDTO(item.getId(), item.getAddress(), item.getCity(),
                 item.getCategory(), item.getName());
     }
 
     public CegAdminItemDTO createCegAdminDTO(Item item) {
-        return new CegAdminItemDTO(item.getAddress(), item.getCity(),
+        return new CegAdminItemDTO(item.getId(), item.getAddress(), item.getCity(),
                 item.getCategory());
     }
 }
