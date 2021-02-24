@@ -17,17 +17,13 @@ const ForgetPassword = () => {
   const { t } = useTranslation()
 
   const handleSubmit = async (value) => {
-    console.log(value)
     try {
       await forgetpassword(value)
       setIsAccepted(true)
-
-      console.log(isAccepted)
     } catch (e) {
       if (e.response.status === 400) setError('no user')
       if (e.response.status === 404 || e.response.status === 500)
         setError('no server')
-      console.log(e)
     }
   }
 
