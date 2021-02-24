@@ -1,8 +1,10 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.entity.Type;
 import hu.flowacademy.vajdasagbrand.exception.GlobalExceptionHandler;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.entity.User;
@@ -30,15 +32,15 @@ public class UserService {
     private final KeycloakClientService keycloakClientService;
     private final EmailService emailService;
 
-    public User deleteById(String id) throws ValidationException, UserNotEnabledException {
-        Optional<User> user = userRepository.findById(id);
+    public UserDTO deleteById(String id) throws ValidationException, UserNotEnabledException {
+        Optional<UserDTO> user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new ValidationException("No user with given id: " + id);
         }
         if (!user.get().isEnabled()) {
             throw new UserNotEnabledException("User is not enabled");
         }
-        User deleted = user.get();
+        UserDTO deleted = user.get();
         if (!keycloakClientService.deleteUser(deleted.getEmail())) {
             throw new ValidationException("No user with id in Keycloak");
         }
@@ -49,18 +51,15 @@ public class UserService {
         return deleted;
     }
 
-    public User userRegistrationData(User user, String password) throws ValidationException {
-        log.info("UserService called with: {}", user);
+    public UserDTO userRegistrationData(UserDTO user, String password) throws ValidationException {
         validateUserData(user);
 
         keycloakClientService.createAccount(user.getEmail(), password);
         user.setRegisteredAt(LocalDateTime.now());
-        User result = userRepository.save(user);
-        log.info("The result is : {}", result);
-        return result;
+        return userRepository.save(user);
     }
 
-    private void validateUserData(User user) throws ValidationException {
+    private void validateUserData(UserDTO user) throws ValidationException {
         if (!StringUtils.hasText(user.getFullName())) {
             throw new ValidationException("Didn't get full name");
         }
@@ -83,7 +82,7 @@ public class UserService {
 
     public boolean approveRegistration(String userId) throws ValidationException {
         log.info("Incoming approve registration request with the id: {}", userId);
-        User registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
+        UserDTO registeredUser= userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
         log.debug("The user's current status is: {} ", registeredUser.isEnabled());
         if (keycloakClientService.enableUser(registeredUser.getEmail())) {
             registeredUser.setEnabled(true);
@@ -103,7 +102,13 @@ public class UserService {
         emailService.sendMessage(email, "Registration approval", "Dear Customer! \nYour registration is approved, you can login now");
     }
 
-    public Page<User> getUsers(String orderBy, int pageNum, int limit) {
+    public Page<UserDTO> getUsers(String orderBy, int pageNum, int limit) {
         return userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
     }
+
+    public Optional<UserDTO> findByEmail(String email) {
+        return userRepository.findFirstByEmail(email);
+    }
+
 }
+

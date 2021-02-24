@@ -48,7 +48,7 @@ public class UserController {
 
     @RolesAllowed("SuperAdmin")
     @DeleteMapping("/users/{id}")
-    public User deleteUser(@PathVariable("id") String id) throws ValidationException, UserNotEnabledException {
+    public UserDTO deleteUser(@PathVariable("id") String id) throws ValidationException, UserNotEnabledException {
         return userService.deleteById(id);
     }
 
@@ -59,7 +59,7 @@ public class UserController {
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
         log.debug("user {}", user);
-        userService.userRegistrationData(user, userDTO.getPassword());
+        userService.userRegistrationData(userDTO, userDTO.getPassword());
     }
 
     @RolesAllowed("SuperAdmin")
@@ -71,10 +71,10 @@ public class UserController {
     }
 
     @RolesAllowed("SuperAdmin")
-    @GetMapping("/users")
-    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
-                               @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
-                               @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
+    @GetMapping("/getUsers")
+    public Page<UserDTO> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
+                                  @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
+                                  @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
         return userService.getUsers(
                 orderBy.orElse(defaultOrderCategory),
                 pageNum.orElse(defaultPageNumber),
