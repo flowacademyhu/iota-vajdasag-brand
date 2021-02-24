@@ -14,6 +14,10 @@ export const login = (value) => {
   return api.post('/login', value)
 }
 
+export const forgetpassword = (value) => {
+  return api.post('/forgetpassword', value)
+}
+
 export const signUp = async (value) => {
   return await api.post('/registration')
 }
