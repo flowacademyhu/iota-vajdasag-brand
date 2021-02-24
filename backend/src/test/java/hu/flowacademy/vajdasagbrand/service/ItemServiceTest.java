@@ -300,7 +300,7 @@ class ItemServiceTest {
     }
 
     private void givenItemRepositoryListingItems() {
-        when(itemRepository.findAll()).thenReturn(List.of(givenItem()));
+        when(itemRepository.findAll()).thenReturn(List.of(givenItemWithId()));
     }
 
     private Optional<Authentication> givenUnauthorizedUserListingItems() {
@@ -316,11 +316,11 @@ class ItemServiceTest {
     }
 
     private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
-        return List.of(new SuperAdminItemDTO(ADDRESS, CITY, Category.ATTRACTION, OWNER));
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, ADDRESS, CITY, Category.ATTRACTION, OWNER));
     }
 
     private List<CegAdminItemDTO> givenCegAdminItemDTO() {
-        return List.of(new CegAdminItemDTO(ADDRESS, CITY, Category.ATTRACTION));
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, ADDRESS, CITY, Category.ATTRACTION));
     }
 
     private void givenItemRepositorySavingItem() {
