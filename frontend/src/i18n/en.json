@@ -15,12 +15,6 @@
     "website": "Website",
     "save": "Update product"  
   },
-  "userListHeader": {
-    "acceptedRegistration": "Accepted registration",
-    "dateOfRegistration": "Date of registration",
-    "email": "Email",
-    "name": "Name",
-    "actions": "Actions"
   "menu": {
     "signout": "Logout",
     "events": "Events",
