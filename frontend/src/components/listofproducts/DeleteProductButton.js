@@ -25,7 +25,6 @@ const DeleteModalButton = ({ productId }) => {
     setShowConfirmDeletion(false)
     try {
       await deleteProduct(1)
-      //fetchProducts()  fejlesztés alatt
       confirmModalHandler(true)
     } catch (error) {
       confirmModalHandler(false)
