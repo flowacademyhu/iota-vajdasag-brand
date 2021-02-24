@@ -1,7 +1,4 @@
 {
-  "address": "address",
-  "category": "category",
-  "city": "city",
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
@@ -19,12 +16,11 @@
     "password": "Lozinka",
     "title": "Prijava"
   },
-  "name": "name",
   "product": {
     "address": "address",
     "category": "category",
     "city": "city",
-    "titletitle": "titletitle"
+    "title": "title"
   },
   "registration": {
     "address": "Adresa/Sedište",
@@ -50,11 +46,9 @@
     "taxNumber": "Poreski broj",
     "title": "Registracija"
   },
-  "search": "search",
   "searchbar": {
     "search": "Pretraga"
   },
-  "title": "title",
   "userListElement": {
     "approveRegistration": "Approve registration",
     "no": "Ne",

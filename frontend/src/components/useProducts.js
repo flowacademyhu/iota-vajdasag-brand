@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { getAllProducts, getProductsByUserId } from '../communications/userApi'
-import { BrowserRouter as useParams } from 'react-router-dom'
 
 export const GetProducts = () => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -19,7 +18,6 @@ export const GetProducts = () => {
 }
 
 export const GetProductsById = () => {
-
   const [usersProducts, setUsersProducts] = useState([])
 
   const fetchUserProducts = async () => {

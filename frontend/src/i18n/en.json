@@ -1,7 +1,4 @@
 {
-  "address": "address",
-  "category": "category",
-  "city": "city",
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
@@ -19,12 +16,19 @@
     "password": "Password",
     "title": "Login"
   },
-  "name": "name",
+  "menu": {
+    "users": "Users",
+    "products": "Products",
+    "events": "Events",
+    "signout": "Sign out"
+  },
   "product": {
-    "address": "address",
-    "category": "category",
-    "city": "city",
-    "title": "title"
+    "address": "Address",
+    "category": "Category",
+    "subcategory": "Subcategory",
+    "city": "City",
+    "title": "Title",
+    "name": "Name"
   },
   "registration": {
     "address": "Address/Company seat",
@@ -50,11 +54,9 @@
     "taxNumber": "Tax number",
     "title": "Registration"
   },
-  "search": "search",
   "searchbar": {
     "search": "Search"
   },
-  "title": "title",
   "userListElement": {
     "approveRegistration": "Approve registration",
     "no": "No",
@@ -66,8 +68,7 @@
     "actions": "Actions",
     "dateOfRegistration": "Date of registration",
     "email": "Email",
-    "name": "Name",
-    "products": "Products"
+    "name": "Name"
   },
   "welcome": "welcome"
 }

@@ -1,7 +1,4 @@
 {
-  "address": "address",
-  "category": "category",
-  "city": "city",
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
@@ -19,12 +16,11 @@
     "password": "Jelszó",
     "title": "Belépés"
   },
-  "name": "name",
   "product": {
     "address": "address",
     "category": "category",
     "city": "city",
-    "titletitle": "titletitle"
+    "title": "title"
   },
   "registration": {
     "address": "Lakcím/Székhely",
@@ -50,11 +46,9 @@
     "taxNumber": "Adószám",
     "title": "Regisztráció"
   },
-  "search": "search",
   "searchbar": {
     "search": "Keresés"
   },
-  "title": "title",
   "userListElement": {
     "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",

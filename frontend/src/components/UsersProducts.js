@@ -1,33 +1,33 @@
 import React from 'react'
 import { GetProductsById } from './useProducts'
-import ListElement from './listOfUsersProducts/ListElement'
-import ListHeader from './listOfUsersProducts/ListHeader'
+import ListElement from './listOfProducts/ListElement'
+import ListHeader from './listOfProducts/ListHeader'
 
 const UsersProducts = () => {
   const { usersProducts } = GetProductsById()
-  
   return (
     <div>
-      <h3> Itt a cég neve szerepelne </h3>
-    <div className="table-responsive">
-      <div className="col-9">
-      {
-  console.log(usersProducts)
-    }
-      <table className="table table-striped table-sm">
-          <ListHeader />
-          <tbody>
-            {usersProducts?.map((product) => (
-              <ListElement product={product} key={product.id} />
-            ))}
-          </tbody>
-        </table>        
+      <h2
+        style={{
+          padding: '20px',
+        }}
+      >
+        {usersProducts[0]?.name}
+      </h2>
+      <div className="table-responsive">
+        <div className="col-9">
+          <table className="table table-striped table-sm">
+            <ListHeader />
+            <tbody>
+              {usersProducts?.map((product) => (
+                <ListElement product={product} key={product.id} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
     </div>
   )
 }
 
 export default UsersProducts
-
-

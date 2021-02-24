@@ -28,22 +28,18 @@ export const sendApproval = async (userId) => {
 export const getAllProducts = async () => {
   try {
     const response = await api.get('/products')
-    
-        
-    return response.data.products    
+
+    return response.data.products
   } catch (error) {
     throw new Error('Failed to get products.')
   }
 }
 
-
 export const getProductsByUserId = async (userId) => {
   try {
     const response = await api.get(`/products/${userId}`)
-    
-        
+
     return response.data.products
-    
   } catch (error) {
     console.log(error)
     throw new Error('Failed to get products.')

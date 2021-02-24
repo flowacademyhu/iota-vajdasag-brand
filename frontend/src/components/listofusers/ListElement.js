@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import ApproveButton from './ApproveButton'
 import TheirProductsButton from './TheirProductsButton'
 
-
 const ListElement = ({ user }) => {
   const { t } = useTranslation()
 
