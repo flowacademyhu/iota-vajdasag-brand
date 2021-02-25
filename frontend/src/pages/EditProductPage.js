@@ -7,27 +7,45 @@ import SelectCategory from '../components/listofproducts/SelectCategory'
 import validationEdit from '../communications/validationEdit'
 import { updateProductData } from '../communications/userApi'
 import EditResponseModal from '../components/modals/EditResponseModal'
+import { useHistory } from 'react-router-dom'
 
-const updateOldFieldsInItem = (toBeUpdated, product) => {
+const updateOldFieldsInItem = (newProductValues, product) => {
+  console.log(product, newProductValues)
   Object.keys(product).forEach((key) => {
-    return toBeUpdated[key] ? (product[key] = toBeUpdated[key]) : product[key]
+    return newProductValues[key]
+      ? (product[key] = newProductValues[key])
+      : product[key]
   })
+  console.log(product)
   return product
 }
 
-const EditProductPage = ({ product }) => {
+const EditProductPage = ({product}) => {
+  console.log(product)
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
+  const [isEditSuccessful, setEditSuccessful] = useState('')
   const { t } = useTranslation()
+  let history = useHistory()
 
-  const handleSubmit = async (value) => {
+  const handleSubmit = async (newProductValues) => {
+    const updatedProduct = updateOldFieldsInItem(newProductValues, product)
     try {
-      await updateProductData(updateOldFieldsInItem(value))
-      setResponseModalTitle('editProduct.successfulEdition')
+      await updateProductData(product.id, updatedProduct)
+      setResponseModalTitle(t('editProduct.successfulEdition'))
       setShowResponseModal(true)
+      setEditSuccessful(true)
     } catch (error) {
-      setResponseModalTitle('editProduct.unsuccessfulEdition')
+      setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
       setShowResponseModal(true)
+      setEditSuccessful(false)
+    }
+  }
+
+  const onClose = () => {
+    setShowResponseModal(false)
+    if (isEditSuccessful) {
+      history.push('/super-admin/products')
     }
   }
 
@@ -55,8 +73,6 @@ const EditProductPage = ({ product }) => {
               <InputField
                 label={t('editProduct.address')}
                 name="address"
-                id="address"
-                placeholder={t('editProduct.address')}
                 type="text"
               />
             </div>
@@ -64,8 +80,6 @@ const EditProductPage = ({ product }) => {
               <InputField
                 label={t('editProduct.city')}
                 name="city"
-                id="city"
-                placeholder={t('editProduct.city')}
                 type="text"
               />
             </div>
@@ -76,8 +90,6 @@ const EditProductPage = ({ product }) => {
               <InputField
                 label={t('editProduct.coordinateX')}
                 name="coordinateX"
-                id="coordinateX"
-                placeholder={t('editProduct.coordinateX')}
                 type="text"
               />
             </div>
@@ -85,8 +97,6 @@ const EditProductPage = ({ product }) => {
               <InputField
                 label={t('editProduct.coordinateY')}
                 name="coordinateY"
-                id="coordinateY"
-                placeholder={t('editProduct.coordinateY')}
                 type="text"
               />
             </div>
@@ -94,8 +104,6 @@ const EditProductPage = ({ product }) => {
               <InputField
                 label={t('editProduct.phone')}
                 name="phone"
-                id="phone"
-                placeholder={t('editProduct.phone')}
                 type="text"
               />
             </div>
@@ -103,28 +111,14 @@ const EditProductPage = ({ product }) => {
               <InputField
                 label={t('editProduct.website')}
                 name="website"
-                id="website"
-                placeholder={t('editProduct.website')}
                 type="text"
               />
             </div>
             <div className="my-2">
-              <InputField
-                label="Facebook"
-                name="facebook"
-                id="facebook"
-                placeholder="Facebook"
-                type="text"
-              />
+              <InputField label="Facebook" name="facebook" type="text" />
             </div>
             <div className="my-2">
-              <InputField
-                label="Instagram"
-                name="instagram"
-                id="instagram"
-                placeholder="Instagram"
-                type="text"
-              />
+              <InputField label="Instagram" name="instagram" type="text" />
             </div>
             <Button variant="primary" type="submit" size="lg">
               {t('editProduct.save')}
@@ -136,6 +130,7 @@ const EditProductPage = ({ product }) => {
         setShowResponseModal={setShowResponseModal}
         showResponseModal={showResponseModal}
         title={responseModalTitle}
+        onClose={onClose}
       />
     </div>
   )
