@@ -17,7 +17,7 @@ const SwitchLanguage = () => {
       onChange={handleChange}
     >
       <option value="hu">🇭🇺 Magyar</option>
-      <option value="sr">🇷🇸 Српски</option>
+      <option value="sr">🇷🇸 Srpski</option>
       <option value="en">🇬🇧 English</option>
     </select>
   )

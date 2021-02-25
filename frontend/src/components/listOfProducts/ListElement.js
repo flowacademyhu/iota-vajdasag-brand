@@ -1,4 +1,5 @@
 import React from 'react'
+import DeleteProductButton from './DeleteProductButton'
 
 const ListElement = ({ product }) => {
   return (
@@ -9,6 +10,9 @@ const ListElement = ({ product }) => {
       <td>{product.category}</td>
       <td>{product.subcategory}</td>
       <td>{product.name}</td>
+      <td>
+        <DeleteProductButton />
+      </td>
     </tr>
   )
 }

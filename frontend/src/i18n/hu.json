@@ -30,6 +30,12 @@
     "title": "Név",
     "name": "Név"
   },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
+  },
   "registration": {
     "address": "Lakcím/Székhely",
     "agreement": "Elfogadom az",

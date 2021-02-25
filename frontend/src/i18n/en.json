@@ -30,6 +30,12 @@
     "title": "Title",
     "name": "Name"
   },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
+  },
   "registration": {
     "address": "Address/Company seat",
     "agreement": "I accept the",

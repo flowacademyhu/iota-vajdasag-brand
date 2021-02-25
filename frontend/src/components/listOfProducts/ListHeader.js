@@ -13,6 +13,7 @@ const ListHeader = () => {
         <th scope="col">{t('product.category')}</th>
         <th scope="col">{t('product.subcategory')}</th>
         <th scope="col">{t('product.name')}</th>
+        <th>{t('')}</th>
       </tr>
     </thead>
   )
