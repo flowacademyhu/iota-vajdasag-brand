@@ -1,7 +1,7 @@
 {
   "companyAdmin": {
     "edit": "Uređivanje",
-    "newProduct": "Novi proizvod",
+    "newItem": "Novi proizvod",
     "remove": "Brisanje",
     "search": "Pretraga"
   },
@@ -18,11 +18,11 @@
   },
   "menu": {
     "users": "Korisnici",
-    "products": "Proizvodi",
+    "items": "Proizvodi",
     "events": "Događaji",
     "signout": "Odjava"
   },
-  "product": {
+  "item": {
     "address": "address",
     "category": "category",
     "subcategory": "subcategory",
@@ -64,7 +64,7 @@
     "inactive": "Inactive",
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
-    "editProducts": "Edit products"
+    "editItems": "Edit items"
   },
   "userListElement": {
     "close": "Zatvori",
@@ -75,7 +75,7 @@
     "delete": "Brisanje registracije",
     "confirmDelete": "Sigurno želite brisanje?",
     "confirmDeleteTitle": "Brisanje naloga",
-    "products": "Proizvodi"
+    "items": "Proizvodi"
   },
   "userListHeader": {
     "acceptedRegistration": "Prihvaćena registracija",

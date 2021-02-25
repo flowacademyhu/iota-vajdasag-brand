@@ -1,7 +1,7 @@
 {
   "companyAdmin": {
     "edit": "Szerkeszt",
-    "newProduct": "Új termék",
+    "newItem": "Új termék",
     "remove": "Töröl",
     "search": "Keresés"
   },
@@ -18,11 +18,11 @@
   },
   "menu": {
     "users": "Felhazsnálók",
-    "products": "Termékek",
+    "items": "Termékek",
     "events": "Események",
     "signout": "Kijelentkezés"
   },
-  "product": {
+  "item": {
     "address": "Cím",
     "category": "Kategória",
     "subcategory": "Alkategória",
@@ -64,7 +64,7 @@
     "inactive": "Inaktív",
     "dateOfRegistration": "Regisztráció időpontja",
     "editBasicData": "Alapadatok szerkesztése",
-    "editProducts": "Termékek szerkesztése"
+    "editItems": "Termékek szerkesztése"
   },
   "userListElement": {
     "close": "Bezárás",
@@ -75,7 +75,7 @@
     "delete": "Regiszttráció törlése",
     "confirmDelete": "Biztosan törölni akarja a felhazsnálót?",
     "confirmDeleteTitle": "Törlés Megerősítése",
-    "products": "Termékek"
+    "items": "Termékek"
   },
   "userListHeader": {
     "acceptedRegistration": "Sikeres regisztráció",

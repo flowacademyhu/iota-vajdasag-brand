@@ -1,10 +1,12 @@
 import api from './apiInstance'
+//import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
     const response = await api.get('/users')
     return response.data.users
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to get users.')
   }
 }
@@ -13,8 +15,15 @@ export const login = (value) => {
   return api.post('/login', value)
 }
 
-export const signUp = async (value) => {
-  return await api.post('/registration')
+export const signUp = async (value, type) => {
+  return await api.post('/registration', {
+    full_name: value.name,
+    tax_number: value.taxNumber,
+    address: value.address,
+    email: value.email,
+    type: type,
+    password: value.password,
+  })
 }
 
 export const sendApproval = async (userId) => {
@@ -25,23 +34,25 @@ export const sendApproval = async (userId) => {
   }
 }
 
-export const getAllProducts = async () => {
+export const getAllItems = async () => {
   try {
-    const response = await api.get('/products')
+    const response = await api.get('/items')
 
-    return response.data.products
+    return response.data.items
   } catch (error) {
-    throw new Error('Failed to get products.')
+    console.log(error)
+    throw new Error('Failed to get items.')
   }
 }
 
-export const getProductsByUserId = async () => {
+export const getItemsByUserId = async (userId) => {
   try {
-    const response = await api.get(`/products/1`)
+    const response = await api.get(`/items/${userId}`)
 
-    return response.data.products
+    return response.data.items
   } catch (error) {
-    throw new Error('Failed to get products.')
+    console.log(error)
+    throw new Error('Failed to get items.')
   }
 }
 

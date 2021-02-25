@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import TheirProductsButton from './TheirProductsButton'
+import TheirItemsButton from './TheirItemsButton'
 import OperationButtons from './OperationButtons'
 
 const ListElement = ({ user }) => {
@@ -18,7 +18,7 @@ const ListElement = ({ user }) => {
         <OperationButtons user={user} />
       </td>
       <td>
-        <TheirProductsButton user={user} />
+        <TheirItemsButton user={user} />
       </td>
     </tr>
   )

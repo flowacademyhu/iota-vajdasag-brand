@@ -1,7 +1,7 @@
 {
   "companyAdmin": {
     "edit": "Edit",
-    "newProduct": "New product",
+    "newItem": "New item",
     "remove": "Remove",
     "search": "Search"
   },
@@ -18,11 +18,11 @@
   },
   "menu": {
     "users": "Users",
-    "products": "Products",
+    "items": "Items",
     "events": "Events",
     "signout": "Sign out"
   },
-  "product": {
+  "item": {
     "address": "Address",
     "category": "Category",
     "subcategory": "Subcategory",
@@ -64,7 +64,7 @@
     "inactive": "Inactive",
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
-    "editProducts": "Edit products"
+    "editItems": "Edit items"
   },
   "userListElement": {
     "close": "Close",
@@ -75,7 +75,7 @@
     "delete": "Delete registration",
     "confirmDelete": "Are you sure you want to delete the user?",
     "confirmDeleteTitle": "Confirm deletion",
-    "products": "Products"
+    "items": "Items"
   },
   "userListHeader": {
     "acceptedRegistration": "Accepted registration",
