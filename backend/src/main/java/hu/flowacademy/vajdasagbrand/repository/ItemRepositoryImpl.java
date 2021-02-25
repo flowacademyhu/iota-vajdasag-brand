@@ -1,11 +1,9 @@
 package hu.flowacademy.vajdasagbrand.repository;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Item;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.repository.ItemRepository;
-import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Item;
+import hu.flowacademy.vajdasagbrand.persistence.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

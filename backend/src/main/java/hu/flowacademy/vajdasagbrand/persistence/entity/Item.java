@@ -1,4 +1,4 @@
-package hu.flowacademy.vajdasagbrand.configuration.persistence.entity;
+package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;

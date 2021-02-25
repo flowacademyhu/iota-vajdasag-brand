@@ -2,26 +2,22 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.User;
+import hu.flowacademy.vajdasagbrand.persistence.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;
 import hu.flowacademy.vajdasagbrand.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.representations.AccessToken;
 import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
-import java.util.Set;
 
 
 @Slf4j

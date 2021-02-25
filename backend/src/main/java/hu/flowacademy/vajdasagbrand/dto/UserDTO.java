@@ -3,7 +3,7 @@ package hu.flowacademy.vajdasagbrand.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Type;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

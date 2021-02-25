@@ -1,12 +1,10 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Subcategory;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
 import org.junit.jupiter.api.Test;

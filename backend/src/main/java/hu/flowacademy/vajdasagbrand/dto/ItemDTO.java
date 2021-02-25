@@ -1,8 +1,8 @@
 package hu.flowacademy.vajdasagbrand.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Subcategory;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

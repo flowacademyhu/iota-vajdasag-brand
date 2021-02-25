@@ -1,6 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Type;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;

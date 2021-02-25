@@ -1,7 +1,7 @@
 package hu.flowacademy.vajdasagbrand.repository;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.User;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.repository.UserRepository;
+import hu.flowacademy.vajdasagbrand.persistence.entity.User;
+import hu.flowacademy.vajdasagbrand.persistence.repository.UserRepository;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;

@@ -1,4 +1,4 @@
-package hu.flowacademy.vajdasagbrand.configuration.persistence.entity;
+package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 public enum Category {
     ATTRACTION,
