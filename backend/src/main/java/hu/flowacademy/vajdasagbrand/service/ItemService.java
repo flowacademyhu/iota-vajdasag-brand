@@ -2,7 +2,6 @@ package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
-import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
@@ -24,7 +23,6 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     private final CommonItemRepository itemRepository;
-    private final ItemRepository itemRepository;
     private static final String SUPERADMIN = "ROLE_SuperAdmin";
     private static final String CEGADMIN = "ROLE_CegAdmin";
 
@@ -128,12 +126,12 @@ public class ItemService {
         }
     }
 
-    public SuperAdminItemDTO createSuperAdminDTO(Item item) {
+    public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
         return new SuperAdminItemDTO(item.getId(), item.getAddress(), item.getCity(),
                 item.getCategory(), item.getName());
     }
 
-    public CegAdminItemDTO createCegAdminDTO(Item item) {
+    public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
         return new CegAdminItemDTO(item.getId(), item.getAddress(), item.getCity(),
                 item.getCategory());
     }

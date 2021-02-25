@@ -5,6 +5,7 @@ import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepositoryImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -121,7 +122,7 @@ public class UserServiceTest {
         givenUserRepositoryAndKeycloakForEnableUser();
 
         boolean result = service.approveRegistration(REGISTRATION_ID);
-        assertTrue(result);
+        Assertions.assertTrue(result);
         verify(userRepository).findById(REGISTRATION_ID);
         verifyNoMoreInteractions(userRepository);
         verify(emailService).sendMessage(eq(REGISTRATION_EMAIL), anyString(), anyString());
@@ -207,11 +208,11 @@ public class UserServiceTest {
     }
 
     private void givenUserRepositoryAndKeycloakForEnableUser() {
-        User user = givenAUserIndividual();
+        UserDTO user = givenAUserIndividual();
         user.setId(REGISTRATION_ID);
         user.setEnabled(false);
         when(userRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(user));
-        when(userRepository.save(any(User.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+        when(userRepository.save(any(UserDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
         when(keycloakClientService.enableUser(REGISTRATION_EMAIL)).thenReturn(true);
         when(keycloakClientService.sendVerificationEmail(REGISTRATION_EMAIL)).thenReturn(true);
     }
