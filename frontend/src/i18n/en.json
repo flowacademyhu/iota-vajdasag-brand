@@ -14,7 +14,9 @@
     "phone": "Phone number",
     "website": "Website",
     "save": "Update product",  
-    "editButton": "Edit product"
+    "editButton": "Edit product",
+    "unsuccessfulEdition": "The update was unsuccessful",
+    "successfulEdition": "The update was successful"
   },
   "menu": {
     "signout": "Logout",
