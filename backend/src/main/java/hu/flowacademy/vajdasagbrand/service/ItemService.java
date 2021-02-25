@@ -127,12 +127,12 @@ public class ItemService {
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
-        return new SuperAdminItemDTO(item.getId(), item.getAddress(), item.getCity(),
-                item.getCategory(), item.getName());
+        return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getCity(),
+                item.getCategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWeb(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), "Something");
     }
 
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
-        return new CegAdminItemDTO(item.getId(), item.getAddress(), item.getCity(),
-                item.getCategory());
+        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getCity(),
+                item.getCategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWeb(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
     }
 }

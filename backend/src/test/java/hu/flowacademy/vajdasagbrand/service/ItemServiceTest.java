@@ -16,6 +16,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -47,6 +49,8 @@ class ItemServiceTest {
     private static final String CONTACT = "Kis Pista";
     private static final String EMAIL = "kispista@email.com";
     private static final String OWNER = "Something";
+    private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
+            Month.JULY, 29, 19, 30, 40);;
 
     @Mock
     private CommonItemRepository itemRepository;
@@ -303,7 +307,7 @@ class ItemServiceTest {
     }
 
     private void givenItemRepositoryListingItems() {
-        when(itemRepository.findAll()).thenReturn(List.of(givenItemWithId()));
+        when(itemRepository.findAll()).thenReturn(List.of(givenItemWithDeletedAt()));
     }
 
     private Optional<Authentication> givenUnauthorizedUserListingItems() {
@@ -319,11 +323,11 @@ class ItemServiceTest {
     }
 
     private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
-        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, ADDRESS, CITY, Category.ATTRACTION, OWNER));
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
     }
 
     private List<CegAdminItemDTO> givenCegAdminItemDTO() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, ADDRESS, CITY, Category.ATTRACTION));
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
     }
 
     @Test
@@ -404,6 +408,25 @@ class ItemServiceTest {
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
 
+        return item;
+    }
+
+    private ItemDTO givenItemWithDeletedAt() {
+        ItemDTO item = new ItemDTO();
+        item.setName(NAME);
+        item.setId(REGISTRATION_ID);
+        item.setScore(SCORE);
+        item.setBio(BIO);
+        item.setAddress(ADDRESS);
+        item.setCity(CITY);
+        item.setCategory(Category.ATTRACTION);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
+        item.setPhone(PHONE);
+        item.setWeb(WEBSITE);
+        item.setFacebook(FACEBOOK);
+        item.setInstagram(INSTAGRAM);
+        item.setDeletedAt(DELETED_AT);
         return item;
     }
 
