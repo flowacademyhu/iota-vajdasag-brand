@@ -9,7 +9,7 @@ const validationEdit = (required) =>
     phone: Yup.number(),
     website: Yup.string().url(),
     facebook: Yup.string().url(),
-    instagram: Yup.string().url()
+    instagram: Yup.string().url(),
   })
 
 export default validationEdit
