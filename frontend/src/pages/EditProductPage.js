@@ -9,6 +9,33 @@ import validationEdit from '../communications/validationEdit'
 import { updateProductData } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
+const product = {
+  id: '628a5a49-8f5e-448f-8adf-158455cd98f8',
+  name: 'Alma',
+  score: 34,
+  bio: 'Konditorei',
+  address: 'Múzeum körút 10.',
+  city: 'Budapest',
+  category: 'GASTRONOMY',
+  coordinateX: '123',
+  coordinateY: '456',
+  phone: '123456789',
+  website: 'www.bubu.hu',
+  facebook: 'asdff',
+  instagram: 'adgfgf',
+  deletedAt: null,
+}
+
+const prepareProductForUpdate = (toBeUpdated) => {
+  Object.keys(product).forEach((key) => {
+    console.log(toBeUpdated[key], product[key])
+    return toBeUpdated[key] === ''
+      ? product[key]
+      : (product[key] = toBeUpdated[key])
+  })
+  return toBeUpdated
+}
+
 const EditProductPage = () => {
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
@@ -23,7 +50,7 @@ const EditProductPage = () => {
     } catch (error) {
       setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
       setShowResponseModal(true)
-      history.push('/super-admin/events')
+      // history.push('/super-admin/events')
     }
   }
 
@@ -31,13 +58,9 @@ const EditProductPage = () => {
     <div className="m-5">
       <Formik
         initialValues={{
-          //   id: '82efc7bc-547e-4800-b4b2-68b742bdd33e',
-          //   name: 'Bubuka',
-          //   score: 2,
-          //   bio: 'Konditorei',
           address: '',
           city: '',
-          category: '',
+          category: '', // product.category,
           coordinateX: '',
           coordinateY: '',
           phone: '',
