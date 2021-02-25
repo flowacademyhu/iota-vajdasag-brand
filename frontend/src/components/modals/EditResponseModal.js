@@ -10,7 +10,7 @@ const EditResponseModal = ({
 }) => {
   const { t } = useTranslation()
   let history = useHistory()
-  
+
   const handleClick = () => {
     setShowResponseModal(false)
     if (!title.includes('unsuccessful')) {

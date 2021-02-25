@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Route,Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import EditProductButton from '../components/listofproducts/EditProductButton'
 import UsersList from '../components/UsersList'
 import SuperAdminProductsPage from '../pages/SuperAdminProductsPage'

@@ -13,7 +13,7 @@
     "coordinateY": "Longitude",
     "phone": "Phone number",
     "website": "Website",
-    "save": "Update product",  
+    "save": "Update product",
     "editButton": "Edit product",
     "unsuccessfulEdition": "The update was unsuccessful",
     "successfulEdition": "The update was successful"
