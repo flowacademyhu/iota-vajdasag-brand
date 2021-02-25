@@ -1,10 +1,8 @@
 import * as Yup from 'yup'
 import React, { useState } from 'react'
-import { Formik, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
-import { Button } from 'react-bootstrap'
-import InputField from '../components/InputField'
 import { forgottenpassword } from '../communications/userApi'
+import ForgottenPasswordForm from "../components/ForgottenPasswordForm";
 
 const ForgettenPasswordSchema = (invalidEmail, noEmail) =>
   Yup.object().shape({
@@ -25,33 +23,6 @@ const ForgottenPassword = () => {
       if (e.message === 'no server') setError('forgottenpassword.noserver')
     }
   }
-  const MyForm = ({ email, title, invalidemail, noEmail, buttontext }) => (
-    <Formik
-      initialValues={{
-        email: '',
-      }}
-      onSubmit={handleSubmit}
-      validationSchema={ForgettenPasswordSchema(invalidemail, noEmail)}
-    >
-      <Form>
-        <h3 className="text-center">{title}</h3>
-        <div className="my-3">
-          <InputField
-            label={email}
-            name="email"
-            id="email"
-            placeholder={email}
-            type="email"
-          ></InputField>
-        </div>
-        <div className="text-center">
-          <Button variant="primary" type="submit">
-            {buttontext}
-          </Button>
-        </div>
-      </Form>
-    </Formik>
-  )
 
   const Page = () => {
     if (isAccepted)
@@ -59,12 +30,14 @@ const ForgottenPassword = () => {
     if (error && !isAccepted)
       return error && <h1 className="text-center">{t(error)}</h1>
     return (
-      <MyForm
+      <ForgottenPasswordForm
         title={t('forgottenpassword.title')}
         email={t('login.email')}
         invalidemail={t('login.invalidemail')}
         noEmail={t('login.noEmail')}
         buttontext={t('forgottenpassword.buttontext')}
+        handleSubmit={handleSubmit}
+        ForgettenPasswordSchema={ForgettenPasswordSchema}
       />
     )
   }
