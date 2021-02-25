@@ -14,8 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.login;
-import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.loginWithSuperadmin;
+import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.*;
 import static io.restassured.RestAssured.given;
 
 
@@ -66,11 +65,23 @@ class UserControllerTest {
 
     @Test
     void loginwithSuperAdmin() {
-        loginWithSuperadmin();
+        loginWithSuperadminWithToken();
     }
 
     @Test
+
     void deleteUser() {
+        String token = loginWithSuperadminWithToken();
+        String email
+        String id = userDTO.getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .pathParam("id", id)
+                .when().delete("api/users/{id}")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
     }
 
 
