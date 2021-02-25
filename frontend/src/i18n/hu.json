@@ -1,4 +1,5 @@
 {
+
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
@@ -11,6 +12,19 @@
     "noserver": "Szerver hiba, kérjük jöjjön vissza később",
     "title": "Jelszó megváltoztatása",
     "nouser": "A felhasználó nem található"
+
+  "menu": {
+    "signout": "Kijelentkezés",
+    "events": "Események",
+    "products": "Termékek",
+    "users": "Felhasználók"
+  },
+  "companyAdmin": {
+    "edit": "Szerkeztés",
+    "newProduct": "Új termék",
+    "remove": "Törlés",
+    "search": "Keresés"
+
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -21,8 +35,16 @@
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
-    "title": "Belépés",
+
     "forgetpassword": "Elfelejtett jelszó"
+
+    "title": "Belépés"
+  },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
   },
   "registration": {
     "address": "Lakcím/Székhely",
@@ -58,6 +80,8 @@
     "confirmDeleteTitle": "Törlés megerősítése",
     "delete": "Regisztráció törlése",
     "no": "Nem",
+
+    "successful": "Sikeres törlés.",
     "unsuccessful": "Sikertelen törlés.",
     "yes": "Igen"
   },

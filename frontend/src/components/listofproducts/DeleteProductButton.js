@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import DeletionResponsedModal from '../modals/DeletionResponseModal'
-import { deleteUserRegistration } from '../../communications/userApi'
-import useUsers from '../useUsers'
+import DeletionResponseModal from '../modals/DeletionResponseModal'
+import { deleteProduct } from '../../communications/userApi'
 
-const DeleteModalButton = ({ userId }) => {
+const DeleteProductButton = ({ productId }) => {
   const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
-  const { fetchUsers } = useUsers()
   const { t } = useTranslation()
 
   const confirmModalHandler = (session) => {
@@ -24,24 +22,22 @@ const DeleteModalButton = ({ userId }) => {
   const deleteUser = async () => {
     setShowConfirmDeletion(false)
     try {
-      await deleteUserRegistration(userId)
+      await deleteProduct(1)
       confirmModalHandler(true)
-      fetchUsers()
     } catch (error) {
-      setShowResponseModal(true)
       confirmModalHandler(false)
     }
   }
 
   return (
     <>
-      <DeletionResponsedModal
+      <DeletionResponseModal
         setShowResponseModal={setShowResponseModal}
         showResponseModal={showResponseModal}
         title={responseModalTitle}
-      ></DeletionResponsedModal>
+      ></DeletionResponseModal>
       <Button variant="danger" onClick={() => setShowConfirmDeletion(true)}>
-        {t('userListElement.delete')}
+        {t('productList.delete')}
       </Button>
       <Modal
         show={showConfirmDeletion}
@@ -49,18 +45,18 @@ const DeleteModalButton = ({ userId }) => {
         animation={false}
       >
         <Modal.Header>
-          <Modal.Title> {t('userListElement.confirmDeleteTitle')}</Modal.Title>
+          <Modal.Title> {t('productList.confirmDeleteTitle')}</Modal.Title>
         </Modal.Header>
-        <Modal.Body> {t('userListElement.confirmDelete')}</Modal.Body>
+        <Modal.Body> {t('productList.confirmDelete')}</Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"
             onClick={() => setShowConfirmDeletion(false)}
           >
-            {t('userListElement.close')}
+            {t('productList.close')}
           </Button>
           <Button variant="danger" onClick={deleteUser}>
-            {t('userListElement.delete')}
+            {t('productList.delete')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -68,4 +64,4 @@ const DeleteModalButton = ({ userId }) => {
   )
 }
 
-export default DeleteModalButton
+export default DeleteProductButton

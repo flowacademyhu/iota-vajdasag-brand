@@ -1,4 +1,11 @@
 {
+
+  "menu": {
+    "signout": "Logout",
+    "events": "Events",
+    "products": "Products",
+    "users": "Users"
+  },
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
@@ -23,6 +30,12 @@
     "password": "Password",
     "title": "Login",
     "forgetpassword": "Forgotten password"
+  },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
   },
   "registration": {
     "address": "Address/Company seat",
@@ -58,6 +71,8 @@
     "confirmDeleteTitle": "Confirm deletion",
     "delete": "Delete registration",
     "no": "No",
+
+    "successful": "Successful deletion.",
     "unsuccessful": "Unsuccessful deletion.",
     "yes": "Yes"
   },

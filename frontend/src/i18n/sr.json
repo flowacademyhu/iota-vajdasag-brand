@@ -11,6 +11,11 @@
     "noserver": "Server greška, vratite se kasnije",
     "title": "Promena lozinke",
     "nouser": "Korisnik nije pronađen"
+  "menu": {
+    "users": "Korisnici",
+    "products": "Proizvodi",
+    "events": "Događaji",
+    "signout": "Odjava"
   },
   "login": {
     "buttontext": "Prijavite se",
@@ -21,8 +26,14 @@
     "invalidemail": "Pogrešna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
-    "title": "Prijava",
     "forgetpassword": "Zaboravljena lozinka"
+    "title": "Prijava"
+  },
+  "productList": {
+    "close": "close",
+    "confirmDelete": "confirmDelete",
+    "confirmDeleteTitle": "confirmDeleteTitle",
+    "delete": "delete"
   },
   "registration": {
     "address": "Adresa/Sedište",
@@ -58,6 +69,7 @@
     "confirmDeleteTitle": "Brisanje naloga",
     "delete": "Brisanje registracije",
     "no": "Ne",
+    "successful": "Uspešno brisanje",
     "unsuccessful": "Neuspešno brisanje",
     "yes": "Da"
   },
