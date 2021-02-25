@@ -2,7 +2,7 @@ import * as Yup from 'yup'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { forgottenpassword } from '../communications/userApi'
-import ForgottenPasswordForm from "../components/ForgottenPasswordForm";
+import ForgottenPasswordForm from '../components/ForgottenPasswordForm'
 
 const ForgettenPasswordSchema = (invalidEmail, noEmail) =>
   Yup.object().shape({
