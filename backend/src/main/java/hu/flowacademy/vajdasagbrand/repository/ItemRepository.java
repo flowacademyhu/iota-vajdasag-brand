@@ -1,8 +1,9 @@
 package hu.flowacademy.vajdasagbrand.repository;
 
 import hu.flowacademy.vajdasagbrand.persistence.entity.Item;
-import hu.flowacademy.vajdasagbrand.persistence.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +12,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class ItemRepositoryImpl implements CommonItemRepository{
+@RequiredArgsConstructor
+public class ItemRepository{
 
-    private final ItemRepository itemRepository;
-
-    public ItemRepositoryImpl(@Lazy ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
-    }
+    private final ItemJPARepository itemRepository;
 
     @Override
     public ItemDTO save(ItemDTO itemDTO) {
