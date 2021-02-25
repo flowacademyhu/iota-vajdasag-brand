@@ -1,6 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Type;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.repository.CommonUserRepository;
@@ -45,7 +45,6 @@ public class UserService {
 
     public UserDTO userRegistrationData(UserDTO user, String password) throws ValidationException {
         validateUserData(user);
-
         keycloakClientService.createAccount(user.getEmail(), password);
         user.setRegisteredAt(LocalDateTime.now());
         return userRepository.save(user);

@@ -18,7 +18,6 @@ public class ItemService {
 
     public ItemDTO createItem(ItemDTO item) throws ValidationException {
         validateItemData(item);
-
         return itemRepository.save(item);
     }
 
