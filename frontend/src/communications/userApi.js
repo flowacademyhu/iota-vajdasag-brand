@@ -14,8 +14,17 @@ export const login = (value) => {
   return api.post('/login', value)
 }
 
-export const forgottenpassword = (value) => {
-  return api.post('/forgottenpassword', value)
+export const forgottenpassword = async (value) => {
+  try {
+    console.log('value', value)
+    const response = await api.post('/forgottenpassword', value)
+    return response
+  } catch (e) {
+    console.log(e)
+    if (e.response.status === 400) throw new Error('no user')
+    if (e.response.status === 404 || e.response.status === 500) throw new Error('no server')
+  }
+
 }
 
 export const signUp = async (value, type) => {

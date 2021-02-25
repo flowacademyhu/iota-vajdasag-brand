@@ -21,12 +21,10 @@ const ForgottenPassword = () => {
       await forgottenpassword(value)
       setIsAccepted(true)
     } catch (e) {
-      if (e.response.status === 400) setError('no user')
-      if (e.response.status === 404 || e.response.status === 500)
-        setError('no server')
+      if (e.message === "no user") console.log('no user')
+      console.log('errormessage', e)
     }
   }
-
   const MyForm = ({ email, title, invalidemail, noEmail, buttontext }) => (
     <Formik
       initialValues={{
