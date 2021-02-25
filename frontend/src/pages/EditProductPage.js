@@ -9,34 +9,14 @@ import validationEdit from '../communications/validationEdit'
 import { updateProductData } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
-const product = {
-  id: '628a5a49-8f5e-448f-8adf-158455cd98f8',
-  name: 'Alma',
-  score: 34,
-  bio: 'Konditorei',
-  address: 'Múzeum körút 10.',
-  city: 'Budapest',
-  category: 'GASTRONOMY',
-  coordinateX: '123',
-  coordinateY: '456',
-  phone: '123456789',
-  website: 'www.bubu.hu',
-  facebook: 'asdff',
-  instagram: 'adgfgf',
-  deletedAt: null,
-}
-
-const prepareProductForUpdate = (toBeUpdated) => {
+const updateOldFieldsInItem = (toBeUpdated, product) => {
   Object.keys(product).forEach((key) => {
-    console.log(toBeUpdated[key], product[key])
-    return toBeUpdated[key] === ''
-      ? product[key]
-      : (product[key] = toBeUpdated[key])
+    return toBeUpdated[key] ? (product[key] = toBeUpdated[key]) : product[key]
   })
-  return toBeUpdated
+  return product
 }
 
-const EditProductPage = () => {
+const EditProductPage = ({ product }) => {
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
   const { t } = useTranslation()
@@ -44,13 +24,13 @@ const EditProductPage = () => {
 
   const handleSubmit = async (value) => {
     try {
-      await updateProductData(value)
+      await updateProductData(updateOldFieldsInItem(value))
       setResponseModalTitle(t('editProduct.successfulEdition'))
       setShowResponseModal(true)
     } catch (error) {
       setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
       setShowResponseModal(true)
-      // history.push('/super-admin/events')
+      history.push('/super-admin/products')
     }
   }
 
@@ -60,7 +40,7 @@ const EditProductPage = () => {
         initialValues={{
           address: '',
           city: '',
-          category: '', // product.category,
+          category: product.category, // product.category,
           coordinateX: '',
           coordinateY: '',
           phone: '',
