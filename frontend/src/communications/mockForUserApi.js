@@ -3,7 +3,6 @@ import MockAdapter from 'axios-mock-adapter'
 
 const mock = new MockAdapter(api)
 
-
 mock
   .onPost('/forgottenpassword', {
     email: 'teszt@teszt.com',
@@ -22,4 +21,3 @@ mock.onDelete('/users/3').reply(201)
 
 mock.onDelete('/products/1').reply(200)
 mock.onDelete('/products/2').reply(404)
-
