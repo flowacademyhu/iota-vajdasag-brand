@@ -38,6 +38,7 @@ class UserControllerTest {
     @BeforeAll
     private static void beforeAll() {
         userDTO = UserDTO.builder()
+                .id(faker.gameOfThrones().character())
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
                 .password(faker.chuckNorris().fact())
@@ -72,7 +73,6 @@ class UserControllerTest {
 
     void deleteUser() {
         String token = loginWithSuperadminWithToken();
-        String email
         String id = userDTO.getId();
         given().log().all()
                 .header(getAuthorization(token))
@@ -84,12 +84,32 @@ class UserControllerTest {
                 .statusCode(200);
     }
 
-
     @Test
     void approveRegistration() {
+        String token = loginWithSuperadminWithToken();
+        String id = userDTO.getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .pathParam("id", id)
+                .when().put("api/users/{id}/approval")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
     }
 
     @Test
     void getUsers() {
+        String token = loginWithSuperadminWithToken();
+        String id = userDTO.getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .param()
+                .pathParam("id", id)
+                .when().put("api/users/{id}/approval")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
     }
 }
