@@ -2,6 +2,7 @@ package hu.flowacademy.vajdasagbrand.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(toBuilder=true)
 @Entity
 @Table(name = "EventTable")
 public class Event {
@@ -28,4 +30,6 @@ public class Event {
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime eventend;
     private String place;
+    @ManyToOne
+    private Item item;
 }

@@ -2,6 +2,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.entity.Event;
+import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.service.EventService;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,9 @@ public class EventController {
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/events")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEvent(@RequestBody EventDTO eventDTO) throws ValidationException {
+    public Event createEvent(@RequestBody EventDTO eventDTO) throws ValidationException {
         Event event = new Event();
         BeanUtils.copyProperties(eventDTO, event);
-
-        eventService.createEvent(event);
+        return eventService.createEvent(event.toBuilder().item(Item.builder().id(eventDTO.getItemId()).build()).build());
     }
 }

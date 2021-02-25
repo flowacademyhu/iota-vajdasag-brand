@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.entity.Event;
+import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -21,8 +21,11 @@ public class EventServiceTest {
     private static final String NAME = "New Event";
     private static final String BIO = "Information from the event";
     private static final String PLACE = "Szeged Partfürdő";
+    private static final Item ITEM = new Item();
     private static final LocalDateTime EVENTSTART = LocalDateTime.of(2020,3,11,18,0,0);
+    private static final LocalDateTime EVENTENDSAMETIME = LocalDateTime.of(2020,3,11,18,0,0);
     private static final LocalDateTime EVENTEND = LocalDateTime.of(2020, 3,11,20,0,0);
+    private static final LocalDateTime EVENTENDUP = LocalDateTime.of(2020, 3,11,15,0,0);
 
     @Mock
     private EventRepository eventRepository;
@@ -74,6 +77,27 @@ public class EventServiceTest {
         assertThrows(ValidationException.class, () -> eventService.createEvent(eventData));
     }
 
+    @Test
+    public void givenEventStartAferEndTime_whenCreatingEvent_thenExceptionIsThrown() {
+        Event eventData = givenEventStartAfterEndTime();
+
+        assertThrows(ValidationException.class, () -> eventService.createEvent(eventData));
+    }
+
+    @Test
+    public void givenEventStartWhichIsEqualsEndTime_whenCreatingEvent_thenExceptionIsThrown() {
+        Event eventData = givenEventStartEqualsEndTime();
+
+        assertThrows(ValidationException.class, () -> eventService.createEvent(eventData));
+    }
+
+    @Test
+    public void givenEventMissingItem_whenCreatingEvent_thenExceptionIsThrown() {
+        Event eventData = givenEventMissingItem();
+
+        assertThrows(ValidationException.class, () -> eventService.createEvent(eventData));
+    }
+
     private void givenEventRepositorySavingEvent() {
         when(eventRepository.save(any(Event.class))).thenAnswer(invocationOnMock -> {
             Event created = invocationOnMock.getArgument(0);
@@ -90,6 +114,7 @@ public class EventServiceTest {
         event.setPlace(PLACE);
         event.setEventstart(EVENTSTART);
         event.setEventend(EVENTEND);
+        event.setItem(ITEM);
 
         return event;
     }
@@ -101,6 +126,7 @@ public class EventServiceTest {
         event.setPlace(PLACE);
         event.setEventstart(EVENTSTART);
         event.setEventend(EVENTEND);
+        event.setItem(ITEM);
 
         return event;
     }
@@ -112,6 +138,7 @@ public class EventServiceTest {
         event.setPlace(PLACE);
         event.setEventstart(EVENTSTART);
         event.setEventend(EVENTEND);
+        event.setItem(ITEM);
 
         return event;
     }
@@ -121,6 +148,19 @@ public class EventServiceTest {
         Event event = new Event();
         event.setName(NAME);
         event.setBio(BIO);
+        event.setEventstart(EVENTSTART);
+        event.setEventend(EVENTEND);
+        event.setItem(ITEM);
+
+        return event;
+    }
+
+    private Event givenEventMissingItem() {
+
+        Event event = new Event();
+        event.setName(NAME);
+        event.setBio(BIO);
+        event.setPlace(PLACE);
         event.setEventstart(EVENTSTART);
         event.setEventend(EVENTEND);
 
@@ -134,6 +174,7 @@ public class EventServiceTest {
         event.setBio(BIO);
         event.setPlace(PLACE);
         event.setEventend(EVENTEND);
+        event.setItem(ITEM);
 
         return event;
     }
@@ -145,7 +186,33 @@ public class EventServiceTest {
         event.setBio(BIO);
         event.setPlace(PLACE);
         event.setEventstart(EVENTSTART);
+        event.setItem(ITEM);
 
+        return event;
+    }
+
+    private Event givenEventStartAfterEndTime() {
+
+        Event event = new Event();
+        event.setName(NAME);
+        event.setBio(BIO);
+        event.setPlace(PLACE);
+        event.setEventstart(EVENTSTART);
+        event.setEventend(EVENTENDUP);
+        event.setItem(ITEM);
+
+        return event;
+    }
+
+    private Event givenEventStartEqualsEndTime() {
+
+        Event event = new Event();
+        event.setName(NAME);
+        event.setBio(BIO);
+        event.setPlace(PLACE);
+        event.setEventstart(EVENTSTART);
+        event.setEventend(EVENTENDSAMETIME);
+        event.setItem(ITEM);
         return event;
     }
 }

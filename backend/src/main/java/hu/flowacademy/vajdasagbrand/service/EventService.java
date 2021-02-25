@@ -31,6 +31,9 @@ public class EventService {
         if(!StringUtils.hasText(event.getPlace())) {
             throw new ValidationException("Didn't get place");
         }
+        if(event.getItem() == null) {
+            throw new ValidationException("Didn't get place");
+        }
         if(event.getEventstart() == null) {
             throw new ValidationException("Didn't get time for event start");
         }
@@ -39,6 +42,9 @@ public class EventService {
         }
         if(event.getEventstart().isAfter(event.getEventend())) {
             throw new ValidationException("Program start is after the program end time");
+        }
+        if(event.getEventstart().equals(event.getEventend())) {
+            throw new ValidationException("The event start is the same time with event end");
         }
     }
 }
