@@ -3,7 +3,7 @@ package hu.flowacademy.vajdasagbrand.service;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
-import hu.flowacademy.vajdasagbrand.repository.CommonUserRepository;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
@@ -21,7 +21,7 @@ import java.util.Optional;
 @Transactional
 public class UserService {
 
-    private final CommonUserRepository userRepository;
+    private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
     private final EmailService emailService;
 

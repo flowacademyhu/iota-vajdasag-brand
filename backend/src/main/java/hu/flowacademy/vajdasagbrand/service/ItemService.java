@@ -4,14 +4,13 @@ import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class ItemService {
 
-    private final CommonItemRepository itemRepository;
+    private final ItemRepository itemRepository;
     private static final String SUPERADMIN = "ROLE_SuperAdmin";
     private static final String CEGADMIN = "ROLE_CegAdmin";
 

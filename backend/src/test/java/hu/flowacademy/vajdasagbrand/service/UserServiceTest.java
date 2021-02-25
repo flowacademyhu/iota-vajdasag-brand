@@ -4,13 +4,12 @@ import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.repository.UserRepositoryImpl;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -42,7 +41,7 @@ public class UserServiceTest {
     private TestEntityManager entityManager;
 
     @Mock
-    private UserRepositoryImpl userRepository;
+    private UserRepository userRepository;
 
     @Mock
     private KeycloakClientService keycloakClientService;

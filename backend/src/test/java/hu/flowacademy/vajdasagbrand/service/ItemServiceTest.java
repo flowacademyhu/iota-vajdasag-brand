@@ -6,7 +6,7 @@ import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -53,7 +53,7 @@ class ItemServiceTest {
             Month.JULY, 29, 19, 30, 40);;
 
     @Mock
-    private CommonItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
     @InjectMocks
     private ItemService itemService;
