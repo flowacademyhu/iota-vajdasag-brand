@@ -17,6 +17,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
 
   const fetchUsers = async () => {
     const fetchedUsers = await getUsers()
+    console.log(fetchedUsers)
     setListOfAllUsers(fetchedUsers)
   }
 
@@ -53,7 +54,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
       listOfAllUsers
         ?.sort((a, b) => sortColumn(a, b))
         .filter((user) =>
-          makeWordComparable(user.name).includes(
+          makeWordComparable(user.fullName).includes(
             makeWordComparable(searchKeyword)
           )
         )
