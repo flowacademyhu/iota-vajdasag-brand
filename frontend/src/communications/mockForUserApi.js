@@ -4,13 +4,13 @@ import MockAdapter from 'axios-mock-adapter'
 const mock = new MockAdapter(api)
 
 mock
-  .onPost('/forgetpassword', {
+  .onPost('/forgottenpassword', {
     email: 'teszt@teszt.com',
   })
   .reply(200)
 
 mock
-  .onPost('/forgetpassword', {
+  .onPost('/forgottenpassword', {
     email: 't@teszt.com',
   })
   .reply(400)

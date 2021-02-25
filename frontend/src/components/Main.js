@@ -14,7 +14,7 @@ import { TokenContext } from '../TokenContext'
 import Logout from './logout'
 import Registration from '../pages/Registration'
 import JusoftLogo from '../media/jusoftdark1.png'
-import ForgetPassword from '../pages/ForgetPassword'
+import ForgettenPassword from '../pages/ForgottenPassword'
 
 const Main = () => {
   const { token } = useContext(TokenContext)
@@ -65,8 +65,8 @@ const Main = () => {
                   <Route path="/registration">
                     <Registration />
                   </Route>
-                  <Route path="/forgetpassword">
-                    <ForgetPassword />
+                  <Route path="/forgottenpassword">
+                    <ForgettenPassword />
                   </Route>
                   <Redirect to="/login" />
                 </Switch>

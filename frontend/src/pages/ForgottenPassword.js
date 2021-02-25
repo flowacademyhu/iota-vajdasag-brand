@@ -4,21 +4,21 @@ import { Formik, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
-import { forgetpassword } from '../communications/userApi'
+import { forgottenpassword } from '../communications/userApi'
 
-const ForgetPasswordSchema = (invalidEmail, noEmail) =>
+const ForgettenPasswordSchema = (invalidEmail, noEmail) =>
   Yup.object().shape({
     email: Yup.string().email(invalidEmail).required(noEmail),
   })
 
-const ForgetPassword = () => {
+const ForgottenPassword = () => {
   const [error, setError] = useState()
   const [isAccepted, setIsAccepted] = useState(false)
   const { t } = useTranslation()
 
   const handleSubmit = async (value) => {
     try {
-      await forgetpassword(value)
+      await forgottenpassword(value)
       setIsAccepted(true)
     } catch (e) {
       if (e.response.status === 400) setError('no user')
@@ -33,7 +33,7 @@ const ForgetPassword = () => {
         email: '',
       }}
       onSubmit={handleSubmit}
-      validationSchema={ForgetPasswordSchema(invalidemail, noEmail)}
+      validationSchema={ForgettenPasswordSchema(invalidemail, noEmail)}
     >
       <Form>
         <h3 className="text-center">{title}</h3>
@@ -57,21 +57,21 @@ const ForgetPassword = () => {
 
   const Page = () => {
     if (isAccepted) {
-      return <h1 className="text-center">{t('forgetpassword.accepted')}</h1>
+      return <h1 className="text-center">{t('forgottenpassword.accepted')}</h1>
     } else if (!isAccepted && error) {
       if (error === 'no user') {
-        return <h1 className="text-center">{t('forgetpassword.nouser')}</h1>
+        return <h1 className="text-center">{t('forgottenpassword.nouser')}</h1>
       } else {
-        return <h1 className="text-center">{t('forgetpassword.noserver')}</h1>
+        return <h1 className="text-center">{t('forgottenpassword.noserver')}</h1>
       }
     } else {
       return (
         <MyForm
-          title={t('forgetpassword.title')}
+          title={t('forgottenpassword.title')}
           email={t('login.email')}
           invalidemail={t('login.invalidemail')}
           noEmail={t('login.noEmail')}
-          buttontext={t('forgetpassword.buttontext')}
+          buttontext={t('forgottenpassword.buttontext')}
         />
       )
     }
@@ -84,4 +84,4 @@ const ForgetPassword = () => {
   )
 }
 
-export default ForgetPassword
+export default ForgottenPassword
