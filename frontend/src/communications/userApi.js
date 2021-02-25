@@ -1,11 +1,12 @@
 import api from './apiInstance'
-//import './mockForUserApi'
+import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
     const response = await api.get('/users')
     return response.data.users
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to get users.')
   }
 }
@@ -38,6 +39,7 @@ export const getAllProducts = async () => {
     const response = await api.get('/products')
     return response.data.products
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to get products.')
   }
 }
@@ -48,6 +50,7 @@ export const getProductsByUserId = async (userId) => {
 
     return response.data.products
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to get products.')
   }
 }

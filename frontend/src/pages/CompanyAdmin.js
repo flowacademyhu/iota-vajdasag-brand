@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route } from 'react-router-dom'
-import ProductList from '../components/ProductList'
+import FullProductList from '../components/FullProductList'
 
 const CompanyAdmin = () => {
   const { t } = useTranslation()
@@ -12,7 +12,7 @@ const CompanyAdmin = () => {
         <h1>{t('welcome')}</h1>
       </Route>
       <Route path="/company-admin/products">
-        <ProductList />
+        <FullProductList />
       </Route>
     </>
   )
