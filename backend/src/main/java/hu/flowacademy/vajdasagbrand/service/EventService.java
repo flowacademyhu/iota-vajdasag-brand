@@ -31,13 +31,13 @@ public class EventService {
         if(!StringUtils.hasText(event.getPlace())) {
             throw new ValidationException("Didn't get place");
         }
-        if(event.getProgramstart() == null) {
-            throw new ValidationException("Didn't get time for program start");
+        if(event.getEventstart() == null) {
+            throw new ValidationException("Didn't get time for event start");
         }
-        if(event.getProgramend() == null) {
-            throw new ValidationException("Didn't get time for program end");
+        if(event.getEventend() == null) {
+            throw new ValidationException("Didn't get time for event end");
         }
-        if(!(event.getProgramstart().isAfter(event.getProgramend()))) {
+        if(event.getEventstart().isAfter(event.getEventend())) {
             throw new ValidationException("Program start is after the program end time");
         }
     }

@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,12 +16,16 @@ import java.time.LocalDateTime;
 @Table(name = "EventTable")
 public class Event {
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     private String name;
     @Lob
     private String bio;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime programstart;
+    private LocalDateTime eventstart;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime programend;
+    private LocalDateTime eventend;
     private String place;
 }
