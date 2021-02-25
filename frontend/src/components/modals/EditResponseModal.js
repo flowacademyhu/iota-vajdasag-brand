@@ -13,7 +13,9 @@ const EditResponseModal = ({
 
   const handleClick = () => {
     setShowResponseModal(false)
-    history.push('/super-admin/products')
+    if (!title.includes('unsuccessful')) {
+      history.push('/super-admin/products')
+    }
   }
 
   return (
@@ -22,7 +24,7 @@ const EditResponseModal = ({
       onHide={() => setShowResponseModal(false)}
       animation={false}
     >
-      <Modal.Body>{title} asdfadf </Modal.Body>
+      <Modal.Body>{title} </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClick}>
           {t('userListElement.close')}
