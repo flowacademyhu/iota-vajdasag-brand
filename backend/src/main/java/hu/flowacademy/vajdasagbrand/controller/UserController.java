@@ -2,7 +2,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.User;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;

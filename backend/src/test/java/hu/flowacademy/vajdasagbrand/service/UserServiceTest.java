@@ -1,10 +1,9 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Type;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.repository.CommonUserRepository;
 import hu.flowacademy.vajdasagbrand.repository.UserRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
