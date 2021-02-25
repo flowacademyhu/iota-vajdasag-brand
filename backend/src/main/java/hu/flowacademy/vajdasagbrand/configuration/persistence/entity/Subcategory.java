@@ -1,4 +1,4 @@
-package hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity;
+package hu.flowacademy.vajdasagbrand.configuration.persistence.entity;
 
 public enum Subcategory {
 
