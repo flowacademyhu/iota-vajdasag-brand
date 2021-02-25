@@ -3,7 +3,7 @@ import api from './apiInstance'
 
 export const getUsers = async () => {
   try {
-    const response = await api.get('/getUsers')
+    const response = await api.get('/users')
     return response.data.users
   } catch (error) {
     throw new Error('Failed to get users.')
