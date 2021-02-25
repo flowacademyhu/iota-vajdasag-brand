@@ -2,6 +2,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.entity.Type;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ class UserControllerTest {
     private int port;
     private static final Faker faker = new Faker();
     private static UserDTO userDTO;
+    private static UserRepository userRepository;
 
 
     @BeforeEach
