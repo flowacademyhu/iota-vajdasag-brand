@@ -1,5 +1,4 @@
 {
-
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
@@ -12,19 +11,13 @@
     "noserver": "Szerver hiba, kérjük jöjjön vissza később",
     "title": "Jelszó megváltoztatása",
     "nouser": "A felhasználó nem található"
+  },
 
   "menu": {
     "signout": "Kijelentkezés",
     "events": "Események",
     "products": "Termékek",
     "users": "Felhasználók"
-  },
-  "companyAdmin": {
-    "edit": "Szerkeztés",
-    "newProduct": "Új termék",
-    "remove": "Törlés",
-    "search": "Keresés"
-
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -36,8 +29,7 @@
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
 
-    "forgetpassword": "Elfelejtett jelszó"
-
+    "forgetpassword": "Elfelejtett jelszó",
     "title": "Belépés"
   },
   "productList": {
