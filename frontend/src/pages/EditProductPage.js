@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listofproducts/SelectCategory'
 import validationEdit from '../communications/validationEdit'
 import { updateProductData } from '../communications/userApi'
-import ResponseModal from '../components/modals/ResponseModal'
+import EditResponseModal from '../components/modals/EditResponseModal'
 
 const updateOldFieldsInItem = (toBeUpdated, product) => {
   Object.keys(product).forEach((key) => {
@@ -20,7 +19,6 @@ const EditProductPage = ({ product }) => {
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
   const { t } = useTranslation()
-  let history = useHistory()
 
   const handleSubmit = async (value) => {
     try {
@@ -30,7 +28,6 @@ const EditProductPage = ({ product }) => {
     } catch (error) {
       setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
       setShowResponseModal(true)
-      history.push('/super-admin/products')
     }
   }
 
@@ -135,7 +132,7 @@ const EditProductPage = ({ product }) => {
           </div>
         </Form>
       </Formik>
-      <ResponseModal
+      <EditResponseModal
         setShowResponseModal={setShowResponseModal}
         showResponseModal={showResponseModal}
         title={responseModalTitle}

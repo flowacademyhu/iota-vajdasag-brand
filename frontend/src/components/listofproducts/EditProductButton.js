@@ -8,7 +8,7 @@ const EditProductButton = ({ productId }) => {
 
   return (
     <Link to={`products/edit/${productId}`}>
-      <Button type="button"> {t('editProduct.editButton')}</Button>
+      <Button> {t('editProduct.editButton')}</Button>
     </Link>
   )
 }
