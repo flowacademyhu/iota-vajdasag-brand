@@ -3,7 +3,7 @@ import DeleteModalButton from './DeleteModalButton'
 import ApproveButton from './ApproveButton'
 
 const OperationButtons = ({ user }) => {
-  return user.isApproved ? (
+  return user.enabled ? (
     <DeleteModalButton userId={user.id} />
   ) : (
     <ApproveButton userId={user.id} />
