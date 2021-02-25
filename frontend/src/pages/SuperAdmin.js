@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Route } from 'react-router-dom'
 import UsersList from '../components/UsersList'
 import SuperAdminProductsPage from '../pages/SuperAdminProductsPage'
+import EditProductPage from "./EditProductPage"
 
 const SuperAdmin = () => {
   const { t } = useTranslation()
@@ -17,6 +18,7 @@ const SuperAdmin = () => {
       </Route>
       <Route path="/super-admin/products">
         <SuperAdminProductsPage />
+        <EditProductPage/>
       </Route>
     </>
   )
