@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import InputField from '../InputField'
-import SelectCategory from './SelectCategory'
-import validationEdit from '../../communications/validationEdit'
-import { updateProductData } from '../../communications/userApi'
-import ResponseModal from '../modals/ResponseModal'
+import InputField from '../components/InputField'
+import SelectCategory from '../components/listofproducts/SelectCategory'
+import validationEdit from '../communications/validationEdit'
+import { updateProductData } from '../communications/userApi'
+import ResponseModal from '../components/modals/ResponseModal'
 
 const EditProductPage = () => {
   const [showResponseModal, setShowResponseModal] = useState(false)
