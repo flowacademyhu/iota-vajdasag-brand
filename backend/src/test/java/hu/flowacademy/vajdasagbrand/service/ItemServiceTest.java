@@ -3,6 +3,10 @@ package hu.flowacademy.vajdasagbrand.service;
 import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
+import hu.flowacademy.vajdasagbrand.entity.Category;
+import hu.flowacademy.vajdasagbrand.entity.Item;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
 import org.junit.jupiter.api.Test;
@@ -10,9 +14,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
@@ -39,6 +48,7 @@ class ItemServiceTest {
     private static final String INSTAGRAM = "www.instagram.com/hotelglass";
     private static final String CONTACT = "Kis Pista";
     private static final String EMAIL = "kispista@email.com";
+    private static final String OWNER = "Something";
 
     @Mock
     private CommonItemRepository itemRepository;
@@ -262,6 +272,60 @@ class ItemServiceTest {
         ItemDTO itemData = givenItemMissingInstagram();
 
         assertThrows(ValidationException.class, () -> itemService.updateItem(itemData, UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void givenNonExistingAuthorization_whenListingItems_thenExceptionIsThrown() {
+        Optional<Authentication> authentication = Optional.empty();
+        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication));
+    }
+
+    @Test
+    public void givenUnauthorizedUser_whenListingItems_thenExceptionIsThrown() {
+        assertThrows(ValidationException.class, () -> itemService
+                .listProducts(givenUnauthorizedUserListingItems()));
+    }
+
+    @Test
+    public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
+        givenItemRepositoryListingItems();
+
+        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDTO()));
+        verify(itemRepository, times(1)).findAll();
+        verifyNoMoreInteractions(itemRepository);
+    }
+
+    @Test
+    public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
+        givenItemRepositoryListingItems();
+
+        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDTO()));
+        verify(itemRepository, times(1)).findAll();
+        verifyNoMoreInteractions(itemRepository);
+    }
+
+    private void givenItemRepositoryListingItems() {
+        when(itemRepository.findAll()).thenReturn(List.of(givenItemWithId()));
+    }
+
+    private Optional<Authentication> givenUnauthorizedUserListingItems() {
+        return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_User"))));
+    }
+
+    private Optional<Authentication> givenSuperAdminListingItems() {
+        return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_SuperAdmin"))));
+    }
+
+    private Optional<Authentication> givenCegAdminListingItems() {
+        return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_CegAdmin"))));
+    }
+
+    private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, ADDRESS, CITY, Category.ATTRACTION, OWNER));
+    }
+
+    private List<CegAdminItemDTO> givenCegAdminItemDTO() {
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, ADDRESS, CITY, Category.ATTRACTION));
     }
 
     @Test

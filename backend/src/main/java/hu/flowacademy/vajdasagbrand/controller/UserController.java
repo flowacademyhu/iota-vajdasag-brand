@@ -9,15 +9,19 @@ import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;
 import hu.flowacademy.vajdasagbrand.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.representations.AccessToken;
 import org.keycloak.representations.AccessTokenResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Slf4j
@@ -60,10 +64,20 @@ public class UserController {
     }
 
     @RolesAllowed("SuperAdmin")
-    @GetMapping("/getUsers")
+    @PutMapping("/users/{id}/approval")
+    public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
+        log.info("Incoming registration request with the id: {}", userId);
+        userService.approveRegistration(userId);
+        log.debug("The requested user id is: {}", userId);
+    }
+
+    @RolesAllowed("SuperAdmin")
+    @GetMapping("/users")
+    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
     public Page<UserDTO> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
                                @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
                                @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
+
         return userService.getUsers(
                 orderBy.orElse(defaultOrderCategory),
                 pageNum.orElse(defaultPageNumber),
