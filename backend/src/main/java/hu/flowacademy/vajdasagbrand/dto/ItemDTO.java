@@ -1,16 +1,12 @@
 package hu.flowacademy.vajdasagbrand.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Category;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Subcategory;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Subcategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,9 +15,6 @@ import java.time.LocalDateTime;
 @Builder(toBuilder = true)
 public class ItemDTO {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
     private String score;
