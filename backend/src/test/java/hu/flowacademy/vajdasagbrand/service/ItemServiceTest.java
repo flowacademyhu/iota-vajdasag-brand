@@ -1,13 +1,10 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Category;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Item;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.entity.Subcategory;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.configuration.persistence.sql.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.CommonItemRepository;
-import hu.flowacademy.vajdasagbrand.repository.ItemRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -44,7 +41,7 @@ class ItemServiceTest {
     private static final String EMAIL = "kispista@email.com";
 
     @Mock
-    private ItemRepositoryImpl itemRepository;
+    private CommonItemRepository itemRepository;
 
     @InjectMocks
     private ItemService itemService;
