@@ -26,7 +26,7 @@ public class UserHelper {
         return resp.getToken();
     }
 
-    public static String loginWithSuperadmin() {
+    public static String loginWithSuperadminWithToken() {
        return login("superamind@sa.com", "1234");
     }
 
