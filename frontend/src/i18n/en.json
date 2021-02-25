@@ -13,7 +13,8 @@
     "coordinateY": "Longitude",
     "phone": "Phone number",
     "website": "Website",
-    "save": "Update product"  
+    "save": "Update product",  
+    "editButton": "Edit product"
   },
   "menu": {
     "signout": "Logout",
