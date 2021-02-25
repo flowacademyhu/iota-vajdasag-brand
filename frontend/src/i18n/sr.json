@@ -5,7 +5,7 @@
     "remove": "Remove",
     "search": "Search"
   },
-  "forgetpassword": {
+  "forgottenpassword": {
     "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",
     "buttontext": "Promenite lozinku",
     "noserver": "Server greška, vratite se kasnije",

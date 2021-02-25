@@ -5,7 +5,7 @@
     "remove": "Remove",
     "search": "Search"
   },
-  "forgetpassword": {
+  "forgottenpassword": {
     "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
     "buttontext": "Jelszó megváltoztatása",
     "noserver": "Szerver hiba, kérjük jöjjön vissza később",
