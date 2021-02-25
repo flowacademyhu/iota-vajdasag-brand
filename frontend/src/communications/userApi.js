@@ -22,9 +22,9 @@ export const forgottenpassword = async (value) => {
   } catch (e) {
     console.log(e)
     if (e.response.status === 400) throw new Error('no user')
-    if (e.response.status === 404 || e.response.status === 500) throw new Error('no server')
+    if (e.response.status === 404 || e.response.status === 500)
+      throw new Error('no server')
   }
-
 }
 
 export const signUp = async (value, type) => {
