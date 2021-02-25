@@ -48,7 +48,6 @@ export const deleteProduct = async (id) => {
 }
 
 export const updateProductData = async (value) => {
-  console.log(value)
   const response = await api.put(`/items/${value.id}`, value)
   if (response.status !== 200) {
     throw new Error('The update was unsuccessful.')
