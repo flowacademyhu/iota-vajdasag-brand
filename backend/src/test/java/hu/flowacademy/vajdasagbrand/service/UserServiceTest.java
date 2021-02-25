@@ -159,11 +159,11 @@ public class UserServiceTest {
     @Test
     void givenThreeUsers_whenCallingFindAll_thenDataCommes() {
         Page tasks = mock(Page.class);
-        Mockito.when(this.userRepository.findAll(org.mockito.Matchers.isA(Pageable.class))).thenReturn(tasks);
+        Mockito.when(this.userRepository.findAllUsers(org.mockito.Matchers.isA(Pageable.class))).thenReturn(tasks);
         int pageNum = 0;
         int limit = 3;
         String orderBy = "registeredAt";
-        Page<UserDTO> result = userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
+        Page<UserDTO> result = userRepository.findAllUsers(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
 
         assertThat(result, notNullValue());
     }

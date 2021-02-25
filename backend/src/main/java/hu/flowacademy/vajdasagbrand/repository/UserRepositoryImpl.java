@@ -33,7 +33,7 @@ public class UserRepositoryImpl implements CommonUserRepository {
     }
 
     @Override
-    public Page<UserDTO> findAll(Pageable pageable) {
+    public Page<UserDTO> findAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable).map(User::toDTO);
     }
 }

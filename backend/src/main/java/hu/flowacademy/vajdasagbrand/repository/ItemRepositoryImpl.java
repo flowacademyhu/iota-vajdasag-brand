@@ -28,7 +28,7 @@ public class ItemRepositoryImpl implements CommonItemRepository{
     }
 
     @Override
-    public Optional<ItemDTO> findFirstByIdAndDeletedAtNull(String id) {
+    public Optional<ItemDTO> findFirstById(String id) {
         return itemRepository.findFirstByIdAndDeletedAtNull(id).map(Item::toDTO);
     }
 }

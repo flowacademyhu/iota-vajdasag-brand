@@ -165,7 +165,7 @@ class ItemServiceTest {
     public void givenExistingItem_whenCallingDelete_thenItemDeletedSuccessfully() throws ValidationException {
         givenItemRepositoryWhenCallingDelete();
         ItemDTO deleted = itemService.deleteById(REGISTRATION_ID);
-        verify(itemRepository, times(1)).findFirstByIdAndDeletedAtNull(REGISTRATION_ID);
+        verify(itemRepository, times(1)).findFirstById(REGISTRATION_ID);
         verify(itemRepository, times(1)).save(deleted);
         verifyNoMoreInteractions(itemRepository);
 
@@ -296,7 +296,7 @@ class ItemServiceTest {
     private void givenItemRepositoryWhenCallingDelete() {
         ItemDTO itemToBeDeleted = givenItem();
         itemToBeDeleted.setId(REGISTRATION_ID);
-        when(itemRepository.findFirstByIdAndDeletedAtNull(anyString())).thenReturn(Optional.of(itemToBeDeleted));
+        when(itemRepository.findFirstById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 

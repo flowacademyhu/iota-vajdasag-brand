@@ -11,5 +11,5 @@ public interface CommonUserRepository {
 
     UserDTO save(UserDTO userDTO);
     Optional<UserDTO> findById(String id);
-    Page<UserDTO> findAll(Pageable pageable);
+    Page<UserDTO> findAllUsers(Pageable pageable);
 }

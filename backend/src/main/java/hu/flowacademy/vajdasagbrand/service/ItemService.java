@@ -22,7 +22,7 @@ public class ItemService {
     }
 
     public ItemDTO deleteById(String id) throws ValidationException {
-        return itemRepository.save(itemRepository.findFirstByIdAndDeletedAtNull(id).orElseThrow(
+        return itemRepository.save(itemRepository.findFirstById(id).orElseThrow(
                 () -> new ValidationException("No item found with given id"))
                 .toBuilder().deletedAt(LocalDateTime.now()).build());
     }

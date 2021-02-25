@@ -72,6 +72,6 @@ public class UserService {
     }
 
     public Page<UserDTO> getUsers(String orderBy, int pageNum, int limit) {
-        return userRepository.findAll(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
+        return userRepository.findAllUsers(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
     }
 }
