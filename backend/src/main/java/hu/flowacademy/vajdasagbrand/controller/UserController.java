@@ -54,9 +54,7 @@ public class UserController {
     @RolesAllowed("SuperAdmin")
     @PutMapping("/users/{id}/approval")
     public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
-        log.info("Incoming registration request with the id: {}", userId);
         userService.approveRegistration(userId);
-        log.debug("The requested user id is: {}", userId);
     }
 
     @RolesAllowed("SuperAdmin")
