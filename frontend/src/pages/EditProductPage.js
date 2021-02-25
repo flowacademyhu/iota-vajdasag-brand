@@ -23,10 +23,10 @@ const EditProductPage = ({ product }) => {
   const handleSubmit = async (value) => {
     try {
       await updateProductData(updateOldFieldsInItem(value))
-      setResponseModalTitle(t('editProduct.successfulEdition'))
+      setResponseModalTitle('editProduct.successfulEdition')
       setShowResponseModal(true)
     } catch (error) {
-      setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
+      setResponseModalTitle('editProduct.unsuccessfulEdition')
       setShowResponseModal(true)
     }
   }
@@ -37,7 +37,7 @@ const EditProductPage = ({ product }) => {
         initialValues={{
           address: '',
           city: '',
-          category: product.category, // product.category,
+          category: product.category,
           coordinateX: '',
           coordinateY: '',
           phone: '',

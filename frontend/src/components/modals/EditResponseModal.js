@@ -10,7 +10,7 @@ const EditResponseModal = ({
 }) => {
   const { t } = useTranslation()
   let history = useHistory()
-
+  
   const handleClick = () => {
     setShowResponseModal(false)
     if (!title.includes('unsuccessful')) {
@@ -24,7 +24,7 @@ const EditResponseModal = ({
       onHide={() => setShowResponseModal(false)}
       animation={false}
     >
-      <Modal.Body>{title} </Modal.Body>
+      <Modal.Body>{t(title)} </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClick}>
           {t('userListElement.close')}
