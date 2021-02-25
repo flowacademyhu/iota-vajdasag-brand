@@ -21,8 +21,8 @@ const ForgottenPassword = () => {
       await forgottenpassword(value)
       setIsAccepted(true)
     } catch (e) {
-      if (e.message === "no user") console.log('no user')
-      console.log('errormessage', e)
+      if (e.message === "no user")setError("forgottenpassword.nouser")
+      if (e.message === "no server")setError("forgottenpassword.noserver")      
     }
   }
   const MyForm = ({ email, title, invalidemail, noEmail, buttontext }) => (
@@ -54,15 +54,8 @@ const ForgottenPassword = () => {
   )
 
   const Page = () => {
-    if (isAccepted) {
-      return <h1 className="text-center">{t('forgottenpassword.accepted')}</h1>
-    } else if (!isAccepted && error) {
-      if (error === 'no user') {
-        return <h1 className="text-center">{t('forgottenpassword.nouser')}</h1>
-      } else {
-        return <h1 className="text-center">{t('forgottenpassword.noserver')}</h1>
-      }
-    } else {
+      if(isAccepted)return <h1 className="text-center">{t('forgottenpassword.accepted')}</h1>
+      if(error && !isAccepted) return error && <h1 className="text-center">{t(error)}</h1>
       return (
         <MyForm
           title={t('forgottenpassword.title')}
@@ -73,7 +66,6 @@ const ForgottenPassword = () => {
         />
       )
     }
-  }
 
   return (
     <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-10 col-md-4 min-vh-100">
