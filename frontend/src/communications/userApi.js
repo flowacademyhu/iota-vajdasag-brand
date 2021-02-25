@@ -1,5 +1,5 @@
 import api from './apiInstance'
-import './mockForUserApi'
+//import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
@@ -36,7 +36,6 @@ export const sendApproval = async (userId) => {
 export const getAllProducts = async () => {
   try {
     const response = await api.get('/products')
-
     return response.data.products
   } catch (error) {
     throw new Error('Failed to get products.')

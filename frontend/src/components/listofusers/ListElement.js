@@ -7,6 +7,8 @@ const ListElement = ({ user }) => {
   const { t } = useTranslation()
 
   return (
+    <div>
+      {user ? (
     <tr>
       <td>{user.name}</td>
       <td>{user.email}</td>
@@ -21,6 +23,10 @@ const ListElement = ({ user }) => {
         <TheirProductsButton user={user} />
       </td>
     </tr>
+    ) : (
+      <div>Poszt betöltése...</div>
+    )}
+    </div>
   )
 }
 
