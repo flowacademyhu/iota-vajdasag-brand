@@ -1,7 +1,8 @@
 package hu.flowacademy.vajdasagbrand.dto;
 
+
+import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import hu.flowacademy.vajdasagbrand.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 public class CegAdminItemDTO {
     private String id;
     private String name;
-    private int score;
+    private String score;
     private String bio;
     private String address;
     private String city;
