@@ -1,7 +1,7 @@
 package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
-import hu.flowacademy.vajdasagbrand.entity.Type;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -40,7 +40,7 @@ class UserControllerTest {
     @BeforeAll
     private static void beforeAll() {
         userDTO = UserDTO.builder()
-                .id(faker.gameOfThrones().character())
+                .id(faker.gameOfThrones().dragon())
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
                 .password(faker.chuckNorris().fact())
@@ -104,14 +104,5 @@ class UserControllerTest {
     void getUsers() {
         String token = loginWithSuperadminWithToken();
         String id = userDTO.getId();
-        given().log().all()
-                .header(getAuthorization(token))
-                .param()
-                .pathParam("id", id)
-                .when().put("api/users/{id}/approval")
-                .andReturn()
-                .then()
-                .assertThat()
-                .statusCode(200);
     }
 }

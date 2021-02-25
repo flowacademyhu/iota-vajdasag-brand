@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class UserDTO {
 
     private String id;

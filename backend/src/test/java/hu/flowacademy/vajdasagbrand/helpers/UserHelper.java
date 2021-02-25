@@ -27,11 +27,11 @@ public class UserHelper {
     }
 
     public static String loginWithSuperadminWithToken() {
-       return login("superamind@sa.com", "1234");
+       return login("superadmin@gmail.com", "Aa123456");
     }
 
 
     private static UserDTO getUser(String email, String password) {
-        return UserDTO.builder().email(email).password(password).build();
+        return UserDTO.builder().email(email).password(password).enabled(true).build();
     }
 }
