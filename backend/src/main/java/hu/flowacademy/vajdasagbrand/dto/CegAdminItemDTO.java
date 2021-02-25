@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.dto;
 
-import hu.flowacademy.vajdasagbrand.entity.Category;
+
+import hu.flowacademy.vajdasagbrand.configuration.persistence.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
