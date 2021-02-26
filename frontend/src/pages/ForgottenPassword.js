@@ -1,13 +1,8 @@
-import * as Yup from 'yup'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { forgottenPassword } from '../communications/userApi'
 import ForgottenPasswordForm from '../components/ForgottenPasswordForm'
-
-const ForgettenPasswordSchema = (invalidEmail, noEmail) =>
-  Yup.object().shape({
-    email: Yup.string().email(invalidEmail).required(noEmail),
-  })
+import ForgottenPasswordShema from "../validations/ForgottenPasswordShema";
 
 const ForgottenPassword = () => {
   const [error, setError] = useState()
@@ -40,7 +35,7 @@ const ForgottenPassword = () => {
         noEmail={t('login.noEmail')}
         buttontext={t('forgottenPassword.buttontext')}
         handleSubmit={handleSubmit}
-        ForgettenPasswordSchema={ForgettenPasswordSchema}
+        ForgettenPasswordSchema={ForgottenPasswordShema}
       />
     )
   }
