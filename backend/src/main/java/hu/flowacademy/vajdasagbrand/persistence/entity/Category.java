@@ -1,6 +1,4 @@
-package hu.flowacademy.vajdasagbrand.entity;
-
-import javax.persistence.Enumerated;
+package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 public enum Category {
     ATTRACTION,
