@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-const EditProductButton = ({ product }) => {
+const EditProductButton = ({ productId }) => {
   const { t } = useTranslation()
 
   return (
-    <Link to={`products/edit/${product.id}`}>
+    <Link to={`products/edit/${productId}`}>
       <Button> {t('editProduct.editButton')}</Button>
     </Link>
   )

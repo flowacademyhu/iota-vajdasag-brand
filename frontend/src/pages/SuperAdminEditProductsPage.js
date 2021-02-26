@@ -19,7 +19,7 @@ const SuperAdminEditProductsPage = () => {
       {products?.map((product) => (
         <div key={product.id}>
           <h1>{product.city}</h1>
-          <EditProductButton product={product} />
+          <EditProductButton productId={product.id} />
         </div>
       ))}
     </>
