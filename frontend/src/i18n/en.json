@@ -1,4 +1,23 @@
 {
+  "editProduct": {
+    "title": "Edit product",
+    "address": "Address",
+    "city": "City",
+    "selectCategory": "Select a category:",
+    "selectAttraction": "Attraction",
+    "selectGastronomy": "Gastronomy",
+    "selectHotel": "Hotel",
+    "selectHoliday": "Holiday",
+    "selectInformation": "Information",
+    "coordinateX": "Latitude",
+    "coordinateY": "Longitude",
+    "phone": "Phone number",
+    "website": "Website",
+    "save": "Update product",
+    "editButton": "Edit product",
+    "unsuccessfulEdition": "The update was unsuccessful",
+    "successfulEdition": "The update was successful"
+  },
   "menu": {
     "signout": "Logout",
     "events": "Events",

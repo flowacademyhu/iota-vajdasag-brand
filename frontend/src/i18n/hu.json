@@ -5,8 +5,27 @@
     "products": "Termékek",
     "users": "Felhasználók"
   },
+  "editProduct": {
+    "title": "Termék szerkesztése",
+    "address": "Cím",
+    "city": "Város",
+    "selectCategory": "Válassz kategóriát:",
+    "selectAttraction": "Látnivaló",
+    "selectGastronomy": "Gasztronómia",
+    "selectHotel": "Szálló",
+    "selectHoliday": "Hétvége",
+    "selectInformation": "Tájékoztatás",
+    "coordinateX": "Szélességi fok",
+    "coordinateY": "Hosszúsági fok",
+    "phone": "Telefonszám",
+    "website": "Weboldal",
+    "save": "Termék elmentése",
+    "editButton": "Szerkesztés",
+    "successfulEdition": "A mentés sikeres volt",
+    "unsuccessfulEdition": "Sikertelen volt a mentés"
+  },
   "companyAdmin": {
-    "edit": "Szerkeztés",
+    "edit": "Szerkesztés",
     "newProduct": "Új termék",
     "remove": "Törlés",
     "search": "Keresés"
