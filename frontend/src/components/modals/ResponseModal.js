@@ -1,22 +1,15 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import { useTranslation } from 'react-i18next/'
 
-const EditResponseModal = ({
-  setShowResponseModal,
-  showResponseModal,
-  title,
-  onClose,
-}) => {
-  const { t } = useTranslation()
+const ResponseModal = ({ onClose, showResponseModal, title }) => {
 
   return (
     <Modal
       show={showResponseModal}
-      onHide={() => setShowResponseModal(false)}
+      onHide={onClose}
       animation={false}
     >
-      <Modal.Body>{t(title)} </Modal.Body>
+      <Modal.Body>{title}</Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onClose}>
           {title}
@@ -26,4 +19,4 @@ const EditResponseModal = ({
   )
 }
 
-export default EditResponseModal
+export default ResponseModal
