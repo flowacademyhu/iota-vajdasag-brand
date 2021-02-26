@@ -1,32 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
+import { useParams, useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listofproducts/SelectCategory'
 import validationEdit from '../communications/validationEdit'
-import { updateProductData } from '../communications/userApi'
+import { updateProductData, fetchOneProduct } from '../communications/userApi'
 import EditResponseModal from '../components/modals/EditResponseModal'
-import { useHistory } from 'react-router-dom'
 
 const updateOldFieldsInItem = (newProductValues, product) => {
-  console.log(product, newProductValues)
   Object.keys(product).forEach((key) => {
     return newProductValues[key]
       ? (product[key] = newProductValues[key])
       : product[key]
   })
-  console.log(product)
   return product
 }
 
-const EditProductPage = ({product}) => {
-  console.log(product)
+const EditProductPage = () => {
+  const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
   const [isEditSuccessful, setEditSuccessful] = useState('')
+  const { productId } = useParams()
   const { t } = useTranslation()
   let history = useHistory()
+
+  // These can be later organized into a useProducts hook
+  const getProduct = async () => {
+    const response = await fetchOneProduct(productId)
+    setProduct(response.data)
+  }
+
+  useEffect(() => {
+    getProduct()
+  }, [productId])
 
   const handleSubmit = async (newProductValues) => {
     const updatedProduct = updateOldFieldsInItem(newProductValues, product)
