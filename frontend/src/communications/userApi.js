@@ -1,5 +1,5 @@
 import api from './apiInstance'
-//import './mockForUserApi'
+import './mockForUserApi'
 
 export const getUsers = async () => {
   try {

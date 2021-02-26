@@ -25,9 +25,9 @@
   "product": {
     "address": "Address",
     "category": "Category",
-    "subcategory": "Subcategory",
     "city": "City",
-    "name": "Name"
+    "name": "Name",
+    "owner": "Owner"
   },
   "productList": {
     "close": "close",

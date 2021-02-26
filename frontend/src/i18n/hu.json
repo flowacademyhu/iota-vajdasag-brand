@@ -25,7 +25,6 @@
   "product": {
     "address": "Cím",
     "category": "Kategória",
-    "subcategory": "Alkategória",
     "city": "Város",
     "name": "Név"
   },

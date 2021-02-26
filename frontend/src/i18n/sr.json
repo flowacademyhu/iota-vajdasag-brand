@@ -25,7 +25,6 @@
   "product": {
     "address": "address",
     "category": "category",
-    "subcategory": "subcategory",
     "city": "city",
     "name": "Ime"
   },

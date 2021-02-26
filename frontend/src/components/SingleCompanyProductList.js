@@ -12,7 +12,7 @@ const SingleCompanyProductList = () => {
           padding: '20px',
         }}
       >
-        {companysProducts[0]?.name}
+        {companysProducts[0]?.owner}
       </h2>
       <div className="table-responsive">
         <div className="col-9">
