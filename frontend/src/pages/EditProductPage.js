@@ -5,15 +5,13 @@ import { useParams, useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listofproducts/SelectCategory'
-import validationEdit from '../communications/validationEdit'
+import validationEdit from '../validations/validationEdit'
 import { updateProductData, fetchOneProduct } from '../communications/userApi'
-import EditResponseModal from '../components/modals/EditResponseModal'
+import ResponseModal from '../components/modals/ResponseModal'
 
 const updateOldFieldsInItem = (newProductValues, product) => {
   Object.keys(product).forEach((key) => {
-    return newProductValues[key]
-      ? (product[key] = newProductValues[key])
-      : product[key]
+    newProductValues[key] && (product[key] = newProductValues[key])
   })
   return product
 }
@@ -134,10 +132,10 @@ const EditProductPage = () => {
           </div>
         </Form>
       </Formik>
-      <EditResponseModal
+      <ResponseModal
         setShowResponseModal={setShowResponseModal}
         showResponseModal={showResponseModal}
-        title={responseModalTitle}
+        title={t(responseModalTitle)}
         onClose={onClose}
       />
     </div>
