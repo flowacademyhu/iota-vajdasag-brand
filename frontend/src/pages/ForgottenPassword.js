@@ -21,7 +21,7 @@ const ForgottenPassword = () => {
     } catch (e) {
       if (e.message === 'no user') setError('forgottenPassword.nouser')
       if (e.message === 'no server') setError('forgottenPassword.noserver')
-      else{
+      else {
         setError('forgottenPassword.other')
       }
     }

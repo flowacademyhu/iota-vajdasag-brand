@@ -11,7 +11,7 @@
     "noserver": "Server greška, vratite se kasnije",
     "title": "Promena lozinke",
     "nouser": "Korisnik nije pronađen",
-    "other":"Something went wrong. Please come back later"
+    "other": "Something went wrong. Please come back later"
   },
   "menu": {
     "users": "Korisnici",

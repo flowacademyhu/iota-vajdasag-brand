@@ -30,7 +30,7 @@
     "password": "Jelszó",
     "forgottenPassword": "Elfelejtett jelszó",
     "title": "Belépés",
-    "other":"Egyéb hiba. Kérjük térjen vissza később"
+    "other": "Egyéb hiba. Kérjük térjen vissza később"
   },
   "productList": {
     "close": "close",
