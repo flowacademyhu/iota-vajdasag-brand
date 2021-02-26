@@ -53,3 +53,14 @@ export const updateProductData = async (value) => {
     throw new Error('The update was unsuccessful.')
   }
 }
+
+export const createProduct = (value) => {
+  api.post("/items", value)
+    .then((response) => {
+      console.log('response', response)
+    }).catch((err) => {
+      if(err.status==="400")throw new Error("bad request")
+      console.log(err)
+    });
+}
+
