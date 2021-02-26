@@ -15,7 +15,7 @@ export const login = (value) => {
   return api.post('/login', value)
 }
 
-export const forgottenpassword = async (value) => {
+export const forgottenPassword = async (value) => {
   try {
     const response = await api.post('/forgottenpassword', value)
     return response
