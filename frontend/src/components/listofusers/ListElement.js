@@ -7,7 +7,7 @@ const ListElement = ({ user }) => {
 
   return (
     <tr>
-      <td>{user.fullName}</td>
+      <td>{user.full_name}</td>
       <td>{user.email}</td>
       <td>
         {user.enabled ? t('userListElement.yes') : t('userListElement.no')}

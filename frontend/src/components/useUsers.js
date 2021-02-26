@@ -53,7 +53,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
       listOfAllUsers
         ?.sort((a, b) => sortColumn(a, b))
         .filter((user) =>
-          makeWordComparable(user.fullName).includes(
+          makeWordComparable(user.full_name).includes(
             makeWordComparable(searchKeyword)
           )
         )
