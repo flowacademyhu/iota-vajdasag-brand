@@ -28,7 +28,7 @@ public class ItemDTO {
     private String coordinateX;
     private String coordinateY;
     private String phone;
-    private String web;
+    private String website;
     private String instagram;
     private String facebook;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))

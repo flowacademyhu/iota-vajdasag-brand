@@ -410,7 +410,7 @@ class ItemServiceTest {
         item.setPhone(PHONE);
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
 
@@ -433,7 +433,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
 
@@ -452,7 +452,7 @@ class ItemServiceTest {
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         item.setDeletedAt(DELETED_AT);
@@ -472,7 +472,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -491,7 +491,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -510,7 +510,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -529,7 +529,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -548,7 +548,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -567,7 +567,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -586,7 +586,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -605,7 +605,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -624,7 +624,7 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -663,7 +663,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         return item;
     }
@@ -682,7 +682,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         return item;
     }
@@ -700,7 +700,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
         return item;
@@ -718,7 +718,7 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
         return item;
@@ -736,7 +736,7 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setEmail(EMAIL);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
         return item;
