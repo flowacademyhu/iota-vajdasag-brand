@@ -50,7 +50,8 @@ class ItemServiceTest {
     private static final String EMAIL = "kispista@email.com";
     private static final String OWNER = "Something";
     private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
-            Month.JULY, 29, 19, 30, 40);;
+            Month.JULY, 29, 19, 30, 40);
+    ;
 
     @Mock
     private ItemRepository itemRepository;
@@ -348,15 +349,15 @@ class ItemServiceTest {
     }
 
     private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
-        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
     }
 
     private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
     }
 
     private CegAdminItemDTO givenCegAdminItemDTO() {
-        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT);
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT);
     }
 
     @Test
@@ -396,7 +397,6 @@ class ItemServiceTest {
     }
 
     private ItemDTO givenItem() {
-
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
         item.setScore(SCORE);
@@ -418,7 +418,6 @@ class ItemServiceTest {
     }
 
     private ItemDTO givenItemWithId() {
-
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
         item.setId(REGISTRATION_ID);
@@ -442,13 +441,17 @@ class ItemServiceTest {
 
     private ItemDTO givenItemWithDeletedAt() {
         ItemDTO item = new ItemDTO();
+
         item.setName(NAME);
         item.setId(REGISTRATION_ID);
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
+        item.setEmail(EMAIL);
         item.setCategory(Category.ATTRACTION);
+        item.setSubcategory(Subcategory.FAMOUS_BUILDINGS);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
@@ -456,6 +459,7 @@ class ItemServiceTest {
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         item.setDeletedAt(DELETED_AT);
+
         return item;
     }
 
