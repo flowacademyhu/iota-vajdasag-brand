@@ -36,7 +36,7 @@ class ItemServiceTest {
     private static final String REGISTRATION_ID = "1234L";
     private static final String NAME = "Something";
     private static final String BIO = "Something useful thing";
-    private static final String  SCORE = "50";
+    private static final String SCORE = "50";
     private static final String SCOREUPDATE = "-50";
     private static final String ADDRESS = "6771 Szeged, Makai út 5.";
     private static final String CITY = "Szeged";
@@ -292,7 +292,7 @@ class ItemServiceTest {
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDTO()));
+        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
         verifyNoMoreInteractions(itemRepository);
     }
@@ -301,13 +301,38 @@ class ItemServiceTest {
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDTO()));
+        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
         verifyNoMoreInteractions(itemRepository);
     }
 
+    @Test
+    public void givenItemRepository_whenFindingOneItem_thenCegAdminDtoIsReturned() throws ValidationException {
+        givenItemRepositoryFindingOneItemById();
+
+        assertThat(itemService.findOneProduct(REGISTRATION_ID), is(givenCegAdminItemDTO()));
+        verify(itemRepository, times(1)).findById(REGISTRATION_ID);
+        verifyNoMoreInteractions(itemRepository);
+    }
+
+    @Test
+    public void givenFalseId_whenFindingOneItem_thenExceptionIsThrown() {
+        givenItemRepositoryNotFindingAnItemById();
+
+        assertThrows(ValidationException.class, () -> itemService
+                .findOneProduct(REGISTRATION_ID));
+    }
+
     private void givenItemRepositoryListingItems() {
         when(itemRepository.findAll()).thenReturn(List.of(givenItemWithDeletedAt()));
+    }
+
+    public void givenItemRepositoryFindingOneItemById() {
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(givenItemWithDeletedAt()));
+    }
+
+    public void givenItemRepositoryNotFindingAnItemById() {
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.empty());
     }
 
     private Optional<Authentication> givenUnauthorizedUserListingItems() {
@@ -322,12 +347,16 @@ class ItemServiceTest {
         return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_CegAdmin"))));
     }
 
-    private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
+    private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
         return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
     }
 
-    private List<CegAdminItemDTO> givenCegAdminItemDTO() {
+    private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
         return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+    }
+
+    private CegAdminItemDTO givenCegAdminItemDTO() {
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT);
     }
 
     @Test
@@ -366,7 +395,7 @@ class ItemServiceTest {
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 
-    private ItemDTO givenItem(){
+    private ItemDTO givenItem() {
 
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
