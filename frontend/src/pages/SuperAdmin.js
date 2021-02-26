@@ -4,7 +4,7 @@ import { Route,Switch } from 'react-router-dom'
 import EditProductButton from '../components/listofproducts/EditProductButton'
 import UsersList from '../components/UsersList'
 import SuperAdminProductsPage from '../pages/SuperAdminProductsPage'
-import EditProductPage from './EditProductPage'
+import AddAndEditProductPage from './AddAndEditProductPage'
 
 const product = {
   id: '628a5a49-8f5e-448f-8adf-158455cd98f8',
@@ -39,7 +39,10 @@ const SuperAdmin = () => {
         <EditProductButton productId={product.id} />
       </Route>
       <Route path="/super-admin/products/edit/:productId" exact>
-        <EditProductPage product={product} />
+        <AddAndEditProductPage product={product} type="update"/>
+      </Route>
+      <Route path="/super-admin/products/create" exact>
+        <AddAndEditProductPage type="create"/>
       </Route>
     </>
   )
