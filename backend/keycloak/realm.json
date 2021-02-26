@@ -4,7 +4,7 @@
   "notBefore" : 0,
   "revokeRefreshToken" : false,
   "refreshTokenMaxReuse" : 0,
-  "accessTokenLifespan" : 300,
+  "accessTokenLifespan" : 500000000,
   "accessTokenLifespanForImplicitFlow" : 900,
   "ssoSessionIdleTimeout" : 1800,
   "ssoSessionMaxLifespan" : 36000,
@@ -387,21 +387,22 @@
   "users" : [ {
     "id" : "34f79041-5e38-49d7-83ba-4fadaca1dd3c",
     "createdTimestamp" : 1613407073550,
-    "username" : "barbi@gmail.com",
+    "username" : "superadmin@gmail.com",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "barbi@gmail.com",
+    "email" : "superadmin@gmail.com",
     "credentials" : [ {
       "id" : "692d0271-2fe8-4c22-ae62-5bf70e70ff79",
       "type" : "password",
+      "value" : "Aa123456",
       "createdDate" : 1613407073753,
       "secretData" : "{\"value\":\"w7pkv+FcqQ350NoTUtKzTRKDLRkFCc8t6FTQVMuzmTOyWQ36tgFvCpWDzKOvK9/EQDl29NCtJTyRe3tIqn/ylA==\",\"salt\":\"B2TXavcUe5mglTLEVB9IXA==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser" ],
+    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser", "realmadmin" ],
     "clientRoles" : {
       "account" : [ "view-profile", "manage-account" ]
     },
@@ -424,7 +425,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser" ],
+    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser", "realmadmin" ],
     "clientRoles" : {
       "account" : [ "view-profile", "manage-account" ]
     },
@@ -1252,7 +1253,16 @@
     "xXSSProtection" : "1; mode=block",
     "strictTransportSecurity" : "max-age=31536000; includeSubDomains"
   },
-  "smtpServer" : { },
+  "smtpServer": {
+    "starttls": "true",
+    "auth": "true",
+    "port": "587",
+    "host": "smtp.gmail.com",
+    "from": "vajdasagjusoft@gmail.com",
+    "ssl": "",
+    "user": "vajdasagjusoft@gmail.com",
+    "password" : "vtejyevwlqixdrtz"
+  },
   "eventsEnabled" : false,
   "eventsListeners" : [ "jboss-logging" ],
   "enabledEventTypes" : [ ],

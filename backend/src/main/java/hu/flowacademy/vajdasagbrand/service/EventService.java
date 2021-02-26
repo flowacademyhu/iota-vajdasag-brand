@@ -1,6 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.entity.Event;
+import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +15,13 @@ public class EventService {
 
     private final EventRepository eventRepository;
 
-    public Event createEvent(Event event) throws ValidationException {
+    public EventDTO createEvent(EventDTO event) throws ValidationException {
         validateEventData(event);
 
         return eventRepository.save(event);
     }
 
-    private void validateEventData(Event event) throws ValidationException{
+    private void validateEventData(EventDTO event) throws ValidationException{
         if(!StringUtils.hasText(event.getName())) {
             throw new ValidationException("Didn't get name");
         }
@@ -31,7 +31,7 @@ public class EventService {
         if(!StringUtils.hasText(event.getPlace())) {
             throw new ValidationException("Didn't get place");
         }
-        if(event.getItem() == null) {
+        if(event.getItemId() == null) {
             throw new ValidationException("Didn't get place");
         }
         if(event.getEventstart() == null) {

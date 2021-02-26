@@ -2,28 +2,20 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
-import hu.flowacademy.vajdasagbrand.entity.User;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.service.KeycloakClientService;
 import hu.flowacademy.vajdasagbrand.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.keycloak.representations.AccessTokenResponse;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import java.util.List;
 import java.util.Optional;
 
-
-@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
@@ -48,7 +40,7 @@ public class UserController {
 
     @RolesAllowed("SuperAdmin")
     @DeleteMapping("/users/{id}")
-    public User deleteUser(@PathVariable("id") String id) throws ValidationException, UserNotEnabledException {
+    public UserDTO deleteUser(@PathVariable("id") String id) throws ValidationException, UserNotEnabledException {
         return userService.deleteById(id);
     }
 
@@ -56,15 +48,18 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @PermitAll
     public void userRegistration(@RequestBody UserDTO userDTO) throws ValidationException {
-        User user = new User();
-        BeanUtils.copyProperties(userDTO, user);
-        log.debug("user {}", user);
-        userService.userRegistrationData(user, userDTO.getPassword());
+        userService.userRegistrationData(userDTO, userDTO.getPassword());
     }
 
     @RolesAllowed("SuperAdmin")
-    @GetMapping("/getUsers")
-    public Page<User> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
+    @PutMapping("/users/{id}/approval")
+    public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
+        userService.approveRegistration(userId);
+    }
+
+    @RolesAllowed("SuperAdmin")
+    @GetMapping("/users")
+    public Page<UserDTO> getUsers(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
                                @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
                                @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
         return userService.getUsers(

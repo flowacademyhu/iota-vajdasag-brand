@@ -25,5 +25,6 @@ class EventControllerTest {
     @Test
     public void testEventRegistration() {
 
+
     }
 }

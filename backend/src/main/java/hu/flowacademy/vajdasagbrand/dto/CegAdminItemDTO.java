@@ -1,35 +1,21 @@
-package hu.flowacademy.vajdasagbrand.entity;
+package hu.flowacademy.vajdasagbrand.dto;
 
+import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
-
-@Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(toBuilder = true)
-@Data
-@Table(name = "ItemTable")
-public class Item {
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+public class CegAdminItemDTO {
     private String id;
     private String name;
-    private int score;
-    @Lob
+    private String score;
     private String bio;
     private String address;
-    private String contact;
     private String city;
-    @Enumerated(EnumType.STRING)
     private Category category;
     private String coordinateX;
     private String coordinateY;

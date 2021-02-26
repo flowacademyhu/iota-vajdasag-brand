@@ -13,9 +13,9 @@ import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import javax.ws.rs.NotFoundException;
-import java.util.List;
+import javax.ws.rs.WebApplicationException;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -40,6 +40,24 @@ public class KeycloakClientService {
         }
     }
 
+    public boolean sendVerificationEmail(String username) {
+        try {
+            RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm());
+            UsersResource resource = ourRealm.users();
+            return resource
+                    .search(username)
+                    .stream()
+                    .findFirst()
+                    .map(oneUser ->  {
+                        resource.get(oneUser.getId()).executeActionsEmail(List.of("VERIFY_EMAIL"));
+                        return oneUser;
+                    })
+                    .isPresent();
+        } catch (WebApplicationException e) {
+            return false;
+        }
+    }
+
     public AccessTokenResponse login(String email, String password) {
         return Keycloak.getInstance(
                 keycloakPropertiesHolder.getKeycloakServerUrl(),
@@ -51,10 +69,24 @@ public class KeycloakClientService {
                 .getAccessToken();
     }
 
+    public boolean enableUser(String username) {
+        UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
+        return resource
+                .search(username)
+                .stream()
+                .findFirst()
+                .map(userToEnable ->  {
+                    userToEnable.setEnabled(true);
+                    resource.get(userToEnable.getId()).update(userToEnable);
+                    return userToEnable;
+                })
+                .isPresent();
+    }
+
     public boolean deleteUser(String username) {
         UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
         List<UserRepresentation> listOfUsers = resource.search(username);
-        if(listOfUsers.isEmpty()) return false;
+        if (listOfUsers.isEmpty()) return false;
         UserRepresentation userToBeDeleted = listOfUsers.get(0);
         userToBeDeleted.setEnabled(false);
         resource.get(userToBeDeleted.getId()).update(userToBeDeleted);
@@ -66,6 +98,7 @@ public class KeycloakClientService {
         user.setUsername(email);
         user.setCredentials(List.of(credential));
         user.setEnabled(false);
+        user.setRequiredActions(List.of("VERIFY_EMAIL"));
         user.setEmail(email);
         return user;
     }
@@ -86,6 +119,7 @@ public class KeycloakClientService {
         }
         return createRoleRepresentation(rolesResource, r);
     }
+
     private RoleRepresentation createRoleRepresentation(RolesResource rolesResource, String r) {
         RoleRepresentation roleRep = new RoleRepresentation(r, "", false);
         rolesResource.create(roleRep);
