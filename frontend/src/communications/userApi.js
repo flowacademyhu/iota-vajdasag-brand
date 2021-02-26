@@ -4,6 +4,7 @@ import api from './apiInstance'
 export const getUsers = async () => {
   try {
     const response = await api.get('/users')
+    console.log('response', response.data)
     return response.data.content
   } catch (error) {
     throw new Error('Failed to get users.')
@@ -11,6 +12,7 @@ export const getUsers = async () => {
 }
 
 export const login = (value) => {
+  console.log('value api', value)
   return api.post('/login', value)
 }
 

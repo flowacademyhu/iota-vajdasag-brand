@@ -6,7 +6,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (request) => {
-    console.log('request', request.config)
+    console.log('request', request)
     const token = localStorage.getItem('token')
     if (token) {
       request.headers = {
