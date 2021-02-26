@@ -25,7 +25,6 @@ const EditProductPage = () => {
   const { t } = useTranslation()
   let history = useHistory()
 
-  // These can be later organized into a useProducts hook when product list is ready
   useEffect(() => {
     const getProduct = async () => {
       const response = await fetchOneProduct(productId)
