@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-const AddNewProductButton = () => {
+const AddAndEditProductButton = () => {
     return ( 
-        <Link to="/newProduct">
+        <Link to="/super-admin/products/create">
             <Button>title</Button>
         </Link>
      );
 }
-export default AddNewProductButton
+export default AddAndEditProductButton
