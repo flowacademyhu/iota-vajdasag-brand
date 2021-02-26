@@ -3,12 +3,11 @@ import { fetchProducts } from '../communications/userApi'
 import EditProductButton from '../components/listofproducts/EditProductButton'
 
 const SuperAdminEditProductsPage = () => {
-  const [product, setProduct] = useState('')
+  const [products, setProducts] = useState([])
 
   const getProducts = async () => {
     const response = await fetchProducts()
-    console.log(response.data.user)
-    setProduct(response.data.user)
+    setProducts(response.data)
   }
 
   useEffect(() => {
@@ -17,8 +16,12 @@ const SuperAdminEditProductsPage = () => {
 
   return (
     <>
-      <h1> {product.name}</h1>
-      <EditProductButton product={product} />
+      {products?.map((product) => (
+        <div>
+          <h1>{product.name}</h1>
+          <EditProductButton product={product} key={product.id} />
+        </div>
+      ))}
     </>
   )
 }
