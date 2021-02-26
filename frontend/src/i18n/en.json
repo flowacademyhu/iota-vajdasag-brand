@@ -16,7 +16,8 @@
     "buttontext": "Renew password",
     "noserver": "Server error, please come back later",
     "title": "Forgotten password",
-    "nouser": "User not found"
+    "nouser": "User not found",
+    "other":"Something went wrong. Please come back later"
   },
   "login": {
     "buttontext": "Login",

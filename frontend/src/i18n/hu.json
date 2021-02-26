@@ -29,7 +29,8 @@
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
     "forgottenPassword": "Elfelejtett jelszó",
-    "title": "Belépés"
+    "title": "Belépés",
+    "other":"Egyéb hiba. Kérjük térjen vissza később"
   },
   "productList": {
     "close": "close",
