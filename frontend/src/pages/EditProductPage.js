@@ -42,7 +42,7 @@ const EditProductPage = () => {
   const onClose = () => {
     setShowResponseModal(false)
     if (isEditSuccessful) {
-      history.push('/super-admin/products')
+      history.push('/super-admin/items')
     }
   }
 

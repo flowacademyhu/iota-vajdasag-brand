@@ -46,7 +46,7 @@
   },
   "menu": {
     "events": "Događaji",
-    "products": "Proizvodi",
+    "items": "Proizvodi",
     "signout": "Odjava",
     "users": "Korisnici"
   },

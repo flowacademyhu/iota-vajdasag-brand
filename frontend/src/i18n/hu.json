@@ -46,7 +46,7 @@
   },
   "menu": {
     "events": "Események",
-    "products": "Termékek",
+    "items": "Termékek",
     "signout": "Kijelentkezés",
     "users": "Felhasználók"
   },

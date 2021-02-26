@@ -17,11 +17,11 @@ const SuperAdmin = () => {
       <Route path="/super-admin/users">
         <UsersList />
       </Route>
-      <Route path="/super-admin/products" exact>
+      <Route path="/super-admin/items" exact>
         <SuperAdminProductsPage />
         <SuperAdminEditProductsPage />
       </Route>
-      <Route path="/super-admin/products/edit/:productId" exact>
+      <Route path="/super-admin/items/edit/:productId" exact>
         <EditProductPage />
       </Route>
     </>

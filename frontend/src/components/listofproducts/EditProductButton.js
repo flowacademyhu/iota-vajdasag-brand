@@ -7,7 +7,7 @@ const EditProductButton = ({ productId }) => {
   const { t } = useTranslation()
 
   return (
-    <Link to={`products/edit/${productId}`}>
+    <Link to={`items/edit/${productId}`}>
       <Button> {t('editProduct.editButton')}</Button>
     </Link>
   )
