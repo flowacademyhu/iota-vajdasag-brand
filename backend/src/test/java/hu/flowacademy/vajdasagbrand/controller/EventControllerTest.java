@@ -55,7 +55,7 @@ class EventControllerTest {
                         .coordinateX(faker.address().longitude())
                         .coordinateY(faker.address().latitude())
                         .phone(faker.phoneNumber().phoneNumber())
-                        .web(faker.internet().url())
+                        .website(faker.internet().url())
                         .instagram(faker.name().username())
                         .facebook(faker.name().username())
                         .subcategory(Subcategory.MUSEUMS)

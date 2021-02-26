@@ -34,7 +34,7 @@ class ItemServiceTest {
     private static final String REGISTRATION_ID = "1234L";
     private static final String NAME = "Something";
     private static final String BIO = "Something useful thing";
-    private static final String  SCORE = "50";
+    private static final String SCORE = "50";
     private static final String ADDRESS = "6771 Szeged, Makai út 5.";
     private static final String CITY = "Szeged";
     private static final String COORDINATE_X = "21353.35146";
@@ -47,7 +47,7 @@ class ItemServiceTest {
     private static final String EMAIL = "kispista@email.com";
     private static final String OWNER = "Something";
     private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
-            Month.JULY, 29, 19, 30, 40);;
+            Month.JULY, 29, 19, 30, 40);
 
     @Mock
     private ItemRepository itemRepository;
@@ -150,7 +150,7 @@ class ItemServiceTest {
     }
 
     @Test
-    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() throws ValidationException {
+    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() {
         ItemDTO itemData = givenItemMissingWebsite();
 
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
@@ -289,7 +289,7 @@ class ItemServiceTest {
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDTO()));
+        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
         verifyNoMoreInteractions(itemRepository);
     }
@@ -298,13 +298,38 @@ class ItemServiceTest {
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDTO()));
+        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
         verifyNoMoreInteractions(itemRepository);
     }
 
+    @Test
+    public void givenItemRepository_whenFindingOneItem_thenCegAdminDtoIsReturned() throws ValidationException {
+        givenItemRepositoryFindingOneItemById();
+
+        assertThat(itemService.findOneProduct(REGISTRATION_ID), is(givenCegAdminItemDTO()));
+        verify(itemRepository, times(1)).findById(REGISTRATION_ID);
+        verifyNoMoreInteractions(itemRepository);
+    }
+
+    @Test
+    public void givenFalseId_whenFindingOneItem_thenExceptionIsThrown() {
+        givenItemRepositoryNotFindingAnItemById();
+
+        assertThrows(ValidationException.class, () -> itemService
+                .findOneProduct(REGISTRATION_ID));
+    }
+
     private void givenItemRepositoryListingItems() {
         when(itemRepository.findAll()).thenReturn(List.of(givenItemWithDeletedAt()));
+    }
+
+    public void givenItemRepositoryFindingOneItemById() {
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(givenItemWithDeletedAt()));
+    }
+
+    public void givenItemRepositoryNotFindingAnItemById() {
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.empty());
     }
 
     private Optional<Authentication> givenUnauthorizedUserListingItems() {
@@ -319,12 +344,16 @@ class ItemServiceTest {
         return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_CegAdmin"))));
     }
 
-    private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
-        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
+    private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
     }
 
-    private List<CegAdminItemDTO> givenCegAdminItemDTO() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+    private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+    }
+
+    private CegAdminItemDTO givenCegAdminItemDTO() {
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT);
     }
 
     @Test
@@ -363,8 +392,7 @@ class ItemServiceTest {
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 
-    private ItemDTO givenItem(){
-
+    private ItemDTO givenItem() {
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
         item.setScore(SCORE);
@@ -378,7 +406,7 @@ class ItemServiceTest {
         item.setPhone(PHONE);
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
 
@@ -386,7 +414,6 @@ class ItemServiceTest {
     }
 
     private ItemDTO givenItemWithId() {
-
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
         item.setId(REGISTRATION_ID);
@@ -401,7 +428,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
 
@@ -410,20 +437,25 @@ class ItemServiceTest {
 
     private ItemDTO givenItemWithDeletedAt() {
         ItemDTO item = new ItemDTO();
+
         item.setName(NAME);
         item.setId(REGISTRATION_ID);
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
+        item.setEmail(EMAIL);
         item.setCategory(Category.ATTRACTION);
+        item.setSubcategory(Subcategory.FAMOUS_BUILDINGS);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         item.setDeletedAt(DELETED_AT);
+
         return item;
     }
 
@@ -440,7 +472,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -459,7 +491,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -478,7 +510,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -497,7 +529,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -516,7 +548,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -535,7 +567,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -554,7 +586,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -573,7 +605,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -592,7 +624,7 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         return item;
@@ -631,7 +663,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         return item;
     }
@@ -650,7 +682,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         return item;
     }
@@ -668,7 +700,7 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
         return item;
@@ -686,7 +718,7 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
         return item;
@@ -704,7 +736,7 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setEmail(EMAIL);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
         return item;
