@@ -48,7 +48,7 @@ public class ItemController {
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
-    @GetMapping("/product/{id}")
+    @GetMapping("/items/{id}")
     public CegAdminItemDTO getOneProduct(@PathVariable("id") String id) throws ValidationException {
         return itemService.findOneProduct(id);
     }
