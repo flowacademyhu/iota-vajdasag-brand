@@ -5,7 +5,7 @@
     "remove": "Remove",
     "search": "Search"
   },
-  "forgottenpassword": {
+  "forgottenPassword": {
     "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
     "buttontext": "Jelszó megváltoztatása",
     "noserver": "Szerver hiba, kérjük jöjjön vissza később",
@@ -28,8 +28,7 @@
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
     "password": "Jelszó",
-
-    "forgetpassword": "Elfelejtett jelszó",
+    "forgottenPassword": "Elfelejtett jelszó",
     "title": "Belépés"
   },
   "productList": {

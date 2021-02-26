@@ -85,7 +85,7 @@ const Login = () => {
               className="text-center text-decoration-none"
               to="/forgottenpassword"
             >
-              {t('login.forgottenpassword')}
+              {t('login.forgottenPassword')}
             </Link>
             {!isSignInAccepted && (
               <h5 className="text-danger text-center my-3">{errorMessage}</h5>

@@ -5,7 +5,7 @@
     "remove": "Remove",
     "search": "Search"
   },
-  "forgottenpassword": {
+  "forgottenPassword": {
     "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",
     "buttontext": "Promenite lozinku",
     "noserver": "Server greška, vratite se kasnije",
@@ -27,7 +27,7 @@
     "invalidemail": "Pogrešna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
-    "forgetpassword": "Zaboravljena lozinka",
+    "forgottenPassword": "Zaboravljena lozinka",
     "title": "Prijava"
   },
   "productList": {
