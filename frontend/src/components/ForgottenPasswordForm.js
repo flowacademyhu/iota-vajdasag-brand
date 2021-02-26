@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
 import InputField from './InputField'
-import forgottenPasswordShema from '../validations/ForgottenPasswordShema'
+import forgottenPasswordShema from '../validations/forgottenPasswordShema'
 
 const forgottenPasswordForm = ({
   email,
