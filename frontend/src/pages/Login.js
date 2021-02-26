@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import { login } from '../communications/userApi'
 import useTokenStateHandler from '../components/tokenHandler'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
   Yup.object().shape({
@@ -81,6 +81,12 @@ const Login = () => {
             <Button variant="primary" type="submit">
               {t('login.buttontext')}
             </Button>
+            <Link
+              className="text-center text-decoration-none"
+              to="/forgottenpassword"
+            >
+              {t('login.forgottenPassword')}
+            </Link>
             {!isSignInAccepted && (
               <h5 className="text-danger text-center my-3">{errorMessage}</h5>
             )}
