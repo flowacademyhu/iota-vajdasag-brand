@@ -1,6 +1,6 @@
 package hu.flowacademy.vajdasagbrand.helpers;
 
-import hu.flowacademy.vajdasagbrand.dto.UserDTO;
+import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import org.keycloak.representations.AccessTokenResponse;
@@ -15,7 +15,7 @@ public class UserHelper {
 
     public static String login(String email, String password) {
         var resp = given().log().all()
-                .body(getUser(email, password))
+                .body(LoginDto.builder().username(email).password(password).build())
                 .contentType(ContentType.JSON)
                 .when().post("/api/login")
                 .then()
@@ -28,10 +28,5 @@ public class UserHelper {
 
     public static String loginWithSuperadminWithToken() {
         return login("superadmin@gmail.com", "Aa123456");
-    }
-
-
-    private static UserDTO getUser(String email, String password) {
-        return UserDTO.builder().email(email).password(password).enabled(true).build();
     }
 }

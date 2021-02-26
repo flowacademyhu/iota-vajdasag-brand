@@ -62,47 +62,7 @@ class UserControllerTest {
     }
 
     @Test
-    void loginwithCompanyAdmin() {
-        login(userDTO.getEmail(), userDTO.getPassword() );
-    }
-
-    @Test
     void loginwithSuperAdmin() {
         loginWithSuperadminWithToken();
-    }
-
-    @Test
-
-    void deleteUser() {
-        String token = loginWithSuperadminWithToken();
-        String id = userDTO.getId();
-        given().log().all()
-                .header(getAuthorization(token))
-                .pathParam("id", id)
-                .when().delete("api/users/{id}")
-                .andReturn()
-                .then()
-                .assertThat()
-                .statusCode(200);
-    }
-
-    @Test
-    void approveRegistration() {
-        String token = loginWithSuperadminWithToken();
-        String id = userDTO.getId();
-        given().log().all()
-                .header(getAuthorization(token))
-                .pathParam("id", id)
-                .when().put("api/users/{id}/approval")
-                .andReturn()
-                .then()
-                .assertThat()
-                .statusCode(200);
-    }
-
-    @Test
-    void getUsers() {
-        String token = loginWithSuperadminWithToken();
-        String id = userDTO.getId();
     }
 }
