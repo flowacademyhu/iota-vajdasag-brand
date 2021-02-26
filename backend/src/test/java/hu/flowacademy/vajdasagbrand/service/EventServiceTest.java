@@ -1,8 +1,11 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
+import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Item;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,7 +13,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -40,6 +47,19 @@ public class EventServiceTest {
         eventService.createEvent(eventData);
         verify(eventRepository, times(1)).save(eventData);
         verifyNoMoreInteractions(eventRepository);
+    }
+
+    @Test
+    public void givenExistingEvent_whenCallingUpdate_thenEventIsUpdated() throws ValidationException {
+        givenExistingEventWhenUpdate();
+        eventDTO event = givenEventWithId();
+        eventDTO updatedEvent = eventService.updateEvent(event, REGISTRATION_ID);
+        verify(itemRepository, times(1)).save(updatedItem);
+        assertThat(updatedItem, notNullValue());
+        assertThat(updatedItem.getId(), is(item.getId()));
+        assertThat(updatedItem.getName(), is(item.getName()));
+        assertThat(updatedItem.getBio(), is(item.getBio()));
+        verifyNoMoreInteractions(itemRepository);
     }
 
     @Test
@@ -213,6 +233,26 @@ public class EventServiceTest {
         event.setEventstart(EVENTSTART);
         event.setEventend(EVENTENDSAMETIME);
         event.setItemId(ITEMID);
+        return event;
+    }
+
+    private void givenExistingEventWhenUpdate() {
+        EventDTO event = givenEvent();
+        event.setId(REGISTRATION_ID);
+        when(eventRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(event));
+        when(eventRepository.save(any(EventDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+    }
+
+    private EventDTO givenEventWithId() {
+
+        EventDTO event = new EventDTO();
+        event.setName(NAME);
+        event.setId(REGISTRATION_ID);
+        event.setBio(BIO);
+        event.setPlace(PLACE);
+        event.setEventstart(EVENTSTART);
+        event.setEventend(EVENTEND);
+
         return event;
     }
 }

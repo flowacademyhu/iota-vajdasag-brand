@@ -1,6 +1,7 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
+import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,14 @@ public class EventService {
 
         return eventRepository.save(event);
     }
+
+    public EventDTO updateEvent(EventDTO event, String id) throws ValidationException {
+        validateEventData(event);
+        EventDTO founded = eventRepository.findById(id).orElseThrow(() -> new ValidationException("Can not find this id"));
+        modifyEvents(event, founded);
+        return eventRepository.save(founded);
+    }
+
 
     private void validateEventData(EventDTO event) throws ValidationException{
         if(!StringUtils.hasText(event.getName())) {
@@ -46,5 +55,13 @@ public class EventService {
         if(event.getEventstart().equals(event.getEventend())) {
             throw new ValidationException("The event start is the same time with event end");
         }
+    }
+
+    private void modifyEvents(EventDTO event, EventDTO tempEvent) {
+        tempEvent.setName(event.getName());
+        tempEvent.setBio(event.getBio());
+        tempEvent.setPlace(event.getPlace());
+        tempEvent.setEventstart(event.getEventstart());
+        tempEvent.setEventend(event.getEventend());
     }
 }
