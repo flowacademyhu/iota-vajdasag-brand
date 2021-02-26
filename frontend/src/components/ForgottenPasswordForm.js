@@ -2,7 +2,7 @@ import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
 import InputField from './InputField'
 
-const ForgottenPasswordForm = ({
+const forgottenPasswordForm = ({
   email,
   title,
   invalidemail,
@@ -38,4 +38,4 @@ const ForgottenPasswordForm = ({
   </Formik>
 )
 
-export default ForgottenPasswordForm
+export default forgottenPasswordForm
