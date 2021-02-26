@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { forgottenPassword } from '../communications/userApi'
 import ForgottenPasswordForm from '../components/ForgottenPasswordForm'
 
-
 const ForgottenPassword = () => {
   const [error, setError] = useState()
   const [isAccepted, setIsAccepted] = useState(false)

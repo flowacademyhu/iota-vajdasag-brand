@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap'
 import InputField from './InputField'
 import forgottenPasswordShema from '../validations/ForgottenPasswordShema'
 
-
-
 const forgottenPasswordForm = ({
   email,
   title,
