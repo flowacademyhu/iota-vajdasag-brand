@@ -17,7 +17,6 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
 
   const fetchUsers = async () => {
     const fetchedUsers = await getUsers()
-    console.log(fetchedUsers)
     setListOfAllUsers(fetchedUsers)
   }
 
@@ -29,7 +28,6 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     const registrationStatus = await sendApproval(user)
 
     if (registrationStatus.status === 200) {
-      console.log('Fresh users list from BE.')
       fetchUsers()
     }
   }, [])

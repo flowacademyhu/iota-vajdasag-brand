@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listofproducts/SelectCategory'
-import validationEdit from '../communications/validationEdit'
+import validationEdit from '../validations/validationEdit'
 import { updateProductData, createProduct } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
