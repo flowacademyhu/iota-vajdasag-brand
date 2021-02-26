@@ -387,11 +387,11 @@
   "users" : [ {
     "id" : "34f79041-5e38-49d7-83ba-4fadaca1dd3c",
     "createdTimestamp" : 1613407073550,
-    "username" : "superadmin@gmail.com",
+    "username" : "superadmin@jusoft.com",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "superadmin@gmail.com",
+    "email" : "superadmin@jusoft.com",
     "credentials" : [ {
       "id" : "692d0271-2fe8-4c22-ae62-5bf70e70ff79",
       "type" : "password",
@@ -411,14 +411,15 @@
   }, {
     "id" : "eed3c305-5020-4c87-97f4-01efd8aa6a4a",
     "createdTimestamp" : 1613144784618,
-    "username" : "kissimre@gmail.com",
+    "username" : "kissimre@jusoft.com",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "kissimre@gmail.com",
+    "email" : "kissimre@jusoft.com",
     "credentials" : [ {
       "id" : "584fdb19-4173-412a-aa52-8f969acf6b68",
       "type" : "password",
+      "value" : "Aa123456",
       "createdDate" : 1613403578963,
       "secretData" : "{\"value\":\"bDWov2qWVqdXFs4YE01LIquSlfRwl6H+f97Ga32BB8zI6Ixb81eTEN6kcIlh5WLg+6Oz90+h4vhr0Ua6P+l8wQ==\",\"salt\":\"fwqCz/sbYJu5P1P907oYPA==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
