@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder(toBuilder = true)
 @Data
 @Table(name = "EventTable")
+@Entity
 public class Event {
 
     @Id
