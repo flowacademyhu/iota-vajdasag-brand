@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { forgottenPassword } from '../communications/userApi'
 import ForgottenPasswordForm from '../components/ForgottenPasswordForm'
-import ForgottenPasswordShema from "../validations/ForgottenPasswordShema";
+import ForgottenPasswordShema from '../validations/ForgottenPasswordShema'
 
 const ForgottenPassword = () => {
   const [error, setError] = useState()
