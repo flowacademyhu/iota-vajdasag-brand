@@ -48,7 +48,6 @@ export const deleteProduct = async (id) => {
 }
 
 export const updateProductData = async (productId, updatedProduct) => {
-  console.log(productId, updatedProduct)
   const response = await api.put(`/items/${productId}`, updatedProduct)
   if (response.status !== 200) {
     throw new Error('The update was unsuccessful.')
@@ -60,9 +59,8 @@ export const fetchOneProduct = async (productId) => {
     return await api.get(`/product/${productId}`)
   } catch (error) {
     console.log(error)
-    throw new Error("The GET product request was unsuccessful.")
+    throw new Error('The GET product request was unsuccessful.')
   }
-
 }
 
 /*

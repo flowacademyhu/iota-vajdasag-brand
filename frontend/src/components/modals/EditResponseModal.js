@@ -6,7 +6,7 @@ const EditResponseModal = ({
   setShowResponseModal,
   showResponseModal,
   title,
-  onClose
+  onClose,
 }) => {
   const { t } = useTranslation()
 
