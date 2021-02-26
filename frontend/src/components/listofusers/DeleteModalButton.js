@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import DeletionResponsedModal from '../modals/DeletionResponseModal'
+import ResponseModal from '../modals/ResponseModal'
 import { deleteUserRegistration } from '../../communications/userApi'
 import useUsers from '../useUsers'
 
@@ -33,13 +33,17 @@ const DeleteModalButton = ({ userId }) => {
     }
   }
 
+  const onClose = () => {
+    setShowResponseModal(false)
+  }
+
   return (
     <>
-      <DeletionResponsedModal
-        setShowResponseModal={setShowResponseModal}
+      <ResponseModal
+        onClose={onClose}
         showResponseModal={showResponseModal}
         title={responseModalTitle}
-      ></DeletionResponsedModal>
+      />
       <Button variant="danger" onClick={() => setShowConfirmDeletion(true)}>
         {t('userListElement.delete')}
       </Button>

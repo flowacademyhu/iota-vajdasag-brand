@@ -1,4 +1,23 @@
 {
+  "editProduct": {
+    "title": "Uređivanje proizvoda",
+    "address": "Adresa",
+    "city": "Grad",
+    "selectCategory": "Odaberi kategoriju",
+    "selectAttraction": "Atrakcija",
+    "selectGastronomy": "Gastronomija",
+    "selectHotel": "Hotel",
+    "selectHoliday": "Odmor",
+    "selectInformation": "Informacija",
+    "coordinateX": "Širina",
+    "coordinateY": "Dužina",
+    "phone": "Broj telefona",
+    "website": "Web stranica",
+    "save": "Sačuvaj podatke",
+    "editButton": "Uređivanje",
+    "successfulEdition": "Uspešno uređivanje",
+    "unsuccessfulEdition": "Neuspešno uređivanje"
+  },
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
