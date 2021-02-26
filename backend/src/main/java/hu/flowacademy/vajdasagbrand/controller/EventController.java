@@ -20,8 +20,7 @@ public class EventController {
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/events")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createEvent(@RequestBody EventDTO eventDTO) throws ValidationException {
-
-        eventService.createEvent(eventDTO);
+    public EventDTO createEvent(@RequestBody EventDTO eventDTO) throws ValidationException {
+       return eventService.createEvent(eventDTO);
     }
 }
