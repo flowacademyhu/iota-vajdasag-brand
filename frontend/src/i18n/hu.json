@@ -1,4 +1,9 @@
 {
+  "editProduct":{
+    "newAddingTitle":"Új termék hozzáadása",
+    "name":"Megnevezés",
+    "bio":"Leírás"
+  },
   "menu": {
     "signout": "Kijelentkezés",
     "events": "Események",

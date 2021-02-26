@@ -83,7 +83,7 @@ const AddAndEditProductPage = ({ product, type }) => {
           category: type === "update" ? product.category : '', // product.category,
           coordinateX: '',
           coordinateY: '',
-          score:'50',
+          score:'0',
           phone: '',
           website: '',
           facebook: '',
@@ -156,12 +156,6 @@ const AddAndEditProductPage = ({ product, type }) => {
                 type="text"
               />
             </div>
-            {type === "create" &&
-              <div className="my-2">
-                <label for="score">{t('editProduct.score')}</label>
-                <input name="score" id="score" type="range"></input>
-              </div>
-            }
             <div className="my-2">
               <InputField
                 label={t('editProduct.phone')}

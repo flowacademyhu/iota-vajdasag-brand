@@ -14,7 +14,10 @@
     "phone": "Phone number",
     "website": "Website",
     "save": "Update product",  
-    "editButton": "Edit product"
+    "editButton": "Edit product",
+    "newAddingTitle":"New product",
+    "name":"Name",
+    "bio":"Bio"
   },
   "menu": {
     "signout": "Logout",
