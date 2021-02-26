@@ -13,6 +13,6 @@ public class EventRepository {
     private final EventJPARepository eventRepository;
 
     public EventDTO save(EventDTO eventDTO) {
-        return eventRepository.save(Event.fromEventDTO(eventDTO)).toEventDTO();
+        return eventRepository.save(Event.fromDTO(eventDTO)).toDTO();
     }
 }

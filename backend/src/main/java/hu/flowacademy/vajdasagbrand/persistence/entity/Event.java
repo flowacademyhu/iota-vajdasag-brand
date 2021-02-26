@@ -33,7 +33,7 @@ public class Event {
     @ManyToOne
     private Item item;
 
-    public static Event fromEventDTO(EventDTO eventDTO) {
+    public static Event fromDTO(EventDTO eventDTO) {
         return Event.builder()
                 .id(eventDTO.getId())
                 .name(eventDTO.getName())
@@ -45,7 +45,7 @@ public class Event {
                 .build();
     }
 
-    public EventDTO toEventDTO() {
+    public EventDTO toDTO() {
         return EventDTO.builder()
                 .id(id)
                 .name(name)
