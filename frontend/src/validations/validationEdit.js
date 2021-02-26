@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-const validationEdit = (required) =>
+const validationEdit = () =>
   Yup.object().shape({
     address: Yup.string(),
     city: Yup.string(),
