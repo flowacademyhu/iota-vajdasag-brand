@@ -1,54 +1,54 @@
 {
-  "editProduct": {
-    "title": "Uređivanje proizvoda",
-    "address": "Adresa",
-    "city": "Grad",
-    "selectCategory": "Odaberi kategoriju",
-    "selectAttraction": "Atrakcija",
-    "selectGastronomy": "Gastronomija",
-    "selectHotel": "Hotel",
-    "selectHoliday": "Odmor",
-    "selectInformation": "Informacija",
-    "coordinateX": "Širina",
-    "coordinateY": "Dužina",
-    "phone": "Broj telefona",
-    "website": "Web stranica",
-    "save": "Sačuvaj podatke",
-    "editButton": "Uređivanje",
-    "successfulEdition": "Uspešno uređivanje",
-    "unsuccessfulEdition": "Neuspešno uređivanje"
-  },
   "companyAdmin": {
     "edit": "Edit",
     "newProduct": "New product",
     "remove": "Remove",
     "search": "Search"
   },
+  "editProduct": {
+    "address": "Adresa",
+    "city": "Grad",
+    "coordinateX": "Širina",
+    "coordinateY": "Dužina",
+    "editButton": "Uređivanje",
+    "phone": "Broj telefona",
+    "save": "Sačuvaj podatke",
+    "selectAttraction": "Atrakcija",
+    "selectCategory": "Odaberi kategoriju",
+    "selectGastronomy": "Gastronomija",
+    "selectHoliday": "Odmor",
+    "selectHotel": "Hotel",
+    "selectInformation": "Informacija",
+    "successfulEdition": "Uspešno uređivanje",
+    "title": "Uređivanje proizvoda",
+    "unsuccessfulEdition": "Neuspešno uređivanje",
+    "website": "Web stranica"
+  },
   "forgottenPassword": {
     "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",
     "buttontext": "Promenite lozinku",
     "noserver": "Server greška, vratite se kasnije",
-    "title": "Promena lozinke",
     "nouser": "Korisnik nije pronađen",
-    "other": "Something went wrong. Please come back later"
-  },
-  "menu": {
-    "users": "Korisnici",
-    "products": "Proizvodi",
-    "events": "Događaji",
-    "signout": "Odjava"
+    "other": "Something went wrong. Please come back later",
+    "title": "Promena lozinke"
   },
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
     "email": "E-mail adresa",
+    "forgottenPassword": "Zaboravljena lozinka",
     "invalidData": "Pogrešni podaci",
     "invalidPassword": "Pogrešna lozinka",
     "invalidemail": "Pogrešna email adresa",
     "noEmail": "Morate uneti email adresu",
     "password": "Lozinka",
-    "forgottenPassword": "Zaboravljena lozinka",
     "title": "Prijava"
+  },
+  "menu": {
+    "events": "Događaji",
+    "products": "Proizvodi",
+    "signout": "Odjava",
+    "users": "Korisnici"
   },
   "productList": {
     "close": "close",
