@@ -46,7 +46,7 @@
   },
   "menu": {
     "events": "Events",
-    "products": "Products",
+    "items": "Products",
     "signout": "Logout",
     "users": "Users"
   },
