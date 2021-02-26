@@ -46,4 +46,10 @@ public class ItemController {
     public List<CegAdminItemDTO> getProducts(Authentication authentication) throws ValidationException {
         return itemService.listProducts(Optional.ofNullable(authentication));
     }
+
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @GetMapping("/items/{id}")
+    public CegAdminItemDTO getOneProduct(@PathVariable("id") String id) throws ValidationException {
+        return itemService.findOneProduct(id);
+    }
 }

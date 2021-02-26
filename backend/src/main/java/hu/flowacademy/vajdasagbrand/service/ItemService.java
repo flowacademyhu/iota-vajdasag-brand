@@ -4,6 +4,7 @@ import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -133,5 +134,11 @@ public class ItemService {
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
         return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getCity(),
                 item.getCategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
+    }
+
+    public CegAdminItemDTO findOneProduct(String id) throws ValidationException {
+        ItemDTO itemDTO = itemRepository.findById(id).orElseThrow(
+                () -> new ValidationException("No item found with given id"));
+        return createCegAdminDTO(itemDTO);
     }
 }
