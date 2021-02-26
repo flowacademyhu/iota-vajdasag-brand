@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Formik, Form} from 'formik'
+import { Formik, Form,Field } from 'formik'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import InputField from '../components/InputField'
@@ -61,14 +61,16 @@ const AddAndEditProductPage = ({ product, type }) => {
         address: '',
         city: '',
         category: type === "update" ? product.category : '', // product.category,
+        subcategory: 'sdlkggjlknrg',
         bio: '',
         coordinateX: '',
         coordinateY: '',
-        score: '',
+        score: '0',
         phone: '',
         website: '',
         facebook: '',
         instagram: '',
+        contact: ''
       }
     }
   }
@@ -77,18 +79,7 @@ const AddAndEditProductPage = ({ product, type }) => {
   return (
     <div className="m-5">
       <Formik
-        initialValues={{
-          address: '',
-          city: '',
-          category: type === "update" ? product.category : '', // product.category,
-          coordinateX: '',
-          coordinateY: '',
-          score:'0',
-          phone: '',
-          website: '',
-          facebook: '',
-          instagram: '',
-        }}
+        initialValues={handleFormInit}
         validationSchema={validationEdit(t('registration.required'))}
         onSubmit={handleSubmit}
       >
@@ -96,15 +87,36 @@ const AddAndEditProductPage = ({ product, type }) => {
           <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
             <h3 className="text-center">{type === "update" ? t('editProduct.title') : t('editProduct.newAddingTitle')}</h3>
             {type === "create" &&
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.name')}
-                  name="name"
-                  id="name"
-                  placeholder={t('editProduct.name')}
-                  type="text"
-                />
-              </div>
+              <>
+                <div className="my-2">
+                  <InputField
+                    label={t('editProduct.name')}
+                    name="name"
+                    id="name"
+                    placeholder={t('editProduct.name')}
+                    type="text"
+                  />
+                </div>
+                <div className="my-2">
+                  <InputField
+                    label={t('editProduct.contact')}
+                    name="contact"
+                    id="contact"
+                    placeholder={t('editProduct.name')}
+                    type="text"
+                  />
+                </div>
+                <div className="my-2">
+                  <InputField
+                    name="score"
+                    id="score"
+                    placeholder={t('editProduct.name')}
+                    type="text"
+                    disabled
+                    hidden
+                  />
+                </div>
+              </>
             }
             <div className="my-2">
               <InputField
@@ -127,6 +139,15 @@ const AddAndEditProductPage = ({ product, type }) => {
             <div className="my-2">
               <SelectCategory />
             </div>
+            {type === "create" &&
+              <div className="my-2">
+                <label htmlFor="category">{t('editProduct.selectCategory')}</label>
+                <Field as="select" name="subcategory">
+                  <option value="HONOURABLES">{t('editProduct.selectAttraction')}</option>
+                  <option value="FAMOUS_BUILDINGS">{t('editProduct.selectGastronomy')}</option>
+                  <option value="MUSEUMS">{t('editProduct.selectHotel')}</option>
+                </Field>
+              </div>}
             {type === "create" &&
               <div className="my-2">
                 <InputField
