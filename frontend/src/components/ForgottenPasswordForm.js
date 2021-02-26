@@ -1,6 +1,9 @@
 import { Formik, Form } from 'formik'
 import { Button } from 'react-bootstrap'
 import InputField from './InputField'
+import forgottenPasswordShema from '../validations/ForgottenPasswordShema'
+
+
 
 const forgottenPasswordForm = ({
   email,
@@ -9,14 +12,13 @@ const forgottenPasswordForm = ({
   noEmail,
   buttontext,
   handleSubmit,
-  ForgettenPasswordSchema,
 }) => (
   <Formik
     initialValues={{
       email: '',
     }}
     onSubmit={handleSubmit}
-    validationSchema={ForgettenPasswordSchema(invalidemail, noEmail)}
+    validationSchema={forgottenPasswordShema(invalidemail, noEmail)}
   >
     <Form>
       <h3 className="text-center">{title}</h3>
