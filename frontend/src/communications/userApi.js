@@ -55,10 +55,10 @@ export const updateProductData = async (value) => {
 }
 
 export const createProduct = (value) => {
-  api.post("/items", value)
-    .then((response) => {
-    }).catch((err) => {
-      if(err.status==="400")throw new Error("bad request")
-    });
+  api
+    .post('/items', value)
+    .then((response) => {})
+    .catch((err) => {
+      if (err.status === '400') throw new Error('bad request')
+    })
 }
-

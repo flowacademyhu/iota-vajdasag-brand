@@ -1,8 +1,8 @@
 {
-  "editProduct":{
-    "newAddingTitle":"Új termék hozzáadása",
-    "name":"Megnevezés",
-    "bio":"Leírás"
+  "editProduct": {
+    "newAddingTitle": "Új termék hozzáadása",
+    "name": "Megnevezés",
+    "bio": "Leírás"
   },
   "menu": {
     "signout": "Kijelentkezés",

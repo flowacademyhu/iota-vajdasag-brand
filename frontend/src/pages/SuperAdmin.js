@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Route,Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import EditProductButton from '../components/listofproducts/EditProductButton'
 import UsersList from '../components/UsersList'
 import SuperAdminProductsPage from '../pages/SuperAdminProductsPage'
@@ -39,10 +39,10 @@ const SuperAdmin = () => {
         <EditProductButton productId={product.id} />
       </Route>
       <Route path="/super-admin/products/edit/:productId" exact>
-        <AddAndEditProductPage product={product} type="update"/>
+        <AddAndEditProductPage product={product} type="update" />
       </Route>
       <Route path="/super-admin/products/create" exact>
-        <AddAndEditProductPage type="create"/>
+        <AddAndEditProductPage type="create" />
       </Route>
     </>
   )

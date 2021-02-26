@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Formik, Form,Field } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import InputField from '../components/InputField'
@@ -23,7 +23,7 @@ const AddAndEditProductPage = ({ product, type }) => {
   let history = useHistory()
 
   const handleSubmit = async (value) => {
-    if (type === "update") {
+    if (type === 'update') {
       try {
         await updateProductData(updateOldFieldsInItem(value))
         setResponseModalTitle(t('editProduct.successfulEdition'))
@@ -43,11 +43,11 @@ const AddAndEditProductPage = ({ product, type }) => {
   }
 
   const handleFormInit = (type) => {
-    if (type === "update") {
+    if (type === 'update') {
       return {
         address: '',
         city: '',
-        category: type === "update" ? product.category : '', // product.category,
+        category: type === 'update' ? product.category : '', // product.category,
         coordinateX: '',
         coordinateY: '',
         phone: '',
@@ -60,7 +60,7 @@ const AddAndEditProductPage = ({ product, type }) => {
         name: '',
         address: '',
         city: '',
-        category: type === "update" ? product.category : '', // product.category,
+        category: type === 'update' ? product.category : '', // product.category,
         subcategory: 'sdlkggjlknrg',
         bio: '',
         coordinateX: '',
@@ -70,11 +70,10 @@ const AddAndEditProductPage = ({ product, type }) => {
         website: '',
         facebook: '',
         instagram: '',
-        contact: ''
+        contact: '',
       }
     }
   }
-
 
   return (
     <div className="m-5">
@@ -85,8 +84,12 @@ const AddAndEditProductPage = ({ product, type }) => {
       >
         <Form>
           <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-            <h3 className="text-center">{type === "update" ? t('editProduct.title') : t('editProduct.newAddingTitle')}</h3>
-            {type === "create" &&
+            <h3 className="text-center">
+              {type === 'update'
+                ? t('editProduct.title')
+                : t('editProduct.newAddingTitle')}
+            </h3>
+            {type === 'create' && (
               <>
                 <div className="my-2">
                   <InputField
@@ -117,7 +120,7 @@ const AddAndEditProductPage = ({ product, type }) => {
                   />
                 </div>
               </>
-            }
+            )}
             <div className="my-2">
               <InputField
                 label={t('editProduct.address')}
@@ -139,16 +142,25 @@ const AddAndEditProductPage = ({ product, type }) => {
             <div className="my-2">
               <SelectCategory />
             </div>
-            {type === "create" &&
+            {type === 'create' && (
               <div className="my-2">
-                <label htmlFor="category">{t('editProduct.selectCategory')}</label>
+                <label htmlFor="category">
+                  {t('editProduct.selectCategory')}
+                </label>
                 <Field as="select" name="subcategory">
-                  <option value="HONOURABLES">{t('editProduct.selectAttraction')}</option>
-                  <option value="FAMOUS_BUILDINGS">{t('editProduct.selectGastronomy')}</option>
-                  <option value="MUSEUMS">{t('editProduct.selectHotel')}</option>
+                  <option value="HONOURABLES">
+                    {t('editProduct.selectAttraction')}
+                  </option>
+                  <option value="FAMOUS_BUILDINGS">
+                    {t('editProduct.selectGastronomy')}
+                  </option>
+                  <option value="MUSEUMS">
+                    {t('editProduct.selectHotel')}
+                  </option>
                 </Field>
-              </div>}
-            {type === "create" &&
+              </div>
+            )}
+            {type === 'create' && (
               <div className="my-2">
                 <InputField
                   label={t('editProduct.bio')}
@@ -158,7 +170,7 @@ const AddAndEditProductPage = ({ product, type }) => {
                   type="textfield"
                 />
               </div>
-            }
+            )}
             <div className="my-2">
               <InputField
                 label={t('editProduct.coordinateX')}
@@ -214,7 +226,9 @@ const AddAndEditProductPage = ({ product, type }) => {
               />
             </div>
             <Button variant="primary" type="submit" size="lg">
-              {type === "update" ? t('editProduct.save') : t('editProduct.create')}
+              {type === 'update'
+                ? t('editProduct.save')
+                : t('editProduct.create')}
             </Button>
           </div>
         </Form>
