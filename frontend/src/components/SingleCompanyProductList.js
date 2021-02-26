@@ -1,10 +1,10 @@
 import React from 'react'
-import { GetProductsById } from './useProducts'
+import useProductsForCompany from './useProductsByID'
 import ListElement from './listOfProducts/ListElement'
 import ListHeader from './listOfProducts/ListHeader'
 
 const SingleCompanyProductList = () => {
-  const { companysProducts } = GetProductsById()
+  const { companysProducts } = useProductsForCompany(1)
   return (
     <div>
       <h2

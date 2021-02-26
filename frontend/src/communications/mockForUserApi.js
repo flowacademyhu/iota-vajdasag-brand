@@ -99,14 +99,6 @@ mock.onGet('/products/1').reply(200, {
   ],
 })
 
-mock
-  .onPost('/login', {
-    email: 'teszt@teszt.com',
-    password: '12345678',
-  })
-  .reply(200, '84848fhgvripuerh98r4gu9hg4ru9hrv')
-
-mock.onPost('/registration').reply(201)
 mock.onPut(`/users/2/approval`).reply(200)
 mock.onDelete('/users/1').reply(200)
 mock.onDelete('/users/3').reply(201)

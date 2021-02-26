@@ -1,10 +1,10 @@
 import React from 'react'
-import { GetProducts } from './useProducts'
+import useProducts from './useProducts'
 import ListElement from './listOfProducts/ListElement'
 import ListHeader from './listOfProducts/ListHeader'
 
 const FullProductList = () => {
-  const { listOfAllProducts } = GetProducts()
+  const { listOfAllProducts } = useProducts()
   return (
     <div>
       <div className="table-responsive">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { getAllProducts, getProductsByUserId } from '../communications/userApi'
+import { getAllProducts } from '../communications/userApi'
 
-export const GetProducts = () => {
+const useProducts = () => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
 
   const fetchProducts = async () => {
@@ -20,17 +20,4 @@ export const GetProducts = () => {
   return { listOfAllProducts }
 }
 
-export const GetProductsById = () => {
-  const [companysProducts, setCompanysProducts] = useState([])
-
-  const fetchUserProducts = async () => {
-    const fetchedUserProducts = await getProductsByUserId(1)
-    setCompanysProducts(fetchedUserProducts)
-  }
-
-  useEffect(() => {
-    fetchUserProducts()
-  }, [])
-
-  return { companysProducts }
-}
+export default useProducts

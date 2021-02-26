@@ -5,14 +5,12 @@ import { NavLink } from 'react-router-dom'
 
 const TheirProductsButton = ({ user }) => {
   const { t } = useTranslation()
-  return user.isApproved ? (
+  return user.isApproved && (
     <NavLink to={`/super-admin/products/${user.id}/`}>
       <Button type="button" variant="success">
         {t('userListElement.products')}
       </Button>
     </NavLink>
-  ) : (
-    ''
   )
 }
 
