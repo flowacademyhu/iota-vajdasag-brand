@@ -20,9 +20,13 @@ export const forgottenPassword = async (value) => {
     const response = await api.post('/forgottenpassword', value)
     return response
   } catch (e) {
-    if (e.response.status === 400) throw new Error('no user')
-    if (e.response.status === 404 || e.response.status === 500)
-      throw new Error('no server')
+    if (e.response.status === 400) {
+       throw new Error('no user') 
+      } else if (e.response.status === 404 || e.response.status === 500) {
+         throw new Error('no server') 
+        } else { 
+          throw new Error(e)
+        }
   }
 }
 
