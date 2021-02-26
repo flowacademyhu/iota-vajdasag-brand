@@ -50,8 +50,7 @@ class ItemServiceTest {
     private static final String EMAIL = "kispista@email.com";
     private static final String OWNER = "Something";
     private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
-            Month.JULY, 29, 19, 30, 40);
-    ;
+            Month.JULY, 29, 19, 30, 40);;
 
     @Mock
     private ItemRepository itemRepository;
