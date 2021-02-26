@@ -27,7 +27,7 @@ const forgottenPasswordForm = ({
           id="email"
           placeholder={email}
           type="email"
-        ></InputField>
+        />
       </div>
       <div className="text-center">
         <Button variant="primary" type="submit">
