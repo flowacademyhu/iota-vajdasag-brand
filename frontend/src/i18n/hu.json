@@ -1,45 +1,54 @@
 {
-  "menu": {
-    "signout": "Kijelentkezés",
-    "events": "Események",
-    "products": "Termékek",
-    "users": "Felhasználók"
-  },
-  "editProduct": {
-    "title": "Termék szerkesztése",
-    "address": "Cím",
-    "city": "Város",
-    "selectCategory": "Válassz kategóriát:",
-    "selectAttraction": "Látnivaló",
-    "selectGastronomy": "Gasztronómia",
-    "selectHotel": "Szálló",
-    "selectHoliday": "Hétvége",
-    "selectInformation": "Tájékoztatás",
-    "coordinateX": "Szélességi fok",
-    "coordinateY": "Hosszúsági fok",
-    "phone": "Telefonszám",
-    "website": "Weboldal",
-    "save": "Termék elmentése",
-    "editButton": "Szerkesztés",
-    "successfulEdition": "A mentés sikeres volt",
-    "unsuccessfulEdition": "Sikertelen volt a mentés"
-  },
   "companyAdmin": {
     "edit": "Szerkesztés",
     "newProduct": "Új termék",
     "remove": "Törlés",
     "search": "Keresés"
   },
+  "editProduct": {
+    "address": "Cím",
+    "city": "Város",
+    "coordinateX": "Szélességi fok",
+    "coordinateY": "Hosszúsági fok",
+    "editButton": "Szerkesztés",
+    "phone": "Telefonszám",
+    "save": "Termék elmentése",
+    "selectAttraction": "Látnivaló",
+    "selectCategory": "Válassz kategóriát:",
+    "selectGastronomy": "Gasztronómia",
+    "selectHoliday": "Hétvége",
+    "selectHotel": "Szálló",
+    "selectInformation": "Tájékoztatás",
+    "successfulEdition": "A mentés sikeres volt",
+    "title": "Termék szerkesztése",
+    "unsuccessfulEdition": "Sikertelen volt a mentés",
+    "website": "Weboldal"
+  },
+  "forgottenPassword": {
+    "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
+    "buttontext": "Jelszó megváltoztatása",
+    "noserver": "Szerver hiba, kérjük jöjjön vissza később",
+    "nouser": "A felhasználó nem található",
+    "title": "Jelszó megváltoztatása"
+  },
   "login": {
     "buttontext": "Bejelentkezés",
     "connectionProblems": "Kapcsolati probléma",
     "email": "Email cím",
+    "forgottenPassword": "Elfelejtett jelszó",
     "invalidData": "Rossz email vagy jelszó",
     "invalidPassword": "A jelszó minimum 8 karakter",
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
+    "other": "Egyéb hiba. Kérjük térjen vissza később",
     "password": "Jelszó",
     "title": "Belépés"
+  },
+  "menu": {
+    "events": "Események",
+    "products": "Termékek",
+    "signout": "Kijelentkezés",
+    "users": "Felhasználók"
   },
   "productList": {
     "close": "close",

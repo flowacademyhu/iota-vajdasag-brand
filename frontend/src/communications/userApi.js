@@ -3,7 +3,7 @@ import api from './apiInstance'
 export const getUsers = async () => {
   try {
     const response = await api.get('/users')
-    return response.data.users
+    return response.data.content
   } catch (error) {
     throw new Error('Failed to get users.')
   }
@@ -11,6 +11,21 @@ export const getUsers = async () => {
 
 export const login = (value) => {
   return api.post('/login', value)
+}
+
+export const forgottenPassword = async (value) => {
+  try {
+    const response = await api.post('/forgottenpassword', value)
+    return response
+  } catch (e) {
+    if (e.response.status === 400) {
+      throw new Error('no user')
+    } else if (e.response.status === 404 || e.response.status === 500) {
+      throw new Error('no server')
+    } else {
+      throw new Error(e)
+    }
+  }
 }
 
 export const signUp = async (value, type) => {
