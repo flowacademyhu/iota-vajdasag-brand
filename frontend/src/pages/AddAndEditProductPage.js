@@ -83,6 +83,7 @@ const AddAndEditProductPage = ({ product, type }) => {
           category: type === "update" ? product.category : '', // product.category,
           coordinateX: '',
           coordinateY: '',
+          score:'50',
           phone: '',
           website: '',
           facebook: '',
