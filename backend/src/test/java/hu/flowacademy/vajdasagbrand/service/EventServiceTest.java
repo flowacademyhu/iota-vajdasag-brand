@@ -2,7 +2,6 @@ package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
-import hu.flowacademy.vajdasagbrand.persistence.entity.Item;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,10 +21,10 @@ public class EventServiceTest {
     private static final String BIO = "Information from the event";
     private static final String PLACE = "Szeged Partfürdő";
     private static final String ITEMID = "16548651L";
-    private static final LocalDateTime EVENTSTART = LocalDateTime.of(2020,3,11,18,0,0);
-    private static final LocalDateTime EVENTENDSAMETIME = LocalDateTime.of(2020,3,11,18,0,0);
-    private static final LocalDateTime EVENTEND = LocalDateTime.of(2020, 3,11,20,0,0);
-    private static final LocalDateTime EVENTENDUP = LocalDateTime.of(2020, 3,11,15,0,0);
+    private static final LocalDateTime EVENT_START = LocalDateTime.of(2020,3,11,18,0,0);
+    private static final LocalDateTime EVENT_END_IN_SAME_TIME = LocalDateTime.of(2020,3,11,18,0,0);
+    private static final LocalDateTime EVENT_END = LocalDateTime.of(2020, 3,11,20,0,0);
+    private static final LocalDateTime EVENT_END_UP = LocalDateTime.of(2020, 3,11,15,0,0);
 
     @Mock
     private EventRepository eventRepository;
@@ -112,8 +111,8 @@ public class EventServiceTest {
         event.setName(NAME);
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTEND);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END);
         event.setItemId(ITEMID);
 
         return event;
@@ -124,8 +123,8 @@ public class EventServiceTest {
         EventDTO event = new EventDTO();
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTEND);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END);
         event.setItemId(ITEMID);
 
         return event;
@@ -136,8 +135,8 @@ public class EventServiceTest {
         EventDTO event = new EventDTO();
         event.setName(NAME);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTEND);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END);
         event.setItemId(ITEMID);
 
         return event;
@@ -148,8 +147,8 @@ public class EventServiceTest {
         EventDTO event = new EventDTO();
         event.setName(NAME);
         event.setBio(BIO);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTEND);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END);
         event.setItemId(ITEMID);
 
         return event;
@@ -161,8 +160,8 @@ public class EventServiceTest {
         event.setName(NAME);
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTEND);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END);
 
         return event;
     }
@@ -173,7 +172,7 @@ public class EventServiceTest {
         event.setName(NAME);
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventend(EVENTEND);
+        event.setEventend(EVENT_END);
         event.setItemId(ITEMID);
 
         return event;
@@ -185,7 +184,7 @@ public class EventServiceTest {
         event.setName(NAME);
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
+        event.setEventstart(EVENT_START);
         event.setItemId(ITEMID);
 
         return event;
@@ -197,8 +196,8 @@ public class EventServiceTest {
         event.setName(NAME);
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTENDUP);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END_UP);
         event.setItemId(ITEMID);
 
         return event;
@@ -210,8 +209,8 @@ public class EventServiceTest {
         event.setName(NAME);
         event.setBio(BIO);
         event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTENDSAMETIME);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END_IN_SAME_TIME);
         event.setItemId(ITEMID);
         return event;
     }
