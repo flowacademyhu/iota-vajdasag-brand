@@ -2,12 +2,10 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
-import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.extern.slf4j.Slf4j;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,8 +26,6 @@ class UserControllerTest {
     @LocalServerPort
     private int port;
     private static final Faker faker = new Faker();
-    private static UserDTO userDTO;
-    private static UserRepository userRepository;
 
 
     @BeforeEach
@@ -37,10 +33,9 @@ class UserControllerTest {
         RestAssured.port = port;
     }
 
-    @BeforeAll
-    private static void beforeAll() {
-        userDTO = UserDTO.builder()
-                .id(faker.gameOfThrones().dragon())
+    @Test
+    void userRegistration() {
+        var userDTO = UserDTO.builder()
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
                 .password(faker.chuckNorris().fact())
@@ -48,10 +43,6 @@ class UserControllerTest {
                 .taxNumber(faker.number().digit())
                 .type(Type.COMPANY)
                 .build();
-    }
-
-    @Test
-    void userRegistration() {
         given().log().all()
                 .body(userDTO)
                 .contentType(ContentType.JSON)
