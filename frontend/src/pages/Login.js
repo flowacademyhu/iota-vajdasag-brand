@@ -32,7 +32,9 @@ const Login = () => {
 
   async function handleSubmit(value) {
     try {
+      console.log('value', value)
       const response = await login(value)
+      console.log('response', response)
       handleResponse(response)
     } catch (error) {
       setIsSignInAccepted(false)
