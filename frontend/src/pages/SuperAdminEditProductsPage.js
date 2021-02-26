@@ -6,8 +6,8 @@ const SuperAdminEditProductsPage = () => {
   const [products, setProducts] = useState([])
 
   const getProducts = async () => {
-    const response = await fetchProducts()
-    setProducts(response.data)
+    const fetchedProducts = await fetchProducts()
+    setProducts(fetchedProducts)
   }
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const SuperAdminEditProductsPage = () => {
   return (
     <>
       {products?.map((product) => (
-        <div>
-          <h1>{product.name}</h1>
-          <EditProductButton product={product} key={product.id} />
+        <div key={product.id}>
+          <h1>{product.city}</h1>
+          <EditProductButton product={product} />
         </div>
       ))}
     </>

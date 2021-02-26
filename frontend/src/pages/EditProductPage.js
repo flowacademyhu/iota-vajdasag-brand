@@ -22,18 +22,17 @@ const EditProductPage = () => {
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
-  const [isEditSuccessful, setEditSuccessful] = useState('')
+  const [isEditSuccessful, setEditSuccessful] = useState(false)
   const { productId } = useParams()
   const { t } = useTranslation()
   let history = useHistory()
 
-  // These can be later organized into a useProducts hook
-  const getProduct = async () => {
-    const response = await fetchOneProduct(productId)
-    setProduct(response.data)
-  }
-
+  // These can be later organized into a useProducts hook when product list is ready
   useEffect(() => {
+    const getProduct = async () => {
+      const response = await fetchOneProduct(productId)
+      setProduct(response.data)
+    }
     getProduct()
   }, [productId])
 

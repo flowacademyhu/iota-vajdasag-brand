@@ -1,5 +1,5 @@
 import api from './apiInstance'
-import './mockForUserApi'
+//import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
@@ -41,7 +41,7 @@ export const deleteUserRegistration = async (userId) => {
 }
 
 export const deleteProduct = async (id) => {
-  const response = await api.delete(`/products/${id}`)
+  const response = await api.delete(`/items/${id}`)
   if (response.status !== 200) {
     throw new Error('The deletion was unsuccessful.')
   }
@@ -56,7 +56,7 @@ export const updateProductData = async (productId, updatedProduct) => {
 
 export const fetchOneProduct = async (productId) => {
   try {
-    return await api.get(`/product/${productId}`)
+    return await api.get(`/items/${productId}`)
   } catch (error) {
     console.log(error)
     throw new Error('The GET product request was unsuccessful.')
@@ -68,8 +68,8 @@ Delete after productList is merged and ready to use
 */
 export const fetchProducts = async () => {
   try {
-    const response = await api.get('/products')
-    return response
+    const response = await api.get('/items')
+    return response.data
   } catch (e) {
     console.log(e)
     throw new Error('Error when fetching products from API.')
