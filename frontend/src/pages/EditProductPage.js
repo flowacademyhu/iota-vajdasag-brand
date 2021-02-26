@@ -9,13 +9,6 @@ import validationEdit from '../validations/validationEdit'
 import { updateProductData, fetchOneProduct } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
-const updateOldFieldsInItem = (newProductValues, product) => {
-  Object.keys(product).forEach((key) => {
-    newProductValues[key] && (product[key] = newProductValues[key])
-  })
-  return product
-}
-
 const EditProductPage = () => {
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
@@ -34,9 +27,8 @@ const EditProductPage = () => {
   }, [productId])
 
   const handleSubmit = async (newProductValues) => {
-    const updatedProduct = updateOldFieldsInItem(newProductValues, product)
     try {
-      await updateProductData(product.id, updatedProduct)
+      await updateProductData(product.id, newProductValues)
       setResponseModalTitle(t('editProduct.successfulEdition'))
       setShowResponseModal(true)
       setEditSuccessful(true)
@@ -55,89 +47,81 @@ const EditProductPage = () => {
   }
 
   return (
-    <div className="m-5">
-      <Formik
-        initialValues={{
-          address: '',
-          city: '',
-          category: product.category,
-          coordinateX: '',
-          coordinateY: '',
-          phone: '',
-          website: '',
-          facebook: '',
-          instagram: '',
-        }}
-        validationSchema={validationEdit(t('registration.required'))}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-            <h3 className="text-center">{t('editProduct.title')}</h3>
-            <div className="my-2">
-              <InputField
-                label={t('editProduct.address')}
-                name="address"
-                type="text"
-              />
+    product && (
+      <div className="m-5">
+        <Formik
+          initialValues={product}
+          validationSchema={validationEdit(t('registration.required'))}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
+              <h3 className="text-center">{t('editProduct.title')}</h3>
+              <div className="my-2">
+                <InputField
+                  label={t('editProduct.address')}
+                  name="address"
+                  type="text"
+                />
+              </div>
+              <div className="my-2">
+                <InputField
+                  label={t('editProduct.city')}
+                  name="city"
+                  type="text"
+                />
+              </div>
+              <div className="my-2">
+                <SelectCategory />
+              </div>
+              <div className="my-2">
+                <InputField
+                  label={t('editProduct.coordinateX')}
+                  name="coordinateX"
+                  type="text"
+                />
+              </div>
+              <div className="my-2">
+                <InputField
+                  label={t('editProduct.coordinateY')}
+                  name="coordinateY"
+                  type="text"
+                />
+              </div>
+              <div className="my-2">
+                <InputField
+                  label={t('editProduct.phone')}
+                  name="phone"
+                  type="text"
+                />
+              </div>
+              <div className="my-2">
+                <InputField
+                  label={t('editProduct.website')}
+                  name="website"
+                  type="text"
+                />
+              </div>
+              <div className="my-2">
+                <InputField label="Facebook" name="facebook" type="text" />
+              </div>
+              <div className="my-2">
+                <InputField label="Instagram" name="instagram" type="text" />
+              </div>
+              <Button variant="primary" type="submit" size="lg">
+                {t('editProduct.save')}
+              </Button>
             </div>
-            <div className="my-2">
-              <InputField
-                label={t('editProduct.city')}
-                name="city"
-                type="text"
-              />
-            </div>
-            <div className="my-2">
-              <SelectCategory />
-            </div>
-            <div className="my-2">
-              <InputField
-                label={t('editProduct.coordinateX')}
-                name="coordinateX"
-                type="text"
-              />
-            </div>
-            <div className="my-2">
-              <InputField
-                label={t('editProduct.coordinateY')}
-                name="coordinateY"
-                type="text"
-              />
-            </div>
-            <div className="my-2">
-              <InputField
-                label={t('editProduct.phone')}
-                name="phone"
-                type="text"
-              />
-            </div>
-            <div className="my-2">
-              <InputField
-                label={t('editProduct.website')}
-                name="website"
-                type="text"
-              />
-            </div>
-            <div className="my-2">
-              <InputField label="Facebook" name="facebook" type="text" />
-            </div>
-            <div className="my-2">
-              <InputField label="Instagram" name="instagram" type="text" />
-            </div>
-            <Button variant="primary" type="submit" size="lg">
-              {t('editProduct.save')}
-            </Button>
-          </div>
-        </Form>
-      </Formik>
-      <ResponseModal
-        setShowResponseModal={setShowResponseModal}
-        showResponseModal={showResponseModal}
-        title={t(responseModalTitle)}
-        onClose={onClose}
-      />
-    </div>
+          </Form>
+        </Formik>
+        <ResponseModal
+          setShowResponseModal={setShowResponseModal}
+          showResponseModal={showResponseModal}
+          title={t(responseModalTitle)}
+          onClose={onClose}
+        />
+      </div>
+    )
   )
 }
 
