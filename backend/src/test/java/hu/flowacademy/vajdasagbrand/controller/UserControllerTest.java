@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.*;
 import static io.restassured.RestAssured.given;
 
 
@@ -60,5 +61,48 @@ class UserControllerTest {
                 .statusCode(201);
     }
 
-    
+    @Test
+    void loginwithCompanyAdmin() {
+        login(userDTO.getEmail(), userDTO.getPassword() );
+    }
+
+    @Test
+    void loginwithSuperAdmin() {
+        loginWithSuperadminWithToken();
+    }
+
+    @Test
+
+    void deleteUser() {
+        String token = loginWithSuperadminWithToken();
+        String id = userDTO.getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .pathParam("id", id)
+                .when().delete("api/users/{id}")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Test
+    void approveRegistration() {
+        String token = loginWithSuperadminWithToken();
+        String id = userDTO.getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .pathParam("id", id)
+                .when().put("api/users/{id}/approval")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Test
+    void getUsers() {
+        String token = loginWithSuperadminWithToken();
+        String id = userDTO.getId();
+    }
 }

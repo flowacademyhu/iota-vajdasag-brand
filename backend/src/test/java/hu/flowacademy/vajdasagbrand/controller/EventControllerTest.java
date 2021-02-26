@@ -17,6 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import javax.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
 
+import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.getAuthorization;
+import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.loginWithSuperadminWithToken;
 import static io.restassured.RestAssured.given;
 
 @ExtendWith(SpringExtension.class)
@@ -52,10 +54,9 @@ class EventControllerTest {
     }
 
     @Test
-    @WithMockUser(username="tester",roles={"SuperAdmin"})
     void eventRegistration() {
         given().log().all()
-                .header(getAuthorization(adminLogin()))
+                .header(getAuthorization(loginWithSuperadminWithToken()))
                 .body(eventDTO)
                 .contentType(ContentType.JSON)
                 .when().post("/api/events")
@@ -63,6 +64,5 @@ class EventControllerTest {
                 .assertThat()
                 .statusCode(201);
     }
-
 
 }
