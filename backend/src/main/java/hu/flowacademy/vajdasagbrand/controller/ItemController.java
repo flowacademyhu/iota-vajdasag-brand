@@ -23,9 +23,9 @@ public class ItemController {
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/items")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
+    public ItemDTO createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
 
-        itemService.createItem(itemDTO);
+       return itemService.createItem(itemDTO);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})

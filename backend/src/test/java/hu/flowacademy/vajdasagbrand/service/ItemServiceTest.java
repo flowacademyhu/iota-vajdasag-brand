@@ -15,13 +15,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
@@ -37,7 +35,6 @@ class ItemServiceTest {
     private static final String NAME = "Something";
     private static final String BIO = "Something useful thing";
     private static final String SCORE = "50";
-    private static final String SCOREUPDATE = "-50";
     private static final String ADDRESS = "6771 Szeged, Makai út 5.";
     private static final String CITY = "Szeged";
     private static final String COORDINATE_X = "21353.35146";
@@ -50,7 +47,7 @@ class ItemServiceTest {
     private static final String EMAIL = "kispista@email.com";
     private static final String OWNER = "Something";
     private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
-            Month.JULY, 29, 19, 30, 40);;
+            Month.JULY, 29, 19, 30, 40);
 
     @Mock
     private ItemRepository itemRepository;
@@ -153,7 +150,7 @@ class ItemServiceTest {
     }
 
     @Test
-    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() throws ValidationException {
+    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() {
         ItemDTO itemData = givenItemMissingWebsite();
 
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));

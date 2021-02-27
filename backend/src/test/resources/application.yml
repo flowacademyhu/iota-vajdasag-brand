@@ -1,0 +1,54 @@
+server:
+  port: 8081
+
+hu.flowacademy:
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+
+  h2:
+    console:
+      enabled: true
+
+
+  mail:
+    username: vajdasagjusoft@gmail.com
+    password: vtejyevwlqixdrtz
+    host: smtp.gmail.com
+    port: 465
+    properties:
+      mail.smtp.starttls.enable: true
+      mail.transport.protocol: smtp
+      mail.smtp.auth: true
+      #mail.debug: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.gmail.com
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+
+keycloakBackendClient:
+  serverUrl: http://localhost:8180/auth
+  realm: VajdasagBrand
+  adminusername: admin
+  adminpassword: admin
+
+keycloak:
+  realm: VajdasagBrand
+  auth-server-url: http://localhost:8180/auth
+  ssl-required: external
+  resource: VajdasagClient
+  credentials.secret: 9d709ba1-b04e-4288-a40d-d1b76ee94e15
+  use-resource-role-mappings: true
+  bearer-only: false
+
+userController:
+  defaultOrderCategory: registeredAt
+  defaultPageNumber: 0
+  defaultPageLimit: 10
