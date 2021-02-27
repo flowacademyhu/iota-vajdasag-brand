@@ -8,6 +8,9 @@ services:
     entrypoint: "/keycloak/entrypoint.sh"
     volumes:
       - ./keycloak:/keycloak
+    environment:
+      - KEYCLOAK_FRONTEND_URL
+
   app:
     image: vajdasagbrand:latest
     build:
