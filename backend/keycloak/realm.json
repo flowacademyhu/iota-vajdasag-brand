@@ -395,6 +395,7 @@
     "credentials" : [ {
       "id" : "f3bbc014-5675-45da-9d52-fdb5b61b0f3b",
       "type" : "password",
+       "value" : "Aa123456",
       "createdDate" : 1614347031401,
       "secretData" : "{\"value\":\"1DMbgDSsoyNhhQR23li1Lf5MTXWhH0nq+UCVtQjCl7Xv2GMn8WAD57SsLcfAs2n+ggfS7k26644N4ijIpGWEZA==\",\"salt\":\"zBFncYKZHuyaNAE8CWbgrw==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
@@ -436,6 +437,7 @@
     "credentials" : [ {
       "id" : "5a2b1edc-a9c6-482d-8f47-27508e1ed237",
       "type" : "password",
+       "value" : "Aa123456",
       "createdDate" : 1614347161847,
       "secretData" : "{\"value\":\"A8pwg+01WEfh8mxkhQhUr6pUagAdpDZRqPoPuS9w4EnejegmDZm06W8L2XF6BURGLcfLnizqmFH64ozIighoLw==\",\"salt\":\"zF/TjsoExxQ/GIQyFX1hqA==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
