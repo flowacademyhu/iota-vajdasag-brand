@@ -40,7 +40,7 @@ class UserControllerTest {
     @BeforeAll
     private static void beforeAll() {
         userDTO = UserDTO.builder()
-                .id(faker.gameOfThrones().dragon())
+                .id(faker.idNumber().valid())
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
                 .password(faker.chuckNorris().fact())

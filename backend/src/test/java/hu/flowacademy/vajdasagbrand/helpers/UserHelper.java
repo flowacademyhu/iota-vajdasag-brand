@@ -1,6 +1,6 @@
 package hu.flowacademy.vajdasagbrand.helpers;
 
-import hu.flowacademy.vajdasagbrand.dto.UserDTO;
+import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import org.keycloak.representations.AccessTokenResponse;
@@ -31,7 +31,7 @@ public class UserHelper {
     }
 
 
-    private static UserDTO getUser(String email, String password) {
-        return UserDTO.builder().email(email).password(password).enabled(true).build();
+    private static LoginDto getUser(String email, String password) {
+        return LoginDto.builder().username(email).password(password).build();
     }
 }
