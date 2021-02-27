@@ -7,12 +7,12 @@ const ListElement = ({ user }) => {
 
   return (
     <tr>
-      <td>{user.name}</td>
+      <td>{user.full_name}</td>
       <td>{user.email}</td>
       <td>
-        {user.isApproved ? t('userListElement.yes') : t('userListElement.no')}
+        {user.enabled ? t('userListElement.yes') : t('userListElement.no')}
       </td>
-      <td>{user.dateOfRegistration}</td>
+      <td>{user.registeredAt}</td>
       <td>
         <OperationButtons user={user} />
       </td>
