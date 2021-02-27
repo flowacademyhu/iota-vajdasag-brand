@@ -36,6 +36,7 @@ class UserControllerTest {
     @Test
     void userRegistration() {
         var userDTO = UserDTO.builder()
+                .id(faker.idNumber().valid())
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
                 .password(faker.chuckNorris().fact())
