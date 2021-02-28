@@ -2,14 +2,11 @@ import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
 import ResponseModal from '../modals/ResponseModal'
-import { deleteUserRegistration } from '../../communications/userApi'
-import useUsers from '../useUsers'
 
-const DeleteModalButton = ({ userId }) => {
+const DeleteModalButton = ({ userId, deleteUser }) => {
   const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
-  const { fetchUsers } = useUsers()
   const { t } = useTranslation()
 
   const confirmModalHandler = (session) => {
@@ -21,12 +18,11 @@ const DeleteModalButton = ({ userId }) => {
     setShowResponseModal(true)
   }
 
-  const deleteUser = async () => {
+  const handleDelete = () => {
     setShowConfirmDeletion(false)
     try {
-      await deleteUserRegistration(userId)
+      deleteUser(userId)
       confirmModalHandler(true)
-      fetchUsers()
     } catch (error) {
       setShowResponseModal(true)
       confirmModalHandler(false)
@@ -63,7 +59,7 @@ const DeleteModalButton = ({ userId }) => {
           >
             {t('userListElement.close')}
           </Button>
-          <Button variant="danger" onClick={deleteUser}>
+          <Button variant="danger" onClick={handleDelete}>
             {t('userListElement.delete')}
           </Button>
         </Modal.Footer>
