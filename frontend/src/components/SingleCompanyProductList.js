@@ -1,7 +1,7 @@
 import React from 'react'
 import useProductsForCompany from './useProductsByID'
 import ListElement from './listOfProducts/ListElement'
-import ListHeader from './listOfProducts/ListHeader'
+import ProductTable from './ProductTable'
 
 const SingleCompanyProductList = () => {
   const { companysProducts } = useProductsForCompany(1)
@@ -14,18 +14,11 @@ const SingleCompanyProductList = () => {
       >
         {companysProducts[0]?.owner}
       </h2>
-      <div className="table-responsive">
-        <div className="col-9">
-          <table className="table table-striped table-sm">
-            <ListHeader />
-            <tbody>
-              {companysProducts?.map((product) => (
-                <ListElement product={product} key={product.id} />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <ProductTable>
+        {companysProducts?.map((product) => (
+          <ListElement product={product} key={product.id} />
+        ))}
+      </ProductTable>
     </div>
   )
 }
