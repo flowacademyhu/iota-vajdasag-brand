@@ -8,7 +8,11 @@ const UsersList = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
   const [sortKey, setSortKey] = useState('')
   const [isSortAscending, setAscendingSort] = useState(true)
-  const { users } = useUsers(searchKeyword, sortKey, isSortAscending)
+  const { users, sendRegistrationApproval, deleteUser } = useUsers(
+    searchKeyword,
+    sortKey,
+    isSortAscending
+  )
 
   const onColumnClick = (value) => {
     setAscendingSort(!isSortAscending)
@@ -26,7 +30,12 @@ const UsersList = () => {
         />
         <tbody>
           {users?.map((user) => (
-            <ListElement user={user} key={user.id} />
+            <ListElement
+              user={user}
+              key={user.id}
+              deleteUser={deleteUser}
+              sendRegistrationApproval={sendRegistrationApproval}
+            />
           ))}
         </tbody>
       </table>
