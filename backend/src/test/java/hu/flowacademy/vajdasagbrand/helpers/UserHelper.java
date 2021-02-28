@@ -15,7 +15,7 @@ public class UserHelper {
 
     public static String login(String email, String password) {
         var resp = given().log().all()
-                .body(getUser(email, password))
+                .body(LoginDto.builder().username(email).password(password).build())
                 .contentType(ContentType.JSON)
                 .when().post("/api/login")
                 .then()
@@ -27,11 +27,11 @@ public class UserHelper {
     }
 
     public static String loginWithSuperadminWithToken() {
-       return login("superadmin@gmail.com", "Aa123456");
+       return login("superadmin@jusoft.com", "Aa123456");
     }
 
 
-    private static LoginDto getUser(String email, String password) {
-        return LoginDto.builder().username(email).password(password).build();
-    }
+//    private static LoginDto getUser(String email, String password) {
+//        return LoginDto.builder().username(email).password(password).build();
+//    }
 }

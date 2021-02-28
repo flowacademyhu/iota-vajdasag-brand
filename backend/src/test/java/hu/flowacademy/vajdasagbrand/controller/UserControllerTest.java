@@ -37,9 +37,10 @@ class UserControllerTest {
         RestAssured.port = port;
     }
 
-    @BeforeAll
-    private static void beforeAll() {
-        userDTO = UserDTO.builder()
+
+    @Test
+    void userRegistration() {
+        var userDTO = UserDTO.builder()
                 .id(faker.idNumber().valid())
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
@@ -48,10 +49,6 @@ class UserControllerTest {
                 .taxNumber(faker.number().digit())
                 .type(Type.COMPANY)
                 .build();
-    }
-
-    @Test
-    void userRegistration() {
         given().log().all()
                 .body(userDTO)
                 .contentType(ContentType.JSON)
@@ -63,6 +60,7 @@ class UserControllerTest {
 
     @Test
     void loginwithCompanyAdmin() {
+        userRegistration();
         login(userDTO.getEmail(), userDTO.getPassword());
     }
 
@@ -72,7 +70,6 @@ class UserControllerTest {
     }
 
     @Test
-
     void deleteUser() {
         String token = loginWithSuperadminWithToken();
         String id = userDTO.getId();
