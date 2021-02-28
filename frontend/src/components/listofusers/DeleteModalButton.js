@@ -24,7 +24,6 @@ const DeleteModalButton = ({ userId, deleteUser }) => {
       deleteUser(userId)
       confirmModalHandler(true)
     } catch (error) {
-      setShowResponseModal(true)
       confirmModalHandler(false)
     }
   }
