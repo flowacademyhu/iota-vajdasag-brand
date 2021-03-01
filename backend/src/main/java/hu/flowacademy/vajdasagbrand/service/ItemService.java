@@ -30,7 +30,6 @@ public class ItemService {
 
     public ItemDTO createItem(ItemDTO item) throws ValidationException {
         validateItemData(item);
-        subcategoryValidation(item);
         if (!Category.ATTRACTION.equals(item.getCategory())) {
             item.setSubcategory(null);
         }
@@ -45,7 +44,6 @@ public class ItemService {
 
     public ItemDTO updateItem(ItemDTO item, String id) throws ValidationException {
         validateItemData(item);
-        subcategoryValidation(item);
         if (!Category.ATTRACTION.equals(item.getCategory())) {
             item.setSubcategory(null);
         }
@@ -61,6 +59,7 @@ public class ItemService {
     }
 
     private void validateItemData(ItemDTO item) throws ValidationException {
+        subcategoryValidation(item);
         if (!StringUtils.hasText(item.getName())) {
             throw new ValidationException("No name given");
         }
