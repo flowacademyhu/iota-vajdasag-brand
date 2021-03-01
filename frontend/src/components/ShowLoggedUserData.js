@@ -8,7 +8,7 @@ const ShowLoggedUserData = () => {
 
   return (
     <div className="my-auto text-white">
-      {t('headerUserData.loggedIn')}
+      {role && t('headerUserData.loggedIn')}
       {role === 'SuperAdmin' ? 'Superadmin' : email}
     </div>
   )
