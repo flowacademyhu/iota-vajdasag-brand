@@ -35,7 +35,7 @@ const AddAndEditProductPage = () => {
   }
 
   const initForm = () => {
-    if (type == "update") {
+    if (type === "update") {
       return product
     } else {
       return {
