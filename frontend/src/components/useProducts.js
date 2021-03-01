@@ -5,12 +5,8 @@ const useProducts = () => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
 
   const getAllProducts = async () => {
-    try {
-      const fetchedProducts = await fetchProducts()
-      setListOfAllProducts(fetchedProducts)
-    } catch (error) {
-      throw new Error('Failed to get products.')
-    }
+    const fetchedProducts = await fetchProducts()
+    setListOfAllProducts(fetchedProducts)
   }
 
   useEffect(() => {

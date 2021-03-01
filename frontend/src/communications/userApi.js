@@ -47,16 +47,6 @@ export const sendApproval = async (userId) => {
   }
 }
 
-export const getProductsByUserId = async (userId) => {
-  try {
-    const response = await api.get(`/items/${userId}`)
-
-    return response.data.products
-  } catch (error) {
-    throw new Error('Failed to get products.')
-  }
-}
-
 export const deleteUserRegistration = async (userId) => {
   const response = await api.delete(`/users/${userId}`)
   if (response.status !== 200) {

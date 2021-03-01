@@ -1,7 +1,7 @@
 import React from 'react'
 import useProducts from './useProducts'
-import ListElement from './listOfProducts/ListElement'
 import ProductTable from './ProductTable'
+import ListElement from './listOfProducts/ListElement'
 
 const FullProductList = () => {
   const { listOfAllProducts } = useProducts()
