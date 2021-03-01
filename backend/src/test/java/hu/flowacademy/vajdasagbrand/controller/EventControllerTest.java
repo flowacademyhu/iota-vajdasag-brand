@@ -7,7 +7,6 @@ import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
