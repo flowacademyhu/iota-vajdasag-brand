@@ -1,10 +1,15 @@
 import React from 'react'
+//import { useParams } from 'react-router-dom'
 import useProductsForCompany from './useProductsByID'
+//import useUsers from './useUsers'
 import ListElement from './listOfProducts/ListElement'
 import ProductTable from './ProductTable'
 
 const SingleCompanyProductList = () => {
+  //const { userId } = useParams()
   const { companysProducts } = useProductsForCompany(1)
+  //const { users } = useUsers(1)
+
   return (
     <div>
       <h2

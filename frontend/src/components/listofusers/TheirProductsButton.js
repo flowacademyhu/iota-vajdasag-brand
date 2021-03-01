@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 const TheirProductsButton = ({ user }) => {
   const { t } = useTranslation()
+  
   return (
     <div>
       {user.isApproved && (
