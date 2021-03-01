@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { TokenContext } from '../TokenContext'
 
 const useTokenStateHandler = () => {
-  const { setToken, token } = useContext(TokenContext)
+  const { setToken } = useContext(TokenContext)
 
   const writeToken = (tokenInput) => {
     localStorage.setItem('token', tokenInput)
