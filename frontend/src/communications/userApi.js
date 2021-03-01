@@ -86,12 +86,9 @@ export const fetchProducts = async () => {
 }
 
 export const addProduct = async (data) => {
-  await api
-    .post('/items', data)
-    .then((result) => {
-      return result
-    })
-    .catch((err) => {
-      throw new Error('Error when sending new product')
-    })
+  try {
+    return await api.post('/items', data)
+  } catch (error) {
+    throw new Error('Error when sending new product')
+  }
 }
