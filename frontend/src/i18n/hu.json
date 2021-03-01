@@ -83,6 +83,9 @@
   "searchbar": {
     "search": "Keresés"
   },
+  "headerUserData": {
+    "loggedIn": "Bejelentkezett felhasználó: "
+  },
   "userListElement": {
     "approveRegistration": "Regisztráció jóváhagyása",
     "close": "Bezárás",

@@ -83,6 +83,9 @@
   "searchbar": {
     "search": "Pretraga"
   },
+  "headerUserData": {
+    "loggedIn": "Prijavljeni korisnik: "
+  },
   "userListElement": {
     "approveRegistration": "Potvrda registracije",
     "close": "Zatvori",
