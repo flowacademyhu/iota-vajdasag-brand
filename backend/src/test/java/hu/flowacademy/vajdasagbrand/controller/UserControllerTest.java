@@ -94,7 +94,7 @@ class UserControllerTest {
     @Test
     void deleteUser() {
         String token = loginWithSuperadminWithToken();
-        String id = userDTO.getId();
+        String id = userRepository.findByEmail(userDTO.getEmail()).get().getId();
         given().log().all()
                 .header(getAuthorization(token))
                 .pathParam("id", id)
@@ -104,8 +104,6 @@ class UserControllerTest {
                 .assertThat()
                 .statusCode(200);
     }
-
-
 
     @Test
     void getUsers() {
