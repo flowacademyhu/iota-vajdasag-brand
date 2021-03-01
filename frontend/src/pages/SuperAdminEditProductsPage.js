@@ -37,9 +37,6 @@ const SuperAdminEditProductsPage = () => {
           <div>
             <DeleteProductButton productId={product.id} />
           </div>
-
-          {console.log('products', products)}
-
         </div>
       ))}
     </>
