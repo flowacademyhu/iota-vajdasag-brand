@@ -4,10 +4,8 @@ import AddNewProductButton from '../components/listofproducts/AddNewProductButto
 
 const SuperAdminProductsPage = () => {
   return (
-    <div>
+    <div className="text-right mb-2">
       <AddNewProductButton />
-      <h1>Just for testing</h1>
-      <DeleteProductButton />
     </div>
   )
 }
