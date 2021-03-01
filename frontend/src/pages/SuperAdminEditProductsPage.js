@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
-import EditProductButton from '../components/listofproducts/EditProductButton'
+import EditProductButton from '../components/listOfProducts/EditProductButton'
 
 const SuperAdminEditProductsPage = () => {
   const [products, setProducts] = useState([])
