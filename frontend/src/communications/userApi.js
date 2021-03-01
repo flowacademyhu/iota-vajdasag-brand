@@ -85,11 +85,13 @@ export const fetchProducts = async () => {
   }
 }
 
-  export const addProduct = async(data) => {
-    await api.post('/items',data)
+export const addProduct = async (data) => {
+  await api
+    .post('/items', data)
     .then((result) => {
       return result
-    }).catch((err) => {
+    })
+    .catch((err) => {
       throw new Error('Error when sending new product')
-    });
-  }
+    })
+}

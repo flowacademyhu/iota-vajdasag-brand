@@ -1,7 +1,6 @@
 import React from 'react'
 import DeleteProductButton from '../components/listofproducts/DeleteProductButton'
-import AddNewProductButton from "../components/listofproducts/AddNewProductButton";
-
+import AddNewProductButton from '../components/listofproducts/AddNewProductButton'
 
 const SuperAdminProductsPage = () => {
   return (
