@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import javax.transaction.Transactional;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -76,7 +78,7 @@ public class UserService {
         return userRepository.findAllUsers(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
     }
 
-    public boolean approveRegistration(String userId) throws ValidationException {
+    public boolean approveRegistration(String userId) throws ValidationException, MalformedURLException {
         UserDTO registeredUser = userRepository.findById(userId).orElseThrow(() -> new ValidationException("User with the following id " + userId + " not found"));
         if (keycloakClientService.enableUser(registeredUser.getEmail())) {
             registeredUser.setEnabled(true);
@@ -89,8 +91,8 @@ public class UserService {
         }
     }
 
-    public void sendApprovalEmail(String email) {
-        emailService.sendMessage(email, "Registration approval", "Dear Customer! \nYour registration is approved, you can login now");
+    public void sendApprovalEmail(String email) throws MalformedURLException {
+        emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + new URL("https://iota-vajdasag-brand-b3e95c95.web.app/login") + "\n \nWelcome to Vajdasag Brand!");
     }
 }
 

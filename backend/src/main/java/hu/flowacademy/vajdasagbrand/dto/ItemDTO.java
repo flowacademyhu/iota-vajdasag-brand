@@ -32,4 +32,5 @@ public class ItemDTO {
     private String instagram;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
+    private String ownerId;
 }
