@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Formik, Form } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
@@ -21,6 +21,7 @@ const AddAndEditProductPage = () => {
   let history = useHistory()
 
   useEffect(() => {
+    console.log("useEffexct")
     if (type === "update") {
       const getProduct = async () => {
         const response = await fetchOneProduct(productId)
@@ -32,6 +33,27 @@ const AddAndEditProductPage = () => {
 
   const renderHandler = () => {
     return type === "add" || product ? true : false
+  }
+
+  const initForm = () => {
+    console.log('type', type)
+    if (type == "update") {
+      console.log('type', type)
+      return product
+    } else {
+      return {
+        name: '',
+        contact: '',
+        address: '',
+        city: '',
+        coordinateX: '',
+        coordinateY: '',
+        phone: '',
+        website: '',
+        score: '',
+        subcategory: ''
+      }
+    }
   }
 
   const handleSubmit = async (newProductValues) => {
@@ -47,7 +69,20 @@ const AddAndEditProductPage = () => {
         setEditSuccessful(false)
       }
     } else {
+      newProductValues.score = 0
+      console.log('newProductValues', newProductValues)
       await addProduct(newProductValues)
+        .then((response) => {
+          console.log(response)
+          setResponseModalTitle(t('editProduct.successfulEdition'))
+          setShowResponseModal(true)
+          setEditSuccessful(true)
+        }).catch((err) => {
+          console.log(err)
+          setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
+          setShowResponseModal(true)
+          setEditSuccessful(false)
+        });
     }
   }
 
@@ -62,14 +97,40 @@ const AddAndEditProductPage = () => {
     renderHandler() && (
       <div className="m-5">
         <Formik
-          initialValues={product}
+          initialValues={initForm()}
           validationSchema={validationEdit(t('registration.required'))}
           onSubmit={handleSubmit}
         >
           <Form>
             <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-              <h3 className="text-center">{t('editProduct.title')}</h3>
+              <h3 className="text-center">{type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}</h3>
               <div className="my-2">
+                {type === "add" && (
+                  <InputField
+                    label={t('editProduct.name')}
+                    name="name"
+                    type="text"
+                  />
+                )}
+                {type === "add" && (
+                  <InputField
+                    label={t('editProduct.contactName')}
+                    name="contact"
+                    type="text"
+                  />
+                )}
+                {type === "add" && (
+                  <div className="my-2">
+                    <InputField
+                      name="score"
+                      id="score"
+                      placeholder={t('editProduct.name')}
+                      type="text"
+                      disabled
+                      hidden
+                    />
+                  </div>
+                )}
                 <InputField
                   label={t('editProduct.address')}
                   name="address"
@@ -86,7 +147,23 @@ const AddAndEditProductPage = () => {
               <div className="my-2">
                 <SelectCategory />
               </div>
+              {type === "add" && (
+                <>
+                  <label htmlFor="category">{t('editProduct.selectCategory')}</label>
+                  <Field as="select" name="subcategory">
+                    <option value="HONOURABLES">{t('editProduct.HONOURABLES')}</option>
+                    <option value="FAMOUS_BUILDINGS">{t('editProduct.FAMOUS_BUILDINGS')}</option>
+                    <option value="MUSEUMS">{t('editProduct.MUSEUMS')}</option>
+                  </Field>
+                </>)}
               <div className="my-2">
+                {type === "add" && (
+                  <InputField
+                    label={t('editProduct.bio')}
+                    name="bio"
+                    type="text"
+                  />
+                )}
                 <InputField
                   label={t('editProduct.coordinateX')}
                   name="coordinateX"
