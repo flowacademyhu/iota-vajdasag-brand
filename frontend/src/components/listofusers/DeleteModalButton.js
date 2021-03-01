@@ -1,44 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import ResponseModal from '../modals/ResponseModal'
 
-const DeleteModalButton = ({ userId, deleteUser }) => {
-  const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
-  const [showResponseModal, setShowResponseModal] = useState(false)
-  const [responseModalTitle, setResponseModalTitle] = useState('')
+const DeleteModalButton = ({
+  userId,
+  handleDelete,
+  setShowConfirmDeletion,
+  showConfirmDeletion,
+}) => {
   const { t } = useTranslation()
-
-  const confirmModalHandler = (session) => {
-    if (session) {
-      setResponseModalTitle(t('userListElement.successful'))
-    } else {
-      setResponseModalTitle(t('userListElement.unsuccessful'))
-    }
-    setShowResponseModal(true)
-  }
-
-  const handleDelete = () => {
-    setShowConfirmDeletion(false)
-    try {
-      deleteUser(userId)
-      confirmModalHandler(true)
-    } catch (error) {
-      confirmModalHandler(false)
-    }
-  }
-
-  const onClose = () => {
-    setShowResponseModal(false)
-  }
 
   return (
     <>
-      <ResponseModal
-        onClose={onClose}
-        showResponseModal={showResponseModal}
-        title={responseModalTitle}
-      />
       <Button variant="danger" onClick={() => setShowConfirmDeletion(true)}>
         {t('userListElement.delete')}
       </Button>
@@ -58,7 +31,7 @@ const DeleteModalButton = ({ userId, deleteUser }) => {
           >
             {t('userListElement.close')}
           </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          <Button variant="danger" onClick={() => handleDelete(userId)}>
             {t('userListElement.delete')}
           </Button>
         </Modal.Footer>
