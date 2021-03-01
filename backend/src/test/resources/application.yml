@@ -33,6 +33,7 @@ spring:
       mail.smtp.ssl.trust: smtp.gmail.com
       mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
 
+
 keycloakBackendClient:
   serverUrl: http://localhost:8180/auth
   realm: VajdasagBrand
@@ -52,3 +53,7 @@ userController:
   defaultOrderCategory: registeredAt
   defaultPageNumber: 0
   defaultPageLimit: 10
+
+UIProperties:
+  ui:
+    loginUrl: "https://iota-vajdasag-brand-b3e95c95.web.app/login"
