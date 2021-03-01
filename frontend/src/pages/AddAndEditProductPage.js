@@ -9,7 +9,7 @@ import validationEdit from '../validations/validationEdit'
 import { updateProductData, fetchOneProduct } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
-const EditProductPage = () => {
+const AddAndEditProductPage = () => {
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
@@ -125,4 +125,4 @@ const EditProductPage = () => {
   )
 }
 
-export default EditProductPage
+export default AddAndEditProductPage

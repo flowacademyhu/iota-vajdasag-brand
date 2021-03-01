@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 import SuperAdminEditProductsPage from './SuperAdminEditProductsPage'
 import UsersList from '../components/UsersList'
 import SuperAdminProductsPage from '../pages/SuperAdminProductsPage'
-import EditProductPage from './EditProductPage'
+import EditProductPage from './AddAndEditProductPage'
 
 const SuperAdmin = () => {
   const { t } = useTranslation()
