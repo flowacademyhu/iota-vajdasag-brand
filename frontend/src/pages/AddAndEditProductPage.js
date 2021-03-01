@@ -30,10 +30,6 @@ const AddAndEditProductPage = () => {
     }
   }, [productId, type])
 
-  const renderHandler = () => {
-    return type === "add" || product ? true : false
-  }
-
   const initForm = () => {
     if (type === "update") {
       return product
@@ -88,7 +84,7 @@ const AddAndEditProductPage = () => {
   }
 
   return (
-    renderHandler() && (
+    (type === 'add' || product) && (
       <div className="m-5">
         <Formik
           initialValues={initForm()}
