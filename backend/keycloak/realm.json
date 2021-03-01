@@ -415,7 +415,7 @@
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
-    "email" : "kissimre@gmail.com",
+    "email" : "kissimre@jusoft.com",
     "credentials" : [ {
       "id" : "584fdb19-4173-412a-aa52-8f969acf6b68",
       "type" : "password",
@@ -426,7 +426,7 @@
     } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
-    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser", "realmadmin" ],
+    "realmRoles" : [ "offline_access", "uma_authorization", "realmuser" ],
     "clientRoles" : {
       "account" : [ "view-profile", "manage-account" ]
     },
