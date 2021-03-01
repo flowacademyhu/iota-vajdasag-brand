@@ -90,7 +90,6 @@ export const fetchProducts = async () => {
     .then((result) => {
       return result
     }).catch((err) => {
-      console.log('error in api', err)
       throw new Error('Error when sending new product')
     });
   }

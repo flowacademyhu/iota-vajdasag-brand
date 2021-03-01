@@ -21,7 +21,6 @@ const AddAndEditProductPage = () => {
   let history = useHistory()
 
   useEffect(() => {
-    console.log("useEffexct")
     if (type === "update") {
       const getProduct = async () => {
         const response = await fetchOneProduct(productId)
@@ -36,9 +35,7 @@ const AddAndEditProductPage = () => {
   }
 
   const initForm = () => {
-    console.log('type', type)
     if (type == "update") {
-      console.log('type', type)
       return product
     } else {
       return {
@@ -70,15 +67,12 @@ const AddAndEditProductPage = () => {
       }
     } else {
       newProductValues.score = 0
-      console.log('newProductValues', newProductValues)
       await addProduct(newProductValues)
         .then((response) => {
-          console.log(response)
           setResponseModalTitle(t('editProduct.successfulEdition'))
           setShowResponseModal(true)
           setEditSuccessful(true)
         }).catch((err) => {
-          console.log(err)
           setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
           setShowResponseModal(true)
           setEditSuccessful(false)
