@@ -94,33 +94,37 @@ const AddAndEditProductPage = () => {
           <Form>
             <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
               <h3 className="text-center">{type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}</h3>
-              <div className="my-2">
-                {type === "add" && (
+              {type === "add" && (
+                <div className="my-2">
                   <InputField
                     label={t('editProduct.name')}
                     name="name"
                     type="text"
                   />
-                )}
-                {type === "add" && (
+                </div>
+              )}
+              {type === "add" && (
+                <div className="my-2">
                   <InputField
                     label={t('editProduct.contactName')}
                     name="contact"
                     type="text"
                   />
-                )}
-                {type === "add" && (
-                  <div className="my-2">
-                    <InputField
-                      name="score"
-                      id="score"
-                      placeholder={t('editProduct.name')}
-                      type="text"
-                      disabled
-                      hidden
-                    />
-                  </div>
-                )}
+                </div>
+              )}
+              {type === "add" && (
+                <div className="my-2">
+                  <InputField
+                    name="score"
+                    id="score"
+                    placeholder={t('editProduct.name')}
+                    type="text"
+                    disabled
+                    hidden
+                  />
+                </div>
+              )}
+              <div className="my-2">
                 <InputField
                   label={t('editProduct.address')}
                   name="address"
@@ -138,22 +142,25 @@ const AddAndEditProductPage = () => {
                 <SelectCategory />
               </div>
               {type === "add" && (
-                <>
-                  <label htmlFor="category">{t('editProduct.selectCategory')}</label>
+                <div>
+                  <label htmlFor="category">{t('editProduct.selectSubCategory')}</label>
                   <Field as="select" name="subcategory">
-                    <option value="HONOURABLES">{t('editProduct.HONOURABLES')}</option>
-                    <option value="FAMOUS_BUILDINGS">{t('editProduct.FAMOUS_BUILDINGS')}</option>
-                    <option value="MUSEUMS">{t('editProduct.MUSEUMS')}</option>
+                    <option value="HONOURABLES">{t('editProduct.honourables')}</option>
+                    <option value="FAMOUS_BUILDINGS">{t('editProduct.famous_buildings')}</option>
+                    <option value="MUSEUMS">{t('editProduct.museums')}</option>
                   </Field>
-                </>)}
-              <div className="my-2">
-                {type === "add" && (
+                </div>)}
+
+              {type === "add" && (
+                <div className="my-2">
                   <InputField
                     label={t('editProduct.bio')}
                     name="bio"
                     type="text"
                   />
-                )}
+                </div>
+              )}
+              <div className="my-2">
                 <InputField
                   label={t('editProduct.coordinateX')}
                   name="coordinateX"
