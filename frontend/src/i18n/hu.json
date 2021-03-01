@@ -1,32 +1,54 @@
 {
   "companyAdmin": {
-    "edit": "Szerkeszt",
+    "edit": "Szerkesztés",
     "newProduct": "Új termék",
     "remove": "Töröl",
     "search": "Keresés"
+  },
+  "editProduct": {
+    "address": "Cím",
+    "city": "Város",
+    "coordinateX": "Szélességi fok",
+    "coordinateY": "Hosszúsági fok",
+    "editButton": "Szerkesztés",
+    "phone": "Telefonszám",
+    "save": "Termék elmentése",
+    "selectAttraction": "Látnivaló",
+    "selectCategory": "Válassz kategóriát:",
+    "selectGastronomy": "Gasztronómia",
+    "selectHoliday": "Hétvége",
+    "selectHotel": "Szálló",
+    "selectInformation": "Tájékoztatás",
+    "successfulEdition": "A mentés sikeres volt",
+    "title": "Termék szerkesztése",
+    "unsuccessfulEdition": "Sikertelen volt a mentés",
+    "website": "Weboldal"
+  },
+  "forgottenPassword": {
+    "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
+    "buttontext": "Jelszó megváltoztatása",
+    "noserver": "Szerver hiba, kérjük jöjjön vissza később",
+    "nouser": "A felhasználó nem található",
+    "title": "Jelszó megváltoztatása"
   },
   "login": {
     "buttontext": "Bejelentkezés",
     "connectionProblems": "Kapcsolati probléma",
     "email": "Email cím",
+    "forgottenPassword": "Elfelejtett jelszó",
     "invalidData": "Rossz email vagy jelszó",
     "invalidPassword": "A jelszó minimum 8 karakter",
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
+    "other": "Egyéb hiba. Kérjük térjen vissza később",
     "password": "Jelszó",
     "title": "Belépés"
   },
   "menu": {
-    "users": "Felhazsnálók",
-    "products": "Termékek",
     "events": "Események",
-    "signout": "Kijelentkezés"
-  },
-  "product": {
-    "address": "Cím",
-    "category": "Kategória",
-    "city": "Város",
-    "name": "Név"
+    "items": "Termékek",
+    "signout": "Kijelentkezés",
+    "users": "Felhasználók"
   },
   "productList": {
     "close": "close",

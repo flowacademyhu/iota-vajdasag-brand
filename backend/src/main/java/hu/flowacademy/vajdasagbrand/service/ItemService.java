@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -51,7 +52,7 @@ public class ItemService {
         if (!StringUtils.hasText(item.getBio())) {
             throw new ValidationException("Didn't get bio");
         }
-        if(!StringUtils.hasText(item.getScore())) {
+        if (!StringUtils.hasText(item.getScore())) {
             throw new ValidationException("Impossible value");
         }
         if (!StringUtils.hasText(item.getAddress())) {
@@ -72,13 +73,13 @@ public class ItemService {
         if (!StringUtils.hasText(item.getPhone())) {
             throw new ValidationException("Didn't get phone");
         }
-        if(!StringUtils.hasText(item.getWebsite())) {
+        if (!StringUtils.hasText(item.getWebsite())) {
             throw new ValidationException("Didn't get website");
         }
         if (!StringUtils.hasText(item.getContact())) {
             throw new ValidationException("No contact given");
         }
-        if(item.getSubcategory() == null) {
+        if (item.getSubcategory() == null) {
             throw new ValidationException("No subcategory given");
         }
         if (!StringUtils.hasText(item.getFacebook())) {
@@ -127,13 +128,14 @@ public class ItemService {
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
-        return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getCity(),
-                item.getCategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), "Something");
+        return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
+                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
+                "Something");
     }
 
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
-        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getCity(),
-                item.getCategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
+        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
+                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
     }
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {

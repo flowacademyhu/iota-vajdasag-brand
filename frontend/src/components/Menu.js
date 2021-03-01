@@ -11,7 +11,7 @@ const menuItems = [
   },
   {
     path: '/super-admin/items',
-    title: 'menu.products',
+    title: 'menu.items',
     icon: Shop,
   },
   {

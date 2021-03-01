@@ -5,10 +5,38 @@
     "remove": "Brisanje",
     "search": "Pretraga"
   },
+  "editProduct": {
+    "address": "Adresa",
+    "city": "Grad",
+    "coordinateX": "Širina",
+    "coordinateY": "Dužina",
+    "editButton": "Uređivanje",
+    "phone": "Broj telefona",
+    "save": "Sačuvaj podatke",
+    "selectAttraction": "Atrakcija",
+    "selectCategory": "Odaberi kategoriju",
+    "selectGastronomy": "Gastronomija",
+    "selectHoliday": "Odmor",
+    "selectHotel": "Hotel",
+    "selectInformation": "Informacija",
+    "successfulEdition": "Uspešno uređivanje",
+    "title": "Uređivanje proizvoda",
+    "unsuccessfulEdition": "Neuspešno uređivanje",
+    "website": "Web stranica"
+  },
+  "forgottenPassword": {
+    "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",
+    "buttontext": "Promenite lozinku",
+    "noserver": "Server greška, vratite se kasnije",
+    "nouser": "Korisnik nije pronađen",
+    "other": "Something went wrong. Please come back later",
+    "title": "Promena lozinke"
+  },
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
     "email": "E-mail adresa",
+    "forgottenPassword": "Zaboravljena lozinka",
     "invalidData": "Pogrešni podaci",
     "invalidPassword": "Pogrešna lozinka",
     "invalidemail": "Pogrešna email adresa",
@@ -17,16 +45,10 @@
     "title": "Prijava"
   },
   "menu": {
-    "users": "Korisnici",
-    "products": "Proizvodi",
     "events": "Događaji",
-    "signout": "Odjava"
-  },
-  "product": {
-    "address": "address",
-    "category": "category",
-    "city": "city",
-    "name": "Ime"
+    "items": "Proizvodi",
+    "signout": "Odjava",
+    "users": "Korisnici"
   },
   "productList": {
     "close": "close",

@@ -5,9 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import { signUp } from '../communications/userApi'
-import '../communications/mockForUserApi'
 import PopUpModal from '../components/PopUpModal'
-import schema from '../communications/Validation'
+import schema from '../validations/Validation'
 
 export default function Registration() {
   const { t } = useTranslation()
