@@ -84,7 +84,7 @@
     "search": "Keresés"
   },
   "headerUserData": {
-    "loggedIn": "Bejelentkezett felhasználó: "
+    "loggedIn": "Bejelentkezve mint "
   },
   "userListElement": {
     "approveRegistration": "Regisztráció jóváhagyása",
