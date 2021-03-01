@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 import SuperAdminEditProductsPage from './SuperAdminEditProductsPage'
 import UsersList from '../components/UsersList'
 import SuperAdminProductsPage from '../pages/SuperAdminProductsPage'
-import EditProductPage from './AddAndEditProductPage'
+import AddAndEditProductPage from './AddAndEditProductPage'
 
 const SuperAdmin = () => {
   const { t } = useTranslation()
@@ -17,12 +17,15 @@ const SuperAdmin = () => {
       <Route path="/super-admin/users">
         <UsersList />
       </Route>
+      <Route path="/super-admin/items/newItem">
+        <AddAndEditProductPage />
+      </Route>
       <Route path="/super-admin/items" exact>
         <SuperAdminProductsPage />
         <SuperAdminEditProductsPage />
       </Route>
       <Route path="/super-admin/items/edit/:productId" exact>
-        <EditProductPage />
+        <AddAndEditProductPage />
       </Route>
     </>
   )

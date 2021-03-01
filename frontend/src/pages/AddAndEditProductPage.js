@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listofproducts/SelectCategory'
 import validationEdit from '../validations/validationEdit'
-import { updateProductData, fetchOneProduct } from '../communications/userApi'
+import { updateProductData, fetchOneProduct, addProduct } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
 const AddAndEditProductPage = () => {
+  let location = useLocation();
+  const type = location.pathname.includes("edit") ? "update" : "add"
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
@@ -19,23 +21,29 @@ const AddAndEditProductPage = () => {
   let history = useHistory()
 
   useEffect(() => {
-    const getProduct = async () => {
-      const response = await fetchOneProduct(productId)
-      setProduct(response.data)
+    if (type === "update") {
+      const getProduct = async () => {
+        const response = await fetchOneProduct(productId)
+        setProduct(response.data)
+      }
+      getProduct()
     }
-    getProduct()
-  }, [productId])
+  }, [productId, type])
 
   const handleSubmit = async (newProductValues) => {
-    try {
-      await updateProductData(product.id, newProductValues)
-      setResponseModalTitle(t('editProduct.successfulEdition'))
-      setShowResponseModal(true)
-      setEditSuccessful(true)
-    } catch (error) {
-      setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
-      setShowResponseModal(true)
-      setEditSuccessful(false)
+    if (type === "update") {
+      try {
+        await updateProductData(product.id, newProductValues)
+        setResponseModalTitle(t('editProduct.successfulEdition'))
+        setShowResponseModal(true)
+        setEditSuccessful(true)
+      } catch (error) {
+        setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
+        setShowResponseModal(true)
+        setEditSuccessful(false)
+      }
+    } else {
+      await addProduct(newProductValues)
     }
   }
 
