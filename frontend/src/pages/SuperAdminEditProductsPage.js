@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
 import EditProductButton from '../components/listofproducts/EditProductButton'
+import DeleteProductButton from "../components/listofproducts/DeleteProductButton";
 
 const SuperAdminEditProductsPage = () => {
   const [products, setProducts] = useState([])
@@ -17,9 +18,28 @@ const SuperAdminEditProductsPage = () => {
   return (
     <>
       {products?.map((product) => (
-        <div key={product.id}>
-          <h1>{product.city}</h1>
+        !product.deletedAt &&
+        <div key={product.id} className="border-bottom d-flex justify-content-around">
+          <div className="col-1">
+            <h5>{product.name}</h5>
+          </div>
+          <div className="col-1">
+            <h5>{product.city}</h5>
+          </div>
+          <div className="col-1">
+            <h5>{product.address}</h5>
+          </div>
+          <div className="col-1">
+            <h5>{product.contact}</h5>
+          </div>
+
           <EditProductButton productId={product.id} />
+          <div>
+            <DeleteProductButton productId={product.id} />
+          </div>
+
+          {console.log('products', products)}
+
         </div>
       ))}
     </>
