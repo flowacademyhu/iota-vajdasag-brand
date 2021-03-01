@@ -8,7 +8,7 @@ const TheirProductsButton = ({ user }) => {
   return (
     <div>
       {user.isApproved && (
-        <NavLink to={`/super-admin/products/${user.id}/`}>
+        <NavLink to={`/super-admin/items/${user.id}/`}>
           <Button type="button" variant="success">
             {t('userListElement.products')}
           </Button>

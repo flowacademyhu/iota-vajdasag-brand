@@ -11,7 +11,7 @@ const CompanyAdmin = () => {
       <Route exact path="/company-admin">
         <h1>{t('welcome')}</h1>
       </Route>
-      <Route path="/company-admin/products">
+      <Route path="/company-admin/items">
         <FullProductList />
       </Route>
     </>

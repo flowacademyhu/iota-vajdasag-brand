@@ -35,7 +35,7 @@ export const sendApproval = async (userId) => {
 
 export const getAllProducts = async () => {
   try {
-    const response = await api.get('/products')
+    const response = await api.get('/items')
     return response.data.products
   } catch (error) {
     throw new Error('Failed to get products.')
@@ -44,7 +44,7 @@ export const getAllProducts = async () => {
 
 export const getProductsByUserId = async (userId) => {
   try {
-    const response = await api.get(`/products/${userId}`)
+    const response = await api.get(`/items/${userId}`)
 
     return response.data.products
   } catch (error) {
@@ -60,7 +60,7 @@ export const deleteUserRegistration = async (userId) => {
 }
 
 export const deleteProduct = async (id) => {
-  const response = await api.delete(`/products/${id}`)
+  const response = await api.delete(`/items/${id}`)
   if (response.status !== 200) {
     throw new Error('The deletion was unsuccessful.')
   }

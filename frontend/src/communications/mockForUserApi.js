@@ -29,7 +29,7 @@ mock.onGet('/users').reply(200, {
   ],
 })
 
-mock.onGet('/products').reply(200, {
+mock.onGet('/items').reply(200, {
   products: [
     {
       userId: 1,
@@ -64,7 +64,7 @@ mock.onGet('/products').reply(200, {
   ],
 })
 
-mock.onGet('/products/1').reply(200, {
+mock.onGet('/items/1').reply(200, {
   products: [
     {
       userId: 1,
@@ -102,5 +102,5 @@ mock.onGet('/products/1').reply(200, {
 mock.onPut(`/users/2/approval`).reply(200)
 mock.onDelete('/users/1').reply(200)
 mock.onDelete('/users/3').reply(201)
-mock.onDelete('/products/1').reply(200)
-mock.onDelete('/products/2').reply(404)
+mock.onDelete('/items/1').reply(200)
+mock.onDelete('/items/2').reply(404)

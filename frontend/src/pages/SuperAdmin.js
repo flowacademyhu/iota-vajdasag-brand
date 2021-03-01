@@ -16,10 +16,10 @@ const SuperAdmin = () => {
       <Route path="/super-admin/users">
         <UsersList />
       </Route>
-      <Route path="/super-admin/products/:userId">
+      <Route path="/super-admin/items/:userId">
         <SingleCompanyProductList />
       </Route>
-      <Route exact path="/super-admin/products">
+      <Route exact path="/super-admin/items">
         <FullProductList />
       </Route>
     </>
