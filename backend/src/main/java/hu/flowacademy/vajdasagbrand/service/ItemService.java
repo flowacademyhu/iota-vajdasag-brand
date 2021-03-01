@@ -4,6 +4,7 @@ import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,10 @@ public class ItemService {
 
     public ItemDTO createItem(ItemDTO item) throws ValidationException {
         validateItemData(item);
+        subcategoryValidation(item);
+        if (!Category.ATTRACTION.equals(item.getCategory())) {
+            item.setSubcategory(null);
+        }
         return itemRepository.save(item);
     }
 
@@ -40,9 +45,19 @@ public class ItemService {
 
     public ItemDTO updateItem(ItemDTO item, String id) throws ValidationException {
         validateItemData(item);
+        subcategoryValidation(item);
+        if (!Category.ATTRACTION.equals(item.getCategory())) {
+            item.setSubcategory(null);
+        }
         ItemDTO founded = itemRepository.findById(id).orElseThrow(() -> new ValidationException("Can not find this id"));
         modifyItems(item, founded);
         return itemRepository.save(founded);
+    }
+
+    private void subcategoryValidation(ItemDTO item) throws ValidationException {
+        if(Category.ATTRACTION.equals(item.getCategory()) && item.getSubcategory() == null) {
+            throw new ValidationException("Attraction category have to have subcategory");
+        }
     }
 
     private void validateItemData(ItemDTO item) throws ValidationException {
@@ -79,14 +94,14 @@ public class ItemService {
         if (!StringUtils.hasText(item.getContact())) {
             throw new ValidationException("No contact given");
         }
-        if (item.getSubcategory() == null) {
-            throw new ValidationException("No subcategory given");
-        }
         if (!StringUtils.hasText(item.getFacebook())) {
             throw new ValidationException("No facebook given");
         }
         if (!StringUtils.hasText(item.getInstagram())) {
             throw new ValidationException("No instagram given");
+        }
+        if(!StringUtils.hasText(item.getOwnerId())) {
+            throw new ValidationException("No owner with this id");
         }
     }
 
