@@ -1,24 +1,42 @@
 import React from 'react'
+import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
 
-const ListElement = ({ product }) => {
+const ListElement = ({ product, searchKeyword }) => {
   return (
-    <tr>
-      <td>{product.name}</td>
-      <td>{product.address}</td>
-      <td>{product.city}</td>
-      <td>
-        {product.subcategory
-          ? product.category + ': ' + product.subcategory
-          : product.category}
-      </td>
-      <td>{product.owner}</td>
-      <td>
-        <DeleteProductButton productId={product.id} />
-        <EditProductButton productId={product.id} />
-      </td>
-    </tr>
+    <>
+      <tr>
+        {Object.entries(product)
+          .filter(
+            ([key, value]) =>
+              key === 'name' ||
+              key === 'city' ||
+              key === 'address' ||
+              key === 'category' ||
+              key === 'owner'
+          )
+          .map(([key, value]) => (
+            <td>
+              <Highlighter
+                highlightClassName="searchFoundWord"
+                searchWords={[searchKeyword]}
+                textToHighlight={value}
+                autoEscape={true}
+                caseSensitive={false}
+                sanitize={(word) =>
+                  word.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                }
+                key={key}
+              />
+            </td>
+          ))}
+        <td>
+          <DeleteProductButton productId={product.id} />
+          <EditProductButton productId={product.id} />
+        </td>
+      </tr>
+    </>
   )
 }
 
