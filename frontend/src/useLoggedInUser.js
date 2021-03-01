@@ -3,7 +3,7 @@ import { TokenContext } from './TokenContext'
 import jwt from 'jwt-simple'
 
 const useLoggedInUser = () => {
-  const { token, setToken } = useContext(TokenContext)
+  const { token } = useContext(TokenContext)
 
   try {
     const decoded = jwt.decode(token, false, 'RS256')
@@ -15,7 +15,6 @@ const useLoggedInUser = () => {
     const email = decoded?.email
     return { role, email }
   } catch (error) {
-    setToken('')
     return { role: '', email: '' }
   }
 }
