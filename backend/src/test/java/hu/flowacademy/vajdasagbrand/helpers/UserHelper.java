@@ -29,9 +29,4 @@ public class UserHelper {
     public static String loginWithSuperadminWithToken() {
        return login("superadmin@jusoft.com", "Aa123456");
     }
-
-
-//    private static LoginDto getUser(String email, String password) {
-//        return LoginDto.builder().username(email).password(password).build();
-//    }
 }
