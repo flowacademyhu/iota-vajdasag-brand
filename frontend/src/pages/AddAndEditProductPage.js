@@ -6,16 +6,12 @@ import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listofproducts/SelectCategory'
 import validationEdit from '../validations/validationEdit'
-import {
-  updateProductData,
-  fetchOneProduct,
-  addProduct,
-} from '../communications/userApi'
+import { updateProductData, fetchOneProduct, addProduct } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
 const AddAndEditProductPage = () => {
-  let location = useLocation()
-  const type = location.pathname.includes('edit') ? 'update' : 'add'
+  let location = useLocation();
+  const type = location.pathname.includes("edit") ? "update" : "add"
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
@@ -25,7 +21,7 @@ const AddAndEditProductPage = () => {
   let history = useHistory()
 
   useEffect(() => {
-    if (type === 'update') {
+    if (type === "update") {
       const getProduct = async () => {
         const response = await fetchOneProduct(productId)
         setProduct(response.data)
@@ -35,11 +31,11 @@ const AddAndEditProductPage = () => {
   }, [productId, type])
 
   const renderHandler = () => {
-    return type === 'add' || product ? true : false
+    return type === "add" || product ? true : false
   }
 
   const initForm = () => {
-    if (type === 'update') {
+    if (type === "update") {
       return product
     } else {
       return {
@@ -52,13 +48,13 @@ const AddAndEditProductPage = () => {
         phone: '',
         website: '',
         score: '',
-        subcategory: '',
+        subcategory: ''
       }
     }
   }
 
   const handleSubmit = async (newProductValues) => {
-    if (type === 'update') {
+    if (type === "update") {
       try {
         await updateProductData(product.id, newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
@@ -76,12 +72,11 @@ const AddAndEditProductPage = () => {
           setResponseModalTitle(t('editProduct.successfulEdition'))
           setShowResponseModal(true)
           setEditSuccessful(true)
-        })
-        .catch((err) => {
+        }).catch((err) => {
           setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
           setShowResponseModal(true)
           setEditSuccessful(false)
-        })
+        });
     }
   }
 
@@ -102,27 +97,23 @@ const AddAndEditProductPage = () => {
         >
           <Form>
             <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-              <h3 className="text-center">
-                {type === 'update'
-                  ? t('editProduct.title')
-                  : t('editProduct.addNewItemTitle')}
-              </h3>
+              <h3 className="text-center">{type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}</h3>
               <div className="my-2">
-                {type === 'add' && (
+                {type === "add" && (
                   <InputField
                     label={t('editProduct.name')}
                     name="name"
                     type="text"
                   />
                 )}
-                {type === 'add' && (
+                {type === "add" && (
                   <InputField
                     label={t('editProduct.contactName')}
                     name="contact"
                     type="text"
                   />
                 )}
-                {type === 'add' && (
+                {type === "add" && (
                   <div className="my-2">
                     <InputField
                       name="score"
@@ -150,24 +141,17 @@ const AddAndEditProductPage = () => {
               <div className="my-2">
                 <SelectCategory />
               </div>
-              {type === 'add' && (
+              {type === "add" && (
                 <>
-                  <label htmlFor="category">
-                    {t('editProduct.selectCategory')}
-                  </label>
+                  <label htmlFor="category">{t('editProduct.selectCategory')}</label>
                   <Field as="select" name="subcategory">
-                    <option value="HONOURABLES">
-                      {t('editProduct.HONOURABLES')}
-                    </option>
-                    <option value="FAMOUS_BUILDINGS">
-                      {t('editProduct.FAMOUS_BUILDINGS')}
-                    </option>
+                    <option value="HONOURABLES">{t('editProduct.HONOURABLES')}</option>
+                    <option value="FAMOUS_BUILDINGS">{t('editProduct.FAMOUS_BUILDINGS')}</option>
                     <option value="MUSEUMS">{t('editProduct.MUSEUMS')}</option>
                   </Field>
-                </>
-              )}
+                </>)}
               <div className="my-2">
-                {type === 'add' && (
+                {type === "add" && (
                   <InputField
                     label={t('editProduct.bio')}
                     name="bio"
