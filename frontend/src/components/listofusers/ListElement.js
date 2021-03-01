@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import TheirProductsButton from './TheirProductsButton'
 import OperationButtons from './OperationButtons'
 
 const ListElement = ({
@@ -28,9 +27,6 @@ const ListElement = ({
           setShowConfirmDeletion={setShowConfirmDeletion}
           showConfirmDeletion={showConfirmDeletion}
         />
-      </td>
-      <td>
-        <TheirProductsButton user={user} />
       </td>
     </tr>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import DeleteProductButton from './DeleteProductButton'
+import EditProductButton from './EditProductButton'
 
 const ListElement = ({ product }) => {
   return (
@@ -14,7 +15,8 @@ const ListElement = ({ product }) => {
       </td>
       <td>{product.owner}</td>
       <td>
-        <DeleteProductButton />
+        <DeleteProductButton productId={product.id} />
+        <EditProductButton productId={product.id} />
       </td>
     </tr>
   )

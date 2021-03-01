@@ -47,15 +47,6 @@ export const sendApproval = async (userId) => {
   }
 }
 
-export const getAllProducts = async () => {
-  try {
-    const response = await api.get('/items')
-    return response.data.products
-  } catch (error) {
-    throw new Error('Failed to get products.')
-  }
-}
-
 export const getProductsByUserId = async (userId) => {
   try {
     const response = await api.get(`/items/${userId}`)

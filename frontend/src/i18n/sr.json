@@ -50,11 +50,18 @@
     "signout": "Odjava",
     "users": "Korisnici"
   },
+  "product": {
+    "address": "Adresa",
+    "category": "Kategorija",
+    "city": "Grad",
+    "name": "Ime",
+    "owner": "Korisnik"
+  },
   "productList": {
-    "close": "close",
-    "confirmDelete": "confirmDelete",
-    "confirmDeleteTitle": "confirmDeleteTitle",
-    "delete": "delete"
+    "close": "Brisanje",
+    "confirmDelete": "Povtrda brisanja",
+    "confirmDeleteTitle": "Potvrda brisanja",
+    "delete": "Brisanje"
   },
   "registration": {
     "address": "Adresa/Sedište",
@@ -92,11 +99,15 @@
     "editBasicData": "Edit basic data",
     "editProducts": "Edit products"
   },
+  "headerUserData": {
+    "loggedIn": "Prijavljen kao "
+  },
   "userListElement": {
     "close": "Zatvori",
     "approveRegistration": "Potvrda registracije",
     "no": "Ne",
     "yes": "Da",
+    "successful": "Uspešno brisanje",
     "unsuccessful": "Neuspešno brisanje",
     "delete": "Brisanje registracije",
     "confirmDelete": "Sigurno želite brisanje?",

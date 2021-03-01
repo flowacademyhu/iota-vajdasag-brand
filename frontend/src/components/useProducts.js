@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { getAllProducts } from '../communications/userApi'
+import { fetchProducts } from '../communications/userApi'
 
 const useProducts = () => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
 
-  const fetchProducts = async () => {
+  const getAllProducts = async () => {
     try {
-      const fetchedProducts = await getAllProducts()
+      const fetchedProducts = await fetchProducts()
       setListOfAllProducts(fetchedProducts)
     } catch (error) {
       throw new Error('Failed to get products.')
@@ -14,7 +14,7 @@ const useProducts = () => {
   }
 
   useEffect(() => {
-    fetchProducts()
+    getAllProducts()
   }, [])
 
   return { listOfAllProducts }

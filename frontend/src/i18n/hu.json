@@ -50,11 +50,18 @@
     "signout": "Kijelentkezés",
     "users": "Felhasználók"
   },
+  "product": {
+    "address": "Cím",
+    "category": "Kategória",
+    "city": "Város",
+    "name": "Név",
+    "owner": "Tulajdonos"
+  },
   "productList": {
-    "close": "close",
-    "confirmDelete": "confirmDelete",
-    "confirmDeleteTitle": "confirmDeleteTitle",
-    "delete": "delete"
+    "close": "Bezárás",
+    "confirmDelete": "Törlés megerősítése",
+    "confirmDeleteTitle": "Törlés megerősítése",
+    "delete": "Törlés"
   },
   "registration": {
     "address": "Lakcím/Székhely",
@@ -92,15 +99,19 @@
     "editBasicData": "Alapadatok szerkesztése",
     "editProducts": "Termékek szerkesztése"
   },
+  "headerUserData": {
+    "loggedIn": "Bejelentkezve mint "
+  },
   "userListElement": {
     "close": "Bezárás",
     "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",
     "yes": "Igen",
+    "successful": "Sikeres törlés",
     "unsuccessful": "Sikertelen törlés.",
-    "delete": "Regiszttráció törlése",
-    "confirmDelete": "Biztosan törölni akarja a felhazsnálót?",
-    "confirmDeleteTitle": "Törlés Megerősítése",
+    "delete": "Regisztráció törlése",
+    "confirmDelete": "Biztosan törölni akarja a felhasználót?",
+    "confirmDeleteTitle": "Törlés megerősítése",
     "products": "Termékek"
   },
   "userListHeader": {

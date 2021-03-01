@@ -50,11 +50,18 @@
     "signout": "Logout",
     "users": "Users"
   },
+  "product": {
+    "address": "Address",
+    "category": "Category",
+    "city": "City",
+    "name": "Name",
+    "owner": "Owner"
+  },
   "productList": {
-    "close": "close",
-    "confirmDelete": "confirmDelete",
-    "confirmDeleteTitle": "confirmDeleteTitle",
-    "delete": "delete"
+    "close": "Close",
+    "confirmDelete": "Confirm Delete",
+    "confirmDeleteTitle": "Confirm Delete",
+    "delete": "Delete"
   },
   "registration": {
     "address": "Address/Company seat",
@@ -92,11 +99,15 @@
     "editBasicData": "Edit basic data",
     "editProducts": "Edit products"
   },
+  "headerUserData": {
+    "loggedIn": "Logged in as "
+  },
   "userListElement": {
     "close": "Close",
     "approveRegistration": "Approve registration",
     "no": "No",
     "yes": "Yes",
+    "successful": "Successful",
     "unsuccessful": "Unsuccessful deletion.",
     "delete": "Delete registration",
     "confirmDelete": "Are you sure you want to delete the user?",
