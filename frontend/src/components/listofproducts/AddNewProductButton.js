@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 const AddNewProductButton = () => {
   const { t } = useTranslation()
   return (
-    <Link to="items/newItem">
+    <Link to="items/new-item">
       <Button>{t('editProduct.addNewProduct')}</Button>
     </Link>
   )
