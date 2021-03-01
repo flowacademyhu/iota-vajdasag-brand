@@ -32,7 +32,6 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
     const registrationStatus = await sendApproval(userId)
 
     if (registrationStatus.status === 200) {
-      console.log('Fresh users list from BE.')
       fetchUsers()
     }
   }, [])

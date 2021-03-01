@@ -13,7 +13,7 @@ const useProducts = () => {
     getAllProducts()
   }, [])
 
-  return { listOfAllProducts }
+  return listOfAllProducts
 }
 
 export default useProducts
