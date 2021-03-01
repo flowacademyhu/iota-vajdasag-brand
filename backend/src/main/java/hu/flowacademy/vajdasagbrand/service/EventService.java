@@ -31,7 +31,7 @@ public class EventService {
             throw new ValidationException("Didn't get place");
         }
         if (event.getItemId() == null) {
-            throw new ValidationException("Didn't get place");
+            throw new ValidationException("Didn't get itemId");
         }
         if (event.getEventstart() == null) {
             throw new ValidationException("Didn't get time for event start");

@@ -8,6 +8,7 @@ import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,6 +60,7 @@ class EventControllerTest {
                         .instagram(faker.name().username())
                         .facebook(faker.name().username())
                         .subcategory(Subcategory.MUSEUMS)
+                        .ownerId("95bce7b4-6864-4c8e-bc84-37132395156e")
                         .build())
                 .when().post("/api/items")
                 .then()
@@ -67,6 +69,7 @@ class EventControllerTest {
                 .extract().body().as(ItemDTO.class);
     }
 
+    @Disabled
     @Test
     void eventRegistration() {
         String date = "2020.03.15 18:00:00";
