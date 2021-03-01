@@ -91,6 +91,9 @@
   "searchbar": {
     "search": "Keresés"
   },
+  "headerUserData": {
+    "loggedIn": "Bejelentkezve mint "
+  },
   "userListElement": {
     "approveRegistration": "Regisztráció jóváhagyása",
     "close": "Bezárás",

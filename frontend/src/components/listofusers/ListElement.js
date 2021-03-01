@@ -2,7 +2,13 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import OperationButtons from './OperationButtons'
 
-const ListElement = ({ user }) => {
+const ListElement = ({
+  user,
+  sendRegistrationApproval,
+  setShowConfirmDeletion,
+  showConfirmDeletion,
+  handleDelete,
+}) => {
   const { t } = useTranslation()
 
   return (
@@ -14,7 +20,13 @@ const ListElement = ({ user }) => {
       </td>
       <td>{user.registeredAt}</td>
       <td>
-        <OperationButtons user={user} />
+        <OperationButtons
+          user={user}
+          handleDelete={handleDelete}
+          sendRegistrationApproval={sendRegistrationApproval}
+          setShowConfirmDeletion={setShowConfirmDeletion}
+          showConfirmDeletion={showConfirmDeletion}
+        />
       </td>
     </tr>
   )

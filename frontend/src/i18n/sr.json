@@ -91,6 +91,9 @@
   "searchbar": {
     "search": "Pretraga"
   },
+  "headerUserData": {
+    "loggedIn": "Prijavljen kao "
+  },
   "userListElement": {
     "approveRegistration": "Potvrda registracije",
     "close": "Zatvori",

@@ -91,6 +91,9 @@
   "searchbar": {
     "search": "Search"
   },
+  "headerUserData": {
+    "loggedIn": "Logged in as "
+  },
   "userListElement": {
     "approveRegistration": "Approve registration",
     "close": "Close",
