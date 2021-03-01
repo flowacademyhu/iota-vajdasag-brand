@@ -17,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -117,7 +119,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void givenUserDisabled_whenCallingApproveAccount_thenUserIsEnabled() throws ValidationException {
+    public void givenUserDisabled_whenCallingApproveAccount_thenUserIsEnabled() throws ValidationException, MalformedURLException {
         givenUserRepositoryAndKeycloakForEnableUser();
 
         boolean result = service.approveRegistration(REGISTRATION_ID);
