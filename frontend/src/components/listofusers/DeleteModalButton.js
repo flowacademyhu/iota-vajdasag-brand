@@ -1,49 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
-import ResponseModal from '../modals/ResponseModal'
-import { deleteUserRegistration } from '../../communications/userApi'
-import useUsers from '../useUsers'
 
-const DeleteModalButton = ({ userId }) => {
-  const [showConfirmDeletion, setShowConfirmDeletion] = useState(false)
-  const [showResponseModal, setShowResponseModal] = useState(false)
-  const [responseModalTitle, setResponseModalTitle] = useState('')
-  const { fetchUsers } = useUsers()
+const DeleteModalButton = ({
+  userId,
+  handleDelete,
+  setShowConfirmDeletion,
+  showConfirmDeletion,
+}) => {
   const { t } = useTranslation()
-
-  const confirmModalHandler = (session) => {
-    if (session) {
-      setResponseModalTitle(t('userListElement.successful'))
-    } else {
-      setResponseModalTitle(t('userListElement.unsuccessful'))
-    }
-    setShowResponseModal(true)
-  }
-
-  const deleteUser = async () => {
-    setShowConfirmDeletion(false)
-    try {
-      await deleteUserRegistration(userId)
-      confirmModalHandler(true)
-      fetchUsers()
-    } catch (error) {
-      setShowResponseModal(true)
-      confirmModalHandler(false)
-    }
-  }
-
-  const onClose = () => {
-    setShowResponseModal(false)
-  }
 
   return (
     <>
-      <ResponseModal
-        onClose={onClose}
-        showResponseModal={showResponseModal}
-        title={responseModalTitle}
-      />
       <Button variant="danger" onClick={() => setShowConfirmDeletion(true)}>
         {t('userListElement.delete')}
       </Button>
@@ -63,7 +31,7 @@ const DeleteModalButton = ({ userId }) => {
           >
             {t('userListElement.close')}
           </Button>
-          <Button variant="danger" onClick={deleteUser}>
+          <Button variant="danger" onClick={() => handleDelete(userId)}>
             {t('userListElement.delete')}
           </Button>
         </Modal.Footer>
