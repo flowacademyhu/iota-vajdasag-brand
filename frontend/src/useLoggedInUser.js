@@ -16,7 +16,7 @@ const useLoggedInUser = () => {
     return { role, email }
   } catch (error) {
     setToken('')
-    window.location.reload()
+    return { role: '', email: '' }
   }
 }
 
