@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import useLoggedInUser from '../useLoggedInUser'
+import useLoggedInUser from '../hooks/useLoggedInUser'
 
 const ShowLoggedUserData = () => {
   const { role, email } = useLoggedInUser()

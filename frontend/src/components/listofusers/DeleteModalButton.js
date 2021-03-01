@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next/'
 
 const DeleteModalButton = ({
-  userId,
+  userId,../../hooks/useUsers
   handleDelete,
   setShowConfirmDeletion,
   showConfirmDeletion,
