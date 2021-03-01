@@ -2,6 +2,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
+import hu.flowacademy.vajdasagbrand.persistence.entity.User;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import hu.flowacademy.vajdasagbrand.service.UserService;
 import io.restassured.RestAssured;
@@ -19,6 +20,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+
 import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.*;
 import static io.restassured.RestAssured.given;
 
@@ -33,6 +38,7 @@ class UserControllerTest {
     private int port;
     private static final Faker faker = new Faker();
     private static UserDTO userDTO;
+    private String defaultOrderCategory;
     @Autowired
     private UserRepository userRepository;
 
@@ -108,6 +114,20 @@ class UserControllerTest {
     @Test
     void getUsers() {
         String token = loginWithSuperadminWithToken();
-        String id = userDTO.getId();
+        String date = "2021.03.01 18:00:00";
+        defaultOrderCategory = "registeredAt";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+        LocalDateTime registeredAt = LocalDateTime.parse(date, formatter);
+        userDTO.setRegisteredAt(registeredAt);
+        given().log().all()
+                .header(getAuthorization(token))
+                .param("order_by", defaultOrderCategory)
+                .param("page", 3)
+                .param("limit", 5)
+                .when().get("api/users")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
     }
 }
