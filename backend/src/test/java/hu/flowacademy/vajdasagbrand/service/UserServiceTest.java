@@ -134,7 +134,7 @@ public class UserServiceTest {
     }
 
     @Test
-     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
+    public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
         givenUserRepositoryWhenCallingDelete();
         UserDTO result = service.deleteById(REGISTRATION_ID);
         verify(userRepository, times(1)).findById(REGISTRATION_ID);

@@ -27,6 +27,6 @@ public class UserHelper {
     }
 
     public static String loginWithSuperadminWithToken() {
-        return login("superadmin@jusoft.com", "Aa123456");
+       return login("superadmin@jusoft.com", "Aa123456");
     }
 }

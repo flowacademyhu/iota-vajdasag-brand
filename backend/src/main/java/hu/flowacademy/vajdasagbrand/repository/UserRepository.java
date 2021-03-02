@@ -27,4 +27,8 @@ public class UserRepository {
     public Page<UserDTO> findAllUsers(Pageable pageable) {
         return userJPARepository.findAll(pageable).map(User::toDTO);
     }
+
+    public Optional<UserDTO> findByEmail(String email) {
+        return userJPARepository.findByEmail(email).map(User::toDTO);
+    }
 }
