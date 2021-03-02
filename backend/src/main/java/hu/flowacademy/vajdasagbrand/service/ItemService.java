@@ -122,7 +122,7 @@ public class ItemService {
         tempItem.setEmail(item.getEmail());
     }
 
-    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication) throws ValidationException {
+    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId) throws ValidationException {
         List<String> roles = authentication.map(Authentication::getAuthorities)
                 .map(grantedAuthorities -> grantedAuthorities
                         .stream().map(GrantedAuthority::getAuthority)
@@ -135,7 +135,9 @@ public class ItemService {
         } else if (roles.contains(CEGADMIN)) {
             return itemRepository.findAll().stream()
                     .map(this::createCegAdminDTO)
-                    .collect(Collectors.toList());
+                    //.collect(Collectors.toList())
+                    //.orElseThrow()
+                    .forEach(System.out::println);
         } else {
             throw new ValidationException("User has no authorization.");
         }
