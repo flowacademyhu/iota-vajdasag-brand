@@ -125,4 +125,22 @@ public class KeycloakClientService {
         rolesResource.create(roleRep);
         return rolesResource.get(r).toRepresentation();
     }
+
+    public boolean sendForgottenPassword(String email) {
+        try {
+            RealmResource ourRealm = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm());
+            UsersResource resource = ourRealm.users();
+            return resource
+                    .search(email)
+                    .stream()
+                    .findFirst()
+                    .map(oneUser -> {
+                        resource.get(oneUser.getId()).executeActionsEmail(List.of("UPDATE_PASSWORD"));
+                        return oneUser;
+                    })
+                    .isPresent();
+        } catch (WebApplicationException e) {
+            return false;
+        }
+    }
 }
