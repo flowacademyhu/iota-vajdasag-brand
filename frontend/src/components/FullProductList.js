@@ -6,7 +6,7 @@ import ListElement from './listOfProducts/ListElement'
 const FullProductList = () => {
   const [sortKey, setSortKey] = useState('')
   const [isSortAscending, setAscendingSort] = useState(true)
-  const { listOfAllProducts } = useProducts(sortKey, isSortAscending)
+  const { products } = useProducts(sortKey, isSortAscending)
 
   const onColumnClick = (value) => {
     setAscendingSort(!isSortAscending)
@@ -17,11 +17,11 @@ const FullProductList = () => {
     <div className="table-responsive">
       <table className="table table-striped table-sm">
         <ListHeader
-          setSortKey={setSortKey}
-          setAscendingSort={setAscendingSort}
+          sortKey={sortKey}
+          isSortAscending={isSortAscending}
           onColumnClick={onColumnClick}
         />
-        {listOfAllProducts?.map((product) => (
+        {products?.map((product) => (
           <ListElement product={product} key={product.id} />
         ))}
       </table>
