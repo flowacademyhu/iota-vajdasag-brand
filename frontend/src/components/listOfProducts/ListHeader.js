@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { SortDown, SortUpAlt } from 'react-bootstrap-icons'
 
-const ListHeader = () => {
+const ListHeader = ({ onColumnClick, isSortAscending, sortKey }) => {
   const { t } = useTranslation()
 
   const SortingSign = (value) => {
@@ -34,7 +34,7 @@ const ListHeader = () => {
           {t('product.owner')}
           {SortingSign('ownerName')}
         </th>
-        <th />
+        <th scope="col">{t('product.actions')}</th>
       </tr>
     </thead>
   )

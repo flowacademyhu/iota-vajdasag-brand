@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { fetchProducts } from '../communications/userApi'
 
-const useProducts = () => {
+const useProducts = ({ sortKey, isSortAscending }) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
+  const [products, setProducts] = useState([])
 
   const getAllProducts = async () => {
     const fetchedProducts = await fetchProducts()
@@ -29,10 +30,10 @@ const useProducts = () => {
   )
 
   useEffect(() => {
-    setUsers(listOfAllUsers?.sort((a, b) => sortColumn(a, b)))
-  }, [])
+    setProducts(listOfAllProducts?.sort((a, b) => sortColumn(a, b)))
+  }, [listOfAllProducts, sortKey, sortColumn])
 
-  return { listOfAllUsers }
+  return { products }
 }
 
 export default useProducts

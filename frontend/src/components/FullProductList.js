@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useProducts from './useProducts'
-import ProductTable from './ProductTable'
+import ListHeader from '../components/listOfProducts/ListHeader'
 import ListElement from './listOfProducts/ListElement'
 
 const FullProductList = () => {
-  const listOfAllProducts = useProducts()
+  const [sortKey, setSortKey] = useState('')
+  const [isSortAscending, setAscendingSort] = useState(true)
+  const { listOfAllProducts } = useProducts(sortKey, isSortAscending)
+
+  const onColumnClick = (value) => {
+    setAscendingSort(!isSortAscending)
+    setSortKey(value)
+  }
 
   return (
-    <ProductTable>
-      {listOfAllProducts?.map((product) => (
-        <ListElement product={product} key={product.id} />
-      ))}
-    </ProductTable>
+    <div className="table-responsive">
+      <table className="table table-striped table-sm">
+        <ListHeader
+          setSortKey={setSortKey}
+          setAscendingSort={setAscendingSort}
+          onColumnClick={onColumnClick}
+        />
+        {listOfAllProducts?.map((product) => (
+          <ListElement product={product} key={product.id} />
+        ))}
+      </table>
+    </div>
   )
 }
 
