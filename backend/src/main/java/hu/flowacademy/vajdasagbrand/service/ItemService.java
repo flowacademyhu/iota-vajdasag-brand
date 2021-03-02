@@ -5,7 +5,6 @@ import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
-import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -122,7 +121,7 @@ public class ItemService {
         tempItem.setEmail(item.getEmail());
     }
 
-    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId) throws ValidationException {
+    public List<? extends CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId) throws ValidationException {
         List<String> roles = authentication.map(Authentication::getAuthorities)
                 .map(grantedAuthorities -> grantedAuthorities
                         .stream().map(GrantedAuthority::getAuthority)
@@ -130,28 +129,44 @@ public class ItemService {
                 .orElseThrow(() -> new ValidationException("User has no authorization"));
 
         if (roles.contains(SUPERADMIN)) {
-            return itemRepository.findAll().stream()
-                    .map(this::createSuperAdminDTO).collect(Collectors.toList());
+            System.out.println("Itt baszodik el a szuperadmin"+ ownerId);
+            List<SuperAdminItemDTO> list=ownerId.
+                    map(s -> itemRepository.findAll()
+                            .stream()
+                            .map(this::createSuperAdminDTO)
+                            .filter(c -> c.getOwnerId().equals(s))
+                            .collect(Collectors.toList()))
+                    .orElseGet(() -> itemRepository.findAll().stream()
+                            .map(this::createSuperAdminDTO)
+                            .collect(Collectors.toList()));
+            list.forEach(System.out::println);
+            return null;
         } else if (roles.contains(CEGADMIN)) {
-            return itemRepository.findAll().stream()
-                    .map(this::createCegAdminDTO)
-                    //.collect(Collectors.toList())
-                    //.orElseThrow()
-                    .forEach(System.out::println);
+            System.out.println("Itt baszodik el a cégadmin");
+            return ownerId.
+                    map(s -> itemRepository.findAll()
+                            .stream()
+                            .map(this::createCegAdminDTO)
+                            .filter(c -> c.getOwnerId().equals(s))
+                            .collect(Collectors.toList()))
+                    .orElseGet(() -> itemRepository.findAll().stream()
+                            .map(this::createCegAdminDTO)
+                            .collect(Collectors.toList()));
         } else {
             throw new ValidationException("User has no authorization.");
         }
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
+        System.out.println("Itt baszodik el");
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
-                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
-                "Something");
+                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
     }
 
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
+        System.out.println("Itt baszodik el--------2");
         return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
-                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
+                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
     }
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {

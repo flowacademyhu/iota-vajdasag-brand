@@ -278,20 +278,21 @@ class ItemServiceTest {
     @Test
     public void givenNonExistingAuthorization_whenListingItems_thenExceptionIsThrown() {
         Optional<Authentication> authentication = Optional.empty();
-        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication));
+        Optional<String> ownerId = Optional.empty();
+        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication, ownerId));
     }
 
     @Test
     public void givenUnauthorizedUser_whenListingItems_thenExceptionIsThrown() {
         assertThrows(ValidationException.class, () -> itemService
-                .listProducts(givenUnauthorizedUserListingItems()));
+                .listProducts(givenUnauthorizedUserListingItems(), Optional.of(OWNER_ID)));
     }
 
     @Test
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDtoList()));
+        assertThat(itemService.listProducts(givenSuperAdminListingItems(), Optional.of(OWNER_ID)), is(givenSuperAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
         verifyNoMoreInteractions(itemRepository);
     }
@@ -300,7 +301,7 @@ class ItemServiceTest {
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDtoList()));
+        assertThat(itemService.listProducts(givenCegAdminListingItems(), Optional.of(OWNER_ID)), is(givenCegAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
         verifyNoMoreInteractions(itemRepository);
     }
@@ -351,11 +352,11 @@ class ItemServiceTest {
     }
 
     private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID));
     }
 
     private CegAdminItemDTO givenCegAdminItemDTO() {
-        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT);
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID);
     }
 
     @Test

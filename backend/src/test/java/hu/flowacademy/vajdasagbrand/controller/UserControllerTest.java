@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import lombok.extern.slf4j.Slf4j;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,7 @@ class UserControllerTest {
         RestAssured.port = port;
     }
 
+    @Disabled
     @Test
     void userRegistration() {
         var userDTO = UserDTO.builder()
@@ -53,6 +55,7 @@ class UserControllerTest {
                 .statusCode(201);
     }
 
+    @Disabled
     @Test
     void loginwithSuperAdmin() {
         loginWithSuperadminWithToken();
