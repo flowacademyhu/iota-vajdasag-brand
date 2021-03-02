@@ -52,3 +52,18 @@ userController:
   defaultOrderCategory: registeredAt
   defaultPageNumber: 0
   defaultPageLimit: 10
+
+firestore:
+  project_id: iota-vajdasag-brand-b3e95c95
+  emulator:
+    host: localhost:8200
+  production:
+    url:
+    private_key_id:
+    private_key:
+    client_email:
+    client_id:
+    auth_uri:
+    token_uri:
+    auth_provider_x509_cert_url:
+    client_x509_cert_url:
