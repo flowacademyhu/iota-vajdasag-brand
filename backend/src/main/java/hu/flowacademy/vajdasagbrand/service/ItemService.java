@@ -152,7 +152,7 @@ public class ItemService {
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) throws ValidationException {
-        UserDTO itemOwner = userRepository.findById(item.getOwnerId()).orElseThrow(() -> new ValidationException("No item found with given id"));
+        UserDTO itemOwner = userRepository.findById(item.getOwnerId()).orElseThrow(() -> new ValidationException("No user found with given id"));
 
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
