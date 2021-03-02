@@ -15,7 +15,7 @@ const ListElement = ({ product, searchKeyword }) => {
               key === 'city' ||
               key === 'address' ||
               key === 'category' ||
-              key === 'owner'
+              key === 'ownerName'
           )
           .map(([key, value]) => (
             <td>
