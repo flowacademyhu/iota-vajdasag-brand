@@ -2,27 +2,23 @@ import React from 'react'
 import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
-import { removeAccentsFromWords } from '../frequentlyUsedFunctions'
+import {
+  removeAccentsFromWords,
+  highlightTableProps,
+} from '../frequentlyUsedFunctionsAndVariables'
 
 const ListElement = ({ product, searchKeyword }) => {
   return (
     <>
       <tr>
-        {Object.entries(product)
-          .filter(
-            ([key, value]) =>
-              key === 'name' ||
-              key === 'city' ||
-              key === 'address' ||
-              key === 'category' ||
-              key === 'ownerName'
-          )
-          .map(([key, value]) => (
+        {Object.keys(product)
+          .filter((key) => highlightTableProps.includes(key))
+          .map((key) => (
             <td>
               <Highlighter
                 highlightClassName="search-found-word"
                 searchWords={[searchKeyword]}
-                textToHighlight={value}
+                textToHighlight={product[key]}
                 autoEscape={true}
                 caseSensitive={false}
                 sanitize={(word) => removeAccentsFromWords(word)}

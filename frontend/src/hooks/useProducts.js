@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
-import { removeAccentsFromWords } from '../components/frequentlyUsedFunctions'
+import {
+  removeAccentsFromWords,
+  highlightTableProps,
+} from '../components/frequentlyUsedFunctionsAndVariables'
 
 const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -18,13 +21,12 @@ const useProducts = (searchKeyword) => {
   useEffect(() => {
     const searchWord = removeAccentsFromWords(searchKeyword)
     setProducts(
-      listOfAllProducts.filter(
-        (product) =>
-          removeAccentsFromWords(product.name).includes(searchWord) ||
-          removeAccentsFromWords(product.address).includes(searchWord) ||
-          removeAccentsFromWords(product.city).includes(searchWord) ||
-          removeAccentsFromWords(product.category).includes(searchWord) ||
-          removeAccentsFromWords(product.ownerName).includes(searchWord)
+      listOfAllProducts.filter((product) =>
+        Object.entries(product).filter(
+          ([key, value]) =>
+            highlightTableProps.includes(key) &&
+            removeAccentsFromWords(value).includes(searchWord)
+        )
       )
     )
   }, [searchKeyword, listOfAllProducts])
