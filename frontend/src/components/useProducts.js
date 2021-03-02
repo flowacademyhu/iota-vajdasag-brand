@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { fetchProducts } from '../communications/userApi'
 
-const useProducts = ({ sortKey, isSortAscending }) => {
+const useProducts = (sortKey, isSortAscending) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
   const [products, setProducts] = useState([])
 
@@ -31,7 +31,7 @@ const useProducts = ({ sortKey, isSortAscending }) => {
 
   useEffect(() => {
     setProducts(listOfAllProducts?.sort((a, b) => sortColumn(a, b)))
-  }, [listOfAllProducts, sortKey, sortColumn])
+  }, [listOfAllProducts, sortKey, sortColumn, isSortAscending])
 
   return { products }
 }
