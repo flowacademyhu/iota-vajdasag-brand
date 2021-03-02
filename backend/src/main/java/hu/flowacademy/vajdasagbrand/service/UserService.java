@@ -30,14 +30,14 @@ public class UserService {
     public UserDTO deleteById(String id) throws ValidationException, UserNotEnabledException {
         Optional<UserDTO> user = userRepository.findById(id);
         if (user.isEmpty()) {
-            throw new ValidationException("No user with given id: " + id);
+            throw new ValidationException("No user was found with given id: " + id);
         }
         if (!user.get().isEnabled()) {
-            throw new UserNotEnabledException("User is not enabled");
+            throw new UserNotEnabledException("User is not enabled.");
         }
         UserDTO deleted = user.get();
         if (!keycloakClientService.deleteUser(deleted.getEmail())) {
-            throw new ValidationException("No user with id in Keycloak");
+            throw new ValidationException("No user was found with this id in Keycloak.");
         }
         deleted.setDeletedAt(LocalDateTime.now().withNano(0));
         deleted.setEnabled(false);
@@ -55,22 +55,22 @@ public class UserService {
 
     private void validateUserData(UserDTO user) throws ValidationException {
         if (!StringUtils.hasText(user.getFullName())) {
-            throw new ValidationException("Didn't get full name");
+            throw new ValidationException("No fullname was provided.");
         }
         if (!StringUtils.hasText(user.getAddress())) {
-            throw new ValidationException("Didn't get address");
+            throw new ValidationException("No address was provided.");
         }
         if (!StringUtils.hasText(user.getEmail())) {
-            throw new ValidationException("Didn't get email");
+            throw new ValidationException("No email was provided.");
         }
         if (!EmailValidator.getInstance().isValid(user.getEmail())) {
-            throw new ValidationException("Invalid email");
+            throw new ValidationException("Invalid email.");
         }
         if (!StringUtils.hasText(String.valueOf(user.getType()))) {
-            throw new ValidationException("Didn't get type");
+            throw new ValidationException("No type was provided.");
         }
         if ((user.getTaxNumber()).isEmpty() && user.getType() == Type.COMPANY) {
-            throw new ValidationException("Can not add tax number for individual members");
+            throw new ValidationException("Cannot add tax number to users with INDIVIDUAL category.");
         }
     }
 
@@ -87,7 +87,7 @@ public class UserService {
             sendApprovalEmail(registeredUser.getEmail());
             return true;
         } else {
-            throw new ValidationException("Validation didn't succeed");
+            throw new ValidationException("Validation was unsuccessful.");
         }
     }
 
@@ -95,4 +95,3 @@ public class UserService {
         emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + new URL("https://iota-vajdasag-brand-b3e95c95.web.app/login") + "\n \nWelcome to Vajdasag Brand!");
     }
 }
-
