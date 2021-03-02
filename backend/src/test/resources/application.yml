@@ -51,3 +51,6 @@ userController:
   defaultOrderCategory: registeredAt
   defaultPageNumber: 0
   defaultPageLimit: 10
+
+ui:
+  loginUrl: "https://iota-vajdasag-brand-b3e95c95.web.app/login"

@@ -1,5 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.configuration.UIProperties;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
@@ -53,6 +54,9 @@ public class UserServiceTest {
 
     @InjectMocks
     private UserService service;
+
+    @Mock
+    private UIProperties uiProperties;
 
     @Test
     public void givenUser_whenCreatingAccount_thenAccountCreatedSuccessfully() throws ValidationException {
