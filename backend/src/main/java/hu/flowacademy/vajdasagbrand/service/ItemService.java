@@ -124,28 +124,33 @@ public class ItemService {
     }
 
     public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication) throws ValidationException {
-        List<String> roles = authentication.map(Authentication::getAuthorities)
-                .map(grantedAuthorities -> grantedAuthorities
-                        .stream().map(GrantedAuthority::getAuthority)
-                        .collect(Collectors.toList()))
-                .orElseThrow(() -> new ValidationException("User has no authorization"));
-
-        if (roles.contains(SUPERADMIN)) {
+        if (isUserSuperAdmin(authentication)) {
             return itemRepository.findAll().stream()
-                    .map(word -> {
-                        try {
-                            return createSuperAdminDTO(word);
-                        } catch (Exception e) {
-                            throw new RuntimeException("No item was found.");
-                        }
-                    }).collect(Collectors.toList());
-        } else if (roles.contains(CEGADMIN)) {
+                    .map(this::createSuperAdminDTO)
+                    .collect(Collectors.toList());
+        } else if (isUserCegAdmin(authentication)) {
             return itemRepository.findAll().stream()
                     .map(this::createCegAdminDTO)
                     .collect(Collectors.toList());
         } else {
             throw new ValidationException("User has no authorization.");
         }
+    }
+
+    public boolean isUserSuperAdmin(Optional<Authentication> authentication) throws ValidationException {
+        return authentication.map(Authentication::getAuthorities)
+                .map(grantedAuthorities -> grantedAuthorities
+                        .stream().map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new ValidationException("User has no authorization")).contains(SUPERADMIN);
+    }
+
+    public boolean isUserCegAdmin(Optional<Authentication> authentication) throws ValidationException {
+        return authentication.map(Authentication::getAuthorities)
+                .map(grantedAuthorities -> grantedAuthorities
+                        .stream().map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new ValidationException("User has no authorization")).contains(CEGADMIN);
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
