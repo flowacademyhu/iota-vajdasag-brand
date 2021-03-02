@@ -46,9 +46,9 @@ public class UserController {
         return userService.deleteById(id);
     }
 
+    @PermitAll
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
-    @PermitAll
     public void userRegistration(@RequestBody UserDTO userDTO) throws ValidationException {
         userService.userRegistrationData(userDTO, userDTO.getPassword());
     }

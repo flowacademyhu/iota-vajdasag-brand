@@ -1,13 +1,15 @@
 package hu.flowacademy.vajdasagbrand.service;
 
-import hu.flowacademy.vajdasagbrand.dto.EventDTO;
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,11 +18,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
@@ -47,12 +51,20 @@ class ItemServiceTest {
     private static final String INSTAGRAM = "www.instagram.com/hotelglass";
     private static final String CONTACT = "Kis Pista";
     private static final String EMAIL = "kispista@email.com";
-    private static final String OWNER = "Something";
+    private static final String OWNER_NAME = "Savoyai Eugen";
+    private static final String TAX_NUMBER = "123";
+    private static final String USER_PASSWORD = "123456";
+    private static final boolean ENABLED_REGISTRATION = true;
     private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
+            Month.JULY, 29, 19, 30, 40);
+    private static final LocalDateTime CREATED_AT = LocalDateTime.of(2014,
             Month.JULY, 29, 19, 30, 40);
 
     @Mock
     private ItemRepository itemRepository;
+
+    @Mock
+    private UserRepository userRepository;
 
     @InjectMocks
     private ItemService itemService;
@@ -290,6 +302,7 @@ class ItemServiceTest {
     @Test
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
+        givenUserRepositoryListingItems();
 
         assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
@@ -334,6 +347,10 @@ class ItemServiceTest {
         when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.empty());
     }
 
+    private void givenUserRepositoryListingItems() {
+        when(userRepository.findById(OWNER_ID)).thenReturn(Optional.of(givenUser()));
+    }
+
     private Optional<Authentication> givenUnauthorizedUserListingItems() {
         return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_User"))));
     }
@@ -347,15 +364,15 @@ class ItemServiceTest {
     }
 
     private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
-        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, OWNER_NAME));
     }
 
     private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID));
     }
 
     private CegAdminItemDTO givenCegAdminItemDTO() {
-        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT);
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID);
     }
 
     @Test
@@ -399,6 +416,10 @@ class ItemServiceTest {
         itemToBeDeleted.setId(REGISTRATION_ID);
         when(itemRepository.findFirstById(anyString())).thenReturn(Optional.of(itemToBeDeleted));
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
+    }
+
+    private UserDTO givenUser() {
+        return new UserDTO(OWNER_ID, OWNER_NAME, TAX_NUMBER, ADDRESS, EMAIL, Type.INDIVIDUAL, USER_PASSWORD, ENABLED_REGISTRATION, CREATED_AT, DELETED_AT);
     }
 
     private ItemDTO givenItem() {
