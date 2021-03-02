@@ -8,6 +8,6 @@ const removeAccentsFromWords = (word) => {
     .toUpperCase()
 }
 
-const highlightTableProps = ['name', 'city', 'address', 'category', 'ownerName'];
+const highlightTableProps = ['name', 'city', 'address', 'category', 'ownerName']
 
 export { removeAccentsFromWords, highlightTableProps }
