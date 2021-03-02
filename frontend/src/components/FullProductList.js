@@ -21,9 +21,11 @@ const FullProductList = () => {
           isSortAscending={isSortAscending}
           onColumnClick={onColumnClick}
         />
-        {products?.map((product) => (
-          <ListElement product={product} key={product.id} />
-        ))}
+        <tbody>
+          {products?.map((product) => (
+            <ListElement product={product} key={product.id} />
+          ))}
+        </tbody>
       </table>
     </div>
   )
