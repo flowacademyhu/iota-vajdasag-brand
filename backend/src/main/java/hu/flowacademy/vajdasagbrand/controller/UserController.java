@@ -71,7 +71,7 @@ public class UserController {
     }
 
     @PermitAll
-    @GetMapping("/forgottenpassword")
+    @PostMapping("/forgottenpassword")
     public boolean sendForgottenPassword(@RequestBody ForgottenPasswordDTO forgottenPasswordDTO) {
         return keycloakClientService.sendForgottenPassword(forgottenPasswordDTO.getEmail());
     }
