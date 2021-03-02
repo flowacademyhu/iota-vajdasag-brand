@@ -53,53 +53,53 @@ public class ItemService {
     }
 
     private void subcategoryValidation(ItemDTO item) throws ValidationException {
-        if(Category.ATTRACTION.equals(item.getCategory()) && item.getSubcategory() == null) {
+        if (Category.ATTRACTION.equals(item.getCategory()) && item.getSubcategory() == null) {
             throw new ValidationException("Attraction category have to have subcategory");
         }
     }
 
     private void validateItemData(ItemDTO item) throws ValidationException {
         subcategoryValidation(item);
-        if (!StringUtils.hasText(item.getName())) {
+        if (item.getName() == null) {
             throw new ValidationException("No name given");
         }
-        if (!StringUtils.hasText(item.getBio())) {
+        if (item.getBio() == null) {
             throw new ValidationException("Didn't get bio");
         }
-        if (!StringUtils.hasText(item.getScore())) {
+        if (item.getScore() == null) {
             throw new ValidationException("Impossible value");
         }
-        if (!StringUtils.hasText(item.getAddress())) {
+        if (item.getAddress() == null) {
             throw new ValidationException("Didn't get address");
         }
-        if (!StringUtils.hasText(item.getCity())) {
+        if (item.getCity() == null) {
             throw new ValidationException("Didn't get city");
         }
         if (item.getCategory() == null) {
             throw new ValidationException("Didn't get category");
         }
-        if (!StringUtils.hasText(item.getCoordinateX())) {
+        if (item.getCoordinateX() == null) {
             throw new ValidationException("Didn't get coordinate_x");
         }
-        if (!StringUtils.hasText(item.getCoordinateY())) {
+        if (item.getCoordinateY() == null) {
             throw new ValidationException("Didn't get coordinate_y");
         }
-        if (!StringUtils.hasText(item.getPhone())) {
+        if (item.getPhone() == null) {
             throw new ValidationException("Didn't get phone");
         }
-        if (!StringUtils.hasText(item.getWebsite())) {
+        if (item.getWebsite() == null) {
             throw new ValidationException("Didn't get website");
         }
-        if (!StringUtils.hasText(item.getContact())) {
+        if (item.getContact() == null) {
             throw new ValidationException("No contact given");
         }
-        if (!StringUtils.hasText(item.getFacebook())) {
+        if (item.getFacebook() == null) {
             throw new ValidationException("No facebook given");
         }
-        if (!StringUtils.hasText(item.getInstagram())) {
+        if (item.getInstagram() == null) {
             throw new ValidationException("No instagram given");
         }
-        if(!StringUtils.hasText(item.getOwnerId())) {
+        if (item.getOwnerId() == null) {
             throw new ValidationException("No owner with this id");
         }
     }
