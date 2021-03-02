@@ -55,53 +55,53 @@ public class ItemService {
 
     private void subcategoryValidation(ItemDTO item) throws ValidationException {
         if (Category.ATTRACTION.equals(item.getCategory()) && item.getSubcategory() == null) {
-            throw new ValidationException("Attraction category have to have subcategory");
+            throw new ValidationException("Attraction category must have a subcategory.");
         }
     }
 
     private void validateItemData(ItemDTO item) throws ValidationException {
         subcategoryValidation(item);
         if (item.getName() == null) {
-            throw new ValidationException("No name given");
+            throw new ValidationException("No name was provided.");
         }
         if (item.getBio() == null) {
-            throw new ValidationException("Didn't get bio");
+            throw new ValidationException("No bio-description was provided.");
         }
         if (item.getScore() == null) {
-            throw new ValidationException("Impossible value");
+            throw new ValidationException("Impossible value for score.");
         }
         if (item.getAddress() == null) {
-            throw new ValidationException("Didn't get address");
+            throw new ValidationException("No address was provided.");
         }
         if (item.getCity() == null) {
-            throw new ValidationException("Didn't get city");
+            throw new ValidationException("No city was provided.");
         }
         if (item.getCategory() == null) {
-            throw new ValidationException("Didn't get category");
+            throw new ValidationException("No category was provided.");
         }
         if (item.getCoordinateX() == null) {
-            throw new ValidationException("Didn't get coordinate_x");
+            throw new ValidationException("No latitude-coordinate_X was provided.");
         }
         if (item.getCoordinateY() == null) {
-            throw new ValidationException("Didn't get coordinate_y");
+            throw new ValidationException("No longitude-coordinate_Y was provided");
         }
         if (item.getPhone() == null) {
-            throw new ValidationException("Didn't get phone");
+            throw new ValidationException("No phone number was provided");
         }
         if (item.getWebsite() == null) {
-            throw new ValidationException("Didn't get website");
+            throw new ValidationException("No website was provided.");
         }
         if (item.getContact() == null) {
-            throw new ValidationException("No contact given");
+            throw new ValidationException("No contact was provided.");
         }
         if (item.getFacebook() == null) {
-            throw new ValidationException("No facebook given");
+            throw new ValidationException("No facebook was provided.");
         }
         if (item.getInstagram() == null) {
-            throw new ValidationException("No instagram given");
+            throw new ValidationException("No instagram was provided.");
         }
         if (item.getOwnerId() == null) {
-            throw new ValidationException("No owner with this id");
+            throw new ValidationException("No owner was found with this ID.");
         }
     }
 
@@ -136,7 +136,7 @@ public class ItemService {
                         try {
                             return createSuperAdminDTO(word);
                         } catch (Exception e) {
-                            throw new RuntimeException("No item found.");
+                            throw new RuntimeException("No item was found.");
                         }
                     }).collect(Collectors.toList());
         } else if (roles.contains(CEGADMIN)) {
@@ -162,7 +162,7 @@ public class ItemService {
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {
         ItemDTO itemDTO = itemRepository.findById(id).orElseThrow(
-                () -> new ValidationException("No item found with given id"));
+                () -> new ValidationException("No item was found with the given id"));
         return createCegAdminDTO(itemDTO);
     }
 }
