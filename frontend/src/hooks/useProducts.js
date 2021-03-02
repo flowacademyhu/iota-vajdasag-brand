@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
-
-/*
- * Removes all accents from words and makes them uppercase.
- **/
-const makeWordComparable = (keyword) => {
-  return keyword
-    ?.normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toUpperCase()
-}
+import { removeAccentsFromWords } from '../components/frequentlyUsedFunctions'
 
 const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -25,15 +16,15 @@ const useProducts = (searchKeyword) => {
   }, [])
 
   useEffect(() => {
-    const searchWord = makeWordComparable(searchKeyword)
+    const searchWord = removeAccentsFromWords(searchKeyword)
     setProducts(
       listOfAllProducts.filter(
         (product) =>
-          makeWordComparable(product.name).includes(searchWord) ||
-          makeWordComparable(product.address).includes(searchWord) ||
-          makeWordComparable(product.city).includes(searchWord) ||
-          makeWordComparable(product.category).includes(searchWord) ||
-          makeWordComparable(product.owner).includes(searchWord)
+          removeAccentsFromWords(product.name).includes(searchWord) ||
+          removeAccentsFromWords(product.address).includes(searchWord) ||
+          removeAccentsFromWords(product.city).includes(searchWord) ||
+          removeAccentsFromWords(product.category).includes(searchWord) ||
+          removeAccentsFromWords(product.owner).includes(searchWord)
       )
     )
   }, [searchKeyword, listOfAllProducts])
