@@ -29,9 +29,7 @@ const ListElement = ({
           showConfirmDeletion={showConfirmDeletion}
         />
       </td>
-      <td>
-        <TheUsersProductsButton user={user} />
-      </td>
+      <td>{user.enabled && <TheUsersProductsButton user={user} />}</td>
     </tr>
   )
 }
