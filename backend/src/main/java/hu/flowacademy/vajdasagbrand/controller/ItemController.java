@@ -23,13 +23,13 @@ public class ItemController {
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/items")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
+    public ItemDTO createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
 
-        itemService.createItem(itemDTO);
+       return itemService.createItem(itemDTO);
     }
 
-    @DeleteMapping("/delete/{id}")
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @DeleteMapping("/items/{id}")
     public ItemDTO deleteItem(@PathVariable("id") String id) throws ValidationException {
         return itemService.deleteById(id);
     }
@@ -42,7 +42,7 @@ public class ItemController {
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
-    @GetMapping("/products")
+    @GetMapping("/items")
     public List<CegAdminItemDTO> getProducts(Authentication authentication) throws ValidationException {
         return itemService.listProducts(Optional.ofNullable(authentication));
     }

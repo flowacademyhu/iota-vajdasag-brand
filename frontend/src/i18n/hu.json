@@ -1,32 +1,67 @@
 {
-  "menu": {
-    "signout": "Kijelentkezés",
-    "events": "Események",
-    "products": "Termékek",
-    "users": "Felhasználók"
-  },
   "companyAdmin": {
-    "edit": "Szerkeztés",
+    "edit": "Szerkesztés",
     "newProduct": "Új termék",
-    "remove": "Törlés",
+    "remove": "Töröl",
     "search": "Keresés"
+  },
+  "editProduct": {
+    "address": "Cím",
+    "city": "Város",
+    "coordinateX": "Szélességi fok",
+    "coordinateY": "Hosszúsági fok",
+    "editButton": "Szerkesztés",
+    "phone": "Telefonszám",
+    "save": "Termék elmentése",
+    "selectAttraction": "Látnivaló",
+    "selectCategory": "Válassz kategóriát:",
+    "selectGastronomy": "Gasztronómia",
+    "selectHoliday": "Hétvége",
+    "selectHotel": "Szálló",
+    "selectInformation": "Tájékoztatás",
+    "successfulEdition": "A mentés sikeres volt",
+    "title": "Termék szerkesztése",
+    "unsuccessfulEdition": "Sikertelen volt a mentés",
+    "website": "Weboldal"
+  },
+  "forgottenPassword": {
+    "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
+    "buttontext": "Jelszó megváltoztatása",
+    "noserver": "Szerver hiba, kérjük jöjjön vissza később",
+    "nouser": "A felhasználó nem található",
+    "title": "Jelszó megváltoztatása"
   },
   "login": {
     "buttontext": "Bejelentkezés",
     "connectionProblems": "Kapcsolati probléma",
     "email": "Email cím",
+    "forgottenPassword": "Elfelejtett jelszó",
     "invalidData": "Rossz email vagy jelszó",
     "invalidPassword": "A jelszó minimum 8 karakter",
     "invalidemail": "Hibás email",
     "noEmail": "Az email megadása kötelező",
+    "other": "Egyéb hiba. Kérjük térjen vissza később",
     "password": "Jelszó",
     "title": "Belépés"
   },
+  "menu": {
+    "events": "Események",
+    "items": "Termékek",
+    "signout": "Kijelentkezés",
+    "users": "Felhasználók"
+  },
+  "product": {
+    "address": "Cím",
+    "category": "Kategória",
+    "city": "Város",
+    "name": "Név",
+    "owner": "Tulajdonos"
+  },
   "productList": {
-    "close": "close",
-    "confirmDelete": "confirmDelete",
-    "confirmDeleteTitle": "confirmDeleteTitle",
-    "delete": "delete"
+    "close": "Bezárás",
+    "confirmDelete": "Törlés megerősítése",
+    "confirmDeleteTitle": "Törlés megerősítése",
+    "delete": "Törlés"
   },
   "registration": {
     "address": "Lakcím/Székhely",
@@ -55,16 +90,29 @@
   "searchbar": {
     "search": "Keresés"
   },
+  "superAdmin": {
+    "createNewUser": "Új felhasználó létrehozása",
+    "name": "Név",
+    "active": "Aktív",
+    "inactive": "Inaktív",
+    "dateOfRegistration": "Regisztráció időpontja",
+    "editBasicData": "Alapadatok szerkesztése",
+    "editProducts": "Termékek szerkesztése"
+  },
+  "headerUserData": {
+    "loggedIn": "Bejelentkezve mint "
+  },
   "userListElement": {
-    "approveRegistration": "Regisztráció jóváhagyása",
     "close": "Bezárás",
-    "confirmDelete": "Biztosan törli?",
-    "confirmDeleteTitle": "Törlés megerősítése",
-    "delete": "Regisztráció törlése",
+    "approveRegistration": "Regisztráció jóváhagyása",
     "no": "Nem",
-    "successful": "Sikeres törlés.",
+    "yes": "Igen",
+    "successful": "Sikeres törlés",
     "unsuccessful": "Sikertelen törlés.",
-    "yes": "Igen"
+    "delete": "Regisztráció törlése",
+    "confirmDelete": "Biztosan törölni akarja a felhasználót?",
+    "confirmDeleteTitle": "Törlés megerősítése",
+    "products": "Termékek"
   },
   "userListHeader": {
     "acceptedRegistration": "Sikeres regisztráció",
@@ -73,5 +121,5 @@
     "email": "E-mail",
     "name": "Név"
   },
-  "welcome": "welcome"
+  "welcome": "Üdvözöljük"
 }

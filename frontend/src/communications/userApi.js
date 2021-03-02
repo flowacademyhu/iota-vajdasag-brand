@@ -1,10 +1,9 @@
 import api from './apiInstance'
-//import './mockForUserApi'
 
 export const getUsers = async () => {
   try {
-    const response = await api.get('/getUsers')
-    return response.data.users
+    const response = await api.get('/users')
+    return response.data.content
   } catch (error) {
     throw new Error('Failed to get users.')
   }
@@ -12,6 +11,21 @@ export const getUsers = async () => {
 
 export const login = (value) => {
   return api.post('/login', value)
+}
+
+export const forgottenPassword = async (value) => {
+  try {
+    const response = await api.post('/forgottenpassword', value)
+    return response
+  } catch (e) {
+    if (e.response.status === 400) {
+      throw new Error('no user')
+    } else if (e.response.status === 404 || e.response.status === 500) {
+      throw new Error('no server')
+    } else {
+      throw new Error(e)
+    }
+  }
 }
 
 export const signUp = async (value, type) => {
@@ -41,8 +55,32 @@ export const deleteUserRegistration = async (userId) => {
 }
 
 export const deleteProduct = async (id) => {
-  const response = await api.delete(`/products/${id}`)
+  const response = await api.delete(`/items/${id}`)
   if (response.status !== 200) {
     throw new Error('The deletion was unsuccessful.')
+  }
+}
+
+export const updateProductData = async (productId, updatedProduct) => {
+  const response = await api.put(`/items/${productId}`, updatedProduct)
+  if (response.status !== 200) {
+    throw new Error('The update was unsuccessful.')
+  }
+}
+
+export const fetchOneProduct = async (productId) => {
+  try {
+    return await api.get(`/items/${productId}`)
+  } catch (error) {
+    throw new Error('The GET product request was unsuccessful.')
+  }
+}
+
+export const fetchProducts = async () => {
+  try {
+    const response = await api.get('/items')
+    return response.data
+  } catch (e) {
+    throw new Error('Error when fetching products from API.')
   }
 }

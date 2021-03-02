@@ -40,6 +40,8 @@ public class Item {
     private String instagram;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
+    @ManyToOne
+    private User owner;
 
     public static Item fromDTO(ItemDTO itemDTO) {
         return Item.builder()
@@ -59,6 +61,7 @@ public class Item {
                 .facebook(itemDTO.getFacebook())
                 .instagram(itemDTO.getInstagram())
                 .deletedAt(itemDTO.getDeletedAt())
+                .owner(User.builder().id(itemDTO.getOwnerId()).build())
                 .build();
     }
 
@@ -80,6 +83,7 @@ public class Item {
                 .facebook(facebook)
                 .instagram(instagram)
                 .deletedAt(deletedAt)
+                .ownerId(owner.getId())
                 .build();
     }
 }

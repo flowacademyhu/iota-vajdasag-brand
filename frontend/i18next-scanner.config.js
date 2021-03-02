@@ -43,6 +43,6 @@ module.exports = {
       suffix: '}}',
     },
     sort: true,
-    removeUnusedKeys: true,
+    removeUnusedKeys: false,
   },
 }

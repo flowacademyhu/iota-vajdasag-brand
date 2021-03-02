@@ -10,8 +10,8 @@ const menuItems = [
     icon: People,
   },
   {
-    path: '/super-admin/products',
-    title: 'menu.products',
+    path: '/super-admin/items',
+    title: 'menu.items',
     icon: Shop,
   },
   {

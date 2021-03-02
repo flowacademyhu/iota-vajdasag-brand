@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class ItemDTO {
-
     private String id;
     private String name;
     private String score;
@@ -29,8 +28,9 @@ public class ItemDTO {
     private String coordinateY;
     private String phone;
     private String website;
-    private String instagram;
     private String facebook;
+    private String instagram;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
+    private String ownerId;
 }
