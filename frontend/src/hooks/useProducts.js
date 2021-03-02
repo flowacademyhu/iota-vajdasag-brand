@@ -24,7 +24,7 @@ const useProducts = (searchKeyword) => {
           removeAccentsFromWords(product.address).includes(searchWord) ||
           removeAccentsFromWords(product.city).includes(searchWord) ||
           removeAccentsFromWords(product.category).includes(searchWord) ||
-          removeAccentsFromWords(product.owner).includes(searchWord)
+          removeAccentsFromWords(product.ownerName).includes(searchWord)
       )
     )
   }, [searchKeyword, listOfAllProducts])
