@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Formik, Form, Field } from 'formik'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
-import InputField from '../components/InputField'
-import SelectCategory from '../components/listOfProducts/SelectCategory'
 import validationEdit from '../validations/validationEdit'
 import { updateProductData, fetchOneProduct, addProduct } from '../communications/userApi'
-import ResponseModal from '../components/modals/ResponseModal'
+import AddAndEditProductForm from "../components/AddAndEditProductForm";
 
 const AddAndEditProductPage = () => {
   let location = useLocation();
@@ -86,125 +82,15 @@ const AddAndEditProductPage = () => {
   return (
     (type === 'add' || product) && (
       <div className="m-5">
-        <Formik
-          initialValues={initForm()}
-          validationSchema={validationEdit(t('registration.required'))}
-          onSubmit={handleSubmit}
-        >
-          <Form>
-            <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-              <h3 className="text-center">{type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}</h3>
-              {type === "add" && (
-                <div className="my-2">
-                  <InputField
-                    label={t('editProduct.name')}
-                    name="name"
-                    type="text"
-                  />
-                </div>
-              )}
-              {type === "add" && (
-                <div className="my-2">
-                  <InputField
-                    label={t('editProduct.contactName')}
-                    name="contact"
-                    type="text"
-                  />
-                </div>
-              )}
-              {type === "add" && (
-                <div className="my-2">
-                  <InputField
-                    name="score"
-                    id="score"
-                    placeholder={t('editProduct.name')}
-                    type="text"
-                    disabled
-                    hidden
-                  />
-                </div>
-              )}
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.address')}
-                  name="address"
-                  type="text"
-                />
-              </div>
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.city')}
-                  name="city"
-                  type="text"
-                />
-              </div>
-              <div className="my-2">
-                <SelectCategory />
-              </div>
-              {type === "add" && (
-                <div>
-                  <label htmlFor="category">{t('editProduct.selectSubCategory')}</label>
-                  <Field as="select" name="subcategory">
-                    <option value="HONOURABLES">{t('editProduct.honourables')}</option>
-                    <option value="FAMOUS_BUILDINGS">{t('editProduct.famous_buildings')}</option>
-                    <option value="MUSEUMS">{t('editProduct.museums')}</option>
-                  </Field>
-                </div>)}
-
-              {type === "add" && (
-                <div className="my-2">
-                  <InputField
-                    label={t('editProduct.bio')}
-                    name="bio"
-                    type="text"
-                  />
-                </div>
-              )}
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.coordinateX')}
-                  name="coordinateX"
-                  type="text"
-                />
-              </div>
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.coordinateY')}
-                  name="coordinateY"
-                  type="text"
-                />
-              </div>
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.phone')}
-                  name="phone"
-                  type="text"
-                />
-              </div>
-              <div className="my-2">
-                <InputField
-                  label={t('editProduct.website')}
-                  name="website"
-                  type="text"
-                />
-              </div>
-              <div className="my-2">
-                <InputField label="Facebook" name="facebook" type="text" />
-              </div>
-              <div className="my-2">
-                <InputField label="Instagram" name="instagram" type="text" />
-              </div>
-              <Button variant="primary" type="submit" size="lg">
-                {t('editProduct.save')}
-              </Button>
-            </div>
-          </Form>
-        </Formik>
-        <ResponseModal
-          setShowResponseModal={setShowResponseModal}
-          showResponseModal={showResponseModal}
-          title={t(responseModalTitle)}
-          onClose={onClose}
+        <AddAndEditProductForm
+        onClose={onClose}
+        handleSubmit={handleSubmit}
+        initForm={initForm}
+        validationEdit={validationEdit}
+        showResponseModal={showResponseModal}
+        responseModalTitle={responseModalTitle}
+        setShowResponseModal={setShowResponseModal}
+        title={type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}
         />
       </div>
     )
