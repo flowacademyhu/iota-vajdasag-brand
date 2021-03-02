@@ -2,6 +2,7 @@ import React from 'react'
 import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
+import "../frequentlyUsedFunctions"
 
 const ListElement = ({ product, searchKeyword }) => {
   return (
@@ -24,9 +25,7 @@ const ListElement = ({ product, searchKeyword }) => {
                 textToHighlight={value}
                 autoEscape={true}
                 caseSensitive={false}
-                sanitize={(word) =>
-                  word.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                }
+                sanitize={(word) => removeAccentsFromWords(word)}
                 key={key}
               />
             </td>
