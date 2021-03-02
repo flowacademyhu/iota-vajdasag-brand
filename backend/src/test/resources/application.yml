@@ -52,3 +52,4 @@ userController:
   defaultOrderCategory: registeredAt
   defaultPageNumber: 0
   defaultPageLimit: 10
+
