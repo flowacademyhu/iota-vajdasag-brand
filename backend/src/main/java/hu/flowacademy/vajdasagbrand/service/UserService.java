@@ -97,7 +97,6 @@ public class UserService {
 
 
     public void sendApprovalEmail(String email) {
-        log.info("url: {}", uiProperties.getLoginUrl());
         emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + uiProperties.getLoginUrl()  + "\n \nWelcome to Vajdasag Brand!");
     }
 }
