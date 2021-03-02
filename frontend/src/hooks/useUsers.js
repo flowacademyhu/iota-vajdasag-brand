@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { removeAccentsFromWords } from '../components/frequentlyUsedFunctions'
+import { removeAccentsFromWords } from '../components/frequentlyUsedFunctionsAndVariables'
 import {
   getUsers,
   sendApproval,
