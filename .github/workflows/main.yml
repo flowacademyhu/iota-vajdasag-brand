@@ -136,7 +136,7 @@ jobs:
           java-version: 11
 
       - name: Start keycloak
-        run: docker-compose run -d --service-ports keycloak
+        run: docker-compose run -d --service-ports keycloak firebase
 
       - name: Wait until keycloak is up
         uses: nev7n/wait_for_response@v1
