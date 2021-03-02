@@ -20,7 +20,7 @@ const ListElement = ({ product, searchKeyword }) => {
           .map(([key, value]) => (
             <td>
               <Highlighter
-                highlightClassName="searchFoundWord"
+                highlightClassName="search-found-word"
                 searchWords={[searchKeyword]}
                 textToHighlight={value}
                 autoEscape={true}
