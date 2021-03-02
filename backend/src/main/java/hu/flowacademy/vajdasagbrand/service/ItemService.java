@@ -3,10 +3,13 @@ package hu.flowacademy.vajdasagbrand.service;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.User;
 import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +28,7 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final UserRepository userRepository;
     private static final String SUPERADMIN = "ROLE_SuperAdmin";
     private static final String CEGADMIN = "ROLE_CegAdmin";
 
@@ -131,7 +135,13 @@ public class ItemService {
 
         if (roles.contains(SUPERADMIN)) {
             return itemRepository.findAll().stream()
-                    .map(this::createSuperAdminDTO).collect(Collectors.toList());
+                    .map(word -> {
+                        try {
+                            return createSuperAdminDTO(word);
+                        } catch (Exception e) {
+                            throw new RuntimeException("No item found.");
+                        }
+                    }).collect(Collectors.toList());
         } else if (roles.contains(CEGADMIN)) {
             return itemRepository.findAll().stream()
                     .map(this::createCegAdminDTO)
@@ -141,15 +151,17 @@ public class ItemService {
         }
     }
 
-    public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
+    public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) throws ValidationException {
+        UserDTO itemOwner = userRepository.findById(item.getOwnerId()).orElseThrow(() -> new ValidationException("No item found with given id"));
+
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
-                "Something");
+                item.getOwnerId(), itemOwner.getFullName());
     }
 
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
         return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
-                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
+                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
     }
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {
