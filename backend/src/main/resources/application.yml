@@ -54,7 +54,7 @@ userController:
   defaultPageLimit: 10
 
 firestore:
-  project_id: b3e95c95
+  project_id: iota-vajdasag-brand-b3e95c95
   emulator:
     host: localhost:8200
   production:
