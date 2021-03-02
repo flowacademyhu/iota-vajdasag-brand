@@ -2,7 +2,7 @@ import React from 'react'
 import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
-import "../frequentlyUsedFunctions"
+import { removeAccentsFromWords } from '../frequentlyUsedFunctions'
 
 const ListElement = ({ product, searchKeyword }) => {
   return (
