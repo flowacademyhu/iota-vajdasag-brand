@@ -13,7 +13,26 @@ const useProducts = () => {
     getAllProducts()
   }, [])
 
-  return listOfAllProducts
+  const sortColumn = useCallback(
+    (a, b) => {
+      if (sortKey === '') {
+        return 0
+      }
+
+      if (isSortAscending) {
+        return a[sortKey] > b[sortKey] ? 1 : -1
+      } else {
+        return a[sortKey] < b[sortKey] ? 1 : -1
+      }
+    },
+    [sortKey, isSortAscending]
+  )
+
+  useEffect(() => {
+    setUsers(listOfAllUsers?.sort((a, b) => sortColumn(a, b)))
+  }, [])
+
+  return { listOfAllUsers }
 }
 
 export default useProducts
