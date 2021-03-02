@@ -95,3 +95,4 @@ public class UserService {
         emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + new URL("https://iota-vajdasag-brand-b3e95c95.web.app/login") + "\n \nWelcome to Vajdasag Brand!");
     }
 }
+
