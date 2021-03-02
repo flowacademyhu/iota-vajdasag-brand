@@ -55,7 +55,8 @@
     "category": "Kategorija",
     "city": "Grad",
     "name": "Ime",
-    "owner": "Korisnik"
+    "owner": "Korisnik",
+    "actions": "Mogućnosti"
   },
   "productList": {
     "close": "Brisanje",
