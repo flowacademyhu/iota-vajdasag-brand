@@ -1,13 +1,11 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
-import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
-import hu.flowacademy.vajdasagbrand.persistence.entity.User;
-import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
