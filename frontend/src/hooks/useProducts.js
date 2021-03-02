@@ -24,8 +24,7 @@ const useProducts = (searchKeyword) => {
       listOfAllProducts.filter((product) =>
         Object.entries(product).filter(
           ([key, value]) =>
-            highlightTableProps.includes(key) &&
-            removeAccentsFromWords(value).includes(searchWord)
+            highlightTableProps.includes(key) && value.includes(searchWord)
         )
       )
     )
