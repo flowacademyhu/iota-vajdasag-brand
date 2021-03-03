@@ -48,6 +48,8 @@ const AddAndEditProductPage = () => {
   const handleSubmit = async (newProductValues) => {
     if (type === "update") {
       try {
+        console.log('product', product)
+        console.log('newProductValues', newProductValues)
         await updateProductData(product.id, newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
         setShowResponseModal(true)
@@ -59,6 +61,8 @@ const AddAndEditProductPage = () => {
       }
     } else {
       newProductValues.score = 0
+      console.log('product', product)
+      console.log('newProductValues', newProductValues)
       await addProduct(newProductValues)
         .then((response) => {
           setResponseModalTitle(t('editProduct.successfulEdition'))
@@ -83,14 +87,14 @@ const AddAndEditProductPage = () => {
     (type === 'add' || product) && (
       <div className="m-5">
         <AddAndEditProductForm
-        onClose={onClose}
-        handleSubmit={handleSubmit}
-        initForm={initForm}
-        validationEdit={validationEdit}
-        showResponseModal={showResponseModal}
-        responseModalTitle={responseModalTitle}
-        setShowResponseModal={setShowResponseModal}
-        title={type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}
+          onClose={onClose}
+          handleSubmit={handleSubmit}
+          initForm={initForm}
+          validationEdit={validationEdit}
+          showResponseModal={showResponseModal}
+          responseModalTitle={responseModalTitle}
+          setShowResponseModal={setShowResponseModal}
+          title={type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}
         />
       </div>
     )

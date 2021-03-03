@@ -23,6 +23,13 @@ const AddAndEditProductForm = ({ onClose, handleSubmit, initForm, validationEdit
                         <h3 className="text-center">{title}</h3>
                         <div className="my-2">
                             <InputField
+                                label={t('editProduct.userId')}
+                                name="ownerId"
+                                type="text"
+                            />
+                        </div>
+                        <div className="my-2">
+                            <InputField
                                 label={t('editProduct.name')}
                                 name="name"
                                 type="text"
