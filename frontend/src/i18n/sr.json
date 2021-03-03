@@ -29,7 +29,7 @@
     "buttontext": "Promenite lozinku",
     "noserver": "Server greška, vratite se kasnije",
     "nouser": "Korisnik nije pronađen",
-    "other": "Something went wrong. Please come back later",
+    "other": "Greška, molimo Vas da se vratite kasnije",
     "title": "Promena lozinke"
   },
   "login": {
@@ -60,14 +60,14 @@
   },
   "productList": {
     "close": "Brisanje",
-    "confirmDelete": "Povtrda brisanja",
+    "confirmDelete": "Potvrda brisanja",
     "confirmDeleteTitle": "Potvrda brisanja",
     "delete": "Brisanje"
   },
   "registration": {
     "address": "Adresa/Sedište",
     "agreement": "Prihvatam",
-    "alreadyRegistered": "Dali ste već registrovani?",
+    "alreadyRegistered": "Da li ste već registrovani?",
     "and": "  i",
     "buttontext": "Registracija",
     "email": "E-mail adresa",

@@ -13,6 +13,7 @@
   color: #ffffff;
 }
 
-.nav-link.active {
+.nav-link.active,
+.search-found-word {
   background-color: #16a181;
 }
