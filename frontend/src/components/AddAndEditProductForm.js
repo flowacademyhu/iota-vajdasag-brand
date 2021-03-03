@@ -22,20 +22,24 @@ const AddAndEditProductForm = ({
 
   return (
     <>
-    <h3 className="text-center">{title}</h3>
-      <div>
-        <label htmlFor="language">{t('editProduct.language')}:</label>
-
-        <select className="form-select"
-          name="language"
-          id="language"
-          value={currentLanguage}
-          onChange={(event) => setCurrentLanguage(event.target.value)}
-        >
-          <option value="hu">Magyar</option>
-          <option value="sr">Srpski</option>
-          <option value="en">English</option>
-        </select>
+      <h3 className="text-center mb-5">{title}</h3>
+      <div className="row mb-3">
+        <label className="col-auto col-form-label" htmlFor="language">
+          {t('editProduct.language')}:
+        </label>
+        <div className="col-sm-3">
+          <select
+            className="form-select "
+            name="language"
+            id="language"
+            value={currentLanguage}
+            onChange={(event) => setCurrentLanguage(event.target.value)}
+          >
+            <option value="hu">Magyar</option>
+            <option value="sr">Srpski</option>
+            <option value="en">English</option>
+          </select>
+        </div>
       </div>
       <Formik
         initialValues={initForm()}
@@ -44,7 +48,6 @@ const AddAndEditProductForm = ({
       >
         <Form>
           <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-            
             <div className="my-2">
               <InputField
                 label={t('editProduct.userId')}
@@ -93,25 +96,25 @@ const AddAndEditProductForm = ({
                 type="text"
               />
             </div>
-            <div className="d-flex justify-content-around">
-              <div className="my-2 text-center">
+            <div className="my-2 row">
+              <div className="col">
                 <SelectCategory />
-              </div>
-              <div className="my-2 text-center">
-                <div>
-                  <label htmlFor="category">
-                    {t('editProduct.selectSubCategory')}
-                  </label>
                 </div>
-                <Field as="select" name="subcategory">
-                  <option value="HONOURABLES">
-                    {t('editProduct.honourables')}
-                  </option>
-                  <option value="FAMOUS_BUILDINGS">
-                    {t('editProduct.famous_buildings')}
-                  </option>
-                  <option value="MUSEUMS">{t('editProduct.museums')}</option>
-                </Field>
+               
+              <div className="col">
+                <label htmlFor="category">
+                  {t('editProduct.selectSubCategory')}
+                </label>
+              
+              <Field className="form-select" as="select" name="subcategory">
+                <option value="HONOURABLES">
+                  {t('editProduct.honourables')}
+                </option>
+                <option value="FAMOUS_BUILDINGS">
+                  {t('editProduct.famous_buildings')}
+                </option>
+                <option value="MUSEUMS">{t('editProduct.museums')}</option>
+              </Field>
               </div>
             </div>
             <div className="my-2">
@@ -181,7 +184,7 @@ const AddAndEditProductForm = ({
             <div className="my-2">
               <InputField label="Instagram" name="instagram" type="text" />
             </div>
-            <Button variant="primary" type="submit" size="lg">
+            <Button className="mt-3" variant="primary" type="submit" size="lg">
               {t('editProduct.save')}
             </Button>
           </div>
