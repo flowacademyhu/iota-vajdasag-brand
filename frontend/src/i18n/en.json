@@ -6,9 +6,9 @@
     "search": "Search"
   },
   "editProduct": {
-    "FAMOUS_BUILDINGS": "Famous Buildings",
-    "HONOURABLES": "Honourables",
-    "MUSEUMS": "Museums",
+    "famous_buildings": "Famous Buildings",
+    "honourables": "Honourables",
+    "museums": "Museums",
     "addNewItemTitle": "Add new product",
     "addNewProduct": "Add new Product",
     "address": "Address",

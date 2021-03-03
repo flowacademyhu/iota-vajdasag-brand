@@ -6,9 +6,9 @@
     "search": "Keresés"
   },
   "editProduct": {
-    "FAMOUS_BUILDINGS": "Nevezetes épületek",
-    "HONOURABLES": "Büszkeségeink",
-    "MUSEUMS": "Múzeumok",
+    "famous_buildings": "Nevezetes épületek",
+    "honourables": "Büszkeségeink",
+    "museums": "Múzeumok",
     "addNewItemTitle": "Termék hozzáadása",
     "addNewProduct": "Termék hozzáadása",
     "address": "Cím",

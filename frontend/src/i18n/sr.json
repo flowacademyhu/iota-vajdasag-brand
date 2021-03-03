@@ -6,9 +6,9 @@
     "search": "Pretraga"
   },
   "editProduct": {
-    "FAMOUS_BUILDINGS": "FAMOUS_BUILDINGS",
-    "HONOURABLES": "HONOURABLES",
-    "MUSEUMS": "MUSEUMS",
+    "famous_buildings": "famous_buildings",
+    "honourables": "honourables",
+    "museums": "museums",
     "addNewItemTitle": "addNewItemTitle",
     "addNewProduct": "addNewProduct",
     "address": "Adresa",
