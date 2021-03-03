@@ -38,7 +38,7 @@ public class UserRepository {
         try {
             return Optional.ofNullable(firestore.collection(COLLECTION).document(id).get().get().toObject(User.class)).map(User::toDTO);
         } catch (InterruptedException | ExecutionException e) {
-            log.error("something");
+            log.error("No user with given id", e);
             return Optional.empty();
         }
     }
@@ -60,6 +60,16 @@ public class UserRepository {
     }
 
     public Optional<UserDTO> findByEmail(String email) {
-        return userJPARepository.findByEmail(email).map(User::toDTO);
+        ApiFuture<QuerySnapshot> documents = firestore.collection(COLLECTION).get();
+        try {
+            return documents.get().getDocuments().stream()
+                    .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(User.class))
+                    .filter(user -> user.getEmail().equals(email))
+                    .findFirst()
+                    .map(User::toDTO);
+        } catch (InterruptedException | ExecutionException e) {
+            log.error("No user with given email", e);
+            return Optional.empty();
+        }
     }
 }
