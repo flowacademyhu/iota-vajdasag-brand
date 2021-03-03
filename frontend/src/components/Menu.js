@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import MenuComponent from './MenuComponent'
 import { People, Newspaper, Shop, ArrowBarLeft } from 'react-bootstrap-icons'
@@ -6,22 +6,22 @@ import useLoggedInUser from "../hooks/useLoggedInUser";
 
 const menuItemsSuperAdmin = [
   {
-    path: '/users',
+    path: "/home/users",
     title: 'menu.users',
     icon: People,
   },
   {
-    path: '/items',
+    path: '/home/items',
     title: 'menu.items',
     icon: Shop,
   },
   {
-    path: 'events',
+    path: '/home/events',
     title: 'menu.events',
     icon: Newspaper,
   },
   {
-    path: 'logout',
+    path: '/logout',
     title: 'menu.signout',
     icon: ArrowBarLeft,
   },
@@ -29,17 +29,17 @@ const menuItemsSuperAdmin = [
 
 const menuItemsCompanyAdmin = [
   {
-    path: '/items',
+    path: '/home/items',
     title: 'menu.items',
     icon: Shop,
   },
   {
-    path: '/events',
-    title: 'menu.events',
+    path: '/home/events',
+    title: '/home/menu.events',
     icon: Newspaper,
   },
   {
-    path: 'logout',
+    path: '/logout',
     title: 'menu.signout',
     icon: ArrowBarLeft,
   },

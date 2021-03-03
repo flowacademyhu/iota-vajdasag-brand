@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route } from 'react-router-dom'
-import UsersList from '../components/UsersList'
+import UsersListAdmin from '../components/UsersList'
 import FullProductList from '../components/FullProductList'
 import EditProductPage from './EditProductPage'
 
@@ -13,13 +13,13 @@ const Home = () => {
       <Route exact path="/home">
         <h1>{t('welcome')}</h1>
       </Route>
-      <Route path="/users">
-        <UsersList />
+      <Route path="/home/users" exact>
+        <UsersListAdmin />
       </Route>
-      <Route path="/items" exact>
+      <Route path="/home/items" exact>
         <FullProductList />
       </Route>
-      <Route path="/items/edit/:productId" exact>
+      <Route path="/home/items/edit/:productId" exact>
         <EditProductPage />
       </Route>
     </>
