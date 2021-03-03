@@ -4,7 +4,6 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Item;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
-import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;

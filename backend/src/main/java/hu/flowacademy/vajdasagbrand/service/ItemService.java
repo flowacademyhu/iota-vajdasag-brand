@@ -5,7 +5,6 @@ import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
-import hu.flowacademy.vajdasagbrand.persistence.repository.ItemJPARepository;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
