@@ -17,10 +17,7 @@ const FullProductList = () => {
 
   return (
     <div className="table-responsive">
-      <Searchbar
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-      />
+      <Searchbar setSearchKeyword={setSearchKeyword} />
       <table className="table table-striped table-sm">
         <ListHeader
           sortKey={sortKey}
