@@ -52,6 +52,11 @@ userController:
   defaultPageNumber: 0
   defaultPageLimit: 10
 
+eventController:
+  defaultOrderCategory: eventstart
+  defaultPageNumber: 0
+  defaultPageLimit: 10
+
 firestore:
   project_id: iota-vajdasag-brand-b3e95c95
   emulator:

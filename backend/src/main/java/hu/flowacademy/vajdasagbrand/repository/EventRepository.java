@@ -5,6 +5,8 @@ import com.google.cloud.firestore.Firestore;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Event;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.Objects;
@@ -28,5 +30,9 @@ public class EventRepository {
         }
         document.collection(EVENTS).document(event.getId()).set(event);
         return event.toDTO();
+    }
+
+    public Page<EventDTO> findAllEvents(Pageable pageable) {
+        return eventRepository.findAll(pageable).map(Event::toDTO);
     }
 }
