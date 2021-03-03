@@ -8,6 +8,17 @@ services:
     entrypoint: "/keycloak/entrypoint.sh"
     volumes:
       - ./keycloak:/keycloak
+  app:
+    image: vajdasagbrand:latest
+    build:
+      context: .
+    container_name: vajdasagbrand
+    hostname: vajdasagbrand
+    environment: 
+      - keycloak.auth-server-url=http://keycloak:8080/auth
+      -keycloakBackendClient.serverUrl=http://keycloak:8080/auth
+    ports:
+      - 8080:8080
   firebase:
     image: borosr/firebase-emulator
     ports:
