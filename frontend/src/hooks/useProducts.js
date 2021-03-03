@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { fetchProducts } from '../communications/userApi'
 import { normalize, highlightableProps } from '../textHelpers'
 
-const useProducts = (searchKeyword, sortKey, isSortAscending) => {
+const useProducts = (sortKey, isSortAscending, searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
   const [products, setProducts] = useState([])
 
@@ -31,6 +31,7 @@ const useProducts = (searchKeyword, sortKey, isSortAscending) => {
   )
 
   useEffect(() => {
+    console.log('sortkey', sortKey, 'ascending', isSortAscending)
     const searchWord = normalize(searchKeyword)
     setProducts(
       listOfAllProducts
