@@ -28,8 +28,6 @@ public class FirebaseConfiguration {
     private String emulatorHost;
     @Value("${firestore.project_id}")
     private String projectId;
-    @Value("${firestore.production.url}")
-    private String productionUrl;
     @Value("${firestore.production.private_key_id}")
     private String privateKeyId;
     @Value("${firestore.production.private_key}")
@@ -59,7 +57,6 @@ public class FirebaseConfiguration {
                 FirebaseApp.initializeApp(
                         FirebaseOptions.builder()
                                 .setProjectId(projectId)
-                                .setDatabaseUrl(productionUrl)
                                 .setCredentials(ServiceAccountCredentials
                                         .fromPkcs8(
                                                 clientId,
