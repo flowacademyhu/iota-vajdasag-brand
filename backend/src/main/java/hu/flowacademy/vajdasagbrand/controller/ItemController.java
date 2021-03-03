@@ -45,7 +45,7 @@ public class ItemController {
     @GetMapping("/items")
     public List<CegAdminItemDTO> getProducts(Authentication authentication,
                                              @RequestParam(value = "ownerId", required = false) Optional<String> ownerId) throws ValidationException {
-        return (List<CegAdminItemDTO>) itemService.listProducts(Optional.ofNullable(authentication), ownerId);
+        return itemService.listProducts(Optional.ofNullable(authentication), ownerId);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})

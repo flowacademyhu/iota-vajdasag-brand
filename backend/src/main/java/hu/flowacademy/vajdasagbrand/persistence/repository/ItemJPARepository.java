@@ -13,5 +13,5 @@ public interface ItemJPARepository extends JpaRepository<Item, String> {
 
     Optional<Item> findFirstByIdAndDeletedAtNull(String id);
 
-    List<ItemDTO> findByOwner_Id(String id);
+    List<Item> findByOwner_Id(String id);
 }

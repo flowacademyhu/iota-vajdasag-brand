@@ -33,6 +33,6 @@ public class ItemRepository{
     }
 
     public List<ItemDTO> findByOwnerId(String oid) {
-        return itemRepository.findByOwner_Id(oid);
+        return itemRepository.findByOwner_Id(oid).stream().map(Item::toDTO).collect(Collectors.toList());
     }
 }
