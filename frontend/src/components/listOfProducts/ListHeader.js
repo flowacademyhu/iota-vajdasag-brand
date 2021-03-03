@@ -12,7 +12,7 @@ const ListHeader = ({list}) => {
         <th scope="col">{t('product.city')}</th>
         <th scope="col">{t('product.category')}</th>
         {list==="full" && <th scope="col">{t('product.owner')}</th>}
-        <th />
+        <th scope="col">{t('product.actions')}</th>
       </tr>
     </thead>
   )
