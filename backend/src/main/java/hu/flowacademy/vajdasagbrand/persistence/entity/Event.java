@@ -2,10 +2,10 @@ package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
-import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "EventTable")
 @Entity
+@NoArgsConstructor
 public class Event {
 
     @Id
