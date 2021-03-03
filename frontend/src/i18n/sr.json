@@ -31,7 +31,10 @@
     "title": "Uređivanje proizvoda",
     "unsuccessfulEdition": "Neuspešno uređivanje",
     "website": "Web stranica",
-    "language": "Izaberite jezik"
+    "language": "Izaberite jezik",
+    "hu": "Mađarski",
+    "en":"Engleski jezik",
+    "sr": "Srpski"
   },
   "forgottenPassword": {
     "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",

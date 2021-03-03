@@ -31,7 +31,10 @@
     "title": "Termék szerkesztése",
     "unsuccessfulEdition": "Sikertelen volt a mentés",
     "website": "Weboldal",
-    "language": "Válasszon nyelvet"
+    "language": "Válasszon nyelvet",
+    "hu": "Magyar",
+    "en":"Angol",
+    "sr": "Szerb"
   },
   "forgottenPassword": {
     "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
