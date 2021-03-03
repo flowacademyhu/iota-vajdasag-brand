@@ -58,7 +58,6 @@ firestore:
   emulator:
     host: localhost:8200
   production:
-    url:
     private_key_id:
     private_key:
     client_email:
