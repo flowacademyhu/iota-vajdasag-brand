@@ -7,6 +7,7 @@ import hu.flowacademy.vajdasagbrand.persistence.entity.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Repository
@@ -19,11 +20,13 @@ public class EventRepository {
     private final Firestore firestore;
 
     public EventDTO save(EventDTO eventDTO) {
-        DocumentReference places = firestore.collection(CITIES).document(eventDTO.getPlace().toLowerCase());
-        DocumentReference lang = places.collection(LANGUAGES).document("hu");
         Event event = Event.fromDTO(eventDTO);
-        event.setId(UUID.randomUUID().toString());
-        lang.collection(EVENTS).document(event.getId()).set(event);
+        DocumentReference document = firestore.collection(CITIES).document(eventDTO.getPlace().toLowerCase())
+                .collection(LANGUAGES).document("hu");
+        if(Objects.isNull(event.getId())) {
+            event.setId(UUID.randomUUID().toString());
+        }
+        document.collection(EVENTS).document(event.getId()).set(event);
         return event.toDTO();
     }
 }

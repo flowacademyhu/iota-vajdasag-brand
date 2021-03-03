@@ -7,10 +7,8 @@ import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -42,7 +40,9 @@ public class ItemRepository{
             categories.set(Map.of(NAME, itemDTO.getSubcategory().name())); //TODO translate
         }
         Item item = Item.fromDTO(itemDTO);
-        item.setId(UUID.randomUUID().toString());
+        if(Objects.isNull(item.getId())) {
+            item.setId(UUID.randomUUID().toString());
+        }
         categories.collection(COLLECTION_PLACES).document(item.getId()).set(item);
         return item.toDTO();
     }
