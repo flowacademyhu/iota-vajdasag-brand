@@ -1,10 +1,12 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.configuration.UIProperties;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.routines.EmailValidator;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -26,6 +29,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final KeycloakClientService keycloakClientService;
     private final EmailService emailService;
+    private final UIProperties uiProperties;
 
     public UserDTO deleteById(String id) throws ValidationException, UserNotEnabledException {
         Optional<UserDTO> user = userRepository.findById(id);
@@ -91,7 +95,8 @@ public class UserService {
         }
     }
 
-    public void sendApprovalEmail(String email) throws MalformedURLException {
-        emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + new URL("https://iota-vajdasag-brand-b3e95c95.web.app/login") + "\n \nWelcome to Vajdasag Brand!");
+
+    public void sendApprovalEmail(String email) {
+        emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + uiProperties.getLoginUrl()  + "\n \nWelcome to Vajdasag Brand!");
     }
 }
