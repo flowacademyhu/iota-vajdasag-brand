@@ -50,14 +50,6 @@
     "signout": "Logout",
     "users": "Users"
   },
-  "product": {
-    "address": "Address",
-    "category": "Category",
-    "city": "City",
-    "name": "Name",
-    "owner": "Owner",
-    "actions": "Actions"
-  },
   "productList": {
     "close": "Close",
     "confirmDelete": "Confirm Delete",
@@ -115,12 +107,17 @@
     "confirmDeleteTitle": "Confirm deletion",
     "products": "Products"
   },
-  "userListHeader": {
-    "acceptedRegistration": "Accepted registration",
-    "actions": "Actions",
-    "dateOfRegistration": "Date of registration",
+  "headerCell": {
+    "enabled": "Accepted registration",
+    "registeredAt": "Date of registration",
     "email": "Email",
-    "name": "Name"
+    "full_name": "Name",
+    "address": "Address",
+    "category": "Category",
+    "city": "City",
+    "name": "Name",
+    "ownerName": "Owner",
+    "actions": "Actions"
   },
   "welcome": "Welcome"
 }

@@ -50,14 +50,6 @@
     "signout": "Kijelentkezés",
     "users": "Felhasználók"
   },
-  "product": {
-    "address": "Cím",
-    "category": "Kategória",
-    "city": "Város",
-    "name": "Név",
-    "owner": "Tulajdonos",
-    "actions": "Lehetőségek"
-  },
   "productList": {
     "close": "Bezárás",
     "confirmDelete": "Törlés megerősítése",
@@ -115,12 +107,17 @@
     "confirmDeleteTitle": "Törlés megerősítése",
     "products": "Termékek"
   },
-  "userListHeader": {
-    "acceptedRegistration": "Sikeres regisztráció",
+  "headerCell": {
+    "enabled": "Sikeres regisztráció",
     "actions": "Lehetőségek",
-    "dateOfRegistration": "Regisztráció dátuma",
+    "registeredAt": "Regisztráció dátuma",
     "email": "E-mail",
-    "name": "Név"
+    "full_name": "Név",
+    "address": "Cím",
+    "category": "Kategória",
+    "city": "Város",
+    "name": "Név",
+    "ownerName": "Tulajdonos"
   },
   "welcome": "Üdvözöljük"
 }
