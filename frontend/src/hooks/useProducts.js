@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
 import { normalize, highlightableProps } from '../textHelpers'
+import { sortColumn } from '../sortHelpers'
 
 const useProducts = (sortKey, isSortAscending, searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -15,27 +16,12 @@ const useProducts = (sortKey, isSortAscending, searchKeyword) => {
     getAllProducts()
   }, [])
 
-  const sortColumn = useCallback(
-    (a, b) => {
-      if (sortKey === '') {
-        return 0
-      }
-
-      if (isSortAscending) {
-        return a[sortKey] > b[sortKey] ? 1 : -1
-      } else {
-        return a[sortKey] < b[sortKey] ? 1 : -1
-      }
-    },
-    [sortKey, isSortAscending]
-  )
-
   useEffect(() => {
     console.log('sortkey', sortKey, 'ascending', isSortAscending)
     const searchWord = normalize(searchKeyword)
     setProducts(
       listOfAllProducts
-        ?.sort((a, b) => sortColumn(a, b))
+        ?.sort((a, b) => sortColumn(a, b, sortKey, isSortAscending))
         .filter((product) =>
           Object.entries(product).filter(
             ([key, value]) =>
@@ -43,7 +29,7 @@ const useProducts = (sortKey, isSortAscending, searchKeyword) => {
           )
         )
     )
-  }, [searchKeyword, listOfAllProducts, sortKey, sortColumn, isSortAscending])
+  }, [searchKeyword, listOfAllProducts, sortKey, isSortAscending])
 
   return { products }
 }
