@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
-import useProducts from './useProducts'
-import ListHeader from '../components/listOfProducts/ListHeader'
-import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
-import ProductTable from './ProductTable'
 import ListElement from './listOfProducts/ListElement'
+import ListHeader from './listOfProducts/ListHeader'
 import Searchbar from './Searchbar'
 
 const FullProductList = () => {
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [sortKey, setSortKey] = useState('')
   const [isSortAscending, setAscendingSort] = useState(true)
-  const { products } = useProducts(sortKey, isSortAscending)
-  const [searchKeyword, setSearchKeyword] = useState('')
-  const { products } = useProducts(searchKeyword)
+  const { products } = useProducts(sortKey, isSortAscending, searchKeyword)
 
   const onColumnClick = (value) => {
     setAscendingSort(!isSortAscending)
@@ -21,6 +17,10 @@ const FullProductList = () => {
 
   return (
     <div className="table-responsive">
+      <Searchbar
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
       <table className="table table-striped table-sm">
         <ListHeader
           sortKey={sortKey}
@@ -29,26 +29,15 @@ const FullProductList = () => {
         />
         <tbody>
           {products?.map((product) => (
-            <ListElement product={product} key={product.id} />
+            <ListElement
+              product={product}
+              key={product.id}
+              searchKeyword={searchKeyword}
+            />
           ))}
         </tbody>
       </table>
     </div>
-    <>
-      <Searchbar
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-      />
-      <ProductTable>
-        {products?.map((product) => (
-          <ListElement
-            product={product}
-            key={product.id}
-            searchKeyword={searchKeyword}
-          />
-        ))}
-      </ProductTable>
-    </>
   )
 }
 
