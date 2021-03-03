@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 import validationEdit from '../validations/validationEdit'
-import { updateProductData, fetchOneProduct, addProduct } from '../communications/userApi'
-import AddAndEditProductForm from "../components/AddAndEditProductForm";
+import {
+  updateProductData,
+  fetchOneProduct,
+  addProduct,
+} from '../communications/userApi'
+import AddAndEditProductForm from '../components/AddAndEditProductForm'
 
 const AddAndEditProductPage = () => {
-  let location = useLocation();
-  const type = location.pathname.includes("edit") ? "update" : "add"
+  let location = useLocation()
+  const type = location.pathname.includes('edit') ? 'update' : 'add'
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [responseModalTitle, setResponseModalTitle] = useState('')
@@ -17,7 +21,7 @@ const AddAndEditProductPage = () => {
   let history = useHistory()
 
   useEffect(() => {
-    if (type === "update") {
+    if (type === 'update') {
       const getProduct = async () => {
         const response = await fetchOneProduct(productId)
         setProduct(response.data)
@@ -27,7 +31,7 @@ const AddAndEditProductPage = () => {
   }, [productId, type])
 
   const initForm = () => {
-    if (type === "update") {
+    if (type === 'update') {
       return product
     } else {
       return {
@@ -40,13 +44,13 @@ const AddAndEditProductPage = () => {
         phone: '',
         website: '',
         score: '',
-        subcategory: ''
+        subcategory: '',
       }
     }
   }
 
   const handleSubmit = async (newProductValues) => {
-    if (type === "update") {
+    if (type === 'update') {
       try {
         await updateProductData(product.id, newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
@@ -90,7 +94,11 @@ const AddAndEditProductPage = () => {
           showResponseModal={showResponseModal}
           responseModalTitle={responseModalTitle}
           setShowResponseModal={setShowResponseModal}
-          title={type === "update" ? t('editProduct.title') : t('editProduct.addNewItemTitle')}
+          title={
+            type === 'update'
+              ? t('editProduct.title')
+              : t('editProduct.addNewItemTitle')
+          }
         />
       </div>
     )
