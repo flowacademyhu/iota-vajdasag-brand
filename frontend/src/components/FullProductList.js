@@ -7,9 +7,9 @@ const FullProductList = () => {
   const listOfAllProducts = useProducts()
 
   return (
-    <ProductTable>
+    <ProductTable list="full">
       {listOfAllProducts?.map((product) => (
-        <ListElement product={product} key={product.id} />
+        <ListElement product={product} key={product.id} fullList />
       ))}
     </ProductTable>
   )

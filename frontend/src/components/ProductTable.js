@@ -1,12 +1,13 @@
 import React from 'react'
 import ListHeader from './listOfProducts/ListHeader'
 
-const ProductTable = (props) => {
+const ProductTable = ({children, list}) => {
   return (
     <div className="table-responsive">
+      {console.log("list", list)}
       <table className="table table-striped table-sm">
-        <ListHeader />
-        <tbody>{props.children}</tbody>
+        <ListHeader list={list}/>
+        <tbody>{children}</tbody>
       </table>
     </div>
   )

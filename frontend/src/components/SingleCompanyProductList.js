@@ -9,18 +9,12 @@ const SingleCompanyProductList = () => {
   const { ownerId } = useParams()
   const companysProducts = useProductsForCompany(ownerId)
   let location = useLocation()
-  const {owner} = location.state
+  const { owner } = location.state
 
   return (
     <div>
-      <h2
-        style={{
-          padding: '20px',
-        }}
-      >
-        {owner}
-      </h2>
-      <ProductTable>
+      <h1 className="text-center">{owner}</h1>
+      <ProductTable list="single">
         {companysProducts?.map((product) => (
           <ListElement product={product} key={product.id} />
         ))}
