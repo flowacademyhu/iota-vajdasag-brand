@@ -7,7 +7,7 @@ const AddEventButton = () => {
   const { t } = useTranslation()
 
   return (
-    <Link to={`/events/add-event`}>
+    <Link to={`/super-admin/events/add-event`}>
       <Button> {t('eventList.addEvent')}</Button>
     </Link>
   )
