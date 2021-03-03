@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
 import {
-  removeAccentsFromWords,
+  normalize,
   highlightTableProps,
 } from '../components/frequentlyUsedFunctionsAndVariables'
+import { normalize } from '../textHelpers'
 
 const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -19,7 +20,7 @@ const useProducts = (searchKeyword) => {
   }, [])
 
   useEffect(() => {
-    const searchWord = removeAccentsFromWords(searchKeyword)
+    const searchWord = normalize(searchKeyword)
     setProducts(
       listOfAllProducts.filter((product) =>
         Object.entries(product).filter(

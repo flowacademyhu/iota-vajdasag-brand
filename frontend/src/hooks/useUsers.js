@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { removeAccentsFromWords } from '../components/frequentlyUsedFunctionsAndVariables'
+import { normalize } from '../components/frequentlyUsedFunctionsAndVariables'
 import {
   getUsers,
   sendApproval,
@@ -52,8 +52,8 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
       listOfAllUsers
         ?.sort((a, b) => sortColumn(a, b))
         .filter((user) =>
-          removeAccentsFromWords(user.full_name).includes(
-            removeAccentsFromWords(searchKeyword)
+          normalize(user.full_name).includes(
+            normalize(searchKeyword)
           )
         )
     )

@@ -3,7 +3,7 @@ import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
 import {
-  removeAccentsFromWords,
+  normalize,
   highlightTableProps,
 } from '../frequentlyUsedFunctionsAndVariables'
 
@@ -21,7 +21,7 @@ const ListElement = ({ product, searchKeyword }) => {
                 textToHighlight={product[key]}
                 autoEscape={true}
                 caseSensitive={false}
-                sanitize={(word) => removeAccentsFromWords(word)}
+                sanitize={(word) => normalize(word)}
                 key={key}
               />
             </td>
