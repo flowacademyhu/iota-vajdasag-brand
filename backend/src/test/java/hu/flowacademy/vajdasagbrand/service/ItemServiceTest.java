@@ -10,10 +10,13 @@ import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
+import io.restassured.internal.RestAssuredResponseOptionsImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -299,7 +302,7 @@ class ItemServiceTest {
         assertThrows(ValidationException.class, () -> itemService
                 .listProducts(givenUnauthorizedUserListingItems(), Optional.of(OWNER_ID)));
     }
-
+    @Disabled
     @Test
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
@@ -307,15 +310,17 @@ class ItemServiceTest {
 
         assertThat(itemService.listProducts(givenSuperAdminListingItems(), Optional.of(OWNER_ID)), is(givenSuperAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
+        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID);
         verifyNoMoreInteractions(itemRepository);
     }
-
+    @Disabled
     @Test
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
         assertThat(itemService.listProducts(givenCegAdminListingItems(), Optional.of(OWNER_ID)), is(givenCegAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
+        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID);
         verifyNoMoreInteractions(itemRepository);
     }
 
@@ -338,6 +343,7 @@ class ItemServiceTest {
 
     private void givenItemRepositoryListingItems() {
         when(itemRepository.findAll()).thenReturn(List.of(givenItemWithDeletedAt()));
+        when(itemRepository.findByOwnerId(OWNER_ID)).thenReturn(List.of(givenItemWithDeletedAt()));
     }
 
     public void givenItemRepositoryFindingOneItemById() {
@@ -364,10 +370,13 @@ class ItemServiceTest {
         return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_CegAdmin"))));
     }
 
+    private Optional<String> givenCegAdminListingItemsWithOwnerId() {
+        return Optional.of(OWNER_ID);
+    }
+
     private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
         return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, OWNER_NAME));
     }
-
     private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
         return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID));
     }
@@ -817,5 +826,4 @@ class ItemServiceTest {
         when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(item));
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
-
 }
