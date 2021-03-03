@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.JoinColumn;
 import java.time.LocalDateTime;
 
 @Data
