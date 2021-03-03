@@ -60,19 +60,19 @@ const AddAndEditProductPage = () => {
         setEditSuccessful(false)
       }
     } else {
-      newProductValues.score = 0
-      console.log('product', product)
-      console.log('newProductValues', newProductValues)
-      await addProduct(newProductValues)
-        .then((response) => {
-          setResponseModalTitle(t('editProduct.successfulEdition'))
-          setShowResponseModal(true)
-          setEditSuccessful(true)
-        }).catch((err) => {
-          setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
-          setShowResponseModal(true)
-          setEditSuccessful(false)
-        });
+      try {
+        newProductValues.score = 0
+        console.log('product', product)
+        console.log('newProductValues', newProductValues)
+        await addProduct(newProductValues)
+        setResponseModalTitle(t('editProduct.successfulEdition'))
+        setShowResponseModal(true)
+        setEditSuccessful(true)
+      } catch (error) {
+        setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
+        setShowResponseModal(true)
+        setEditSuccessful(false)
+      }
     }
   }
 
