@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
-import {
-  normalize,
-  highlightTableProps,
-} from '../components/frequentlyUsedFunctionsAndVariables'
-import { normalize } from '../textHelpers'
+import { normalize, highlightTableProps } from '../textHelpers'
 
 const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { normalize } from '../components/frequentlyUsedFunctionsAndVariables'
+import { normalize } from '../textHelpers'
 import {
   getUsers,
   sendApproval,
@@ -52,9 +52,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
       listOfAllUsers
         ?.sort((a, b) => sortColumn(a, b))
         .filter((user) =>
-          normalize(user.full_name).includes(
-            normalize(searchKeyword)
-          )
+          normalize(user.full_name).includes(normalize(searchKeyword))
         )
     )
   }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending, sortColumn])

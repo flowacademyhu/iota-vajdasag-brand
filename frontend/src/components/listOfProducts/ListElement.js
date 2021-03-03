@@ -2,12 +2,7 @@ import React from 'react'
 import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
-import {
-  normalize,
-  highlightTableProps,
-} from '../frequentlyUsedFunctionsAndVariables'
-
-const highlightTableProps = ['name', 'city', 'address', 'category', 'ownerName']
+import { normalize, highlightTableProps } from '../../textHelpers'
 
 const ListElement = ({ product, searchKeyword }) => {
   return (
