@@ -53,7 +53,7 @@ userController:
   defaultPageLimit: 10
 
 eventController:
-  defaultOrderCategory: name
+  defaultOrderCategory: eventstart
   defaultPageNumber: 0
   defaultPageLimit: 10
 

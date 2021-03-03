@@ -13,11 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class EventService {
+
+    private final EventRepository eventRepository;
 
     @Value("${eventController.defaultOrderCategory}")
     private String defaultOrderCategory;
@@ -25,8 +28,6 @@ public class EventService {
     private int defaultPageNumber;
     @Value("${eventController.defaultPageLimit}")
     private int defaultPageLimit;
-
-    private final EventRepository eventRepository;
 
     public EventDTO createEvent(EventDTO event) throws ValidationException {
         validateEventData(event);
@@ -60,7 +61,7 @@ public class EventService {
         }
     }
 
-    public Page<EventDTO> listEvents (String orderBy, int pageNum, int limit) {
-        return eventRepository.findAllEvents(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
+    public Page<EventDTO> listEvents(Optional<String> orderBy, Optional<Integer> pageNum, Optional<Integer> limit) {
+        return eventRepository.findAllEvents(PageRequest.of(pageNum.orElse(defaultPageNumber), limit.orElse(defaultPageLimit), Sort.by(Sort.Direction.DESC, orderBy.orElse(defaultOrderCategory))));
     }
 }

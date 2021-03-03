@@ -19,28 +19,18 @@ public class EventController {
 
     private final EventService eventService;
 
-    @Value("${eventController.defaultOrderCategory}")
-    private String defaultOrderCategory;
-    @Value("${eventController.defaultPageNumber}")
-    private int defaultPageNumber;
-    @Value("${eventController.defaultPageLimit}")
-    private int defaultPageLimit;
-
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PostMapping("/events")
     @ResponseStatus(HttpStatus.CREATED)
     public EventDTO createEvent(@RequestBody EventDTO eventDTO) throws ValidationException {
-       return eventService.createEvent(eventDTO);
+        return eventService.createEvent(eventDTO);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @GetMapping("/events")
     public Page<EventDTO> getEvents(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
-                                  @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
-                                  @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
-        return eventService.listEvents(
-                orderBy.orElse(defaultOrderCategory),
-                pageNum.orElse(defaultPageNumber),
-                limit.orElse(defaultPageLimit));
+                                    @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
+                                    @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
+        return eventService.listEvents(orderBy, pageNum, limit);
     }
 }
