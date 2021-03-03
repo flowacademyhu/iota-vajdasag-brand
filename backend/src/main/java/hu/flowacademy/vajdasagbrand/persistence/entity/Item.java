@@ -1,6 +1,5 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -20,7 +18,6 @@ import java.util.Optional;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Data
-@Table(name = "ItemTable")
 public class Item {
 
     @Id

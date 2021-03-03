@@ -53,7 +53,6 @@ public class UserRepository {
                     .sorted(Comparator.comparing(User::getRegisteredAt))
                     .map(User::toDTO)
                     .collect(Collectors.toList()));
-
         } catch (InterruptedException | ExecutionException e) {
             log.error("Exception occurred while retrieving all document", e);
             return Page.empty();

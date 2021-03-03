@@ -1,7 +1,5 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import lombok.AllArgsConstructor;
@@ -12,7 +10,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -23,7 +20,6 @@ import java.util.Optional;
 @AllArgsConstructor
 @Data
 @Builder(toBuilder = true)
-@Table(name = "UserTable")
 public class User {
 
     @Id

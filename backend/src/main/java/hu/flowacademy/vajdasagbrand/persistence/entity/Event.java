@@ -1,20 +1,19 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
-import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Data
-@Table(name = "EventTable")
 @Entity
 public class Event {
 
@@ -25,13 +24,10 @@ public class Event {
     private String name;
     @Lob
     private String bio;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime eventstart;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime eventend;
+    private Timestamp eventstart;
+    private Timestamp eventend;
     private String place;
-    @ManyToOne
-    private Item item;
+    private String itemId;
 
     public static Event fromDTO(EventDTO eventDTO) {
         return Event.builder()
@@ -39,9 +35,9 @@ public class Event {
                 .name(eventDTO.getName())
                 .bio(eventDTO.getBio())
                 .place(eventDTO.getPlace())
-                .eventstart(eventDTO.getEventstart())
-                .eventend(eventDTO.getEventend())
-                .item(Item.builder().id(eventDTO.getItemId()).build())
+                .eventstart(Timestamp.of(Date.from(eventDTO.getEventstart().atZone(ZoneId.systemDefault()).toInstant())))
+                .eventend(Timestamp.of(Date.from(eventDTO.getEventend().atZone(ZoneId.systemDefault()).toInstant())))
+                .itemId(eventDTO.getItemId())
                 .build();
     }
 
@@ -50,10 +46,10 @@ public class Event {
                 .id(id)
                 .name(name)
                 .bio(bio)
-                .eventstart(eventstart)
-                .eventend(eventend)
+                .eventstart(eventstart.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .eventend(eventend.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
                 .place(place)
-                .itemId(item.getId())
+                .itemId(itemId)
                 .build();
     }
 }
