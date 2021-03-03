@@ -4,6 +4,7 @@ import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,6 +18,13 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class EventService {
+
+    @Value("${eventController.defaultOrderCategory}")
+    private String defaultOrderCategory;
+    @Value("${eventController.defaultPageNumber}")
+    private int defaultPageNumber;
+    @Value("${eventController.defaultPageLimit}")
+    private int defaultPageLimit;
 
     private final EventRepository eventRepository;
 
