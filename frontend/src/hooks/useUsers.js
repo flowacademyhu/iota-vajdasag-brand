@@ -34,7 +34,6 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
   }, [])
 
   useEffect(() => {
-    console.log('sortkey', sortKey, 'ascending', isSortAscending)
     setUsers(
       listOfAllUsers
         ?.sort((a, b) => sortColumn(a, b, sortKey, isSortAscending))
