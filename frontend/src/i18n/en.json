@@ -30,7 +30,8 @@
     "successfulEdition": "The update was successful",
     "title": "Edit product",
     "unsuccessfulEdition": "The update was unsuccessful",
-    "website": "Website"
+    "website": "Website",
+    "language": "Choose a language"
   },
   "forgottenPassword": {
     "accepted": "Changes accepted. Please read your emails",
