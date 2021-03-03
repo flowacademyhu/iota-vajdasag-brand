@@ -2,35 +2,24 @@ package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.Optional;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Data
 public class Item {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
     private String score;
-    @Lob
     private String bio;
     private String address;
     private String city;
-    @Enumerated(EnumType.STRING)
     private Category category;
     private Subcategory subcategory;
     private String coordinateX;
@@ -60,13 +49,7 @@ public class Item {
                 .website(itemDTO.getWebsite())
                 .facebook(itemDTO.getFacebook())
                 .instagram(itemDTO.getInstagram())
-                .deletedAt(Optional.ofNullable(itemDTO.getDeletedAt())
-                        .map(localDateTime -> Timestamp.of(
-                                Date.from(itemDTO.getDeletedAt().atZone(
-                                        ZoneId.systemDefault()).toInstant())
-                                )
-                        )
-                        .orElse(null))
+                .deletedAt(TimestampConverter.toTimestamp(itemDTO.getDeletedAt()))
                 .ownerId(itemDTO.getOwnerId())
                 .build();
     }
@@ -88,11 +71,7 @@ public class Item {
                 .website(website)
                 .facebook(facebook)
                 .instagram(instagram)
-                .deletedAt(Optional.ofNullable(deletedAt).map(Timestamp::toDate)
-                        .map(Date::toInstant)
-                        .map(instant -> instant.atZone(ZoneId.systemDefault()))
-                        .map(ZonedDateTime::toLocalDateTime)
-                        .orElse(null))
+                .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
                 .ownerId(ownerId)
                 .build();
     }

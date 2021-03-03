@@ -2,29 +2,18 @@ package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
+import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.Optional;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder(toBuilder = true)
 public class User {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String fullName;
     private String taxNumber;
@@ -44,14 +33,8 @@ public class User {
                 .email(userDTO.getEmail())
                 .type(userDTO.getType())
                 .enabled(userDTO.isEnabled())
-                .registeredAt(Timestamp.of(Date.from(userDTO.getRegisteredAt().atZone(ZoneId.systemDefault()).toInstant())))
-                .deletedAt(Optional.ofNullable(userDTO.getDeletedAt())
-                        .map(localDateTime -> Timestamp.of(
-                                Date.from(userDTO.getDeletedAt().atZone(
-                                        ZoneId.systemDefault()).toInstant())
-                                )
-                        )
-                        .orElse(null))
+                .registeredAt(TimestampConverter.toTimestamp(userDTO.getRegisteredAt()))
+                .deletedAt(TimestampConverter.toTimestamp(userDTO.getDeletedAt()))
                 .build();
     }
 
@@ -64,12 +47,8 @@ public class User {
                 .email(email)
                 .type(type)
                 .enabled(enabled)
-                .registeredAt(registeredAt.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .deletedAt(Optional.ofNullable(deletedAt).map(Timestamp::toDate)
-                        .map(Date::toInstant)
-                        .map(instant -> instant.atZone(ZoneId.systemDefault()))
-                        .map(ZonedDateTime::toLocalDateTime)
-                        .orElse(null))
+                .registeredAt(TimestampConverter.toLocalDateTime(registeredAt))
+                .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
                 .build();
     }
 }

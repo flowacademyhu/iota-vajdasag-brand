@@ -2,27 +2,18 @@ package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
+import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-import java.time.ZoneId;
-import java.util.Date;
 
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Data
-@Entity
 public class Event {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
-    @Lob
     private String bio;
     private Timestamp eventstart;
     private Timestamp eventend;
@@ -35,8 +26,8 @@ public class Event {
                 .name(eventDTO.getName())
                 .bio(eventDTO.getBio())
                 .place(eventDTO.getPlace())
-                .eventstart(Timestamp.of(Date.from(eventDTO.getEventstart().atZone(ZoneId.systemDefault()).toInstant())))
-                .eventend(Timestamp.of(Date.from(eventDTO.getEventend().atZone(ZoneId.systemDefault()).toInstant())))
+                .eventstart(TimestampConverter.toTimestamp(eventDTO.getEventstart()))
+                .eventend(TimestampConverter.toTimestamp(eventDTO.getEventend()))
                 .itemId(eventDTO.getItemId())
                 .build();
     }
@@ -46,8 +37,8 @@ public class Event {
                 .id(id)
                 .name(name)
                 .bio(bio)
-                .eventstart(eventstart.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
-                .eventend(eventend.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime())
+                .eventstart(TimestampConverter.toLocalDateTime(eventstart))
+                .eventend(TimestampConverter.toLocalDateTime(eventend))
                 .place(place)
                 .itemId(itemId)
                 .build();
