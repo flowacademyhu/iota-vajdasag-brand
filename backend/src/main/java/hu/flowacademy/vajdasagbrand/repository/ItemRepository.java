@@ -48,7 +48,7 @@ public class ItemRepository{
     }
 
     public Optional<ItemDTO> findById(String id) {
-        ApiFuture<QuerySnapshot> collection = firestore.collectionGroup(COLLECTION_CITIES).whereEqualTo("id", id).get();
+        ApiFuture<QuerySnapshot> collection = firestore.collectionGroup(COLLECTION_PLACES).whereEqualTo("id", id).get();
         try {
             return collection.get().getDocuments().stream().map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(Item.class))
                     .map(Item::toDTO)
@@ -60,12 +60,12 @@ public class ItemRepository{
     }
 
     public Optional<ItemDTO> findFirstById(String id) {
-        ApiFuture<QuerySnapshot> collection = firestore.collection(COLLECTION_PLACES).whereEqualTo("id", id).get();
+        ApiFuture<QuerySnapshot> collection = firestore.collectionGroup(COLLECTION_PLACES).whereEqualTo("id", id).get();
         try {
             return collection.get().getDocuments().stream()
                     .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(Item.class))
                     .findFirst()
-                    .filter(item -> item.getDeletedAt() != null)
+                    .filter(item -> item.getDeletedAt() == null)
                     .map(Item::toDTO);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
