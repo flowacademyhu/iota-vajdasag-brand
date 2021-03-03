@@ -19,8 +19,6 @@ const defaultValues = {
   subcategory: '',
 }
 
-
-
 const AddAndEditProductForm = ({
   onClose,
   handleSubmit,
@@ -35,7 +33,7 @@ const AddAndEditProductForm = ({
 
   const initialValues = {
     ...defaultValues,
-    ...product
+    ...product,
   }
 
   return (

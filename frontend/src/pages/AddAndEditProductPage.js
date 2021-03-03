@@ -37,8 +37,7 @@ const AddAndEditProductPage = () => {
         setResponseModalTitle(t('editProduct.successfulEdition'))
         setShowResponseModal(true)
         setEditSuccessful(true)
-      }
-      else {
+      } else {
         newProductValues.score = 0
         await addProduct(newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
