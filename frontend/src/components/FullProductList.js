@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { SortDown, SortUpAlt } from 'react-bootstrap-icons'
 import useProducts from '../hooks/useProducts'
 import ListElement from './listOfProducts/ListElement'
 import ListHeader from './listOfProducts/ListHeader'
@@ -20,17 +19,11 @@ const FullProductList = () => {
     setSortKey(value)
   }
 
-  const SortingSign = (value) => {
-    if (sortKey === value) {
-      return isSortAscending ? <SortUpAlt /> : <SortDown />
-    }
-  }
-
   return (
     <div className="table-responsive">
       <Searchbar setSearchKeyword={setSearchKeyword} />
       <table className="table table-striped table-sm">
-        <ListHeader onColumnClick={onColumnClick} SortingSign={SortingSign} />
+        <ListHeader onColumnClick={onColumnClick} sortKey={sortKey} isSortAscending={isSortAscending} />
         <tbody>
           {products?.map((product) => (
             <ListElement

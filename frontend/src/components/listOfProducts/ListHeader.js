@@ -1,7 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import SortingSign from '../SortingSign'
 
-const ListHeader = ({ onColumnClick, SortingSign }) => {
+const ListHeader = ({ onColumnClick, isSortAscending, sortKey }) => {
   const { t } = useTranslation()
 
   return (
@@ -9,23 +10,43 @@ const ListHeader = ({ onColumnClick, SortingSign }) => {
       <tr>
         <th scope="col" onClick={() => onColumnClick('name')}>
           {t('product.name')}
-          {SortingSign('name')}
+          <SortingSign
+            value="name"
+            isSortAscending={isSortAscending}
+            sortKey={sortKey}
+          />
         </th>
         <th scope="col" onClick={() => onColumnClick('address')}>
           {t('product.address')}
-          {SortingSign('address')}
+          <SortingSign
+            value="address"
+            isSortAscending={isSortAscending}
+            sortKey={sortKey}
+          />
         </th>
         <th scope="col" onClick={() => onColumnClick('city')}>
           {t('product.city')}
-          {SortingSign('city')}
+          <SortingSign
+            value="city"
+            isSortAscending={isSortAscending}
+            sortKey={sortKey}
+          />
         </th>
         <th scope="col" onClick={() => onColumnClick('category')}>
           {t('product.category')}
-          {SortingSign('category')}
+          <SortingSign
+            value="category"
+            isSortAscending={isSortAscending}
+            sortKey={sortKey}
+          />
         </th>
         <th scope="col" onClick={() => onColumnClick('ownerName')}>
           {t('product.owner')}
-          {SortingSign('ownerName')}
+          <SortingSign
+            value="ownerName"
+            isSortAscending={isSortAscending}
+            sortKey={sortKey}
+          />
         </th>
         <th scope="col">{t('product.actions')}</th>
       </tr>
