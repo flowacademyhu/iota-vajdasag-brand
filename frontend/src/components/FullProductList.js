@@ -16,13 +16,11 @@ const FullProductList = () => {
       />
       <ProductTable>
         {products?.map((product) => (
-          <>
-            <ListElement
-              product={product}
-              key={product.id}
-              searchKeyword={searchKeyword}
-            />
-          </>
+          <ListElement
+            product={product}
+            key={product.id}
+            searchKeyword={searchKeyword}
+          />
         ))}
       </ProductTable>
     </>
