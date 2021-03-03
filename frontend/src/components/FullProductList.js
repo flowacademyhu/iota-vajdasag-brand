@@ -23,7 +23,11 @@ const FullProductList = () => {
     <div className="table-responsive">
       <Searchbar setSearchKeyword={setSearchKeyword} />
       <table className="table table-striped table-sm">
-        <ListHeader onColumnClick={onColumnClick} sortKey={sortKey} isSortAscending={isSortAscending} />
+        <ListHeader
+          onColumnClick={onColumnClick}
+          sortKey={sortKey}
+          isSortAscending={isSortAscending}
+        />
         <tbody>
           {products?.map((product) => (
             <ListElement
