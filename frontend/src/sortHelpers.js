@@ -1,3 +1,12 @@
+const headerCellNamesUsers = ['full_name', 'email', 'enabled', 'registeredAt']
+const headerCellNamesItems = [
+  'name',
+  'address',
+  'city',
+  'category',
+  'ownerName',
+]
+
 const sortColumn = (a, b, sortKey, isSortAscending) => {
   if (sortKey === '') {
     return 0
@@ -10,4 +19,4 @@ const sortColumn = (a, b, sortKey, isSortAscending) => {
   }
 }
 
-export { sortColumn }
+export { sortColumn, headerCellNamesUsers, headerCellNamesItems }
