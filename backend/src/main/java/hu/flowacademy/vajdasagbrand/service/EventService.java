@@ -52,7 +52,7 @@ public class EventService {
         }
     }
 
-    public Page<EventDTO> listEvents (String orderby, int pageNum, int limit) {
-        return eventRepository.findAllEvents(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderby)));
+    public Page<EventDTO> listEvents (String orderBy, int pageNum, int limit) {
+        return eventRepository.findAllEvents(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderBy)));
     }
 }

@@ -1,9 +1,7 @@
 package hu.flowacademy.vajdasagbrand.repository;
 
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
-import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Event;
-import hu.flowacademy.vajdasagbrand.persistence.entity.User;
 import hu.flowacademy.vajdasagbrand.persistence.repository.EventJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
