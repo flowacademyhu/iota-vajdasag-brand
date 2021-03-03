@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -27,7 +28,9 @@ public class UserRepository {
 
     public UserDTO save(UserDTO userDTO) {
         User user = User.fromDTO(userDTO);
-        user.setId(UUID.randomUUID().toString());
+        if (Objects.isNull(user.getId())) {
+            user.setId(UUID.randomUUID().toString());
+        }
         firestore.collection(COLLECTION).document(user.getId()).set(user);
         return user.toDTO();
     }
