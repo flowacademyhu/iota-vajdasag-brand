@@ -3,9 +3,11 @@ import { fetchProducts } from '../communications/userApi'
 import { normalize, highlightableProps } from '../textHelpers'
 import { sortColumn } from '../sortHelpers'
 
-const useProducts = (sortKey, isSortAscending, searchKeyword) => {
+const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
   const [products, setProducts] = useState([])
+  const [sortKey, setSortKey] = useState('')
+  const [isSortAscending, setAscendingSort] = useState(true)
 
   const getAllProducts = async () => {
     const fetchedProducts = await fetchProducts()
@@ -17,7 +19,6 @@ const useProducts = (sortKey, isSortAscending, searchKeyword) => {
   }, [])
 
   useEffect(() => {
-    console.log('sortkey', sortKey, 'ascending', isSortAscending)
     const searchWord = normalize(searchKeyword)
     setProducts(
       listOfAllProducts
@@ -31,7 +32,13 @@ const useProducts = (sortKey, isSortAscending, searchKeyword) => {
     )
   }, [searchKeyword, listOfAllProducts, sortKey, isSortAscending])
 
-  return { products }
+  return {
+    products,
+    sortKey,
+    setSortKey,
+    isSortAscending,
+    setAscendingSort,
+  }
 }
 
 export default useProducts

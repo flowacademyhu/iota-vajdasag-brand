@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { SortDown, SortUpAlt } from 'react-bootstrap-icons'
 import useProducts from '../hooks/useProducts'
 import ListElement from './listOfProducts/ListElement'
 import ListHeader from './listOfProducts/ListHeader'
@@ -6,24 +7,30 @@ import Searchbar from './Searchbar'
 
 const FullProductList = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [sortKey, setSortKey] = useState('')
-  const [isSortAscending, setAscendingSort] = useState(true)
-  const { products } = useProducts(sortKey, isSortAscending, searchKeyword)
+  const {
+    products,
+    sortKey,
+    setSortKey,
+    isSortAscending,
+    setAscendingSort,
+  } = useProducts(searchKeyword)
 
   const onColumnClick = (value) => {
     setAscendingSort(!isSortAscending)
     setSortKey(value)
   }
 
+  const SortingSign = (value) => {
+    if (sortKey === value) {
+      return isSortAscending ? <SortUpAlt /> : <SortDown />
+    }
+  }
+
   return (
     <div className="table-responsive">
       <Searchbar setSearchKeyword={setSearchKeyword} />
       <table className="table table-striped table-sm">
-        <ListHeader
-          sortKey={sortKey}
-          isSortAscending={isSortAscending}
-          onColumnClick={onColumnClick}
-        />
+        <ListHeader onColumnClick={onColumnClick} SortingSign={SortingSign} />
         <tbody>
           {products?.map((product) => (
             <ListElement
