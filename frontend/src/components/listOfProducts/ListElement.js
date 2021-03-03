@@ -6,7 +6,7 @@ import { normalize, highlightableProps } from '../../textHelpers'
 
 const ListElement = ({ product, searchKeyword }) => {
   return (
-    <>
+    <tbody>
       <tr>
         {Object.keys(product)
           .filter((key) => highlightableProps.includes(key))
@@ -27,7 +27,7 @@ const ListElement = ({ product, searchKeyword }) => {
           <EditProductButton productId={product.id} />
         </td>
       </tr>
-    </>
+    </tbody>
   )
 }
 

@@ -30,15 +30,13 @@ const FullProductList = () => {
           isSortAscending={isSortAscending}
           headerCellNames={headerCellNamesItems}
         />
-        <tbody>
-          {products?.map((product) => (
-            <ListElement
-              product={product}
-              key={product.id}
-              searchKeyword={searchKeyword}
-            />
-          ))}
-        </tbody>
+        {products?.map((product) => (
+          <ListElement
+            product={product}
+            key={product.id}
+            searchKeyword={searchKeyword}
+          />
+        ))}
       </table>
     </div>
   )
