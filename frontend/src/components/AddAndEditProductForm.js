@@ -22,10 +22,11 @@ const AddAndEditProductForm = ({
 
   return (
     <>
+    <h3 className="text-center">{title}</h3>
       <div>
         <label htmlFor="language">{t('editProduct.language')}:</label>
 
-        <select
+        <select className="form-select"
           name="language"
           id="language"
           value={currentLanguage}
@@ -43,7 +44,7 @@ const AddAndEditProductForm = ({
       >
         <Form>
           <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-            <h3 className="text-center">{title}</h3>
+            
             <div className="my-2">
               <InputField
                 label={t('editProduct.userId')}
