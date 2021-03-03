@@ -4,9 +4,14 @@ import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -45,5 +50,9 @@ public class EventService {
         if (event.getEventstart().equals(event.getEventend())) {
             throw new ValidationException("The event starting time is at the same time with the end time.");
         }
+    }
+
+    public Page<EventDTO> listEvents (String orderby, int pageNum, int limit) {
+        return eventRepository.findAllEvents(PageRequest.of(pageNum, limit, Sort.by(Sort.Direction.DESC, orderby)));
     }
 }
