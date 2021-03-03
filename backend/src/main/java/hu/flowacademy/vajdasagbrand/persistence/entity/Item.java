@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @NoArgsConstructor
@@ -83,7 +84,7 @@ public class Item {
                 .facebook(facebook)
                 .instagram(instagram)
                 .deletedAt(deletedAt)
-                .ownerId(owner.getId())
+                .ownerId(Optional.ofNullable(owner).map(User::getId).orElse(null))
                 .build();
     }
 }

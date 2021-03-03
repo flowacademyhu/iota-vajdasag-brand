@@ -1,4 +1,4 @@
-import useTokenStateHandler from './tokenHandler'
+import useTokenStateHandler from '../hooks/useTokenStateHandler'
 import { Redirect } from 'react-router-dom'
 
 const Logout = () => {

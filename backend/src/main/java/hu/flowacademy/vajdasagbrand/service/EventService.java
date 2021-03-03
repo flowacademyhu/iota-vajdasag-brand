@@ -22,28 +22,28 @@ public class EventService {
 
     private void validateEventData(EventDTO event) throws ValidationException {
         if (!StringUtils.hasText(event.getName())) {
-            throw new ValidationException("Didn't get name");
+            throw new ValidationException("No name was provided.");
         }
         if (!StringUtils.hasText(event.getBio())) {
-            throw new ValidationException("Didn't get bio");
+            throw new ValidationException("No bio was provided.");
         }
         if (!StringUtils.hasText(event.getPlace())) {
-            throw new ValidationException("Didn't get place");
+            throw new ValidationException("No place was provided.");
         }
         if (event.getItemId() == null) {
-            throw new ValidationException("Didn't get itemId");
+            throw new ValidationException("No itemId was provided.");
         }
         if (event.getEventstart() == null) {
-            throw new ValidationException("Didn't get time for event start");
+            throw new ValidationException("No time was provided for the start of the event.");
         }
         if (event.getEventend() == null) {
-            throw new ValidationException("Didn't get time for event end");
+            throw new ValidationException("No time was provided for the end of the event.");
         }
         if (event.getEventstart().isAfter(event.getEventend())) {
-            throw new ValidationException("Program start is after the program end time");
+            throw new ValidationException("Program start is after the program end time.");
         }
         if (event.getEventstart().equals(event.getEventend())) {
-            throw new ValidationException("The event start is the same time with event end");
+            throw new ValidationException("The event starting time is at the same time with the end time.");
         }
     }
 }

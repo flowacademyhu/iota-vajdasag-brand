@@ -8,7 +8,12 @@ const TheUsersProductsButton = ({ user }) => {
   const owner = user.full_name
 
   return (
-    <NavLink to={{ pathname: `/super-admin/user=${user.id}/items`, state: {owner: owner}}}>
+    <NavLink
+      to={{
+        pathname: `/super-admin/user=${user.id}/items`,
+        state: { owner: owner },
+      }}
+    >
       <Button>{t('userListElement.products')}</Button>
     </NavLink>
   )
