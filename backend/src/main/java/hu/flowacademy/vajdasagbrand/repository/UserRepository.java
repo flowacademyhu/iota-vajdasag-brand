@@ -58,4 +58,8 @@ public class UserRepository {
             return Page.empty();
         }
     }
+
+    public Optional<UserDTO> findByEmail(String email) {
+        return userJPARepository.findByEmail(email).map(User::toDTO);
+    }
 }

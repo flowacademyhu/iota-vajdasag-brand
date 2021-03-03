@@ -67,3 +67,5 @@ firestore:
     token_uri:
     auth_provider_x509_cert_url:
     client_x509_cert_url:
+ui:
+  loginUrl: "https://iota-vajdasag-brand-b3e95c95.web.app/login"

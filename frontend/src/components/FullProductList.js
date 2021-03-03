@@ -1,17 +1,29 @@
-import React from 'react'
-import useProducts from './useProducts'
+import React, { useState } from 'react'
+import useProducts from '../hooks/useProducts'
 import ProductTable from './ProductTable'
 import ListElement from './listOfProducts/ListElement'
+import Searchbar from './Searchbar'
 
 const FullProductList = () => {
-  const listOfAllProducts = useProducts()
+  const [searchKeyword, setSearchKeyword] = useState('')
+  const { products } = useProducts(searchKeyword)
 
   return (
-    <ProductTable>
-      {listOfAllProducts?.map((product) => (
-        <ListElement product={product} key={product.id} />
-      ))}
-    </ProductTable>
+    <>
+      <Searchbar
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
+      <ProductTable>
+        {products?.map((product) => (
+          <ListElement
+            product={product}
+            key={product.id}
+            searchKeyword={searchKeyword}
+          />
+        ))}
+      </ProductTable>
+    </>
   )
 }
 

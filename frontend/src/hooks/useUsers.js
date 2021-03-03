@@ -1,19 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
+import { normalize } from '../textHelpers'
 import {
   getUsers,
   sendApproval,
   deleteUserRegistration,
 } from '../communications/userApi'
-
-/*
- * Removes all accents from words and makes them uppercase.
- **/
-const makeWordComparable = (keyword) => {
-  return keyword
-    ?.normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toUpperCase()
-}
 
 const useUsers = (searchKeyword, sortKey, isSortAscending) => {
   const [listOfAllUsers, setListOfAllUsers] = useState([])
@@ -61,9 +52,7 @@ const useUsers = (searchKeyword, sortKey, isSortAscending) => {
       listOfAllUsers
         ?.sort((a, b) => sortColumn(a, b))
         .filter((user) =>
-          makeWordComparable(user.full_name).includes(
-            makeWordComparable(searchKeyword)
-          )
+          normalize(user.full_name).includes(normalize(searchKeyword))
         )
     )
   }, [listOfAllUsers, searchKeyword, sortKey, isSortAscending, sortColumn])

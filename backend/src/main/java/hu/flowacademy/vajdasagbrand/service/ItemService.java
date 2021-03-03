@@ -1,17 +1,18 @@
 package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
-import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final UserRepository userRepository;
     private static final String SUPERADMIN = "ROLE_SuperAdmin";
     private static final String CEGADMIN = "ROLE_CegAdmin";
 
@@ -52,54 +54,54 @@ public class ItemService {
     }
 
     private void subcategoryValidation(ItemDTO item) throws ValidationException {
-        if(Category.ATTRACTION.equals(item.getCategory()) && item.getSubcategory() == null) {
-            throw new ValidationException("Attraction category have to have subcategory");
+        if (Category.ATTRACTION.equals(item.getCategory()) && item.getSubcategory() == null) {
+            throw new ValidationException("Attraction category must have a subcategory.");
         }
     }
 
     private void validateItemData(ItemDTO item) throws ValidationException {
         subcategoryValidation(item);
-        if (!StringUtils.hasText(item.getName())) {
-            throw new ValidationException("No name given");
+        if (item.getName() == null) {
+            throw new ValidationException("No name was provided.");
         }
-        if (!StringUtils.hasText(item.getBio())) {
-            throw new ValidationException("Didn't get bio");
+        if (item.getBio() == null) {
+            throw new ValidationException("No bio-description was provided.");
         }
-        if (!StringUtils.hasText(item.getScore())) {
-            throw new ValidationException("Impossible value");
+        if (item.getScore() == null) {
+            throw new ValidationException("Impossible value for score.");
         }
-        if (!StringUtils.hasText(item.getAddress())) {
-            throw new ValidationException("Didn't get address");
+        if (item.getAddress() == null) {
+            throw new ValidationException("No address was provided.");
         }
-        if (!StringUtils.hasText(item.getCity())) {
-            throw new ValidationException("Didn't get city");
+        if (item.getCity() == null) {
+            throw new ValidationException("No city was provided.");
         }
         if (item.getCategory() == null) {
-            throw new ValidationException("Didn't get category");
+            throw new ValidationException("No category was provided.");
         }
-        if (!StringUtils.hasText(item.getCoordinateX())) {
-            throw new ValidationException("Didn't get coordinate_x");
+        if (item.getCoordinateX() == null) {
+            throw new ValidationException("No latitude-coordinate_X was provided.");
         }
-        if (!StringUtils.hasText(item.getCoordinateY())) {
-            throw new ValidationException("Didn't get coordinate_y");
+        if (item.getCoordinateY() == null) {
+            throw new ValidationException("No longitude-coordinate_Y was provided");
         }
-        if (!StringUtils.hasText(item.getPhone())) {
-            throw new ValidationException("Didn't get phone");
+        if (item.getPhone() == null) {
+            throw new ValidationException("No phone number was provided");
         }
-        if (!StringUtils.hasText(item.getWebsite())) {
-            throw new ValidationException("Didn't get website");
+        if (item.getWebsite() == null) {
+            throw new ValidationException("No website was provided.");
         }
-        if (!StringUtils.hasText(item.getContact())) {
-            throw new ValidationException("No contact given");
+        if (item.getContact() == null) {
+            throw new ValidationException("No contact was provided.");
         }
-        if (!StringUtils.hasText(item.getFacebook())) {
-            throw new ValidationException("No facebook given");
+        if (item.getFacebook() == null) {
+            throw new ValidationException("No facebook was provided.");
         }
-        if (!StringUtils.hasText(item.getInstagram())) {
-            throw new ValidationException("No instagram given");
+        if (item.getInstagram() == null) {
+            throw new ValidationException("No instagram was provided.");
         }
-        if(!StringUtils.hasText(item.getOwnerId())) {
-            throw new ValidationException("No owner with this id");
+        if (item.getOwnerId() == null) {
+            throw new ValidationException("No owner was found with this ID.");
         }
     }
 
@@ -122,16 +124,11 @@ public class ItemService {
     }
 
     public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication) throws ValidationException {
-        List<String> roles = authentication.map(Authentication::getAuthorities)
-                .map(grantedAuthorities -> grantedAuthorities
-                        .stream().map(GrantedAuthority::getAuthority)
-                        .collect(Collectors.toList()))
-                .orElseThrow(() -> new ValidationException("User has no authorization"));
-
-        if (roles.contains(SUPERADMIN)) {
+        if (isUserSuperAdmin(authentication)) {
             return itemRepository.findAll().stream()
-                    .map(this::createSuperAdminDTO).collect(Collectors.toList());
-        } else if (roles.contains(CEGADMIN)) {
+                    .map(this::createSuperAdminDTO)
+                    .collect(Collectors.toList());
+        } else if (isUserCegAdmin(authentication)) {
             return itemRepository.findAll().stream()
                     .map(this::createCegAdminDTO)
                     .collect(Collectors.toList());
@@ -140,20 +137,37 @@ public class ItemService {
         }
     }
 
+    public boolean isUserSuperAdmin(Optional<Authentication> authentication) throws ValidationException {
+        return authentication.map(Authentication::getAuthorities)
+                .map(grantedAuthorities -> grantedAuthorities
+                        .stream().map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new ValidationException("User has no authorization")).contains(SUPERADMIN);
+    }
+
+    public boolean isUserCegAdmin(Optional<Authentication> authentication) throws ValidationException {
+        return authentication.map(Authentication::getAuthorities)
+                .map(grantedAuthorities -> grantedAuthorities
+                        .stream().map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new ValidationException("User has no authorization")).contains(CEGADMIN);
+    }
+
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
-                "Something");
+                item.getOwnerId(), userRepository.findById(item.getOwnerId())
+                .map(UserDTO::getFullName).orElse(""));
     }
 
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
         return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
-                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt());
+                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
     }
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {
         ItemDTO itemDTO = itemRepository.findById(id).orElseThrow(
-                () -> new ValidationException("No item found with given id"));
+                () -> new ValidationException("No item was found with the given id"));
         return createCegAdminDTO(itemDTO);
     }
 }
