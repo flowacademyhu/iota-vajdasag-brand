@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Optional;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -72,7 +73,7 @@ public class Item {
                 .facebook(facebook)
                 .instagram(instagram)
                 .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
-                .ownerId(ownerId)
+                .ownerId(Optional.ofNullable(owner).map(User::getId).orElse(null))
                 .build();
     }
 }
