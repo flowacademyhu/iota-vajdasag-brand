@@ -52,14 +52,18 @@ public class EventServiceTest {
     @Test
     public void givenExistingEvent_whenCallingUpdate_thenEventIsUpdated() throws ValidationException {
         givenExistingEventWhenUpdate();
-        eventDTO event = givenEventWithId();
-        eventDTO updatedEvent = eventService.updateEvent(event, REGISTRATION_ID);
-        verify(itemRepository, times(1)).save(updatedItem);
-        assertThat(updatedItem, notNullValue());
-        assertThat(updatedItem.getId(), is(item.getId()));
-        assertThat(updatedItem.getName(), is(item.getName()));
-        assertThat(updatedItem.getBio(), is(item.getBio()));
-        verifyNoMoreInteractions(itemRepository);
+        EventDTO event = givenEventWithId();
+        EventDTO updatedEvent = eventService.updateEvent(event, REGISTRATION_ID);
+        verify(eventRepository, times(1)).save(updatedEvent);
+        assertThat(updatedEvent, notNullValue());
+        assertThat(updatedEvent.getId(), is(event.getId()));
+        assertThat(updatedEvent.getName(), is(event.getName()));
+        assertThat(updatedEvent.getBio(), is(event.getBio()));
+        assertThat(updatedEvent.getPlace(), is(event.getPlace()));
+        assertThat(updatedEvent.getEventstart(), is(event.getEventstart()));
+        assertThat(updatedEvent.getEventend(), is(event.getEventend()));
+        assertThat(updatedEvent.getItemId(), is(event.getItemId()));
+        verifyNoMoreInteractions(eventRepository);
     }
 
     @Test
@@ -130,6 +134,20 @@ public class EventServiceTest {
 
         EventDTO event = new EventDTO();
         event.setName(NAME);
+        event.setBio(BIO);
+        event.setPlace(PLACE);
+        event.setEventstart(EVENTSTART);
+        event.setEventend(EVENTEND);
+        event.setItemId(ITEMID);
+
+        return event;
+    }
+
+    private EventDTO givenEventWithId() {
+
+        EventDTO event = new EventDTO();
+        event.setName(NAME);
+        event.setId(REGISTRATION_ID);
         event.setBio(BIO);
         event.setPlace(PLACE);
         event.setEventstart(EVENTSTART);
@@ -241,18 +259,5 @@ public class EventServiceTest {
         event.setId(REGISTRATION_ID);
         when(eventRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(event));
         when(eventRepository.save(any(EventDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
-    }
-
-    private EventDTO givenEventWithId() {
-
-        EventDTO event = new EventDTO();
-        event.setName(NAME);
-        event.setId(REGISTRATION_ID);
-        event.setBio(BIO);
-        event.setPlace(PLACE);
-        event.setEventstart(EVENTSTART);
-        event.setEventend(EVENTEND);
-
-        return event;
     }
 }

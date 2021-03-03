@@ -25,4 +25,11 @@ public class EventController {
 
         eventService.createEvent(eventDTO);
     }
+
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @PutMapping("/events/{id}")
+    public EventDTO updateEvent(@PathVariable("id") String id,
+                                @RequestBody EventDTO event) throws ValidationException {
+        return eventService.updateEvent(event, id);
+    }
 }
