@@ -8,6 +8,4 @@ const normalize = (word) => {
     .toUpperCase()
 }
 
-const highlightTableProps = ['name', 'city', 'address', 'category', 'ownerName']
-
 export { normalize, highlightTableProps }

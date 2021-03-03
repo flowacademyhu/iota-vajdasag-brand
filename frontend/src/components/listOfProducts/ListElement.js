@@ -7,6 +7,8 @@ import {
   highlightTableProps,
 } from '../frequentlyUsedFunctionsAndVariables'
 
+const highlightTableProps = ['name', 'city', 'address', 'category', 'ownerName']
+
 const ListElement = ({ product, searchKeyword }) => {
   return (
     <>
