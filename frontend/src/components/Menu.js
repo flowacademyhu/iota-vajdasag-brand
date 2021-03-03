@@ -35,7 +35,7 @@ const menuItemsCompanyAdmin = [
   },
   {
     path: '/home/events',
-    title: '/home/menu.events',
+    title: 'menu.events',
     icon: Newspaper,
   },
   {

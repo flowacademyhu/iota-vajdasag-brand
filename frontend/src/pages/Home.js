@@ -4,9 +4,13 @@ import { Route } from 'react-router-dom'
 import UsersListAdmin from '../components/UsersList'
 import FullProductList from '../components/FullProductList'
 import EditProductPage from './EditProductPage'
+import useLoggedInUser from "../hooks/useLoggedInUser";
+
 
 const Home = () => {
   const { t } = useTranslation()
+  const userRole = useLoggedInUser().role
+
 
   return (
     <>
@@ -17,7 +21,8 @@ const Home = () => {
         <UsersListAdmin />
       </Route>
       <Route path="/home/items" exact>
-        <FullProductList />
+        {userRole==="SuperAdmin" && <FullProductList />}
+        {userRole==="CegAdmin" && <h1>Hello lista</h1>}
       </Route>
       <Route path="/home/items/edit/:productId" exact>
         <EditProductPage />
