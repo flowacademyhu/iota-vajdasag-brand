@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
 import ListElement from './listOfProducts/ListElement'
-import ListHeader from './listOfProducts/ListHeader'
+import ListHeader from './ListHeader'
 import Searchbar from './Searchbar'
+import { headerCellNamesItems } from '../sortHelpers'
 
 const FullProductList = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -27,6 +28,7 @@ const FullProductList = () => {
           onColumnClick={onColumnClick}
           sortKey={sortKey}
           isSortAscending={isSortAscending}
+          headerCellNames={headerCellNamesItems}
         />
         <tbody>
           {products?.map((product) => (
