@@ -35,9 +35,9 @@ const AddAndEditProductForm = ({
             value={currentLanguage}
             onChange={(event) => setCurrentLanguage(event.target.value)}
           >
-            <option value="hu">{t("editProduct.hu")}</option>
-            <option value="sr">{t("editProduct.sr")}</option>
-            <option value="en">{t("editProduct.en")}</option>
+            <option value="hu">{t('editProduct.hu')}</option>
+            <option value="sr">{t('editProduct.sr')}</option>
+            <option value="en">{t('editProduct.en')}</option>
           </select>
         </div>
       </div>
@@ -99,22 +99,22 @@ const AddAndEditProductForm = ({
             <div className="my-2 row">
               <div className="col">
                 <SelectCategory />
-                </div>
-               
+              </div>
+
               <div className="col">
                 <label htmlFor="category">
                   {t('editProduct.selectSubCategory')}
                 </label>
-              
-              <Field className="form-select" as="select" name="subcategory">
-                <option value="HONOURABLES">
-                  {t('editProduct.honourables')}
-                </option>
-                <option value="FAMOUS_BUILDINGS">
-                  {t('editProduct.famous_buildings')}
-                </option>
-                <option value="MUSEUMS">{t('editProduct.museums')}</option>
-              </Field>
+
+                <Field className="form-select" as="select" name="subcategory">
+                  <option value="HONOURABLES">
+                    {t('editProduct.honourables')}
+                  </option>
+                  <option value="FAMOUS_BUILDINGS">
+                    {t('editProduct.famous_buildings')}
+                  </option>
+                  <option value="MUSEUMS">{t('editProduct.museums')}</option>
+                </Field>
               </div>
             </div>
             <div className="my-2">
