@@ -2,14 +2,14 @@ import React from 'react'
 import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
-import { normalize, highlightTableProps } from '../../textHelpers'
+import { normalize, highlightableProps } from '../../textHelpers'
 
 const ListElement = ({ product, searchKeyword }) => {
   return (
     <>
       <tr>
         {Object.keys(product)
-          .filter((key) => highlightTableProps.includes(key))
+          .filter((key) => highlightableProps.includes(key))
           .map((key) => (
             <td>
               <Highlighter

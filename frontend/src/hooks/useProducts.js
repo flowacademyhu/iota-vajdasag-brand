@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
-import { normalize, highlightTableProps } from '../textHelpers'
+import { normalize, highlightableProps } from '../textHelpers'
 
 const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -21,7 +21,7 @@ const useProducts = (searchKeyword) => {
       listOfAllProducts.filter((product) =>
         Object.entries(product).filter(
           ([key, value]) =>
-            highlightTableProps.includes(key) && value.includes(searchWord)
+            highlightableProps.includes(key) && value.includes(searchWord)
         )
       )
     )
