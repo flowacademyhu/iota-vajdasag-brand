@@ -35,9 +35,9 @@ const AddAndEditProductForm = ({
             value={currentLanguage}
             onChange={(event) => setCurrentLanguage(event.target.value)}
           >
-            <option value="hu">Magyar</option>
-            <option value="sr">Srpski</option>
-            <option value="en">English</option>
+            <option value="hu">{t("editProduct.hu")}</option>
+            <option value="sr">{t("editProduct.sr")}</option>
+            <option value="en">{t("editProduct.en")}</option>
           </select>
         </div>
       </div>
