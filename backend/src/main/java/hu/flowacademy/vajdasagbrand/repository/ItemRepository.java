@@ -90,12 +90,13 @@ public class ItemRepository{
     public List<ItemDTO> findByOwnerId(String oid) {
         ApiFuture<QuerySnapshot> collection = firestore.collectionGroup(COLLECTION_PLACES).whereEqualTo("ownerId", oid).get();
         try {
-            collection.get().getDocuments().stream()
+            return collection.get().getDocuments().stream()
                     .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(Item.class))
                     .map(Item::toDTO)
                     .collect(Collectors.toList());
         } catch (InterruptedException | ExecutionException e) {
             log.error("No item found by given owner id", e);
+            return List.of();
         }
     }
 }

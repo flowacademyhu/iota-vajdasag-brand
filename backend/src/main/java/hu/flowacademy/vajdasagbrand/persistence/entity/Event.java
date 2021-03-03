@@ -1,8 +1,9 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.google.cloud.Timestamp;
-import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
+import hu.flowacademy.vajdasagbrand.dto.EventDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

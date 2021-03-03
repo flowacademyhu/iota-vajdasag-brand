@@ -73,7 +73,7 @@ public class Item {
                 .facebook(facebook)
                 .instagram(instagram)
                 .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
-                .ownerId(Optional.ofNullable(owner).map(User::getId).orElse(null))
+                .ownerId(ownerId)
                 .build();
     }
 }
