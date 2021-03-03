@@ -48,14 +48,16 @@ const Main = () => {
             )}
             {token ? (
               <Switch>
-                <Route path="/company-admin">
-                  <div>{t('companyAdmin')}</div>
-                </Route>
-                <Route path="/super-admin">
-                  <div className="col-9">
-                    <SuperAdmin />
-                  </div>
-                </Route>
+                {userRole === "SuperAdmin"
+                  && <Route path="/super-admin">
+                    <div className="col-9">
+                      <SuperAdmin />
+                    </div>
+                  </Route>}
+                {userRole === "CegAdmin" &&
+                  <Route path="/company-admin">
+                    <div>{t('companyAdmin')}</div>
+                  </Route>}
                 <Route path="/logout">
                   <Logout />
                 </Route>
@@ -77,8 +79,8 @@ const Main = () => {
                 </>
               )}
 
-            {userRole==="CegAdmin" && <Redirect to="/company-admin" />}
-            {userRole==="SuperAdmin" && <Redirect to="/super-admin" />}
+            {userRole === "CegAdmin" && <Redirect to="/company-admin" />}
+            {userRole === "SuperAdmin" && <Redirect to="/super-admin" />}
           </div>
         </div>
       </Router>
