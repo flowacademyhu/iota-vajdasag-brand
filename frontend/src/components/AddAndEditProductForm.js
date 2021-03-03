@@ -56,16 +56,20 @@ const AddAndEditProductForm = ({ onClose, handleSubmit, initForm, validationEdit
                                 type="text"
                             />
                         </div>
-                        <div className="my-2">
-                            <SelectCategory />
-                        </div>
-                        <div>
-                            <label htmlFor="category">{t('editProduct.selectSubCategory')}</label>
-                            <Field as="select" name="subcategory">
-                                <option value="HONOURABLES">{t('editProduct.honourables')}</option>
-                                <option value="FAMOUS_BUILDINGS">{t('editProduct.famous_buildings')}</option>
-                                <option value="MUSEUMS">{t('editProduct.museums')}</option>
-                            </Field>
+                        <div className="d-flex justify-content-around">
+                            <div className="my-2 text-center">
+                                <SelectCategory />
+                            </div>
+                            <div className="my-2 text-center">
+                                <div>
+                                    <label htmlFor="category">{t('editProduct.selectSubCategory')}</label>
+                                </div>
+                                <Field as="select" name="subcategory">
+                                    <option value="HONOURABLES">{t('editProduct.honourables')}</option>
+                                    <option value="FAMOUS_BUILDINGS">{t('editProduct.famous_buildings')}</option>
+                                    <option value="MUSEUMS">{t('editProduct.museums')}</option>
+                                </Field>
+                            </div>
                         </div>
                         <div className="my-2">
                             <InputField
