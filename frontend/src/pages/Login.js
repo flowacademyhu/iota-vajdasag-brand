@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import { login } from '../communications/userApi'
-import useTokenStateHandler from '../components/tokenHandler'
+import useTokenStateHandler from '../hooks/useTokenStateHandler'
 import { useHistory, Link } from 'react-router-dom'
 
 const SignUpSchema = (invalidEmail, noEmail, invalidPassword) =>
