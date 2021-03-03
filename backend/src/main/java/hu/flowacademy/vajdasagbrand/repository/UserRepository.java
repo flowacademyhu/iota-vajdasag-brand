@@ -11,8 +11,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -43,21 +41,6 @@ public class UserRepository {
         }
     }
 
-//    public Page<UserDTO> findAllUsers(Pageable pageable) {
-//        ApiFuture<QuerySnapshot> documents = firestore.collection(COLLECTION).get();
-//        try {
-//          return new PageImpl<>(documents.get().getDocuments().stream()
-//                    .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(User.class))
-//                    .skip(pageable.getOffset())
-//                    .limit(pageable.getPageSize())
-//                    .sorted(Comparator.comparing(User::getRegisteredAt))
-//                    .map(User::toDTO)
-//                    .collect(Collectors.toList()));
-//        } catch (InterruptedException | ExecutionException e) {
-//            log.error("Exception occurred while retrieving all document", e);
-//            return Page.empty();
-//        }
-//    }
 
     public Optional<UserDTO> findByEmail(String email) {
         ApiFuture<QuerySnapshot> documents = firestore.collection(COLLECTION).get();
@@ -76,16 +59,17 @@ public class UserRepository {
     public Page<UserDTO> findAllUsers(Pageable pageable) {
         CollectionReference collection = firestore.collection(COLLECTION);
         try {
-            pageable.getSort().stream()
-                    .forEach(order -> collection.orderBy(order.getProperty(),
-                            order.isAscending() ? Query.Direction.ASCENDING : Query.Direction.DESCENDING));
-
-            return new PageImpl<>(collection.get().get().getDocuments().stream()
+            var query = pageable.getSort().stream().findFirst()
+                    .map(order -> collection.orderBy(order.getProperty(),
+                            order.isAscending() ? Query.Direction.ASCENDING : Query.Direction.DESCENDING))
+                    .orElse(collection);
+            return new PageImpl<>(query.limit(pageable.getPageSize()).offset((int) pageable.getOffset())
+                    .get().get().getDocuments().stream()
                     .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(User.class))
                     .map(User::toDTO)
                     .collect(Collectors.toList()));
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            log.error("Something went wrong during request");
             return Page.empty();
         }
     }
