@@ -1,31 +1,32 @@
-import React from "react";
-//import { useParams } from 'react-router-dom'
-import useProductsForCompany from "./useProductsByID";
-//import useUsers from './useUsers'
-import ListElement from "./listOfProducts/ListElement";
-import ProductTable from "./ProductTable";
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import useProductsForCompany from './useProductsById'
+import ListElement from './listOfProducts/ListElement'
+import ProductTable from './ProductTable'
+import { useLocation } from 'react-router-dom'
 
 const SingleCompanyProductList = () => {
-  //const { userId } = useParams()
-  const { companysProducts } = useProductsForCompany(1);
-  //const { users } = useUsers(1)
+  const { ownerId } = useParams()
+  const companysProducts = useProductsForCompany(ownerId)
+  let location = useLocation()
+  const {owner} = location.state
 
   return (
     <div>
       <h2
         style={{
-          padding: "20px"
+          padding: '20px',
         }}
       >
-        {companysProducts[0]?.owner}
+        {owner}
       </h2>
       <ProductTable>
-        {companysProducts?.map(product => (
+        {companysProducts?.map((product) => (
           <ListElement product={product} key={product.id} />
         ))}
       </ProductTable>
     </div>
-  );
-};
+  )
+}
 
-export default SingleCompanyProductList;
+export default SingleCompanyProductList

@@ -1,9 +1,10 @@
 import api from './apiInstance'
+import './mock'
 
 export const getUsers = async () => {
   try {
     const response = await api.get('/users')
-    return response.data.content
+    return response.data.users
   } catch (error) {
     throw new Error('Failed to get users.')
   }
@@ -76,10 +77,19 @@ export const fetchOneProduct = async (productId) => {
   }
 }
 
+export const getProductsByOwnerId = async (ownerId) => {
+  try {
+    const response = await api.get(`/items?ownerId=${ownerId}`)
+    return response.data.products
+  } catch (error) {
+    throw new Error('The get products request was unsuccessful.')
+  }
+}
+
 export const fetchProducts = async () => {
   try {
     const response = await api.get('/items')
-    return response.data
+    return response.data.products
   } catch (e) {
     throw new Error('Error when fetching products from API.')
   }

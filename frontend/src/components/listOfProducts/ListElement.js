@@ -13,7 +13,7 @@ const ListElement = ({ product }) => {
           ? product.category + ': ' + product.subcategory
           : product.category}
       </td>
-      <td>{product.owner}</td>
+      <td>{product.ownerName}</td>
       <td>
         <DeleteProductButton productId={product.id} />
         <EditProductButton productId={product.id} />

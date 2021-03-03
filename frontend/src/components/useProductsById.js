@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react'
-import { getProductsByUserId } from '../communications/userApi'
+import { getProductsByOwnerId } from '../communications/userApi'
 
-const useProductsForCompany = () => {
+const useProductsForCompany = (ownerId) => {
   const [companysProducts, setCompanysProducts] = useState([])
 
-  const fetchUserProducts = async () => {
-    const fetchedUserProducts = await getProductsByUserId(1)
+  const fetchUserProducts = async (ownerId) => {
+    const fetchedUserProducts = await getProductsByOwnerId(ownerId)
     setCompanysProducts(fetchedUserProducts)
   }
 
   useEffect(() => {
-    fetchUserProducts()
-  }, [])
+    fetchUserProducts(ownerId)
+  }, [ownerId])
 
-  return { companysProducts }
+  return companysProducts
 }
 
 export default useProductsForCompany

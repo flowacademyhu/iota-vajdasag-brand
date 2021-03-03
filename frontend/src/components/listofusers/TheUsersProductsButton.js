@@ -5,13 +5,12 @@ import { NavLink } from 'react-router-dom'
 
 const TheUsersProductsButton = ({ user }) => {
   const { t } = useTranslation()
+  const owner = user.full_name
 
   return (
-        <NavLink to={`/super-admin/items/${user.id}/`}>
-          <Button type="button" variant="success">
-            {t('userListElement.products')}
-          </Button>
-        </NavLink>
+    <NavLink to={{ pathname: `/super-admin/user=${user.id}/items`, state: {owner: owner}}}>
+      <Button>{t('userListElement.products')}</Button>
+    </NavLink>
   )
 }
 
