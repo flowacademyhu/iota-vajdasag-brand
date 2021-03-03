@@ -23,6 +23,7 @@ const Login = () => {
   const handleResponse = (response) => {
     writeToken(response.data.access_token)
     setIsSignInAccepted(true)
+    history.push('/home')
   }
 
   let history = useHistory()

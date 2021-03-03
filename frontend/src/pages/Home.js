@@ -5,25 +5,25 @@ import UsersList from '../components/UsersList'
 import FullProductList from '../components/FullProductList'
 import EditProductPage from './EditProductPage'
 
-const SuperAdmin = () => {
+const Home = () => {
   const { t } = useTranslation()
 
   return (
     <>
-      <Route exact path="/super-admin">
+      <Route exact path="/home">
         <h1>{t('welcome')}</h1>
       </Route>
-      <Route path="/super-admin/users">
+      <Route path="/users">
         <UsersList />
       </Route>
-      <Route path="/super-admin/items" exact>
+      <Route path="/items" exact>
         <FullProductList />
       </Route>
-      <Route path="/super-admin/items/edit/:productId" exact>
+      <Route path="/items/edit/:productId" exact>
         <EditProductPage />
       </Route>
     </>
   )
 }
 
-export default SuperAdmin
+export default Home

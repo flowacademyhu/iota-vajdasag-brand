@@ -6,17 +6,17 @@ import useLoggedInUser from "../hooks/useLoggedInUser";
 
 const menuItemsSuperAdmin = [
   {
-    path: '/super-admin/users',
+    path: '/users',
     title: 'menu.users',
     icon: People,
   },
   {
-    path: '/super-admin/items',
+    path: '/items',
     title: 'menu.items',
     icon: Shop,
   },
   {
-    path: '/super-admin/events',
+    path: 'events',
     title: 'menu.events',
     icon: Newspaper,
   },
@@ -29,12 +29,12 @@ const menuItemsSuperAdmin = [
 
 const menuItemsCompanyAdmin = [
   {
-    path: '/company-admin/items',
+    path: '/items',
     title: 'menu.items',
     icon: Shop,
   },
   {
-    path: '/company-admin/events',
+    path: '/events',
     title: 'menu.events',
     icon: Newspaper,
   },

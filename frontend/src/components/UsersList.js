@@ -50,6 +50,8 @@ const UsersList = () => {
 
   return (
     <div className="table-responsive">
+      <h1>hello</h1>
+      {console.log('users', users)}
       <Searchbar setSearchKeyword={setSearchKeyword} />
       <table className="table table-striped table-sm">
         <ListHeader

@@ -9,7 +9,7 @@ import SwitchLanguage from '../components/SwitchLanguage'
 import { useTranslation } from 'react-i18next'
 import React, { useContext, useState } from 'react'
 import Menu from '../components/Menu'
-import SuperAdmin from '../pages/SuperAdmin'
+import Home from '../pages/Home'
 import { TokenContext } from '../TokenContext'
 import Logout from './logout'
 import Registration from '../pages/Registration'
@@ -21,7 +21,7 @@ import useLoggedInUser from "../hooks/useLoggedInUser";
 const Main = () => {
   const { token } = useContext(TokenContext)
   const { t } = useTranslation()
-  const [userRole, setUserRole] = useState(useLoggedInUser().role);
+  const userRole = useLoggedInUser().role
 
   return (
     <>
@@ -48,16 +48,11 @@ const Main = () => {
             )}
             {token ? (
               <Switch>
-                {userRole === "SuperAdmin"
-                  && <Route path="/super-admin">
+                <Route path="/home">
                     <div className="col-9">
-                      <SuperAdmin />
+                      <Home/>
                     </div>
-                  </Route>}
-                {userRole === "CegAdmin" &&
-                  <Route path="/company-admin">
-                    <div>{t('companyAdmin')}</div>
-                  </Route>}
+                  </Route>
                 <Route path="/logout">
                   <Logout />
                 </Route>
@@ -78,9 +73,6 @@ const Main = () => {
                   </Switch>
                 </>
               )}
-
-            {userRole === "CegAdmin" && <Redirect to="/company-admin" />}
-            {userRole === "SuperAdmin" && <Redirect to="/super-admin" />}
           </div>
         </div>
       </Router>
