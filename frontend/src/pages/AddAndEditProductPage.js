@@ -48,8 +48,6 @@ const AddAndEditProductPage = () => {
   const handleSubmit = async (newProductValues) => {
     if (type === "update") {
       try {
-        console.log('product', product)
-        console.log('newProductValues', newProductValues)
         await updateProductData(product.id, newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
         setShowResponseModal(true)
@@ -62,8 +60,6 @@ const AddAndEditProductPage = () => {
     } else {
       try {
         newProductValues.score = 0
-        console.log('product', product)
-        console.log('newProductValues', newProductValues)
         await addProduct(newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
         setShowResponseModal(true)
