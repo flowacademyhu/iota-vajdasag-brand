@@ -11,7 +11,7 @@ const ListElement = ({ product, searchKeyword }) => {
         {Object.keys(product)
           .filter((key) => highlightableProps.includes(key))
           .map((key) => (
-            <td>
+            <td key={key}>
               <Highlighter
                 highlightClassName="search-found-word"
                 searchWords={[searchKeyword]}
@@ -19,7 +19,6 @@ const ListElement = ({ product, searchKeyword }) => {
                 autoEscape={true}
                 caseSensitive={false}
                 sanitize={(word) => normalize(word)}
-                key={key}
               />
             </td>
           ))}
