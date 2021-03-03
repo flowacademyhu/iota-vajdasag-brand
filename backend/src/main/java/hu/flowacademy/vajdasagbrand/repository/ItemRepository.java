@@ -31,4 +31,8 @@ public class ItemRepository{
     public List<ItemDTO> findAll() {
         return itemRepository.findAll().stream().map(Item::toDTO).collect(Collectors.toList());
     }
+
+    public List<ItemDTO> findByOwnerId(String oid) {
+        return itemRepository.findByOwner_Id(oid);
+    }
 }

@@ -128,43 +128,29 @@ public class ItemService {
                         .collect(Collectors.toList()))
                 .orElseThrow(() -> new ValidationException("User has no authorization"));
 
+        List<ItemDTO> items = ownerId.map(itemRepository::findByOwnerId).orElseGet(itemRepository::findAll);
+
         if (roles.contains(SUPERADMIN)) {
-            System.out.println("Itt baszodik el a szuperadmin"+ ownerId);
-            List<SuperAdminItemDTO> list=ownerId.
-                    map(s -> itemRepository.findAll()
-                            .stream()
-                            .map(this::createSuperAdminDTO)
-                            .filter(c -> c.getOwnerId().equals(s))
-                            .collect(Collectors.toList()))
-                    .orElseGet(() -> itemRepository.findAll().stream()
-                            .map(this::createSuperAdminDTO)
-                            .collect(Collectors.toList()));
-            list.forEach(System.out::println);
-            return null;
+           return items
+                   .stream()
+                   .map(this::createSuperAdminDTO)
+                   .collect(Collectors.toList());
         } else if (roles.contains(CEGADMIN)) {
-            System.out.println("Itt baszodik el a cégadmin");
-            return ownerId.
-                    map(s -> itemRepository.findAll()
-                            .stream()
-                            .map(this::createCegAdminDTO)
-                            .filter(c -> c.getOwnerId().equals(s))
-                            .collect(Collectors.toList()))
-                    .orElseGet(() -> itemRepository.findAll().stream()
-                            .map(this::createCegAdminDTO)
-                            .collect(Collectors.toList()));
+            return items
+                    .stream()
+                    .map(this::createCegAdminDTO)
+                    .collect(Collectors.toList());
         } else {
             throw new ValidationException("User has no authorization.");
         }
     }
 
     public SuperAdminItemDTO createSuperAdminDTO(ItemDTO item) {
-        System.out.println("Itt baszodik el");
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
     }
 
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
-        System.out.println("Itt baszodik el--------2");
         return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
     }
