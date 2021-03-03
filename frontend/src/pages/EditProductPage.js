@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import InputField from '../components/InputField'
 import SelectCategory from '../components/listOfProducts/SelectCategory'
-import validationEdit from '../validations/validationEdit'
+import itemEditValidation from '../validations/itemEditValidation'
 import { updateProductData, fetchOneProduct } from '../communications/userApi'
 import ResponseModal from '../components/modals/ResponseModal'
 
@@ -51,7 +51,7 @@ const EditProductPage = () => {
       <div className="m-5">
         <Formik
           initialValues={product}
-          validationSchema={validationEdit(t('registration.required'))}
+          validationSchema={itemEditValidation(t('registration.required'))}
           onSubmit={handleSubmit}
         >
           <Form>
