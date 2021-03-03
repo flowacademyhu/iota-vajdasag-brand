@@ -6,10 +6,25 @@ import SelectCategory from '../components/listOfProducts/SelectCategory'
 import ResponseModal from '../components/modals/ResponseModal'
 import { useTranslation } from 'react-i18next'
 
+const defaultValues = {
+  name: '',
+  contact: '',
+  address: '',
+  city: '',
+  coordinateX: '',
+  coordinateY: '',
+  phone: '',
+  website: '',
+  score: '',
+  subcategory: '',
+}
+
+
+
 const AddAndEditProductForm = ({
   onClose,
   handleSubmit,
-  initForm,
+  product,
   validationEdit,
   showResponseModal,
   responseModalTitle,
@@ -18,10 +33,15 @@ const AddAndEditProductForm = ({
 }) => {
   const { t } = useTranslation()
 
+  const initialValues = {
+    ...defaultValues,
+    ...product
+  }
+
   return (
     <>
       <Formik
-        initialValues={initForm()}
+        initialValues={initialValues}
         validationSchema={validationEdit(t('registration.required'))}
         onSubmit={handleSubmit}
       >

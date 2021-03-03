@@ -30,49 +30,25 @@ const AddAndEditProductPage = () => {
     }
   }, [productId, type])
 
-  const initForm = () => {
-    if (type === 'update') {
-      return product
-    } else {
-      return {
-        name: '',
-        contact: '',
-        address: '',
-        city: '',
-        coordinateX: '',
-        coordinateY: '',
-        phone: '',
-        website: '',
-        score: '',
-        subcategory: '',
-      }
-    }
-  }
-
   const handleSubmit = async (newProductValues) => {
-    if (type === 'update') {
-      try {
+    try {
+      if (type === 'update') {
         await updateProductData(product.id, newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
         setShowResponseModal(true)
         setEditSuccessful(true)
-      } catch (error) {
-        setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
-        setShowResponseModal(true)
-        setEditSuccessful(false)
       }
-    } else {
-      try {
+      else {
         newProductValues.score = 0
         await addProduct(newProductValues)
         setResponseModalTitle(t('editProduct.successfulEdition'))
         setShowResponseModal(true)
         setEditSuccessful(true)
-      } catch (error) {
-        setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
-        setShowResponseModal(true)
-        setEditSuccessful(false)
       }
+    } catch (error) {
+      setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
+      setShowResponseModal(true)
+      setEditSuccessful(false)
     }
   }
 
@@ -89,7 +65,7 @@ const AddAndEditProductPage = () => {
         <AddAndEditProductForm
           onClose={onClose}
           handleSubmit={handleSubmit}
-          initForm={initForm}
+          product={product}
           validationEdit={validationEdit}
           showResponseModal={showResponseModal}
           responseModalTitle={responseModalTitle}
