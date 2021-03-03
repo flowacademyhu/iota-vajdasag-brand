@@ -122,5 +122,8 @@
     "email": "E-mail",
     "name": "Név"
   },
+  "eventList": {
+    "addEvent": "Új esemény hozzáadása"
+  },
   "welcome": "Üdvözöljük"
 }

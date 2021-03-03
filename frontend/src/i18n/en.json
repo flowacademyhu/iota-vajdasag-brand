@@ -122,5 +122,8 @@
     "email": "Email",
     "name": "Name"
   },
+  "eventList": {
+    "addEvent": "Add new event to your product"
+  },
   "welcome": "Welcome"
 }

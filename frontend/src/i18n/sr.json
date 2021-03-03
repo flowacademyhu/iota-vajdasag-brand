@@ -122,5 +122,8 @@
     "name": "Ime",
     "actions": "Mogućnosti"
   },
+  "eventList": {
+    "addEvent": "Dodaj novi događaj"
+  },
   "welcome": "Pozdrav"
 }
