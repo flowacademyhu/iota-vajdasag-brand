@@ -88,6 +88,14 @@ public class ItemRepository{
     }
 
     public List<ItemDTO> findByOwnerId(String oid) {
-        return itemRepository.findByOwner_Id(oid).stream().map(Item::toDTO).collect(Collectors.toList());
+        ApiFuture<QuerySnapshot> collection = firestore.collectionGroup(COLLECTION_PLACES).whereEqualTo("ownerId", oid).get();
+        try {
+            collection.get().getDocuments().stream()
+                    .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(Item.class))
+                    .map(Item::toDTO)
+                    .collect(Collectors.toList());
+        } catch (InterruptedException | ExecutionException e) {
+            log.error("No item found by given owner id", e);
+        }
     }
 }
