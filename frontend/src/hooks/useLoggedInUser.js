@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { TokenContext } from './TokenContext'
+import { TokenContext } from '../TokenContext'
 import jwt from 'jwt-simple'
 
 const useLoggedInUser = () => {

@@ -63,7 +63,8 @@
     "category": "Kategória",
     "city": "Város",
     "name": "Név",
-    "owner": "Tulajdonos"
+    "owner": "Tulajdonos",
+    "actions": "Lehetőségek"
   },
   "productList": {
     "close": "Bezárás",

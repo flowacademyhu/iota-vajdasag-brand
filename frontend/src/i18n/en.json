@@ -63,7 +63,8 @@
     "category": "Category",
     "city": "City",
     "name": "Name",
-    "owner": "Owner"
+    "owner": "Owner",
+    "actions": "Actions"
   },
   "productList": {
     "close": "Close",

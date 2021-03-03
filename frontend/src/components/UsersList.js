@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import useUsers from './useUsers'
+import useUsers from '../hooks/useUsers'
 import ResponseModal from '../components/modals/ResponseModal'
 import ListElement from './listofusers/ListElement'
-import Searchbar from './listofusers/Searchbar'
+import Searchbar from './Searchbar'
 import ListHeader from './listofusers/ListHeader'
 
 const UsersList = () => {
