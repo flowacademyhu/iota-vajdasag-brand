@@ -1,25 +1,33 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
+import hu.flowacademy.vajdasagbrand.repository.UserRepository;
+import io.restassured.internal.RestAssuredResponseOptionsImpl;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
@@ -32,9 +40,10 @@ import static org.mockito.Mockito.*;
 class ItemServiceTest {
 
     private static final String REGISTRATION_ID = "1234L";
+    private static final String OWNER_ID = "1234L";
     private static final String NAME = "Something";
     private static final String BIO = "Something useful thing";
-    private static final String  SCORE = "50";
+    private static final String SCORE = "50";
     private static final String ADDRESS = "6771 Szeged, Makai út 5.";
     private static final String CITY = "Szeged";
     private static final String COORDINATE_X = "21353.35146";
@@ -45,12 +54,20 @@ class ItemServiceTest {
     private static final String INSTAGRAM = "www.instagram.com/hotelglass";
     private static final String CONTACT = "Kis Pista";
     private static final String EMAIL = "kispista@email.com";
-    private static final String OWNER = "Something";
+    private static final String OWNER_NAME = "Savoyai Eugen";
+    private static final String TAX_NUMBER = "123";
+    private static final String USER_PASSWORD = "123456";
+    private static final boolean ENABLED_REGISTRATION = true;
     private static final LocalDateTime DELETED_AT = LocalDateTime.of(2015,
-            Month.JULY, 29, 19, 30, 40);;
+            Month.JULY, 29, 19, 30, 40);
+    private static final LocalDateTime CREATED_AT = LocalDateTime.of(2014,
+            Month.JULY, 29, 19, 30, 40);
 
     @Mock
     private ItemRepository itemRepository;
+
+    @Mock
+    private UserRepository userRepository;
 
     @InjectMocks
     private ItemService itemService;
@@ -150,7 +167,7 @@ class ItemServiceTest {
     }
 
     @Test
-    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() throws ValidationException {
+    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() {
         ItemDTO itemData = givenItemMissingWebsite();
 
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
@@ -276,35 +293,69 @@ class ItemServiceTest {
     @Test
     public void givenNonExistingAuthorization_whenListingItems_thenExceptionIsThrown() {
         Optional<Authentication> authentication = Optional.empty();
-        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication));
+        Optional<String> ownerId = Optional.empty();
+        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication, ownerId));
     }
 
     @Test
     public void givenUnauthorizedUser_whenListingItems_thenExceptionIsThrown() {
         assertThrows(ValidationException.class, () -> itemService
-                .listProducts(givenUnauthorizedUserListingItems()));
+                .listProducts(givenUnauthorizedUserListingItems(), Optional.of(OWNER_ID)));
     }
-
+    @Disabled
     @Test
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
+        givenUserRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenSuperAdminListingItems()), is(givenSuperAdminItemDTO()));
+        assertThat(itemService.listProducts(givenSuperAdminListingItems(), Optional.of(OWNER_ID)), is(givenSuperAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
+        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID);
         verifyNoMoreInteractions(itemRepository);
     }
-
+    @Disabled
     @Test
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenCegAdminListingItems()), is(givenCegAdminItemDTO()));
+        assertThat(itemService.listProducts(givenCegAdminListingItems(), Optional.of(OWNER_ID)), is(givenCegAdminItemDtoList()));
         verify(itemRepository, times(1)).findAll();
+        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID);
         verifyNoMoreInteractions(itemRepository);
+    }
+
+    @Test
+    public void givenItemRepository_whenFindingOneItem_thenCegAdminDtoIsReturned() throws ValidationException {
+        givenItemRepositoryFindingOneItemById();
+
+        assertThat(itemService.findOneProduct(REGISTRATION_ID), is(givenCegAdminItemDTO()));
+        verify(itemRepository, times(1)).findById(REGISTRATION_ID);
+        verifyNoMoreInteractions(itemRepository);
+    }
+
+    @Test
+    public void givenFalseId_whenFindingOneItem_thenExceptionIsThrown() {
+        givenItemRepositoryNotFindingAnItemById();
+
+        assertThrows(ValidationException.class, () -> itemService
+                .findOneProduct(REGISTRATION_ID));
     }
 
     private void givenItemRepositoryListingItems() {
         when(itemRepository.findAll()).thenReturn(List.of(givenItemWithDeletedAt()));
+        when(itemRepository.findByOwnerId(OWNER_ID)).thenReturn(List.of(givenItemWithDeletedAt()));
+    }
+
+    public void givenItemRepositoryFindingOneItemById() {
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(givenItemWithDeletedAt()));
+    }
+
+    public void givenItemRepositoryNotFindingAnItemById() {
+        when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.empty());
+    }
+
+    private void givenUserRepositoryListingItems() {
+        when(userRepository.findById(OWNER_ID)).thenReturn(Optional.of(givenUser()));
     }
 
     private Optional<Authentication> givenUnauthorizedUserListingItems() {
@@ -319,12 +370,19 @@ class ItemServiceTest {
         return Optional.of(new UsernamePasswordAuthenticationToken("", "", List.of(new SimpleGrantedAuthority("ROLE_CegAdmin"))));
     }
 
-    private List<SuperAdminItemDTO> givenSuperAdminItemDTO() {
-        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER));
+    private Optional<String> givenCegAdminListingItemsWithOwnerId() {
+        return Optional.of(OWNER_ID);
     }
 
-    private List<CegAdminItemDTO> givenCegAdminItemDTO() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CITY, Category.ATTRACTION, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT));
+    private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, OWNER_NAME));
+    }
+    private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID));
+    }
+
+    private CegAdminItemDTO givenCegAdminItemDTO() {
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID);
     }
 
     @Test
@@ -348,6 +406,13 @@ class ItemServiceTest {
         assertThrows(ValidationException.class, () -> itemService.updateItem(item, UUID.randomUUID().toString()));
     }
 
+    @Test
+    public void givenItemMissingOwnerId_whenCreatingItem_thenExceptionIsThrown() {
+        ItemDTO item = givenItemMissingOwnerId();
+
+        assertThrows(ValidationException.class, () -> itemService.createItem(item));
+    }
+
     private void givenItemRepositorySavingItem() {
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> {
             ItemDTO created = invocationOnMock.getArgument(0);
@@ -363,8 +428,11 @@ class ItemServiceTest {
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 
-    private ItemDTO givenItem(){
+    private UserDTO givenUser() {
+        return new UserDTO(OWNER_ID, OWNER_NAME, TAX_NUMBER, ADDRESS, EMAIL, Type.INDIVIDUAL, USER_PASSWORD, ENABLED_REGISTRATION, CREATED_AT, DELETED_AT);
+    }
 
+    private ItemDTO givenItem() {
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
         item.setScore(SCORE);
@@ -378,15 +446,15 @@ class ItemServiceTest {
         item.setPhone(PHONE);
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
 
         return item;
     }
 
     private ItemDTO givenItemWithId() {
-
         ItemDTO item = new ItemDTO();
         item.setName(NAME);
         item.setId(REGISTRATION_ID);
@@ -401,29 +469,36 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
 
         return item;
     }
 
     private ItemDTO givenItemWithDeletedAt() {
         ItemDTO item = new ItemDTO();
+
         item.setName(NAME);
         item.setId(REGISTRATION_ID);
         item.setScore(SCORE);
         item.setBio(BIO);
         item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
         item.setCity(CITY);
+        item.setEmail(EMAIL);
         item.setCategory(Category.ATTRACTION);
+        item.setSubcategory(Subcategory.FAMOUS_BUILDINGS);
         item.setCoordinateX(COORDINATE_X);
         item.setCoordinateY(COORDINATE_Y);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
         item.setDeletedAt(DELETED_AT);
+        item.setOwnerId(OWNER_ID);
+
         return item;
     }
 
@@ -440,9 +515,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -459,9 +535,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -478,9 +555,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -497,9 +575,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -516,9 +595,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -535,9 +615,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -554,9 +635,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -573,9 +655,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -592,9 +675,10 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -614,6 +698,7 @@ class ItemServiceTest {
         item.setPhone(PHONE);
         item.setFacebook(FACEBOOK);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -631,8 +716,9 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -650,8 +736,9 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setFacebook(FACEBOOK);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -668,9 +755,10 @@ class ItemServiceTest {
         item.setEmail(EMAIL);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -686,9 +774,10 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setSubcategory(Subcategory.HONOURABLES);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
+        item.setOwnerId(OWNER_ID);
         return item;
     }
 
@@ -704,9 +793,30 @@ class ItemServiceTest {
         item.setCoordinateY(COORDINATE_Y);
         item.setEmail(EMAIL);
         item.setPhone(PHONE);
-        item.setWeb(WEBSITE);
+        item.setWebsite(WEBSITE);
         item.setInstagram(INSTAGRAM);
         item.setFacebook(FACEBOOK);
+        item.setOwnerId(OWNER_ID);
+        return item;
+    }
+
+    private ItemDTO givenItemMissingOwnerId() {
+        ItemDTO item = new ItemDTO();
+        item.setName(NAME);
+        item.setScore(SCORE);
+        item.setBio(BIO);
+        item.setAddress(ADDRESS);
+        item.setContact(CONTACT);
+        item.setCity(CITY);
+        item.setCategory(Category.ATTRACTION);
+        item.setCoordinateX(COORDINATE_X);
+        item.setCoordinateY(COORDINATE_Y);
+        item.setEmail(EMAIL);
+        item.setSubcategory(Subcategory.HONOURABLES);
+        item.setPhone(PHONE);
+        item.setWebsite(WEBSITE);
+        item.setFacebook(FACEBOOK);
+        item.setInstagram(INSTAGRAM);
         return item;
     }
 
@@ -716,5 +826,4 @@ class ItemServiceTest {
         when(itemRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(item));
         when(itemRepository.save(any(ItemDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
-
 }

@@ -2,10 +2,10 @@ package hu.flowacademy.vajdasagbrand.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
-import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "EventTable")
 @Entity
+@NoArgsConstructor
 public class Event {
 
     @Id
@@ -33,7 +34,7 @@ public class Event {
     @ManyToOne
     private Item item;
 
-    public static Event fromEventDTO(EventDTO eventDTO) {
+    public static Event fromDTO(EventDTO eventDTO) {
         return Event.builder()
                 .id(eventDTO.getId())
                 .name(eventDTO.getName())
@@ -45,7 +46,7 @@ public class Event {
                 .build();
     }
 
-    public EventDTO toEventDTO() {
+    public EventDTO toDTO() {
         return EventDTO.builder()
                 .id(id)
                 .name(name)

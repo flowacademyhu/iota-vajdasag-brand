@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class EventDTO {
-
     private String id;
     private String name;
     private String bio;

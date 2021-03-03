@@ -1,5 +1,6 @@
 package hu.flowacademy.vajdasagbrand.service;
 
+import hu.flowacademy.vajdasagbrand.configuration.UIProperties;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
@@ -17,6 +18,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -51,6 +54,9 @@ public class UserServiceTest {
 
     @InjectMocks
     private UserService service;
+
+    @Mock
+    private UIProperties uiProperties;
 
     @Test
     public void givenUser_whenCreatingAccount_thenAccountCreatedSuccessfully() throws ValidationException {
@@ -117,7 +123,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void givenUserDisabled_whenCallingApproveAccount_thenUserIsEnabled() throws ValidationException {
+    public void givenUserDisabled_whenCallingApproveAccount_thenUserIsEnabled() throws ValidationException, MalformedURLException {
         givenUserRepositoryAndKeycloakForEnableUser();
 
         boolean result = service.approveRegistration(REGISTRATION_ID);
@@ -132,7 +138,7 @@ public class UserServiceTest {
     }
 
     @Test
-     public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
+    public void givenExistingUser_whenCallingDelete_thenUserIsDeletedSuccessfully() throws ValidationException, UserNotEnabledException {
         givenUserRepositoryWhenCallingDelete();
         UserDTO result = service.deleteById(REGISTRATION_ID);
         verify(userRepository, times(1)).findById(REGISTRATION_ID);

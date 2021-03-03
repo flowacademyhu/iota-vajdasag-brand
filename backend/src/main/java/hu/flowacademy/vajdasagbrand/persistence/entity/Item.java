@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @NoArgsConstructor
@@ -40,6 +41,8 @@ public class Item {
     private String instagram;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
+    @ManyToOne
+    private User owner;
 
     public static Item fromDTO(ItemDTO itemDTO) {
         return Item.builder()
@@ -55,10 +58,11 @@ public class Item {
                 .coordinateY(itemDTO.getCoordinateY())
                 .contact(itemDTO.getContact())
                 .phone(itemDTO.getPhone())
-                .website(itemDTO.getWeb())
+                .website(itemDTO.getWebsite())
                 .facebook(itemDTO.getFacebook())
                 .instagram(itemDTO.getInstagram())
                 .deletedAt(itemDTO.getDeletedAt())
+                .owner(User.builder().id(itemDTO.getOwnerId()).build())
                 .build();
     }
 
@@ -76,10 +80,11 @@ public class Item {
                 .coordinateY(coordinateY)
                 .contact(contact)
                 .phone(phone)
-                .web(website)
+                .website(website)
                 .facebook(facebook)
                 .instagram(instagram)
                 .deletedAt(deletedAt)
+                .ownerId(Optional.ofNullable(owner).map(User::getId).orElse(null))
                 .build();
     }
 }

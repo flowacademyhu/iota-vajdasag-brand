@@ -1,20 +1,42 @@
 {
-  "menu": {
-    "users": "Korisnici",
-    "products": "Proizvodi",
-    "events": "Događaji",
-    "signout": "Odjava"
-  },
   "companyAdmin": {
-    "edit": "Edit",
-    "newProduct": "New product",
-    "remove": "Remove",
-    "search": "Search"
+    "edit": "Uređivanje",
+    "newProduct": "Novi proizvod",
+    "remove": "Brisanje",
+    "search": "Pretraga"
+  },
+  "editProduct": {
+    "address": "Adresa",
+    "city": "Grad",
+    "coordinateX": "Širina",
+    "coordinateY": "Dužina",
+    "editButton": "Uređivanje",
+    "phone": "Broj telefona",
+    "save": "Sačuvaj podatke",
+    "selectAttraction": "Atrakcija",
+    "selectCategory": "Odaberi kategoriju",
+    "selectGastronomy": "Gastronomija",
+    "selectHoliday": "Odmor",
+    "selectHotel": "Hotel",
+    "selectInformation": "Informacija",
+    "successfulEdition": "Uspešno uređivanje",
+    "title": "Uređivanje proizvoda",
+    "unsuccessfulEdition": "Neuspešno uređivanje",
+    "website": "Web stranica"
+  },
+  "forgottenPassword": {
+    "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",
+    "buttontext": "Promenite lozinku",
+    "noserver": "Server greška, vratite se kasnije",
+    "nouser": "Korisnik nije pronađen",
+    "other": "Greška, molimo Vas da se vratite kasnije",
+    "title": "Promena lozinke"
   },
   "login": {
     "buttontext": "Prijavite se",
     "connectionProblems": "Problemi sa konekcijom",
     "email": "E-mail adresa",
+    "forgottenPassword": "Zaboravljena lozinka",
     "invalidData": "Pogrešni podaci",
     "invalidPassword": "Pogrešna lozinka",
     "invalidemail": "Pogrešna email adresa",
@@ -22,16 +44,30 @@
     "password": "Lozinka",
     "title": "Prijava"
   },
+  "menu": {
+    "events": "Događaji",
+    "items": "Proizvodi",
+    "signout": "Odjava",
+    "users": "Korisnici"
+  },
+  "product": {
+    "address": "Adresa",
+    "category": "Kategorija",
+    "city": "Grad",
+    "name": "Ime",
+    "owner": "Korisnik",
+    "actions": "Mogućnosti"
+  },
   "productList": {
-    "close": "close",
-    "confirmDelete": "confirmDelete",
-    "confirmDeleteTitle": "confirmDeleteTitle",
-    "delete": "delete"
+    "close": "Brisanje",
+    "confirmDelete": "Potvrda brisanja",
+    "confirmDeleteTitle": "Potvrda brisanja",
+    "delete": "Brisanje"
   },
   "registration": {
     "address": "Adresa/Sedište",
     "agreement": "Prihvatam",
-    "alreadyRegistered": "Dali ste već registrovani?",
+    "alreadyRegistered": "Da li ste već registrovani?",
     "and": "  i",
     "buttontext": "Registracija",
     "email": "E-mail adresa",
@@ -55,23 +91,36 @@
   "searchbar": {
     "search": "Pretraga"
   },
+  "superAdmin": {
+    "createNewUser": "Create a new user",
+    "name": "Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "dateOfRegistration": "Date of registration",
+    "editBasicData": "Edit basic data",
+    "editProducts": "Edit products"
+  },
+  "headerUserData": {
+    "loggedIn": "Prijavljen kao "
+  },
   "userListElement": {
-    "approveRegistration": "Potvrda registracije",
     "close": "Zatvori",
-    "confirmDelete": "Sigurno želite brisanje?",
-    "confirmDeleteTitle": "Brisanje naloga",
-    "delete": "Brisanje registracije",
+    "approveRegistration": "Potvrda registracije",
     "no": "Ne",
+    "yes": "Da",
     "successful": "Uspešno brisanje",
     "unsuccessful": "Neuspešno brisanje",
-    "yes": "Da"
+    "delete": "Brisanje registracije",
+    "confirmDelete": "Sigurno želite brisanje?",
+    "confirmDeleteTitle": "Brisanje naloga",
+    "products": "Proizvodi"
   },
   "userListHeader": {
     "acceptedRegistration": "Prihvaćena registracija",
-    "actions": "Mogućnosti",
     "dateOfRegistration": "Datum registracije",
     "email": "Email",
-    "name": "Ime"
+    "name": "Ime",
+    "actions": "Mogućnosti"
   },
-  "welcome": "welcome"
+  "welcome": "Pozdrav"
 }

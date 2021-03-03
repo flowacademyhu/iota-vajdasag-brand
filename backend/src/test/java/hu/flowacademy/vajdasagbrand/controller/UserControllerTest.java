@@ -2,7 +2,9 @@ package hu.flowacademy.vajdasagbrand.controller;
 
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
+import hu.flowacademy.vajdasagbrand.persistence.entity.User;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
+import hu.flowacademy.vajdasagbrand.service.UserService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +13,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.*;
 import static io.restassured.RestAssured.given;
@@ -29,7 +38,9 @@ class UserControllerTest {
     private int port;
     private static final Faker faker = new Faker();
     private static UserDTO userDTO;
-    private static UserRepository userRepository;
+    private String defaultOrderCategory;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @BeforeEach
@@ -40,10 +51,10 @@ class UserControllerTest {
     @BeforeAll
     private static void beforeAll() {
         userDTO = UserDTO.builder()
-                .id(faker.gameOfThrones().dragon())
+                .id(faker.idNumber().valid())
                 .email(faker.internet().emailAddress())
                 .fullName(faker.chuckNorris().fact())
-                .password(faker.chuckNorris().fact())
+                .password(faker.beer().hop())
                 .address(faker.address().fullAddress())
                 .taxNumber(faker.number().digit())
                 .type(Type.COMPANY)
@@ -64,5 +75,59 @@ class UserControllerTest {
     @Test
     void loginwithSuperAdmin() {
         loginWithSuperadminWithToken();
+    }
+
+    @Test
+    void approveRegistration() {
+        String token = loginWithSuperadminWithToken();
+        String id = userRepository.findByEmail(userDTO.getEmail()).get().getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .pathParam("id", id)
+                .when().put("api/users/{id}/approval")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Test
+    void loginwithCompanyAdmin() {
+        login("kissimre@jusoft.com", "Aa123456");
+    }
+
+
+    @Test
+    void deleteUser() {
+        String token = loginWithSuperadminWithToken();
+        String id = userRepository.findByEmail(userDTO.getEmail()).get().getId();
+        given().log().all()
+                .header(getAuthorization(token))
+                .pathParam("id", id)
+                .when().delete("api/users/{id}")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @Test
+    void getUsers() {
+        String token = loginWithSuperadminWithToken();
+        String date = "2021.03.01 18:00:00";
+        defaultOrderCategory = "registeredAt";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+        LocalDateTime registeredAt = LocalDateTime.parse(date, formatter);
+        userDTO.setRegisteredAt(registeredAt);
+        given().log().all()
+                .header(getAuthorization(token))
+                .param("order_by", defaultOrderCategory)
+                .param("page", 3)
+                .param("limit", 5)
+                .when().get("api/users")
+                .andReturn()
+                .then()
+                .assertThat()
+                .statusCode(200);
     }
 }

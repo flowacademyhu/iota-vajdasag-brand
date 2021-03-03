@@ -14,6 +14,8 @@ import { TokenContext } from '../TokenContext'
 import Logout from './logout'
 import Registration from '../pages/Registration'
 import JusoftLogo from '../media/jusoftdark1.png'
+import ShowLoggedUserData from '../components/ShowLoggedUserData'
+import ForgettenPassword from '../pages/ForgottenPassword'
 
 const Main = () => {
   const { token } = useContext(TokenContext)
@@ -25,10 +27,13 @@ const Main = () => {
     <>
       <div className="container-fluid m-0 header">
         <div className="row">
-          <div className="col-9">
+          <div className="col-5">
             <img src={JusoftLogo} alt="Jusoft logo" />
           </div>
-          <div className="col-3 d-flex justify-content-center">
+          <div className="col-4 d-flex">
+            <ShowLoggedUserData />
+          </div>
+          <div className="col-3 d-flex">
             <SwitchLanguage />
           </div>
         </div>
@@ -63,6 +68,9 @@ const Main = () => {
                   </Route>
                   <Route path="/registration">
                     <Registration />
+                  </Route>
+                  <Route path="/forgottenpassword">
+                    <ForgettenPassword />
                   </Route>
                   <Redirect to="/login" />
                 </Switch>

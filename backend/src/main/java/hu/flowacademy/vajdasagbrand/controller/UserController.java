@@ -1,5 +1,6 @@
 package hu.flowacademy.vajdasagbrand.controller;
 
+import hu.flowacademy.vajdasagbrand.dto.ForgottenPasswordDTO;
 import hu.flowacademy.vajdasagbrand.dto.LoginDto;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.UserNotEnabledException;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import java.net.MalformedURLException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -44,16 +46,16 @@ public class UserController {
         return userService.deleteById(id);
     }
 
+    @PermitAll
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
-    @PermitAll
     public void userRegistration(@RequestBody UserDTO userDTO) throws ValidationException {
         userService.userRegistrationData(userDTO, userDTO.getPassword());
     }
 
     @RolesAllowed("SuperAdmin")
     @PutMapping("/users/{id}/approval")
-    public void approveRegistration(@PathVariable("id") String userId) throws ValidationException {
+    public void approveRegistration(@PathVariable("id") String userId) throws ValidationException, MalformedURLException {
         userService.approveRegistration(userId);
     }
 
@@ -66,5 +68,11 @@ public class UserController {
                 orderBy.orElse(defaultOrderCategory),
                 pageNum.orElse(defaultPageNumber),
                 limit.orElse(defaultPageLimit));
+    }
+
+    @PermitAll
+    @PostMapping("/forgottenpassword")
+    public boolean sendForgottenPassword(@RequestBody ForgottenPasswordDTO forgottenPasswordDTO) {
+        return keycloakClientService.sendForgottenPassword(forgottenPasswordDTO.getEmail());
     }
 }

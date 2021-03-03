@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.JoinColumn;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,7 +16,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class ItemDTO {
-
     private String id;
     private String name;
     private String score;
@@ -28,9 +29,10 @@ public class ItemDTO {
     private String coordinateX;
     private String coordinateY;
     private String phone;
-    private String web;
-    private String instagram;
+    private String website;
     private String facebook;
+    private String instagram;
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
+    private String ownerId;
 }
