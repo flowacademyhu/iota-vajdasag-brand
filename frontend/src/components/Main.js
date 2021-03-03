@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import SwitchLanguage from '../components/SwitchLanguage'
 import { useTranslation } from 'react-i18next'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Menu from '../components/Menu'
 import SuperAdmin from '../pages/SuperAdmin'
 import { TokenContext } from '../TokenContext'
@@ -16,12 +16,12 @@ import Registration from '../pages/Registration'
 import JusoftLogo from '../media/jusoftdark1.png'
 import ShowLoggedUserData from '../components/ShowLoggedUserData'
 import ForgettenPassword from '../pages/ForgottenPassword'
+import useLoggedInUser from "../hooks/useLoggedInUser";
 
 const Main = () => {
   const { token } = useContext(TokenContext)
   const { t } = useTranslation()
-  const loggedInAsSuperAdmin = false
-  const loggedInAsCompanyAdmin = false
+  const [userRole, setUserRole] = useState(useLoggedInUser().role);
 
   return (
     <>
@@ -61,24 +61,24 @@ const Main = () => {
                 </Route>
               </Switch>
             ) : (
-              <>
-                <Switch>
-                  <Route path="/login">
-                    <Login />
-                  </Route>
-                  <Route path="/registration">
-                    <Registration />
-                  </Route>
-                  <Route path="/forgottenpassword">
-                    <ForgettenPassword />
-                  </Route>
-                  <Redirect to="/login" />
-                </Switch>
-              </>
-            )}
+                <>
+                  <Switch>
+                    <Route path="/login">
+                      <Login />
+                    </Route>
+                    <Route path="/registration">
+                      <Registration />
+                    </Route>
+                    <Route path="/forgottenpassword">
+                      <ForgettenPassword />
+                    </Route>
+                    <Redirect to="/login" />
+                  </Switch>
+                </>
+              )}
 
-            {loggedInAsCompanyAdmin && <Redirect to="/company-admin" />}
-            {loggedInAsSuperAdmin && <Redirect to="/super-admin" />}
+            {userRole==="CegAdmin" && <Redirect to="/company-admin" />}
+            {userRole==="SuperAdmin" && <Redirect to="/super-admin" />}
           </div>
         </div>
       </Router>
