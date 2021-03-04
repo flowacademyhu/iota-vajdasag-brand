@@ -20,7 +20,7 @@ const menuItems = [
     icon: Newspaper,
   },
   {
-    path: 'logout',
+    path: '/logout',
     title: 'menu.signout',
     icon: ArrowBarLeft,
   },

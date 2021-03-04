@@ -26,6 +26,10 @@ const ListHeader = ({ onColumnClick, isSortAscending, sortKey }) => {
           {t('userListHeader.acceptedRegistration')}
           {SortingSign('isApproved')}
         </th>
+        <th scope="col" onClick={() => onColumnClick('id')}>
+          {t('userListHeader.userid')}
+          {SortingSign('id')}
+        </th>
         <th scope="col" onClick={() => onColumnClick('dateOfRegistration')}>
           {t('userListHeader.dateOfRegistration')}
           {SortingSign('dateOfRegistration')}
