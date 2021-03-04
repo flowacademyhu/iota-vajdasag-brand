@@ -24,6 +24,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -301,6 +302,7 @@ class ItemServiceTest {
         assertThrows(ValidationException.class, () -> itemService
                 .listProducts(givenUnauthorizedUserListingItems(), Optional.of(OWNER_ID), Optional.of(Language.hu)));
     }
+
     @Disabled
     @Test
     public void givenSuperAdmin_whenListingItems_thenSuperAdminDtoIsReturned() throws ValidationException {
@@ -312,6 +314,7 @@ class ItemServiceTest {
         verify(itemRepository, times(1)).findByOwnerId(OWNER_ID, Language.hu);
         verifyNoMoreInteractions(itemRepository);
     }
+
     @Disabled
     @Test
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
@@ -374,14 +377,15 @@ class ItemServiceTest {
     }
 
     private List<SuperAdminItemDTO> givenSuperAdminItemDtoList() {
-        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, OWNER_NAME));
+        return List.of(new SuperAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, OWNER_NAME, Map.of()));
     }
+
     private List<CegAdminItemDTO> givenCegAdminItemDtoList() {
-        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID));
+        return List.of(new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, Map.of()));
     }
 
     private CegAdminItemDTO givenCegAdminItemDTO() {
-        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID);
+        return new CegAdminItemDTO(REGISTRATION_ID, NAME, SCORE, BIO, ADDRESS, CONTACT, CITY, EMAIL, Category.ATTRACTION, Subcategory.FAMOUS_BUILDINGS, COORDINATE_X, COORDINATE_Y, PHONE, WEBSITE, FACEBOOK, INSTAGRAM, DELETED_AT, OWNER_ID, Map.of());
     }
 
     @Test
@@ -497,7 +501,7 @@ class ItemServiceTest {
         item.setInstagram(INSTAGRAM);
         item.setDeletedAt(DELETED_AT);
         item.setOwnerId(OWNER_ID);
-
+        item.setLanguage(Map.of());
         return item;
     }
 
