@@ -3,11 +3,31 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:12.0.2
     hostname: keycloak
+    depends_on:
+      - mysql_keycloak
     ports:
       - 8180:8080
-    entrypoint: "/keycloak/entrypoint.sh"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      PROXY_ADDRESS_FORWARDING: "true"
+      DB_VENDOR: mysql
+      DB_ADDR: mysql_keycloak
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: keycloak
+    command: ["-b", "0.0.0.0", "-Djboss.bind.address.private=127.0.0.1", "-Djboss.bind.address=0.0.0.0", "-Dkeycloak.profile.feature.upload_scripts=enabled"]
     volumes:
       - ./keycloak:/keycloak
+  mysql_keycloak:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloak
   app:
     image: vajdasagbrand:latest
     build:
@@ -17,7 +37,7 @@ services:
     environment: 
       - keycloak.auth-server-url=http://keycloak:8080/auth
       - keycloakBackendClient.serverUrl=http://keycloak:8080/auth
-      - firestore.emulator.host=firebase:8200
+      - firestore.emulator.url=firebase:8200
     ports:
       - 8080:8080
   firebase:

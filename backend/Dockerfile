@@ -1,6 +1,11 @@
 FROM maven:3.6.3-openjdk-11-slim AS builder
 
 WORKDIR /build
+
+COPY pom.xml .
+
+RUN mvn dependency:go-offline
+
 COPY . .
 RUN mvn -B clean package -DskipTests
 
