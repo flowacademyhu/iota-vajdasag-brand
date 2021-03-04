@@ -8,8 +8,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -21,10 +26,10 @@ public class EventServiceTest {
     private static final String BIO = "Information from the event";
     private static final String PLACE = "Szeged Partfürdő";
     private static final String ITEMID = "16548651L";
-    private static final LocalDateTime EVENT_START = LocalDateTime.of(2020,3,11,18,0,0);
-    private static final LocalDateTime EVENT_END_IN_SAME_TIME = LocalDateTime.of(2020,3,11,18,0,0);
-    private static final LocalDateTime EVENT_END = LocalDateTime.of(2020, 3,11,20,0,0);
-    private static final LocalDateTime EVENT_END_UP = LocalDateTime.of(2020, 3,11,15,0,0);
+    private static final LocalDateTime EVENT_START = LocalDateTime.of(2020, 3, 11, 18, 0, 0);
+    private static final LocalDateTime EVENT_END_IN_SAME_TIME = LocalDateTime.of(2020, 3, 11, 18, 0, 0);
+    private static final LocalDateTime EVENT_END = LocalDateTime.of(2020, 3, 11, 20, 0, 0);
+    private static final LocalDateTime EVENT_END_UP = LocalDateTime.of(2020, 3, 11, 15, 0, 0);
 
     @Mock
     private EventRepository eventRepository;
@@ -38,6 +43,23 @@ public class EventServiceTest {
         EventDTO eventData = givenEvent();
         eventService.createEvent(eventData);
         verify(eventRepository, times(1)).save(eventData);
+        verifyNoMoreInteractions(eventRepository);
+    }
+
+    @Test
+    public void givenExistingEvent_whenCallingUpdate_thenEventIsUpdated() throws ValidationException {
+        givenExistingEventWhenUpdate();
+        EventDTO event = givenEventWithId();
+        EventDTO updatedEvent = eventService.updateEvent(event, REGISTRATION_ID);
+        verify(eventRepository, times(1)).save(updatedEvent);
+        assertThat(updatedEvent, notNullValue());
+        assertThat(updatedEvent.getId(), is(event.getId()));
+        assertThat(updatedEvent.getName(), is(event.getName()));
+        assertThat(updatedEvent.getBio(), is(event.getBio()));
+        assertThat(updatedEvent.getPlace(), is(event.getPlace()));
+        assertThat(updatedEvent.getEventstart(), is(event.getEventstart()));
+        assertThat(updatedEvent.getEventend(), is(event.getEventend()));
+        assertThat(updatedEvent.getItemId(), is(event.getItemId()));
         verifyNoMoreInteractions(eventRepository);
     }
 
@@ -105,10 +127,24 @@ public class EventServiceTest {
         });
     }
 
-    private EventDTO givenEvent(){
+    private EventDTO givenEvent() {
 
         EventDTO event = new EventDTO();
         event.setName(NAME);
+        event.setBio(BIO);
+        event.setPlace(PLACE);
+        event.setEventstart(EVENT_START);
+        event.setEventend(EVENT_END);
+        event.setItemId(ITEMID);
+
+        return event;
+    }
+
+    private EventDTO givenEventWithId() {
+
+        EventDTO event = new EventDTO();
+        event.setName(NAME);
+        event.setId(REGISTRATION_ID);
         event.setBio(BIO);
         event.setPlace(PLACE);
         event.setEventstart(EVENT_START);
@@ -213,5 +249,12 @@ public class EventServiceTest {
         event.setEventend(EVENT_END_IN_SAME_TIME);
         event.setItemId(ITEMID);
         return event;
+    }
+
+    private void givenExistingEventWhenUpdate() {
+        EventDTO event = givenEvent();
+        event.setId(REGISTRATION_ID);
+        when(eventRepository.findById(REGISTRATION_ID)).thenReturn(Optional.of(event));
+        when(eventRepository.save(any(EventDTO.class))).thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
     }
 }

@@ -9,13 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class EventService {
 
@@ -33,9 +31,17 @@ public class EventService {
         return eventRepository.save(event);
     }
 
+    public EventDTO updateEvent(EventDTO event, String id) throws ValidationException {
+        validateEventData(event);
+        EventDTO founded = eventRepository.findById(id).orElseThrow(() -> new ValidationException("Can not find this id"));
+        modifyEvents(event, founded);
+        return eventRepository.save(founded);
+    }
+
+
     private void validateEventData(EventDTO event) throws ValidationException {
         if (!StringUtils.hasText(event.getName())) {
-            throw new ValidationException("No name was provided.");
+            throw new ValidationException("Didn't get name");
         }
         if (!StringUtils.hasText(event.getBio())) {
             throw new ValidationException("No bio was provided.");
@@ -62,5 +68,13 @@ public class EventService {
 
     public Page<EventDTO> listEvents(Optional<String> orderBy, Optional<Integer> pageNum, Optional<Integer> limit) {
         return eventRepository.findAllEvents(PageRequest.of(pageNum.orElse(defaultPageNumber), limit.orElse(defaultPageLimit), Sort.by(Sort.Direction.DESC, orderBy.orElse(defaultOrderCategory))));
+    }
+
+    private void modifyEvents(EventDTO event, EventDTO tempEvent) {
+        tempEvent.setName(event.getName());
+        tempEvent.setBio(event.getBio());
+        tempEvent.setPlace(event.getPlace());
+        tempEvent.setEventstart(event.getEventstart());
+        tempEvent.setEventend(event.getEventend());
     }
 }

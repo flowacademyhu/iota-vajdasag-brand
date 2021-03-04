@@ -29,6 +29,7 @@ import static org.hamcrest.Matchers.notNullValue;
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
+@Disabled
 class EventControllerTest {
 
     @LocalServerPort
@@ -69,7 +70,7 @@ class EventControllerTest {
                 .extract().body().as(ItemDTO.class);
     }
 
-    @Disabled
+
     @Test
     void eventRegistration() {
         String date = "2020.03.15 18:00:00";
