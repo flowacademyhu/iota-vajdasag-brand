@@ -55,6 +55,11 @@ const AddAndEditProductPage = () => {
     ? t('editProduct.successfulEdition')
     : t('editProduct.unsuccessfulEdition')
 
+  const title =
+    type === 'update'
+      ? t('editProduct.title')
+      : t('editProduct.addNewItemTitle')
+
   return (
     (type === 'add' || product) && (
       <div className="m-5">
@@ -66,11 +71,7 @@ const AddAndEditProductPage = () => {
           showResponseModal={showResponseModal}
           responseModalTitle={responseModalTitle}
           setShowResponseModal={setShowResponseModal}
-          title={
-            type === 'update'
-              ? t('editProduct.title')
-              : t('editProduct.addNewItemTitle')
-          }
+          title={title}
         />
       </div>
     )
