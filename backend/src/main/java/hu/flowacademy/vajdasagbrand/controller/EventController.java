@@ -29,8 +29,9 @@ public class EventController {
     @GetMapping("/events")
     public Page<EventDTO> getEvents(@RequestParam(value = "order_by", required = false) Optional<String> orderBy,
                                     @RequestParam(value = "page", required = false) Optional<Integer> pageNum,
-                                    @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
-        return eventService.listEvents(orderBy, pageNum, limit);
+                                    @RequestParam(value = "limit", required = false) Optional<Integer> limit,
+                                    @RequestParam(value = "item_id", required = false) Optional<String> itemId) {
+        return eventService.listEvents(orderBy, pageNum, limit, itemId);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
