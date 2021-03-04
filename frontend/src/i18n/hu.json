@@ -6,13 +6,15 @@
     "search": "Keresés"
   },
   "editProduct": {
+    "userId": "Felhasználó ID",
+    "selectSubCategory": "Válassz alkategóriát",
     "famous_buildings": "Nevezetes épületek",
     "honourables": "Büszkeségeink",
     "museums": "Múzeumok",
     "addNewItemTitle": "Termék hozzáadása",
     "addNewProduct": "Termék hozzáadása",
     "address": "Cím",
-    "bio": "bio",
+    "bio": "Leírás",
     "city": "Város",
     "contactName": "Kapcsolattartó neve",
     "coordinateX": "Szélességi fok",
@@ -124,6 +126,7 @@
     "address": "Cím",
     "category": "Kategória",
     "city": "Város",
+    "id": "ID",
     "name": "Név",
     "ownerName": "Tulajdonos"
   },
