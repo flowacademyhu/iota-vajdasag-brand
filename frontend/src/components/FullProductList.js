@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
 import ProductTable from './ProductTable'
-import ListElement from './listOfProducts/ListElement'
+import ProductListElement from './listOfProducts/ProductListElement'
 import Searchbar from './Searchbar'
 
 const FullProductList = () => {
@@ -16,7 +16,7 @@ const FullProductList = () => {
       />
       <ProductTable list="full">
         {products?.map((product) => (
-          <ListElement
+          <ProductListElement
             product={product}
             key={product.id}
             searchKeyword={searchKeyword}

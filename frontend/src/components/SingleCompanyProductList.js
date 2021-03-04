@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useProductsForCompany from './useProductsById'
-import ListElement from './listOfProducts/ListElement'
+import ProductListElement from './listOfProducts/ProductListElement'
 import ProductTable from './ProductTable'
 //import { useLocation } from 'react-router-dom'
 import ListHeader from './listofusers/ListHeader'
@@ -31,7 +31,7 @@ const SingleCompanyProductList = () => {
       </table>
       <ProductTable list="single">
         {companysProducts?.map((product) => (
-          <ListElement product={product} key={product.id} />
+          <ProductListElement product={product} key={product.id} />
         ))}
       </ProductTable>
     </div>

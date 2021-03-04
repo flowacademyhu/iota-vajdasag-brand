@@ -4,7 +4,7 @@ import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
 import { normalize, highlightableProps } from '../../textHelpers'
 
-const ListElement = ({ product, searchKeyword, fullList }) => {
+const ProductListElement = ({ product, searchKeyword, fullList }) => {
   return (
     <>
       <tr>
@@ -41,4 +41,4 @@ const ListElement = ({ product, searchKeyword, fullList }) => {
   )
 }
 
-export default ListElement
+export default ProductListElement
