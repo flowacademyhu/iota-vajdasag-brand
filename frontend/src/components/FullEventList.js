@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAllEvents } from '../communications/userApi'
+import { getAllEvents,getEventsById } from '../communications/userApi'
 import ListElements from "../components/listofevents/ListElements";
 import EventsListHeader from "../components/listofevents/EventsListHeader";
 import { useLocation } from "react-router-dom";
@@ -11,10 +11,15 @@ const FullEventList = (props) => {
 
     const getEvents = async () => {
         const mode = location.state ? location.state : undefined
-        console.log('mode', mode)
         try {
-            const response = await getAllEvents()
-            setEvents(response.data.content)
+            if (mode === undefined) {
+                const response = await getAllEvents()
+                setEvents(response.data.content)
+            } else {
+                const response = await getEventsById()
+                setEvents(response.data.content)
+            }
+
         } catch (error) {
             setError(error)
         }
@@ -22,7 +27,6 @@ const FullEventList = (props) => {
 
     useEffect(() => {
         getEvents()
-        console.log('location.state', location.state)
     }, [])
 
 
