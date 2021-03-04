@@ -11,7 +11,7 @@ export default function EventsListHeader() {
                 <th>{t("eventListHead.name")}</th>
                 <th>{t("eventListHead.startTime")}</th>
                 <th>{t("eventListHead.endTime")}</th>
-                <th>{t("eventListHead.palce")}</th>
+                <th>{t("eventListHead.place")}</th>
             </tr>
         </thead>            
     )
