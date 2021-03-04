@@ -17,6 +17,7 @@ const defaultValues = {
   website: '',
   score: '',
   subcategory: '',
+  language: {en:{}, hu:{}, sr:{}}
 }
 
 const AddAndEditProductForm = ({
@@ -40,30 +41,32 @@ const AddAndEditProductForm = ({
   return (
     <>
       <h3 className="text-center mb-5">{title}</h3>
-      <div className="row mb-3">
-        <label className="col-auto col-form-label" htmlFor="language">
-          {t('editProduct.language')}:
-        </label>
-        <div className="col-sm-3">
-          <select
-            className="form-select "
-            name="language"
-            id="language"
-            value={currentLanguage}
-            onChange={(event) => setCurrentLanguage(event.target.value)}
-          >
-            <option value="hu">{t('editProduct.hu')}</option>
-            <option value="sr">{t('editProduct.sr')}</option>
-            <option value="en">{t('editProduct.en')}</option>
-          </select>
-        </div>
-      </div>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationEdit(t('registration.required'))}
         onSubmit={handleSubmit}
       >
         <Form>
+          <div className="row mb-3">
+            <label className="col-auto col-form-label" htmlFor="currentLanguage">
+              {t('editProduct.language')}:
+            </label>
+            <div className="col-sm-3">
+              <Field
+                as="select"
+                className="form-select "
+                name="currentLanguage"
+                id="currentLanguage"
+                value={currentLanguage}
+                onChange={(event) => setCurrentLanguage(event.target.value)}
+              >
+                <option value="hu">{t('editProduct.hu')}</option>
+                <option value="sr">{t('editProduct.sr')}</option>
+                <option value="en">{t('editProduct.en')}</option>
+              </Field>
+            </div>
+          </div>
           <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
             <div className="my-2">
               <InputField
@@ -76,19 +79,19 @@ const AddAndEditProductForm = ({
               <InputField
                 hidden={currentLanguage !== 'en'}
                 label={t('editProduct.name')}
-                name="languages.en.name"
+                name="language.en.name"
                 type="text"
               />
               <InputField
                 hidden={currentLanguage !== 'hu'}
                 label={t('editProduct.name')}
-                name="languages.hu.name"
+                name="language.hu.name"
                 type="text"
               />
               <InputField
                 hidden={currentLanguage !== 'sr'}
                 label={t('editProduct.name')}
-                name="languages.sr.name"
+                name="language.sr.name"
                 type="text"
               />
             </div>
@@ -138,19 +141,19 @@ const AddAndEditProductForm = ({
               <InputField
                 hidden={currentLanguage !== 'en'}
                 label={t('editProduct.bio')}
-                name="languages.en.bio"
+                name="language.en.bio"
                 type="text"
               />
               <InputField
                 hidden={currentLanguage !== 'hu'}
                 label={t('editProduct.bio')}
-                name="languages.hu.bio"
+                name="language.hu.bio"
                 type="text"
               />
               <InputField
                 hidden={currentLanguage !== 'sr'}
                 label={t('editProduct.bio')}
-                name="languages.sr.bio"
+                name="language.sr.bio"
                 type="text"
               />
             </div>
@@ -179,19 +182,19 @@ const AddAndEditProductForm = ({
               <InputField
                 hidden={currentLanguage !== 'en'}
                 label={t('editProduct.website')}
-                name="languages.en.website"
+                name="language.en.website"
                 type="text"
               />
               <InputField
                 hidden={currentLanguage !== 'hu'}
                 label={t('editProduct.website')}
-                name="languages.hu.website"
+                name="language.hu.website"
                 type="text"
               />
               <InputField
                 hidden={currentLanguage !== 'sr'}
                 label={t('editProduct.website')}
-                name="languages.sr.website"
+                name="language.sr.website"
                 type="text"
               />
             </div>
