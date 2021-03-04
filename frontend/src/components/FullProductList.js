@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
 import ListElement from './listOfProducts/ListElement'
-import AddNewProductButton from './listofproducts/AddNewProductButton'
+import ListHeader from './ListHeader'
+import AddNewProductButton from './listOfProducts/AddNewProductButton'
 import Searchbar from './Searchbar'
 import { headerCellNamesItems } from '../sortHelpers'
 
@@ -22,6 +23,7 @@ const FullProductList = () => {
 
   return (
     <div className="table-responsive">
+      <AddNewProductButton />
       <Searchbar setSearchKeyword={setSearchKeyword} />
       <table className="table table-striped table-sm">
         <ListHeader
