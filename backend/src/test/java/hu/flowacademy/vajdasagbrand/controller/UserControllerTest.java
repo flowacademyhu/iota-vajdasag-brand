@@ -62,8 +62,7 @@ class UserControllerTest {
     @Test
     void approveRegistration() {
         UserDTO user = createUser();
-        String id = getUserByEmail(
-                userDTO -> user.getEmail().equalsIgnoreCase(userDTO.getEmail())
+        String id = getUserByEmail((Predicate<UserDTO>) createUser()
         ).getId();
         given().log().all()
                 .header(getAuthorization(loginWithSuperadminWithToken()))
@@ -81,7 +80,7 @@ class UserControllerTest {
     @Test
     void deleteUser() {
         UserDTO user = createUser();
-        String id = getUserByEmail(UserDTO::isEnabled).getId();
+        String id = getUserByEmail((Predicate<UserDTO>) createUser()).getId();
         given().log().all()
                 .header(getAuthorization(loginWithSuperadminWithToken()))
                 .pathParam("id", id)
@@ -94,7 +93,7 @@ class UserControllerTest {
     @Test
     void getUsers() {
         createUser();
-        getUserByEmail(Predicate.isEqual(null));
+        getUserByEmail((Predicate<UserDTO>) createUser());
     }
     private UserDTO getUserByEmail(Predicate<UserDTO> p) {
         List<UserDTO> users = given().log().all()
