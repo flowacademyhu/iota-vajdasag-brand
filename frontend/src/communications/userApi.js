@@ -92,3 +92,12 @@ export const addProduct = async (data) => {
     throw new Error('Error when sending new product')
   }
 }
+
+
+export const getAllEvents = async () => {
+  try {
+    return await api.get("/events")
+  } catch (error) {
+    throw new Error("Error when getting all Events")
+  }
+}
