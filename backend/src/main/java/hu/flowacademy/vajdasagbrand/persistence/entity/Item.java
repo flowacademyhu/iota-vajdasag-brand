@@ -32,7 +32,6 @@ public class Item {
     private String instagram;
     private Timestamp deletedAt;
     private String ownerId;
-    private Language language;
 
     public static Item fromDTO(ItemDTO itemDTO) {
         return Item.builder()
@@ -53,7 +52,6 @@ public class Item {
                 .instagram(itemDTO.getInstagram())
                 .deletedAt(TimestampConverter.toTimestamp(itemDTO.getDeletedAt()))
                 .ownerId(itemDTO.getOwnerId())
-                .language(itemDTO.getLanguage())
                 .build();
     }
 
@@ -76,7 +74,6 @@ public class Item {
                 .instagram(instagram)
                 .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
                 .ownerId(ownerId)
-                .language(language)
                 .build();
     }
 }

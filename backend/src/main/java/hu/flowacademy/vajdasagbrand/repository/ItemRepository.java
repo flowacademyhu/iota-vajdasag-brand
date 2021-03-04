@@ -31,20 +31,24 @@ public class ItemRepository{
     public ItemDTO save(ItemDTO itemDTO) {
         DocumentReference cities = firestore.collection(COLLECTION_CITIES).document(itemDTO.getCity().toLowerCase());
         cities.set(Map.of(LOCATION, new GeoPoint(Double.parseDouble(itemDTO.getCoordinateX()),Double.parseDouble(itemDTO.getCoordinateY()))));
-        DocumentReference lang = cities.collection(COLLECTION_LANGUAGES).document(itemDTO.getLanguage().name());
-        lang.set(Map.of(CITYNAME, itemDTO.getCity()));
-        DocumentReference categories = lang.collection(COLLECTION_CATEGORIES).document(Integer.toString(itemDTO.getCategory().getIndex()));
-        categories.set(Map.of(NAME, itemDTO.getCategory().name())); //TODO translate
-        if (itemDTO.getSubcategory() != null) {
-            categories = categories.collection(COLLECTION_SUBCATEGORIES).document(Integer.toString(itemDTO.getSubcategory().getIndex()));
-            categories.set(Map.of(NAME, itemDTO.getSubcategory().name())); //TODO translate
-        }
-        Item item = Item.fromDTO(itemDTO);
-        if(Objects.isNull(item.getId())) {
-            item.setId(UUID.randomUUID().toString());
-        }
-        categories.collection(COLLECTION_PLACES).document(item.getId()).set(item);
-        return item.toDTO();
+        itemDTO.getLanguage().entrySet().forEach((l) -> {
+            DocumentReference lang = cities.collection(COLLECTION_LANGUAGES).document(l.getKey().name());
+            lang.set(Map.of(CITYNAME, itemDTO.getCity()));
+            DocumentReference categories = lang.collection(COLLECTION_CATEGORIES).document(Integer.toString(itemDTO.getCategory().getIndex()));
+            categories.set(Map.of(NAME, itemDTO.getCategory().name())); //TODO translate
+            if (itemDTO.getSubcategory() != null) {
+                categories = categories.collection(COLLECTION_SUBCATEGORIES).document(Integer.toString(itemDTO.getSubcategory().getIndex()));
+                categories.set(Map.of(NAME, itemDTO.getSubcategory().name())); //TODO translate
+            }
+            Item item = Item.fromDTO(itemDTO.toBuilder().bio(l.getValue().getBio()).name(l.getValue().getName()).website(l.getValue().getWebsite()).build());
+            if(Objects.isNull(item.getId())) {
+                item.setId(UUID.randomUUID().toString());
+            }
+            categories.collection(COLLECTION_PLACES).document(item.getId()).set(item);
+        });
+
+
+        return itemDTO;
     }
 
     public Optional<ItemDTO> findById(String id) {
