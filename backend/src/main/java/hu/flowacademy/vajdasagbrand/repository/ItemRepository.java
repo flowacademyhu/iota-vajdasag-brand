@@ -35,7 +35,7 @@ public class ItemRepository {
     public ItemDTO save(ItemDTO itemDTO) {
         DocumentReference cities = firestore.collection(COLLECTION_CITIES).document(itemDTO.getCity().toLowerCase());
         cities.set(Map.of(LOCATION, new GeoPoint(Double.parseDouble(itemDTO.getCoordinateX()), Double.parseDouble(itemDTO.getCoordinateY()))));
-        final String id = Objects.isNull(itemDTO.getId()) ? UUID.randomUUID().toString() : null;
+        final String id = Objects.isNull(itemDTO.getId()) ? UUID.randomUUID().toString() : itemDTO.getId();
         itemDTO.getLanguage().forEach((key, value) -> {
             DocumentReference lang = cities.collection(COLLECTION_LANGUAGES).document(key.name());
             lang.set(Map.of(CITYNAME, itemDTO.getCity()));

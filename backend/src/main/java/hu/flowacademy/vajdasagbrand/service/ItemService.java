@@ -120,6 +120,7 @@ public class ItemService {
         tempItem.setSubcategory(item.getSubcategory());
         tempItem.setContact(item.getContact());
         tempItem.setEmail(item.getEmail());
+        tempItem.setLanguage(item.getLanguage());
     }
 
     public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId, Optional<Language> language) throws ValidationException {
@@ -158,12 +159,15 @@ public class ItemService {
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
                 item.getOwnerId(), userRepository.findById(item.getOwnerId())
-                .map(UserDTO::getFullName).orElse(""));
+                .map(UserDTO::getFullName).orElse(""), item.getLanguage());
     }
-
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
-        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
-                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
+        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(),
+                item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
+                item.getEmail(), item.getCategory(), item.getSubcategory(),
+                item.getCoordinateX(), item.getCoordinateY(),
+                item.getPhone(), item.getWebsite(), item.getFacebook(),
+                item.getInstagram(), item.getDeletedAt(), item.getOwnerId(), item.getLanguage());
     }
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {
