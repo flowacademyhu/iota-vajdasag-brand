@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.mapper.TypeRef;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -58,6 +59,7 @@ class UserControllerTest {
     void loginwithSuperAdmin() {
         loginWithSuperadminWithToken();
     }
+    @Disabled
     @Test
     void approveRegistration() {
         UserDTO user = createUser();
@@ -77,6 +79,7 @@ class UserControllerTest {
     void loginwithCompanyAdmin() {
         login("kissimre@jusoft.com", "Aa123456");
     }
+    @Disabled
     @Test
     void deleteUser() {
         UserDTO user = createUser();
