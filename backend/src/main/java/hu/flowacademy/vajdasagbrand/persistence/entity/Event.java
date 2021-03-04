@@ -1,38 +1,26 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.cloud.Timestamp;
+import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Data
-@Table(name = "EventTable")
-@Entity
 @NoArgsConstructor
 public class Event {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
-    @Lob
     private String bio;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime eventstart;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime eventend;
+    private Timestamp eventstart;
+    private Timestamp eventend;
     private String place;
-    @ManyToOne
-    private Item item;
+    private String itemId;
 
     public static Event fromDTO(EventDTO eventDTO) {
         return Event.builder()
@@ -40,9 +28,9 @@ public class Event {
                 .name(eventDTO.getName())
                 .bio(eventDTO.getBio())
                 .place(eventDTO.getPlace())
-                .eventstart(eventDTO.getEventstart())
-                .eventend(eventDTO.getEventend())
-                .item(Item.builder().id(eventDTO.getItemId()).build())
+                .eventstart(TimestampConverter.toTimestamp(eventDTO.getEventstart()))
+                .eventend(TimestampConverter.toTimestamp(eventDTO.getEventend()))
+                .itemId(eventDTO.getItemId())
                 .build();
     }
 
@@ -51,10 +39,10 @@ public class Event {
                 .id(id)
                 .name(name)
                 .bio(bio)
-                .eventstart(eventstart)
-                .eventend(eventend)
+                .eventstart(TimestampConverter.toLocalDateTime(eventstart))
+                .eventend(TimestampConverter.toLocalDateTime(eventend))
                 .place(place)
-                .itemId(item.getId())
+                .itemId(itemId)
                 .build();
     }
 }
