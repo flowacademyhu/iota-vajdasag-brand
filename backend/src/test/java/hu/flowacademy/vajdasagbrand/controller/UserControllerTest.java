@@ -21,6 +21,7 @@ import java.util.function.Predicate;
 import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.*;
 import static io.restassured.RestAssured.given;
 
+@Disabled
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Slf4j
@@ -59,7 +60,7 @@ class UserControllerTest {
     void loginwithSuperAdmin() {
         loginWithSuperadminWithToken();
     }
-    @Disabled
+
     @Test
     void approveRegistration() {
         UserDTO user = createUser();
@@ -79,7 +80,7 @@ class UserControllerTest {
     void loginwithCompanyAdmin() {
         login("kissimre@jusoft.com", "Aa123456");
     }
-    @Disabled
+
     @Test
     void deleteUser() {
         UserDTO user = createUser();
