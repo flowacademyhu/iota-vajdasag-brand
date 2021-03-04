@@ -123,13 +123,14 @@ public class ItemService {
         tempItem.setEmail(item.getEmail());
     }
 
-    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication) throws ValidationException {
+    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId) throws ValidationException {
+        List<ItemDTO> items = ownerId.map(itemRepository::findByOwnerId).orElseGet(itemRepository::findAll);
         if (isUserSuperAdmin(authentication)) {
-            return itemRepository.findAll().stream()
+            return items.stream()
                     .map(this::createSuperAdminDTO)
                     .collect(Collectors.toList());
         } else if (isUserCegAdmin(authentication)) {
-            return itemRepository.findAll().stream()
+            return items.stream()
                     .map(this::createCegAdminDTO)
                     .collect(Collectors.toList());
         } else {

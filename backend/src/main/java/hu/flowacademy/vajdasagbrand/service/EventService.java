@@ -4,9 +4,15 @@ import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -14,6 +20,13 @@ import org.springframework.util.StringUtils;
 public class EventService {
 
     private final EventRepository eventRepository;
+
+    @Value("${eventController.defaultOrderCategory}")
+    private String defaultOrderCategory;
+    @Value("${eventController.defaultPageNumber}")
+    private int defaultPageNumber;
+    @Value("${eventController.defaultPageLimit}")
+    private int defaultPageLimit;
 
     public EventDTO createEvent(EventDTO event) throws ValidationException {
         validateEventData(event);
@@ -45,5 +58,9 @@ public class EventService {
         if (event.getEventstart().equals(event.getEventend())) {
             throw new ValidationException("The event starting time is at the same time with the end time.");
         }
+    }
+
+    public Page<EventDTO> listEvents(Optional<String> orderBy, Optional<Integer> pageNum, Optional<Integer> limit) {
+        return eventRepository.findAllEvents(PageRequest.of(pageNum.orElse(defaultPageNumber), limit.orElse(defaultPageLimit), Sort.by(Sort.Direction.DESC, orderBy.orElse(defaultOrderCategory))));
     }
 }

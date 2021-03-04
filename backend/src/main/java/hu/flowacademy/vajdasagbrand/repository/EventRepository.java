@@ -4,6 +4,8 @@ import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Event;
 import hu.flowacademy.vajdasagbrand.persistence.repository.EventJPARepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -14,5 +16,9 @@ public class EventRepository {
 
     public EventDTO save(EventDTO eventDTO) {
         return eventRepository.save(Event.fromDTO(eventDTO)).toDTO();
+    }
+
+    public Page<EventDTO> findAllEvents(Pageable pageable) {
+        return eventRepository.findAll(pageable).map(Event::toDTO);
     }
 }
