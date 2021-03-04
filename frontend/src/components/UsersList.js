@@ -59,16 +59,18 @@ const UsersList = () => {
           sortKey={sortKey}
           headerCellNames={headerCellNamesUsers}
         />
-        {users?.map((user) => (
-          <ListElement
-            user={user}
-            key={user.id}
-            handleDelete={handleDelete}
-            sendRegistrationApproval={sendRegistrationApproval}
-            setShowConfirmDeletion={setShowConfirmDeletion}
-            showConfirmDeletion={showConfirmDeletion}
-          />
-        ))}
+        <tbody>
+          {users?.map((user) => (
+            <ListElement
+              user={user}
+              key={user.id}
+              handleDelete={handleDelete}
+              sendRegistrationApproval={sendRegistrationApproval}
+              setShowConfirmDeletion={setShowConfirmDeletion}
+              showConfirmDeletion={showConfirmDeletion}
+            />
+          ))}
+        </tbody>
       </table>
       <ResponseModal
         onClose={onClose}
