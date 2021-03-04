@@ -5,7 +5,6 @@ const EventList = () => {
   return (
     <div>
       <h1>EVENT LIST</h1>
-      <AddEventButton></AddEventButton>
     </div>
   )
 }
