@@ -2,11 +2,14 @@ package hu.flowacademy.vajdasagbrand.dto;
 
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Language;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.Map;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,4 +33,5 @@ public class CegAdminItemDTO {
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
     private String ownerId;
+    private Map<Language, SimpleItemDTO> language;
 }
