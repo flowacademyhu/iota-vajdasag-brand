@@ -18,10 +18,18 @@ const AddEventPage = () => {
   const { productId } = useParams()
 
   const handleSubmit = async (newEvent) => {
-    console.log(moment(startDate).format('YYYY.MM.DD HH:MM'))
-    console.log(moment(endDate).format('YYYY.MM.DD HH:MM'))
+    const eventstart = moment(startDate).format('YYYY.MM.DD HH:MM:SS')
+    const eventend = moment(endDate).format('YYYY.MM.DD HH:MM:SS')
+
+    const newProgram = {
+      ...newEvent,
+      eventstart,
+      eventend,
+      itemId: productId,
+    }
+
     try {
-      await addEvent([...newEvent, { itemId: productId }])
+      await addEvent(newProgram)
     } catch (e) {}
   }
 
@@ -59,17 +67,16 @@ const AddEventPage = () => {
                 showTimeSelect
                 timeFormat="HH:mm"
                 timeIntervals={15}
-                timeCaption="time"
-                dateFormat="yyyy/MM/dd"
+                dateFormat="MMMM d, yyyy h:mm aa"
               />
               <DatePicker
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 showTimeSelect
-                timeFormat="yyyy.MM.dd"
+                timeFormat="HH:mm"
                 timeIntervals={15}
                 timeCaption="time"
-                dateFormat="yyyy.MM.dd "
+                dateFormat="MMMM d, yyyy h:mm aa"
               />
             </div>
             <Button variant="primary" type="submit" size="lg">
