@@ -22,7 +22,7 @@ const DeleteProductButton = ({ productId }) => {
   const deleteUser = async () => {
     setShowConfirmDeletion(false)
     try {
-      await deleteProduct(1)
+      await deleteProduct(productId)
       confirmModalHandler(true)
     } catch (error) {
       confirmModalHandler(false)
