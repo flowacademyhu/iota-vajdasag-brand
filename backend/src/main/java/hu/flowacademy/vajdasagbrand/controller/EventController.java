@@ -32,4 +32,11 @@ public class EventController {
                                     @RequestParam(value = "limit", required = false) Optional<Integer> limit) {
         return eventService.listEvents(orderBy, pageNum, limit);
     }
+
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @PutMapping("/events/{id}")
+    public EventDTO updateEvent(@PathVariable("id") String id,
+                                @RequestBody EventDTO event) throws ValidationException {
+        return eventService.updateEvent(event, id);
+    }
 }
