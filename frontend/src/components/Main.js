@@ -39,8 +39,8 @@ const Main = () => {
         </div>
       </div>
       <Router>
-        <div className="container-fluid p-0">
-          <div className="row">
+        <div className="container-fluid">
+          <div className="row no-gutters">
             {token && (
               <div className="col-3">
                 <Menu />
@@ -52,7 +52,7 @@ const Main = () => {
                   <div>{t('companyAdmin')}</div>
                 </Route>
                 <Route path="/super-admin">
-                  <div className="col-9">
+                  <div className="col-9 p-2">
                     <SuperAdmin />
                   </div>
                 </Route>
