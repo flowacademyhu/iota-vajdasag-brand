@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import useUsers from '../hooks/useUsers'
 import ResponseModal from '../components/modals/ResponseModal'
-import ListElement from './listofusers/ListElement'
+import UserListElement from './listofusers/UserListElement'
 import Searchbar from './Searchbar'
 import ListHeader from './listofusers/ListHeader'
 
@@ -59,7 +59,7 @@ const UsersList = () => {
         />
         <tbody>
           {users?.map((user) => (
-            <ListElement
+            <UserListElement
               user={user}
               key={user.id}
               handleDelete={handleDelete}

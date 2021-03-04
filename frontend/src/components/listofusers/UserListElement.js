@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import OperationButtons from './OperationButtons'
 import TheUsersProductsButton from './TheUsersProductsButton'
 
-const ListElement = ({
+const UserListElement = ({
   user,
   sendRegistrationApproval,
   setShowConfirmDeletion,
@@ -34,4 +34,4 @@ const ListElement = ({
   )
 }
 
-export default ListElement
+export default UserListElement

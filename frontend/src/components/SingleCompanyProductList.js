@@ -5,7 +5,7 @@ import ListElement from './listOfProducts/ListElement'
 import ProductTable from './ProductTable'
 //import { useLocation } from 'react-router-dom'
 import ListHeader from './listofusers/ListHeader'
-import ListElement from './listofusers/ListElement'
+import UserListElement from './listofusers/UserListElement'
 import useUserById from '../hooks/useUserById'
 
 const SingleCompanyProductList = () => {
@@ -22,7 +22,7 @@ const SingleCompanyProductList = () => {
       <ListHeader />
       <tbody>
           {theUser?.map((user) => (
-            <ListElement
+            <UserListElement
               user={user}
               key={user.id}
             />
