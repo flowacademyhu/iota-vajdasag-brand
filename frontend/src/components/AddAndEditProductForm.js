@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 const defaultSimpleProduct = {
   name: '',
   bio: '',
-  website: ''
+  website: '',
 }
 
 const defaultValues = {
@@ -20,9 +20,13 @@ const defaultValues = {
   coordinateY: '',
   phone: '',
   score: '',
-  language: {en:defaultSimpleProduct, hu:defaultSimpleProduct, sr:defaultSimpleProduct},
+  language: {
+    en: defaultSimpleProduct,
+    hu: defaultSimpleProduct,
+    sr: defaultSimpleProduct,
+  },
   category: 'ATTRACTION',
-  subcategory: 'HONOURABLES'
+  subcategory: 'HONOURABLES',
 }
 
 const AddAndEditProductForm = ({
@@ -54,13 +58,16 @@ const AddAndEditProductForm = ({
       >
         <Form>
           <div className="row mb-3">
-            <label className="col-auto col-form-label" htmlFor="currentLanguage">
+            <label
+              className="col-auto col-form-label"
+              htmlFor="currentLanguage"
+            >
               {t('editProduct.language')}:
             </label>
             <div className="col-sm-3">
               <Field
                 as="select"
-                className="form-select "
+                className="form-select"
                 name="currentLanguage"
                 id="currentLanguage"
                 value={currentLanguage}
