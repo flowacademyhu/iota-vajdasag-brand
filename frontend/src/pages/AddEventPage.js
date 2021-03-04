@@ -12,14 +12,14 @@ import eventAddValidation from '../validations/eventAddValidation'
 import { addEvent } from '../communications/userApi'
 import moment from 'moment'
 
-registerLocale('hu', hu)
-
 const AddEventPage = () => {
   const { t } = useTranslation()
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const { productId } = useParams()
   let history = useHistory()
+
+  registerLocale('hu', hu)
 
   const handleSubmit = async (eventData) => {
     try {
