@@ -101,3 +101,12 @@ export const getAllEvents = async () => {
     throw new Error("Error when getting all Events")
   }
 }
+
+export const getEventsById = async(productId) => {
+  try {
+    return await api.get('/events?item_Id=' + productId)
+  } catch (error) {
+
+  }
+}
+
