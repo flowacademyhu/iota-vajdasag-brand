@@ -141,7 +141,8 @@
     "save": "Save product",
     "required": "Required field!",
     "maxHundred": "Field can contain maximum 100 characters.",
-    "maxThousand": "Field can contain maximum 1000 characters."
+    "maxThousand": "Field can contain maximum 1000 characters.",
+    "unsuccessful": "Product creation was unsuccessful."
   },
   "welcome": "Welcome"
 }

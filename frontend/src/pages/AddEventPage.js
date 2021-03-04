@@ -45,8 +45,6 @@ const AddEventPage = () => {
     setShowResponseModal(false)
   }
 
-  const title = t('eventAdd.unsuccessful')
-
   return (
     <>
       <Formik
@@ -109,7 +107,7 @@ const AddEventPage = () => {
       <ResponseModal
         onClose={onClose}
         showResponseModal={showResponseModal}
-        title={title}
+        title={t('eventAdd.unsuccessful')}
       />
     </>
   )

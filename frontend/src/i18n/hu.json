@@ -141,7 +141,8 @@
     "save": "Mentés",
     "required": "A mező kitöltése kötelező!",
     "maxHundred": "Legfeljebb 100 karakter megadása lehetséges.",
-    "maxThousand": "Legfeljebb 1000 karakter megadása lehetséges."
+    "maxThousand": "Legfeljebb 1000 karakter megadása lehetséges.",
+    "unsuccessful": "Esemény hozzáadása sikertelen."
   },
   "welcome": "Üdvözöljük"
 }
