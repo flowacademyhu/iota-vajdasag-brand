@@ -138,7 +138,10 @@
     "name": "Cím",
     "place": "Helyszín",
     "title": "Esemény hozzáadása",
-    "save": "Mentés"
+    "save": "Mentés",
+    "required": "A mező kitöltése kötelező!",
+    "maxHundred": "Legfeljebb 100 karakter megadása lehetséges.",
+    "maxThousand": "Legfeljebb 1000 karakter megadása lehetséges."
   },
   "welcome": "Üdvözöljük"
 }

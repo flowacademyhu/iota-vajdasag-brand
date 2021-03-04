@@ -138,7 +138,10 @@
     "name": "Naslov",
     "place": "Mesto",
     "title": "Dodaj novi događaj",
-    "save": "Dodaj"
+    "save": "Dodaj",
+    "required": "Popunjavanje polja je obavezno!",
+    "maxHundred": "Najviše 100 karaktera je omogućeno.",
+    "maxThousand": "Najviše 1000 karaktera je omogućeno."
   },
   "welcome": "Pozdrav"
 }

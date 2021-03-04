@@ -1,12 +1,14 @@
 import * as Yup from 'yup'
 
-const eventAddValidation = () =>
+const eventAddValidation = (
+  requiredMessage,
+  maxHundredChars,
+  maxThousandChars
+) =>
   Yup.object().shape({
-    name: Yup.string().max(50),
-    bio: Yup.string().max(1000),
-    eventstart: Yup.number().min(-90).max(90),
-    eventend: Yup.number().min(-180).max(180),
-    place: Yup.string(),
+    name: Yup.string().max(100, maxHundredChars).required(requiredMessage),
+    bio: Yup.string().max(1000, maxThousandChars).required(requiredMessage),
+    place: Yup.string().max(100, maxHundredChars).required(requiredMessage),
   })
 
 export default eventAddValidation

@@ -138,7 +138,10 @@
     "name": "Title",
     "place": "Place",
     "title": "Add product",
-    "save": "Save product"
+    "save": "Save product",
+    "required": "Required field!",
+    "maxHundred": "Field can contain maximum 100 characters.",
+    "maxThousand": "Field can contain maximum 1000 characters."
   },
   "welcome": "Welcome"
 }

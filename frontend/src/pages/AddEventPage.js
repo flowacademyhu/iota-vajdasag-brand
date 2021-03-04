@@ -48,7 +48,11 @@ const AddEventPage = () => {
           eventend: '',
           place: '',
         }}
-        validationSchema={eventAddValidation(t('registration.required'))}
+        validationSchema={eventAddValidation(
+          t('eventList.required'),
+          t('eventList.maxHundred'),
+          t('eventList.maxThousand')
+        )}
         onSubmit={handleSubmit}
       >
         <Form>
