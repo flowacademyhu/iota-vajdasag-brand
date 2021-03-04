@@ -14,16 +14,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import javax.transaction.Transactional;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -98,5 +95,9 @@ public class UserService {
 
     public void sendApprovalEmail(String email) {
         emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + uiProperties.getLoginUrl()  + "\n \nWelcome to Vajdasag Brand!");
+    }
+
+    public UserDTO getSingleUser(String id) throws ValidationException {
+        return userRepository.findById(id).orElseThrow(() -> new ValidationException("No user with given id"));
     }
 }

@@ -6,13 +6,13 @@ import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Language;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class ItemService {
 
     private final ItemRepository itemRepository;
@@ -121,10 +120,12 @@ public class ItemService {
         tempItem.setSubcategory(item.getSubcategory());
         tempItem.setContact(item.getContact());
         tempItem.setEmail(item.getEmail());
+        tempItem.setLanguage(item.getLanguage());
     }
 
-    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId) throws ValidationException {
-        List<ItemDTO> items = ownerId.map(itemRepository::findByOwnerId).orElseGet(itemRepository::findAll);
+    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId, Optional<Language> language) throws ValidationException {
+        List<ItemDTO> items = ownerId.map(oid -> itemRepository.findByOwnerId(oid, language.orElse(Language.hu)))
+                .orElseGet(() -> itemRepository.findAll(language.orElse(Language.hu)));
         if (isUserSuperAdmin(authentication)) {
             return items.stream()
                     .map(this::createSuperAdminDTO)
@@ -158,12 +159,15 @@ public class ItemService {
         return new SuperAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
                 item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(),
                 item.getOwnerId(), userRepository.findById(item.getOwnerId())
-                .map(UserDTO::getFullName).orElse(""));
+                .map(UserDTO::getFullName).orElse(""), item.getLanguage());
     }
-
     public CegAdminItemDTO createCegAdminDTO(ItemDTO item) {
-        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(), item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
-                item.getEmail(), item.getCategory(), item.getSubcategory(), item.getCoordinateX(), item.getCoordinateY(), item.getPhone(), item.getWebsite(), item.getFacebook(), item.getInstagram(), item.getDeletedAt(), item.getOwnerId());
+        return new CegAdminItemDTO(item.getId(), item.getName(), item.getScore(),
+                item.getBio(), item.getAddress(), item.getContact(), item.getCity(),
+                item.getEmail(), item.getCategory(), item.getSubcategory(),
+                item.getCoordinateX(), item.getCoordinateY(),
+                item.getPhone(), item.getWebsite(), item.getFacebook(),
+                item.getInstagram(), item.getDeletedAt(), item.getOwnerId(), item.getLanguage());
     }
 
     public CegAdminItemDTO findOneProduct(String id) throws ValidationException {

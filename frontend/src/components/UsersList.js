@@ -4,7 +4,8 @@ import useUsers from '../hooks/useUsers'
 import ResponseModal from '../components/modals/ResponseModal'
 import ListElement from './listofusers/ListElement'
 import Searchbar from './Searchbar'
-import ListHeader from './listofusers/ListHeader'
+import ListHeader from './ListHeader'
+import { headerCellNamesUsers } from '../sortHelpers'
 
 const UsersList = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -56,6 +57,7 @@ const UsersList = () => {
           onColumnClick={onColumnClick}
           isSortAscending={isSortAscending}
           sortKey={sortKey}
+          headerCellNames={headerCellNamesUsers}
         />
         <tbody>
           {users?.map((user) => (

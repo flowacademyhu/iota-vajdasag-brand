@@ -1,10 +1,12 @@
 package hu.flowacademy.vajdasagbrand.repository;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.*;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.Query;
+import com.google.cloud.firestore.QuerySnapshot;
 import hu.flowacademy.vajdasagbrand.dto.EventDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Event;
-import hu.flowacademy.vajdasagbrand.persistence.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -12,8 +14,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
 @Repository
 @RequiredArgsConstructor
 public class EventRepository {
-    
+
     public static final String EVENTS = "events";
     public static final String CITIES = "cities";
     public static final String LANGUAGES = "languages";
@@ -39,12 +41,11 @@ public class EventRepository {
         return event.toDTO();
     }
 
-    public Page<EventDTO> findAllEvents(Pageable pageable) {
+    public Page<EventDTO> findAllEvents(Pageable pageable, Optional<String> itemId) {
         try {
             Query collection = firestore.collectionGroup(EVENTS);
-
             var query = pageable.getSort().stream().findFirst()
-                    .map(order -> collection.orderBy(order.getProperty(),
+                    .map(order -> itemId.map(s -> collection.whereEqualTo("itemId", s)).orElse(collection).orderBy(order.getProperty(),
                             order.isAscending() ? Query.Direction.ASCENDING : Query.Direction.DESCENDING))
                     .orElse(collection);
 
@@ -56,6 +57,19 @@ public class EventRepository {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return Page.empty();
+        }
+    }
+
+    public Optional<EventDTO> findById(String id) {
+        ApiFuture<QuerySnapshot> collections = firestore.collectionGroup(EVENTS).whereEqualTo("id", id).get();
+        try {
+            return collections.get().getDocuments().stream()
+                    .map(queryDocumentSnapshot -> queryDocumentSnapshot.toObject(Event.class))
+                    .map(Event::toDTO)
+                    .findFirst();
+        } catch (InterruptedException | ExecutionException e) {
+            log.error("No event found given id");
+            return Optional.empty();
         }
     }
 }
