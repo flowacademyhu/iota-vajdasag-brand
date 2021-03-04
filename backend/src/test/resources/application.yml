@@ -4,20 +4,6 @@ server:
 hu.flowacademy:
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
-    driverClassName: org.h2.Driver
-    username: sa
-    password: sa
-  jpa:
-    hibernate:
-      ddl-auto: update
-      use-new-id-generator-mappings: true
-
-  h2:
-    console:
-      enabled: true
-
   mail:
     username: vajdasagjusoft@gmail.com
     password: vtejyevwlqixdrtz
@@ -60,7 +46,7 @@ eventController:
 firestore:
   project_id: iota-vajdasag-brand-b3e95c95
   emulator:
-    host: localhost:8200
+    url: localhost:8200
   production:
     url:
     private_key_id:
