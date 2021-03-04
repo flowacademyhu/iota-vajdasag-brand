@@ -92,3 +92,12 @@ export const addProduct = async (data) => {
     throw new Error('Error when sending new product')
   }
 }
+
+export const addEvent = async (newEvent) => {
+  console.log(newEvent)
+  try {
+    return await api.post('/events', newEvent)
+  } catch (error) {
+    throw new Error('Error when creating new event.')
+  }
+}
