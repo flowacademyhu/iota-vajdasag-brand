@@ -99,4 +99,9 @@ public class UserService {
     public void sendApprovalEmail(String email) {
         emailService.sendMessage(email, "Registration approval", "Dear Customer! \n \nOnce you verified your email address you will be able to login by clicking on the following link: \n" + uiProperties.getLoginUrl()  + "\n \nWelcome to Vajdasag Brand!");
     }
+
+    public UserDTO getSingleUser(String id) throws ValidationException {
+        Optional<UserDTO> user = userRepository.findById(id);
+        return user.orElseThrow(() -> new ValidationException("No user with given id"));
+    }
 }
