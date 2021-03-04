@@ -1,4 +1,10 @@
-const headerCellNamesUsers = ['full_name', 'email', 'enabled', 'registeredAt']
+const headerCellNamesUsers = [
+  'full_name',
+  'email',
+  'enabled',
+  'registeredAt',
+  'id',
+]
 const headerCellNamesItems = [
   'name',
   'address',
