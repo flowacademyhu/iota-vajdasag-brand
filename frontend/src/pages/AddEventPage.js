@@ -16,20 +16,22 @@ const AddEventPage = () => {
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const { productId } = useParams()
+  let history = useHistory()
 
-  const handleSubmit = async (newEvent) => {
-    const eventstart = moment(startDate).format('YYYY.MM.DD HH:MM:SS')
-    const eventend = moment(endDate).format('YYYY.MM.DD HH:MM:SS')
-
-    const newProgram = {
-      ...newEvent,
-      eventstart,
-      eventend,
-      itemId: productId,
-    }
-
+  const handleSubmit = async (eventData) => {
     try {
+      const eventstart = moment(startDate).format('YYYY.MM.DD HH:MM:SS')
+      const eventend = moment(endDate).format('YYYY.MM.DD HH:MM:SS')
+
+      const newProgram = {
+        ...eventData,
+        eventstart,
+        eventend,
+        itemId: productId,
+      }
+
       await addEvent(newProgram)
+      history.push('/super-admin/items')
     } catch (e) {}
   }
 
@@ -48,19 +50,20 @@ const AddEventPage = () => {
       >
         <Form>
           <div className="d-flex flex-column justify-content-center align-content-center mx-auto">
-            <h3 className="text-center">{t('addEvent.title')}</h3>
-            <div className="my-2">
-              <InputField label={t('addEvent.name')} name="name" type="text" />
+            <h3 className="text-center">{t('eventList.title')}</h3>
+            <div className="m-2">
+              <InputField label={t('eventList.name')} name="name" type="text" />
             </div>
-            <div className="my-2">
-              <InputField label={t('addEvent.bio')} name="bio" type="text" />
+            <div className="m-2">
+              <InputField label={t('eventList.bio')} name="bio" type="text" />
             </div>
-            <div className="my-2">
+            <div className="m-2">
               <InputField
-                label={t('addEvent.place')}
+                label={t('eventList.place')}
                 name="place"
                 type="text"
               />
+              <h6 className="m-2">{t('eventList.startDate')}</h6>
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
@@ -69,6 +72,7 @@ const AddEventPage = () => {
                 timeIntervals={15}
                 dateFormat="MMMM d, yyyy h:mm aa"
               />
+              <h6 className="m-2">{t('eventList.endDate')}</h6>
               <DatePicker
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
@@ -79,8 +83,8 @@ const AddEventPage = () => {
                 dateFormat="MMMM d, yyyy h:mm aa"
               />
             </div>
-            <Button variant="primary" type="submit" size="lg">
-              {t('addEvent.save')}
+            <Button variant="primary" type="submit" size="lg" className="m-2">
+              {t('eventList.save')}
             </Button>
           </div>
         </Form>
