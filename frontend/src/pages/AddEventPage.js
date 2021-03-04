@@ -3,13 +3,16 @@ import { Formik, Form } from 'formik'
 import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker, { registerLocale } from 'react-datepicker'
+import hu from 'date-fns/locale/hu'
 import '../communications/userApi'
 import InputField from '../components/InputField'
 import eventAddValidation from '../validations/eventAddValidation'
 import { addEvent } from '../communications/userApi'
 import moment from 'moment'
+
+registerLocale('hu', hu)
 
 const AddEventPage = () => {
   const { t } = useTranslation()
@@ -20,8 +23,8 @@ const AddEventPage = () => {
 
   const handleSubmit = async (eventData) => {
     try {
-      const eventstart = moment(startDate).format('YYYY.MM.DD HH:MM:SS')
-      const eventend = moment(endDate).format('YYYY.MM.DD HH:MM:SS')
+      const eventstart = moment(startDate).format('YYYY.MM.DD hh:mm:ss')
+      const eventend = moment(endDate).format('YYYY.MM.DD hh:mm:ss')
 
       const newProgram = {
         ...eventData,
@@ -67,20 +70,21 @@ const AddEventPage = () => {
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
+                locale="hu"
                 showTimeSelect
-                timeFormat="HH:mm"
                 timeIntervals={15}
-                dateFormat="MMMM d, yyyy h:mm aa"
+                timeCaption="time"
+                dateFormat="yyyy MMMM d, h:mm aa"
               />
               <h6 className="m-2">{t('eventList.endDate')}</h6>
               <DatePicker
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
+                locale="hu"
                 showTimeSelect
-                timeFormat="HH:mm"
                 timeIntervals={15}
                 timeCaption="time"
-                dateFormat="MMMM d, yyyy h:mm aa"
+                dateFormat="yyyy MMMM d, h:mm aa"
               />
             </div>
             <Button variant="primary" type="submit" size="lg" className="m-2">
