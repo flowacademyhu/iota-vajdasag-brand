@@ -98,7 +98,6 @@ public class UserService {
     }
 
     public UserDTO getSingleUser(String id) throws ValidationException {
-        Optional<UserDTO> user = userRepository.findById(id);
-        return user.orElseThrow(() -> new ValidationException("No user with given id"));
+        return userRepository.findById(id).orElseThrow(() -> new ValidationException("No user with given id"));
     }
 }
