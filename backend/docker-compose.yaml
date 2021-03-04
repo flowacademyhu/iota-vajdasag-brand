@@ -14,8 +14,18 @@ services:
       context: .
     container_name: vajdasagbrand
     hostname: vajdasagbrand
-    environment:
+    environment: 
       - keycloak.auth-server-url=http://keycloak:8080/auth
       - keycloakBackendClient.serverUrl=http://keycloak:8080/auth
+      - firestore.emulator.host=firebase:8200
     ports:
       - 8080:8080
+  firebase:
+    image: borosr/firebase-emulator
+    hostname: firebase
+    ports:
+      - 4141:4141
+      - 8200:8200
+    environment:
+      - PROJECT_ID=iota-vajdasag-brand-b3e95c95
+      - FIRESTORE_PORT=8200

@@ -14,7 +14,6 @@ const AddAndEditProductPage = () => {
   const type = location.pathname.includes('edit') ? 'update' : 'add'
   const [product, setProduct] = useState('')
   const [showResponseModal, setShowResponseModal] = useState(false)
-  const [responseModalTitle, setResponseModalTitle] = useState('')
   const [isEditSuccessful, setEditSuccessful] = useState(false)
   const { productId } = useParams()
   const { t } = useTranslation()
@@ -34,21 +33,15 @@ const AddAndEditProductPage = () => {
     try {
       if (type === 'update') {
         await updateProductData(product.id, newProductValues)
-        setResponseModalTitle(t('editProduct.successfulEdition'))
-        setShowResponseModal(true)
-        setEditSuccessful(true)
       } else {
         newProductValues.score = 0
         await addProduct(newProductValues)
-        setResponseModalTitle(t('editProduct.successfulEdition'))
-        setShowResponseModal(true)
-        setEditSuccessful(true)
       }
+      setEditSuccessful(true)
     } catch (error) {
-      setResponseModalTitle(t('editProduct.unsuccessfulEdition'))
-      setShowResponseModal(true)
       setEditSuccessful(false)
     }
+    setShowResponseModal(true)
   }
 
   const onClose = () => {
@@ -57,6 +50,15 @@ const AddAndEditProductPage = () => {
       history.push('/super-admin/items')
     }
   }
+
+  const responseModalTitle = isEditSuccessful
+    ? t('editProduct.successfulEdition')
+    : t('editProduct.unsuccessfulEdition')
+
+  const title =
+    type === 'update'
+      ? t('editProduct.title')
+      : t('editProduct.addNewItemTitle')
 
   return (
     (type === 'add' || product) && (
@@ -69,11 +71,7 @@ const AddAndEditProductPage = () => {
           showResponseModal={showResponseModal}
           responseModalTitle={responseModalTitle}
           setShowResponseModal={setShowResponseModal}
-          title={
-            type === 'update'
-              ? t('editProduct.title')
-              : t('editProduct.addNewItemTitle')
-          }
+          title={title}
         />
       </div>
     )
