@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
 import ProductTable from './ProductTable'
 import ListElement from './listOfProducts/ListElement'
+import AddNewProductButton from './listofproducts/AddNewProductButton'
 import Searchbar from './Searchbar'
 
 const FullProductList = () => {
@@ -10,6 +11,7 @@ const FullProductList = () => {
 
   return (
     <>
+      <AddNewProductButton />
       <Searchbar
         searchKeyword={searchKeyword}
         setSearchKeyword={setSearchKeyword}
