@@ -21,7 +21,7 @@ module.exports = {
         return value
       },
       acorn: {
-        ecmaVersion: 10,
+        ecmaVersion: 11,
         sourceType: 'module',
       },
     },

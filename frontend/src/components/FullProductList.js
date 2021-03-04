@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
 import ListElement from './listOfProducts/ListElement'
-import ListHeader from './ListHeader'
+import AddNewProductButton from './listofproducts/AddNewProductButton'
 import Searchbar from './Searchbar'
 import { headerCellNamesItems } from '../sortHelpers'
 
