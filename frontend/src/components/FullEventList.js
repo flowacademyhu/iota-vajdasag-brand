@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getAllEvents } from '../communications/userApi'
+import ListElements from "../components/listofevents/ListElements";
 
 const FullEventList = () => {
     const [events, setEvents] = useState()
@@ -20,12 +21,15 @@ const FullEventList = () => {
 
 
     return (
-        <>
-        { events?.map(event=> (
-            <h1>{event.name}</h1>
-        ))}
-            
-        </>
+        <div className="table-responsive">
+            <table className="table table-striped table-sm">
+                <tbody>
+                    {events?.map(event => (
+                        <ListElements event={event} />
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }
 
