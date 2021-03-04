@@ -7,7 +7,9 @@ const AddNewProductButton = () => {
   const { t } = useTranslation()
   return (
     <Link to="/super-admin/items/new-item">
-      <Button className="m-2">{t('editProduct.addNewProduct')}</Button>
+      <Button variant="success" className="m-2">
+        {t('editProduct.addNewProduct')}
+      </Button>
     </Link>
   )
 }

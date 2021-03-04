@@ -8,7 +8,7 @@ const AddEventButton = ({ productId }) => {
 
   return (
     <Link to={`/super-admin/add-event/${productId}`}>
-      <Button> {t('eventList.addEvent')}</Button>
+      <Button variant="success"> {t('eventList.addEvent')}</Button>
     </Link>
   )
 }
