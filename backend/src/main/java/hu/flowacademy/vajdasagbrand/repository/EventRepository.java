@@ -41,12 +41,11 @@ public class EventRepository {
         return event.toDTO();
     }
 
-    public Page<EventDTO> findAllEvents(Pageable pageable) {
+    public Page<EventDTO> findAllEvents(Pageable pageable, Optional<String> itemId) {
         try {
             Query collection = firestore.collectionGroup(EVENTS);
-
             var query = pageable.getSort().stream().findFirst()
-                    .map(order -> collection.orderBy(order.getProperty(),
+                    .map(order -> itemId.map(s -> collection.whereEqualTo("itemId", s)).orElse(collection).orderBy(order.getProperty(),
                             order.isAscending() ? Query.Direction.ASCENDING : Query.Direction.DESCENDING))
                     .orElse(collection);
 
