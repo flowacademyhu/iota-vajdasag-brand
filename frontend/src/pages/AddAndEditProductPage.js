@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
-import validationEdit from '../validations/validationEdit'
+import itemEditValidation from '../validations/itemEditValidation'
 import {
   updateProductData,
   fetchOneProduct,
@@ -67,7 +67,7 @@ const AddAndEditProductPage = () => {
           onClose={onClose}
           handleSubmit={handleSubmit}
           product={product}
-          validationEdit={validationEdit}
+          itemEditValidation={itemEditValidation}
           showResponseModal={showResponseModal}
           responseModalTitle={responseModalTitle}
           setShowResponseModal={setShowResponseModal}
