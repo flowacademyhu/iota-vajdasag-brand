@@ -142,7 +142,8 @@
     "required": "Popunjavanje polja je obavezno!",
     "maxHundred": "Najviše 100 karaktera je omogućeno.",
     "maxThousand": "Najviše 1000 karaktera je omogućeno.",
-    "unsuccessful": "Dodavanje događaja je neuspešno."
+    "unsuccessful": "Dodavanje događaja je neuspiješno.",
+    "successful": "Dodavanje događaja je uspiješno."
   },
   "welcome": "Pozdrav"
 }

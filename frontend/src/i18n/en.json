@@ -142,7 +142,8 @@
     "required": "Required field!",
     "maxHundred": "Field can contain maximum 100 characters.",
     "maxThousand": "Field can contain maximum 1000 characters.",
-    "unsuccessful": "Product creation was unsuccessful."
+    "unsuccessful": "Event creation was unsuccessful.",
+    "successful": "Event creation was successful."
   },
   "welcome": "Welcome"
 }
