@@ -8,6 +8,7 @@ const useProducts = (searchKeyword) => {
 
   const getAllProducts = async () => {
     const fetchedProducts = await fetchProducts()
+    console.log(fetchedProducts)
     setListOfAllProducts(fetchedProducts)
   }
 

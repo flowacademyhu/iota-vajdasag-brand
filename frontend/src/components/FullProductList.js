@@ -9,7 +9,7 @@ const FullProductList = () => {
   const { products } = useProducts(searchKeyword)
 
   return (
-    <>
+    <div>
       <Searchbar
         searchKeyword={searchKeyword}
         setSearchKeyword={setSearchKeyword}
@@ -24,9 +24,8 @@ const FullProductList = () => {
           />
         ))}
       </ProductTable>
-    </>
+    </div>
   )
 }
 
 export default FullProductList
-//listOfAllProducts vagy products
