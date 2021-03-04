@@ -1,5 +1,4 @@
 import React from 'react'
-import AddEventButton from '../components/listofevents/AddEventButton'
 
 const EventList = () => {
   return (
