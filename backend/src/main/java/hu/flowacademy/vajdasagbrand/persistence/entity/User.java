@@ -1,29 +1,19 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
+import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder(toBuilder = true)
-@Table(name = "UserTable")
 public class User {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String fullName;
     private String taxNumber;
@@ -31,10 +21,8 @@ public class User {
     private String email;
     private Type type;
     private boolean enabled;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime registeredAt;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime deletedAt;
+    private Timestamp registeredAt;
+    private Timestamp deletedAt;
 
     public static User fromDTO(UserDTO userDTO) {
         return User.builder()
@@ -45,8 +33,8 @@ public class User {
                 .email(userDTO.getEmail())
                 .type(userDTO.getType())
                 .enabled(userDTO.isEnabled())
-                .registeredAt(userDTO.getRegisteredAt())
-                .deletedAt(userDTO.getDeletedAt())
+                .registeredAt(TimestampConverter.toTimestamp(userDTO.getRegisteredAt()))
+                .deletedAt(TimestampConverter.toTimestamp(userDTO.getDeletedAt()))
                 .build();
     }
 
@@ -59,8 +47,8 @@ public class User {
                 .email(email)
                 .type(type)
                 .enabled(enabled)
-                .registeredAt(registeredAt)
-                .deletedAt(deletedAt)
+                .registeredAt(TimestampConverter.toLocalDateTime(registeredAt))
+                .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
                 .build();
     }
 }
