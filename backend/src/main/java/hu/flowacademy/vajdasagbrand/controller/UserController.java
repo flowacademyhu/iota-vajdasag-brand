@@ -70,6 +70,12 @@ public class UserController {
                 limit.orElse(defaultPageLimit));
     }
 
+    @RolesAllowed({"SuperAdmin", "CegAdmin"})
+    @GetMapping("/users/{id}")
+    public UserDTO getSingleUser(@PathVariable("id")String id) throws ValidationException {
+        return userService.getSingleUser(id);
+    }
+
     @PermitAll
     @PostMapping("/forgottenpassword")
     public boolean sendForgottenPassword(@RequestBody ForgottenPasswordDTO forgottenPasswordDTO) {
