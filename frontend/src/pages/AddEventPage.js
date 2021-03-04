@@ -27,7 +27,6 @@ const AddEventPage = () => {
       await addEvent(newProgram)
       setEventCreationSuccessful(true)
       setShowResponseModal(true)
-      console.log(isEventCreationSuccessful)
     } catch (e) {
       setEventCreationSuccessful(false)
       setShowResponseModal(true)
