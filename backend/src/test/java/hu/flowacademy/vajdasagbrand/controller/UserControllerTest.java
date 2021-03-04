@@ -20,7 +20,6 @@ import java.util.function.Predicate;
 import static hu.flowacademy.vajdasagbrand.helpers.UserHelper.*;
 import static io.restassured.RestAssured.given;
 
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Slf4j
@@ -62,7 +61,8 @@ class UserControllerTest {
     @Test
     void approveRegistration() {
         UserDTO user = createUser();
-        String id = getUserByEmail((Predicate<UserDTO>) createUser()
+        String id = getUserByEmail(
+                userDTO -> user.getEmail().equalsIgnoreCase(userDTO.getEmail())
         ).getId();
         given().log().all()
                 .header(getAuthorization(loginWithSuperadminWithToken()))
@@ -80,7 +80,7 @@ class UserControllerTest {
     @Test
     void deleteUser() {
         UserDTO user = createUser();
-        String id = getUserByEmail((Predicate<UserDTO>) createUser()).getId();
+        String id = getUserByEmail(UserDTO::isEnabled).getId();
         given().log().all()
                 .header(getAuthorization(loginWithSuperadminWithToken()))
                 .pathParam("id", id)
@@ -93,9 +93,10 @@ class UserControllerTest {
     @Test
     void getUsers() {
         createUser();
-        getUserByEmail((Predicate<UserDTO>) createUser());
+        getUserByEmail(Predicate.isEqual(null));
     }
     private UserDTO getUserByEmail(Predicate<UserDTO> p) {
+        createUser();
         List<UserDTO> users = given().log().all()
                 .header(getAuthorization(loginWithSuperadminWithToken()))
                 .param("page", 3)
