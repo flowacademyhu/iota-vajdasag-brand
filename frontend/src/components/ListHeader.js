@@ -19,6 +19,7 @@ const ListHeader = ({
             onColumnClick={onColumnClick}
             isSortAscending={isSortAscending}
             sortKey={sortKey}
+            key={cellname}
           />
         ))}
         <th scope="col">{t('headerCell.actions')}</th>
