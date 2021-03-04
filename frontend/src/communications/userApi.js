@@ -94,7 +94,6 @@ export const addProduct = async (data) => {
 }
 
 export const addEvent = async (newProgram) => {
-  console.log('api call', newProgram)
   try {
     return await api.post('/events', newProgram)
   } catch (error) {
