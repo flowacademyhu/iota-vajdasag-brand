@@ -6,13 +6,15 @@
     "search": "Keresés"
   },
   "editProduct": {
+    "userId": "Felhasználó ID",
+    "selectSubCategory": "Válassz alkategóriát",
     "famous_buildings": "Nevezetes épületek",
     "honourables": "Büszkeségeink",
     "museums": "Múzeumok",
     "addNewItemTitle": "Termék hozzáadása",
     "addNewProduct": "Termék hozzáadása",
     "address": "Cím",
-    "bio": "bio",
+    "bio": "Leírás",
     "city": "Város",
     "contactName": "Kapcsolattartó neve",
     "coordinateX": "Szélességi fok",
@@ -57,14 +59,6 @@
     "items": "Termékek",
     "signout": "Kijelentkezés",
     "users": "Felhasználók"
-  },
-  "product": {
-    "address": "Cím",
-    "category": "Kategória",
-    "city": "Város",
-    "name": "Név",
-    "owner": "Tulajdonos",
-    "actions": "Lehetőségek"
   },
   "productList": {
     "close": "Bezárás",
@@ -123,12 +117,18 @@
     "confirmDeleteTitle": "Törlés megerősítése",
     "products": "Termékek"
   },
-  "userListHeader": {
-    "acceptedRegistration": "Sikeres regisztráció",
+  "headerCell": {
+    "enabled": "Sikeres regisztráció",
     "actions": "Lehetőségek",
-    "dateOfRegistration": "Regisztráció dátuma",
+    "registeredAt": "Regisztráció dátuma",
     "email": "E-mail",
-    "name": "Név"
+    "full_name": "Név",
+    "address": "Cím",
+    "category": "Kategória",
+    "city": "Város",
+    "id": "ID",
+    "name": "Név",
+    "ownerName": "Tulajdonos"
   },
   "eventList": {
     "addEvent": "Új esemény hozzáadása"
