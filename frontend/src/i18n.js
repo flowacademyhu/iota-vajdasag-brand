@@ -20,6 +20,5 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
 })
-export const getCurrentLanguage = () =>
-  i18n.language || window.localStorage.i18nextLng || ''
+
 export default i18n

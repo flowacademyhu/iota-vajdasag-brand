@@ -5,7 +5,6 @@ import InputField from '../components/InputField'
 import SelectCategory from '../components/listOfProducts/SelectCategory'
 import ResponseModal from '../components/modals/ResponseModal'
 import { useTranslation } from 'react-i18next'
-import { getCurrentLanguage } from '../i18n'
 
 const defaultValues = {
   name: '',
@@ -30,8 +29,8 @@ const AddAndEditProductForm = ({
   setShowResponseModal,
   title,
 }) => {
-  const { t } = useTranslation()
-  const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage())
+  const { t, i18n } = useTranslation()
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
 
   const initialValues = {
     ...defaultValues,
