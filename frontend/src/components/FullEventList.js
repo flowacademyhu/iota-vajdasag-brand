@@ -7,10 +7,11 @@ import { useLocation } from "react-router-dom";
 const FullEventList = (props) => {
     const [events, setEvents] = useState()
     const [error, setError] = useState()
-
     const location = useLocation()
 
     const getEvents = async () => {
+        const mode = location.state ? location.state : undefined
+        console.log('mode', mode)
         try {
             const response = await getAllEvents()
             setEvents(response.data.content)
@@ -21,7 +22,7 @@ const FullEventList = (props) => {
 
     useEffect(() => {
         getEvents()
-       console.log('location.state', location.state)
+        console.log('location.state', location.state)
     }, [])
 
 
