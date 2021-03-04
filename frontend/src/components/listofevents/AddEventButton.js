@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-const AddEventButton = () => {
+const AddEventButton = ({ productId }) => {
   const { t } = useTranslation()
 
   return (
-    <Link to={`/super-admin/add-event`}>
+    <Link to={`/super-admin/add-event/${productId}`}>
       <Button> {t('eventList.addEvent')}</Button>
     </Link>
   )
