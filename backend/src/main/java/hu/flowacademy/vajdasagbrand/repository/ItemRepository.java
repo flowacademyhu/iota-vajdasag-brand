@@ -31,12 +31,12 @@ public class ItemRepository{
     public ItemDTO save(ItemDTO itemDTO) {
         DocumentReference cities = firestore.collection(COLLECTION_CITIES).document(itemDTO.getCity().toLowerCase());
         cities.set(Map.of(LOCATION, new GeoPoint(Double.parseDouble(itemDTO.getCoordinateX()),Double.parseDouble(itemDTO.getCoordinateY()))));
-        DocumentReference lang = cities.collection(COLLECTION_LANGUAGES).document("hu");
+        DocumentReference lang = cities.collection(COLLECTION_LANGUAGES).document(itemDTO.getLanguage().name());
         lang.set(Map.of(CITYNAME, itemDTO.getCity()));
         DocumentReference categories = lang.collection(COLLECTION_CATEGORIES).document(Integer.toString(itemDTO.getCategory().getIndex()));
         categories.set(Map.of(NAME, itemDTO.getCategory().name())); //TODO translate
         if (itemDTO.getSubcategory() != null) {
-            categories = categories.collection(COLLECTION_SUBCATEGORIES).document("1");
+            categories = categories.collection(COLLECTION_SUBCATEGORIES).document(Integer.toString(itemDTO.getSubcategory().getIndex()));
             categories.set(Map.of(NAME, itemDTO.getSubcategory().name())); //TODO translate
         }
         Item item = Item.fromDTO(itemDTO);
