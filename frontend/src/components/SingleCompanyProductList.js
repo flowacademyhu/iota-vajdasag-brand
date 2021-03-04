@@ -3,17 +3,32 @@ import { useParams } from 'react-router-dom'
 import useProductsForCompany from './useProductsById'
 import ListElement from './listOfProducts/ListElement'
 import ProductTable from './ProductTable'
-import { useLocation } from 'react-router-dom'
+//import { useLocation } from 'react-router-dom'
+import ListHeader from './listofusers/ListHeader'
+import ListElement from './listofusers/ListElement'
+import useUserById from '../hooks/useUserById'
 
 const SingleCompanyProductList = () => {
   const { ownerId } = useParams()
   const companysProducts = useProductsForCompany(ownerId)
-  let location = useLocation()
-//  const { owner } = location.state
+  const theUser = useUserById(ownerId)
+  //let location = useLocation()
+  //  const { owner } = location.state
 
   return (
     <div>
-      {/*<h1 className="text-center">{owner}</h1>*/}, 
+      {/*<h1 className="text-center">{owner}</h1>*/},
+      <table className="table table-striped table-sm">
+      <ListHeader />
+      <tbody>
+          {theUser?.map((user) => (
+            <ListElement
+              user={user}
+              key={user.id}
+            />
+          ))}
+        </tbody>
+      </table>
       <ProductTable list="single">
         {companysProducts?.map((product) => (
           <ListElement product={product} key={product.id} />
