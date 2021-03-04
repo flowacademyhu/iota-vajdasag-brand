@@ -1,29 +1,48 @@
 import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
-import ProductTable from './ProductTable'
 import ProductListElement from './listOfProducts/ProductListElement'
+import ListHeader from './ListHeader'
+
+import AddNewProductButton from './listOfProducts/AddNewProductButton'
 import Searchbar from './Searchbar'
+import { headerCellNamesItems } from '../sortHelpers'
 
 const FullProductList = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
-  const { products } = useProducts(searchKeyword)
+  const {
+    products,
+    sortKey,
+    setSortKey,
+    isSortAscending,
+    setAscendingSort,
+  } = useProducts(searchKeyword)
+
+  const onColumnClick = (value) => {
+    setAscendingSort(!isSortAscending)
+    setSortKey(value)
+  }
 
   return (
-    <div>
-      <Searchbar
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-      />
-      <ProductTable list="full">
-        {products?.map((product) => (
-          <ProductListElement
-            product={product}
-            key={product.id}
-            searchKeyword={searchKeyword}
-            fullList
-          />
-        ))}
-      </ProductTable>
+    <div className="table-responsive">
+      <AddNewProductButton />
+      <Searchbar setSearchKeyword={setSearchKeyword} />
+      <table className="table table-striped table-sm">
+        <ListHeader
+          onColumnClick={onColumnClick}
+          sortKey={sortKey}
+          isSortAscending={isSortAscending}
+          headerCellNames={headerCellNamesItems}
+        />
+        <tbody>
+          {products?.map((product) => (
+            <ProductListElement
+              product={product}
+              key={product.id}
+              searchKeyword={searchKeyword}
+            />
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }

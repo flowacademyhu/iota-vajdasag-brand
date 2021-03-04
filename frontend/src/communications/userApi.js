@@ -101,3 +101,11 @@ export const fetchProducts = async () => {
     throw new Error('Error when fetching products from API.')
   }
 }
+
+export const addProduct = async (data) => {
+  try {
+    return await api.post('/items', data)
+  } catch (error) {
+    throw new Error('Error when sending new product')
+  }
+}

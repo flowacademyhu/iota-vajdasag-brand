@@ -20,6 +20,7 @@ const UserListElement = ({
         {user.enabled ? t('userListElement.yes') : t('userListElement.no')}
       </td>
       <td>{user.registeredAt}</td>
+      <td>{user.id}</td>
       <td>
         <OperationButtons
           user={user}

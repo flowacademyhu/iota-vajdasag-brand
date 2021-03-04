@@ -1,35 +1,26 @@
 package hu.flowacademy.vajdasagbrand.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.cloud.Timestamp;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
+import hu.flowacademy.vajdasagbrand.util.TimestampConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Data
-@Table(name = "ItemTable")
 public class Item {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String name;
     private String score;
-    @Lob
     private String bio;
     private String address;
     private String city;
-    @Enumerated(EnumType.STRING)
     private Category category;
     private Subcategory subcategory;
     private String coordinateX;
@@ -39,10 +30,8 @@ public class Item {
     private String website;
     private String facebook;
     private String instagram;
-    @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
-    private LocalDateTime deletedAt;
-    @ManyToOne
-    private User owner;
+    private Timestamp deletedAt;
+    private String ownerId;
 
     public static Item fromDTO(ItemDTO itemDTO) {
         return Item.builder()
@@ -61,8 +50,8 @@ public class Item {
                 .website(itemDTO.getWebsite())
                 .facebook(itemDTO.getFacebook())
                 .instagram(itemDTO.getInstagram())
-                .deletedAt(itemDTO.getDeletedAt())
-                .owner(User.builder().id(itemDTO.getOwnerId()).build())
+                .deletedAt(TimestampConverter.toTimestamp(itemDTO.getDeletedAt()))
+                .ownerId(itemDTO.getOwnerId())
                 .build();
     }
 
@@ -83,8 +72,8 @@ public class Item {
                 .website(website)
                 .facebook(facebook)
                 .instagram(instagram)
-                .deletedAt(deletedAt)
-                .ownerId(Optional.ofNullable(owner).map(User::getId).orElse(null))
+                .deletedAt(TimestampConverter.toLocalDateTime(deletedAt))
+                .ownerId(ownerId)
                 .build();
     }
 }
