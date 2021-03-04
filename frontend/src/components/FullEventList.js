@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { getAllEvents } from '../communications/userApi'
 import ListElements from "../components/listofevents/ListElements";
 import EventsListHeader from "../components/listofevents/EventsListHeader";
+import { useLocation } from "react-router-dom";
 
-const FullEventList = () => {
+const FullEventList = (props) => {
     const [events, setEvents] = useState()
     const [error, setError] = useState()
+
+    const location = useLocation()
 
     const getEvents = async () => {
         try {
@@ -18,13 +21,14 @@ const FullEventList = () => {
 
     useEffect(() => {
         getEvents()
+       console.log('location.state', location.state)
     }, [])
 
 
     return (
         <div className="table-responsive">
             <table className="table table-striped table-sm">
-                <EventsListHeader/>
+                <EventsListHeader />
                 <tbody>
                     {events?.map(event => (
                         <ListElements event={event} />

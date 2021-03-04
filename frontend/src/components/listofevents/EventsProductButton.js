@@ -6,17 +6,19 @@ import { Link } from 'react-router-dom'
 
 
 
-const EventsProductButton = () => {
+const EventsProductButton = ({ productId }) => {
   const { t } = useTranslation()
+ 
 
   return (
     <>
-      <Link to={{
-        pathname: "/super-admin/events",
-      search: "?sort=name",
-      hash: "#the-hash",
-      state: { fromDashboard: true }}}
-      >
+      <Link to={
+             {     
+               pathname: '/super-admin/events',
+               state:productId
+              }
+        }> 
+        {console.log('productId', productId)}
         <Button>
           {t("eventList.button")}
         </Button>
