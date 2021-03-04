@@ -2,6 +2,7 @@ package hu.flowacademy.vajdasagbrand.service;
 
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Language;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
@@ -10,13 +11,11 @@ import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Type;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
-import io.restassured.internal.RestAssuredResponseOptionsImpl;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -294,13 +293,13 @@ class ItemServiceTest {
     public void givenNonExistingAuthorization_whenListingItems_thenExceptionIsThrown() {
         Optional<Authentication> authentication = Optional.empty();
         Optional<String> ownerId = Optional.empty();
-        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication, ownerId));
+        assertThrows(ValidationException.class, () -> itemService.listProducts(authentication, ownerId, Optional.of(Language.hu)));
     }
 
     @Test
     public void givenUnauthorizedUser_whenListingItems_thenExceptionIsThrown() {
         assertThrows(ValidationException.class, () -> itemService
-                .listProducts(givenUnauthorizedUserListingItems(), Optional.of(OWNER_ID)));
+                .listProducts(givenUnauthorizedUserListingItems(), Optional.of(OWNER_ID), Optional.of(Language.hu)));
     }
     @Disabled
     @Test
@@ -308,9 +307,9 @@ class ItemServiceTest {
         givenItemRepositoryListingItems();
         givenUserRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenSuperAdminListingItems(), Optional.of(OWNER_ID)), is(givenSuperAdminItemDtoList()));
-        verify(itemRepository, times(1)).findAll();
-        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID);
+        assertThat(itemService.listProducts(givenSuperAdminListingItems(), Optional.of(OWNER_ID), Optional.of(Language.hu)), is(givenSuperAdminItemDtoList()));
+        verify(itemRepository, times(1)).findAll(Language.hu);
+        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID, Language.hu);
         verifyNoMoreInteractions(itemRepository);
     }
     @Disabled
@@ -318,9 +317,9 @@ class ItemServiceTest {
     public void givenCegAdmin_whenListingItems_thenCegAdminDtoIsReturned() throws ValidationException {
         givenItemRepositoryListingItems();
 
-        assertThat(itemService.listProducts(givenCegAdminListingItems(), Optional.of(OWNER_ID)), is(givenCegAdminItemDtoList()));
-        verify(itemRepository, times(1)).findAll();
-        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID);
+        assertThat(itemService.listProducts(givenCegAdminListingItems(), Optional.of(OWNER_ID), Optional.of(Language.hu)), is(givenCegAdminItemDtoList()));
+        verify(itemRepository, times(1)).findAll(Language.hu);
+        verify(itemRepository, times(1)).findByOwnerId(OWNER_ID, Language.hu);
         verifyNoMoreInteractions(itemRepository);
     }
 
@@ -342,8 +341,8 @@ class ItemServiceTest {
     }
 
     private void givenItemRepositoryListingItems() {
-        when(itemRepository.findAll()).thenReturn(List.of(givenItemWithDeletedAt()));
-        when(itemRepository.findByOwnerId(OWNER_ID)).thenReturn(List.of(givenItemWithDeletedAt()));
+        when(itemRepository.findAll(Language.hu)).thenReturn(List.of(givenItemWithDeletedAt()));
+        when(itemRepository.findByOwnerId(OWNER_ID, Language.hu)).thenReturn(List.of(givenItemWithDeletedAt()));
     }
 
     public void givenItemRepositoryFindingOneItemById() {

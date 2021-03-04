@@ -6,6 +6,7 @@ import hu.flowacademy.vajdasagbrand.dto.SuperAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.UserDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Language;
 import hu.flowacademy.vajdasagbrand.repository.ItemRepository;
 import hu.flowacademy.vajdasagbrand.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -121,8 +122,9 @@ public class ItemService {
         tempItem.setEmail(item.getEmail());
     }
 
-    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId) throws ValidationException {
-        List<ItemDTO> items = ownerId.map(itemRepository::findByOwnerId).orElseGet(itemRepository::findAll);
+    public List<CegAdminItemDTO> listProducts(Optional<Authentication> authentication, Optional<String> ownerId, Optional<Language> language) throws ValidationException {
+        List<ItemDTO> items = ownerId.map(oid -> itemRepository.findByOwnerId(oid, language.orElse(Language.hu)))
+                .orElseGet(() -> itemRepository.findAll(language.orElse(Language.hu)));
         if (isUserSuperAdmin(authentication)) {
             return items.stream()
                     .map(this::createSuperAdminDTO)

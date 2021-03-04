@@ -32,6 +32,7 @@ public class Item {
     private String instagram;
     private Timestamp deletedAt;
     private String ownerId;
+    private Language language;
 
     public static Item fromDTO(ItemDTO itemDTO) {
         return Item.builder()
