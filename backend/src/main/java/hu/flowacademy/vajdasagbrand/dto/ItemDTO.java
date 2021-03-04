@@ -2,6 +2,7 @@ package hu.flowacademy.vajdasagbrand.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Category;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Language;
 import hu.flowacademy.vajdasagbrand.persistence.entity.Subcategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,4 +35,5 @@ public class ItemDTO {
     @JsonFormat(pattern = ("yyyy.MM.dd HH:mm:ss"))
     private LocalDateTime deletedAt;
     private String ownerId;
+    private Language language;
 }
