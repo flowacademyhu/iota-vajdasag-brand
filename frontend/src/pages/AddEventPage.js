@@ -11,14 +11,15 @@ import InputField from '../components/InputField'
 import eventAddValidation from '../validations/eventAddValidation'
 import { addEvent } from '../communications/userApi'
 import moment from 'moment'
+import ResponseModal from '../components/modals/ResponseModal'
 
 const AddEventPage = () => {
   const { t } = useTranslation()
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
+  const [showResponseModal, setShowResponseModal] = useState(false)
   const { productId } = useParams()
   let history = useHistory()
-
   registerLocale('hu', hu)
 
   const handleSubmit = async (eventData) => {
@@ -35,8 +36,16 @@ const AddEventPage = () => {
 
       await addEvent(newProgram)
       history.push('/super-admin/items')
-    } catch (e) {}
+    } catch (e) {
+      setShowResponseModal(true)
+    }
   }
+
+  const onClose = () => {
+    setShowResponseModal(false)
+  }
+
+  const title = t('eventAdd.unsuccessful')
 
   return (
     <>
@@ -97,6 +106,11 @@ const AddEventPage = () => {
           </div>
         </Form>
       </Formik>
+      <ResponseModal
+        onClose={onClose}
+        showResponseModal={showResponseModal}
+        title={title}
+      />
     </>
   )
 }
