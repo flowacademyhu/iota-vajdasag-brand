@@ -77,19 +77,21 @@ const AddEventPage = () => {
                 type="text"
               />
             </div>
-            <div className="m-2">
-              <EventDatePicker
-                title={t('eventList.startDate')}
-                date={startDate}
-                setDate={setStartDate}
-              />
-            </div>
-            <div className="m-2">
-              <EventDatePicker
-                title={t('eventList.endDate')}
-                date={endDate}
-                setDate={setEndDate}
-              />
+            <div className="d-flex justify-content-around">
+              <div className="m-2">
+                <EventDatePicker
+                  title={t('eventList.startDate')}
+                  date={startDate}
+                  setDate={setStartDate}
+                />
+              </div>
+              <div className="m-2">
+                <EventDatePicker
+                  title={t('eventList.endDate')}
+                  date={endDate}
+                  setDate={setEndDate}
+                />
+              </div>
             </div>
             <Button variant="primary" type="submit" size="lg" className="m-2">
               {t('eventList.save')}
