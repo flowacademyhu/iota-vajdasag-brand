@@ -41,7 +41,7 @@ userController:
 firestore:
   project_id: iota-vajdasag-brand-b3e95c95
   emulator:
-    host: localhost:8200
+    url: localhost:8200
   production:
     private_key_id:
     private_key:
