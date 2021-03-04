@@ -131,7 +131,14 @@
     "ownerName": "Tulajdonos"
   },
   "eventList": {
-    "addEvent": "Új esemény hozzáadása"
+    "addEvent": "Új esemény",
+    "startDate": "Esemény kezdete",
+    "endDate": "Esemény vége",
+    "bio": "Leírás",
+    "name": "Cím",
+    "place": "Helyszín",
+    "title": "Esemény hozzáadása",
+    "save": "Mentés"
   },
   "welcome": "Üdvözöljük"
 }

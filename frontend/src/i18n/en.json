@@ -131,7 +131,14 @@
     "actions": "Actions"
   },
   "eventList": {
-    "addEvent": "Add new event to your product"
+    "addEvent": "Add event",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "bio": "Description",
+    "name": "Title",
+    "place": "Place",
+    "title": "Add product",
+    "save": "Save product"
   },
   "welcome": "Welcome"
 }

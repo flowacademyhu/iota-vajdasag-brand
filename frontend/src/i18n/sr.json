@@ -129,9 +129,16 @@
     "id": "ID",
     "ownerName": "Korisnik",
     "actions": "Mogućnosti"
-  },
+  },  
   "eventList": {
-    "addEvent": "Dodaj novi događaj"
+    "addEvent": "Dodaj događaj",
+    "startDate": "Početak",
+    "endDate": "Kraj",
+    "bio": "Biografija",
+    "name": "Naslov",
+    "place": "Mesto",
+    "title": "Dodaj novi događaj",
+    "save": "Dodaj"
   },
   "welcome": "Pozdrav"
 }
