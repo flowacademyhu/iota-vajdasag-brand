@@ -3,6 +3,7 @@ package hu.flowacademy.vajdasagbrand.controller;
 import hu.flowacademy.vajdasagbrand.dto.CegAdminItemDTO;
 import hu.flowacademy.vajdasagbrand.dto.ItemDTO;
 import hu.flowacademy.vajdasagbrand.exception.ValidationException;
+import hu.flowacademy.vajdasagbrand.persistence.entity.Language;
 import hu.flowacademy.vajdasagbrand.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class ItemController {
     @ResponseStatus(HttpStatus.CREATED)
     public ItemDTO createItem(@RequestBody ItemDTO itemDTO) throws ValidationException {
 
-       return itemService.createItem(itemDTO);
+        return itemService.createItem(itemDTO);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
@@ -37,15 +38,16 @@ public class ItemController {
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @PutMapping("/items/{id}")
     public ItemDTO updateItem(@PathVariable("id") String id,
-                           @RequestBody ItemDTO item) throws ValidationException {
+                              @RequestBody ItemDTO item) throws ValidationException {
         return itemService.updateItem(item, id);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
     @GetMapping("/items")
     public List<CegAdminItemDTO> getProducts(Authentication authentication,
-                                             @RequestParam(value = "ownerId", required = false) Optional<String> ownerId) throws ValidationException {
-        return itemService.listProducts(Optional.ofNullable(authentication), ownerId);
+                                             @RequestParam(value = "ownerId", required = false) Optional<String> ownerId,
+                                             @RequestParam(value = "language", required = false) Optional<Language> language) throws ValidationException {
+        return itemService.listProducts(Optional.ofNullable(authentication), ownerId, language);
     }
 
     @RolesAllowed({"SuperAdmin", "CegAdmin"})
