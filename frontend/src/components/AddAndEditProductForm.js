@@ -6,18 +6,23 @@ import SelectCategory from '../components/listOfProducts/SelectCategory'
 import ResponseModal from '../components/modals/ResponseModal'
 import { useTranslation } from 'react-i18next'
 
-const defaultValues = {
+const defaultSimpleProduct = {
   name: '',
+  bio: '',
+  website: ''
+}
+
+const defaultValues = {
   contact: '',
   address: '',
   city: '',
   coordinateX: '',
   coordinateY: '',
   phone: '',
-  website: '',
   score: '',
-  subcategory: '',
-  language: {en:{}, hu:{}, sr:{}}
+  language: {en:defaultSimpleProduct, hu:defaultSimpleProduct, sr:defaultSimpleProduct},
+  category: 'ATTRACTION',
+  subcategory: 'HONOURABLES'
 }
 
 const AddAndEditProductForm = ({
