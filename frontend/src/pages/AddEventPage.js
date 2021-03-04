@@ -3,46 +3,46 @@ import { Formik, Form } from 'formik'
 import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
-import 'react-datepicker/dist/react-datepicker.css'
-import DatePicker, { registerLocale } from 'react-datepicker'
-import hu from 'date-fns/locale/hu'
-import '../communications/userApi'
 import InputField from '../components/InputField'
+import ResponseModal from '../components/modals/ResponseModal'
+import EventDatePicker from '../components/listofevents/EventDatePicker'
 import eventAddValidation from '../validations/eventAddValidation'
 import { addEvent } from '../communications/userApi'
-import moment from 'moment'
-import ResponseModal from '../components/modals/ResponseModal'
+import { formatDate } from '../eventHelpers'
 
 const AddEventPage = () => {
-  const { t } = useTranslation()
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
   const [showResponseModal, setShowResponseModal] = useState(false)
+  const [isEventCreationSuccessful, setEventCreationSuccessful] = useState(
+    false
+  )
+  const { t } = useTranslation()
   const { productId } = useParams()
   let history = useHistory()
-  registerLocale('hu', hu)
 
-  const handleSubmit = async (eventData) => {
+  const handleSubmit = async (eventInfo) => {
     try {
-      const eventstart = moment(startDate).format('YYYY.MM.DD hh:mm:ss')
-      const eventend = moment(endDate).format('YYYY.MM.DD hh:mm:ss')
-
-      const newProgram = {
-        ...eventData,
-        eventstart,
-        eventend,
-        itemId: productId,
-      }
-
+      const newProgram = formatDate(startDate, endDate, eventInfo, productId)
       await addEvent(newProgram)
-      history.push('/super-admin/items')
+      setEventCreationSuccessful(true)
+      setShowResponseModal(true)
+      console.log(isEventCreationSuccessful)
     } catch (e) {
+      setEventCreationSuccessful(false)
       setShowResponseModal(true)
     }
   }
 
+  const responseModalTitle = isEventCreationSuccessful
+    ? t('eventList.successful')
+    : t('eventList.unsuccessful')
+
   const onClose = () => {
     setShowResponseModal(false)
+    if (isEventCreationSuccessful) {
+      history.push('/super-admin/items')
+    }
   }
 
   return (
@@ -77,25 +77,19 @@ const AddEventPage = () => {
                 name="place"
                 type="text"
               />
-              <h6 className="m-2">{t('eventList.startDate')}</h6>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                locale="hu"
-                showTimeSelect
-                timeIntervals={15}
-                timeCaption="time"
-                dateFormat="yyyy MMMM d, h:mm aa"
+            </div>
+            <div className="m-2">
+              <EventDatePicker
+                title={t('eventList.startDate')}
+                date={startDate}
+                setDate={setStartDate}
               />
-              <h6 className="m-2">{t('eventList.endDate')}</h6>
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-                locale="hu"
-                showTimeSelect
-                timeIntervals={15}
-                timeCaption="time"
-                dateFormat="yyyy MMMM d, h:mm aa"
+            </div>
+            <div className="m-2">
+              <EventDatePicker
+                title={t('eventList.endDate')}
+                date={endDate}
+                setDate={setEndDate}
               />
             </div>
             <Button variant="primary" type="submit" size="lg" className="m-2">
@@ -107,7 +101,7 @@ const AddEventPage = () => {
       <ResponseModal
         onClose={onClose}
         showResponseModal={showResponseModal}
-        title={t('eventAdd.unsuccessful')}
+        title={responseModalTitle}
       />
     </>
   )
