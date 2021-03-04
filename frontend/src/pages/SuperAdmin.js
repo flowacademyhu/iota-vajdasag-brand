@@ -30,7 +30,7 @@ const SuperAdmin = () => {
       <Route path="/super-admin/events" exact>
         <EventList />
       </Route>
-      <Route path="/super-admin/add-event" exact>
+      <Route path="/super-admin/add-event/:productId" exact>
         <AddEventPage />
       </Route>
     </>
