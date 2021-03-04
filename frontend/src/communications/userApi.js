@@ -9,7 +9,7 @@ export const getUsers = async () => {
   }
 }
 
-export const fetchOneUser = async (userId) => {
+export const getOneUser = async (userId) => {
   try{
     return await api.get(`/users/${userId}`)
   } catch (error) {
