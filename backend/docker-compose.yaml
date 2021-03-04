@@ -17,7 +17,7 @@ services:
     environment: 
       - keycloak.auth-server-url=http://keycloak:8080/auth
       - keycloakBackendClient.serverUrl=http://keycloak:8080/auth
-      - firestore.emulator.host=firebase:8200
+      - firestore.emulator.url=firebase:8200
     ports:
       - 8080:8080
   firebase:
