@@ -3,10 +3,17 @@ import api from './apiInstance'
 export const getUsers = async () => {
   try {
     const response = await api.get('/users')
-    console.log(response.data)
     return response.data.content
   } catch (error) {
     throw new Error('Failed to get users.')
+  }
+}
+
+export const fetchOneUser = async (userId) => {
+  try{
+    return await api.get(`/users/${userId}`)
+  } catch (error) {
+    throw new Error('Failed to get requested user.')
   }
 }
 

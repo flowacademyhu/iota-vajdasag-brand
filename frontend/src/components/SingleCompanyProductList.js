@@ -13,7 +13,7 @@ const SingleCompanyProductList = () => {
 
   return (
     <div>
-      {/*<h1 className="text-center">{owner}</h1>*/}
+      {/*<h1 className="text-center">{owner}</h1>*/}, 
       <ProductTable list="single">
         {companysProducts?.map((product) => (
           <ListElement product={product} key={product.id} />
