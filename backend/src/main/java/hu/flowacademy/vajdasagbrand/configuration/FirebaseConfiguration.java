@@ -24,7 +24,7 @@ import java.util.Optional;
 @Configuration
 public class FirebaseConfiguration {
 
-    @Value("${firestore.emulator.host}")
+    @Value("${firestore.emulator.url:}")
     private String emulatorHost;
     @Value("${firestore.project_id}")
     private String projectId;
@@ -61,7 +61,7 @@ public class FirebaseConfiguration {
                                         .fromPkcs8(
                                                 clientId,
                                                 clientEmail,
-                                                privateKey,
+                                                privateKey.replaceAll("\\\\n", System.lineSeparator()),
                                                 privateKeyId,
                                                 null,
                                                 new HttpTransportOptions.DefaultHttpTransportFactory(), // FIXME,
