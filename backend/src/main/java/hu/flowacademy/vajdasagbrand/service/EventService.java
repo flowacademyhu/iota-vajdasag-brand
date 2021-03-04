@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -66,8 +67,8 @@ public class EventService {
         }
     }
 
-    public Page<EventDTO> listEvents(Optional<String> orderBy, Optional<Integer> pageNum, Optional<Integer> limit) {
-        return eventRepository.findAllEvents(PageRequest.of(pageNum.orElse(defaultPageNumber), limit.orElse(defaultPageLimit), Sort.by(Sort.Direction.DESC, orderBy.orElse(defaultOrderCategory))));
+    public Page<EventDTO> listEvents(Optional<String> orderBy, Optional<Integer> pageNum, Optional<Integer> limit, Optional<String> itemId) {
+        return eventRepository.findAllEvents(PageRequest.of(pageNum.orElse(defaultPageNumber), limit.orElse(defaultPageLimit), Sort.by(Sort.Direction.DESC, orderBy.orElse(defaultOrderCategory))), itemId);
     }
 
     private void modifyEvents(EventDTO event, EventDTO tempEvent) {
