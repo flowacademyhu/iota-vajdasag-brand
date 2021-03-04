@@ -33,14 +33,18 @@ const FullProductList = () => {
           headerCellNames={headerCellNamesItems}
         />
         <tbody>
-          {products?.filter(p => p.deletedAt !== undefined)
-            .map((product) => (
-              !product.deletedAt && <ListElement
-                product={product}
-                key={product.id}
-                searchKeyword={searchKeyword}
-              />
-            ))}
+          {products
+            ?.filter((p) => p.deletedAt !== undefined)
+            .map(
+              (product) =>
+                !product.deletedAt && (
+                  <ListElement
+                    product={product}
+                    key={product.id}
+                    searchKeyword={searchKeyword}
+                  />
+                )
+            )}
         </tbody>
       </table>
     </div>
