@@ -3,6 +3,7 @@ import Highlighter from 'react-highlight-words'
 import DeleteProductButton from './DeleteProductButton'
 import EditProductButton from './EditProductButton'
 import { normalize, highlightableProps } from '../../textHelpers'
+import EventsProductButton, {  } from "../listofevents/EventsProductButton";
 
 const ProductListElement = ({ product, searchKeyword }) => {
   return (
@@ -24,6 +25,7 @@ const ProductListElement = ({ product, searchKeyword }) => {
         <td>
           <DeleteProductButton productId={product.id} />
           <EditProductButton productId={product.id} />
+          <EventsProductButton productId={product.id}/>
         </td>
       </tr>
   )

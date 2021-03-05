@@ -25,7 +25,7 @@ const Home = () => {
       </Route>
       <Route path="/home/items" exact>
         {userRole==="SuperAdmin" && <FullProductList />}
-        {userRole==="CegAdmin" && <h1>Hello lista</h1>}
+        {userRole==="CegAdmin" && <SingleCompanyProductList />}
       </Route>
       <Route path="/home/items/edit/:productId" exact>
         <AddAndEditProductPage/>
@@ -37,7 +37,7 @@ const Home = () => {
         <SingleCompanyProductList />
       </Route>
       <Route exact path="/home/events">
-        <FullEventList />
+      {userRole==="SuperAdmin" && <FullEventList />}
       </Route>
     </>
   )

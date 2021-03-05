@@ -13,7 +13,8 @@ const useLoggedInUser = () => {
       ? 'SuperAdmin'
       : 'CegAdmin'
     const email = decoded?.email
-    return { role, email }
+    const userId=decoded?.sub
+    return { role, email , userId}
   } catch (error) {
     return { role: '', email: '' }
   }

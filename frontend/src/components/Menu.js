@@ -34,11 +34,6 @@ const menuItemsCompanyAdmin = [
     icon: Shop,
   },
   {
-    path: '/home/events',
-    title: 'menu.events',
-    icon: Newspaper,
-  },
-  {
     path: '/logout',
     title: 'menu.signout',
     icon: ArrowBarLeft,

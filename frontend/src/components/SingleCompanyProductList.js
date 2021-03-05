@@ -10,10 +10,13 @@ import { getProductsByOwnerId } from "../communications/userApi";
 import AddNewProductButton from './listOfProducts/AddNewProductButton'
 import Searchbar from './Searchbar'
 import { headerCellNamesItems } from '../sortHelpers'
+import useLoggedInUser from "../hooks/useLoggedInUser";
+
 
 const SingleCompanyProductList = () => {
+  const userId=useLoggedInUser().userId
   const [searchKeyword, setSearchKeyword] = useState('')
-  const { ownerId } = useParams()
+  const { ownerId=userId } = useParams()
   const [products, setProducts] = useState([])
   const user = useUserById(ownerId)
   //let location = useLocation()

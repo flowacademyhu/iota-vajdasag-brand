@@ -10,7 +10,7 @@ const EventsProductButton = ({ productId }) => {
     <>
       <Link
         to={{
-          pathname: '/super-admin/events',
+          pathname: '/home/events',
           state: productId,
         }}
       >
