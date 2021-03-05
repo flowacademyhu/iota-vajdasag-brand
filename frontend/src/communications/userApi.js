@@ -87,9 +87,7 @@ export const fetchOneProduct = async (productId) => {
 
 export const getProductsByOwnerId = async (ownerId) => {
   try {
-    const response = await api.get(`/items?ownerId=${ownerId}`)
-    console.log('response', response)
-    return response.data
+    return await api.get(`/items?ownerId=${ownerId}`)
   } catch (error) {
     throw new Error('The get products request was unsuccessful.')
   }

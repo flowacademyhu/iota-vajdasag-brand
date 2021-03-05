@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import useProductsForCompany from './useProductsById'
 import ProductListElement from './listOfProducts/ProductListElement'
 //import { useLocation } from 'react-router-dom'
 import ListHeader from './listOfProducts/ListHeader'
@@ -19,27 +18,18 @@ const SingleCompanyProductList = () => {
   const user = useUserById(ownerId)
   //let location = useLocation()
   //  const { owner } = location.state
-  const {
-    companysProducts,
-    sortKey,
-    setSortKey,
-    isSortAscending,
-    setAscendingSort,
-  } = useProductsForCompany(ownerId, searchKeyword)
 
-  const onColumnClick = (value) => {
-    setAscendingSort(!isSortAscending)
-    setSortKey(value)
-  }
 
   const fetchingProducts = async () => {
-    return await getProductsByOwnerId(ownerId);
+    const response = await getProductsByOwnerId(ownerId);
+    setProducts(response.data)    
+    console.log('response', response)
   }
 
 
   useEffect(() => {
-    const response = fetchingProducts();
-    setProducts(response)
+      fetchingProducts()    
+
   }, [])
 
 
@@ -58,29 +48,20 @@ const SingleCompanyProductList = () => {
         </tbody>
         <Searchbar setSearchKeyword={setSearchKeyword} />
       </table> */}
-
-      {console.log('products', products)}
       <table className="table table-striped table-sm">
-        <ListHeader
-          onColumnClick={onColumnClick}
-          sortKey={sortKey}
-          isSortAscending={isSortAscending}
-          headerCellNames={headerCellNamesItems}
-        />
         <tbody>
-          <tr>
-            {//products.map(product => {
-              <>
-                <td>{products.name}</td>
-                <td>{products.address}</td>
-                <td>{products.city}</td>
-                <td>{products.category}</td>
-                <td>{products.owner}</td>
-              </>
-              // })
+          {products? 
+              products.map((product) => (
+                <>
+                <td>{product.name}</td>
+                <td>{product.address}</td>
+                <td>{product.category}</td>
+                </>
+              ))
+              
+        :(<h1>kjfbhve</h1>)
             }
-          </tr>
-          {/* {companysProducts?.map((product) => (
+      {/* {companysProducts?.map((product) => (
             <ProductListElement
               product={product}
               key={product.id}
@@ -89,8 +70,8 @@ const SingleCompanyProductList = () => {
           ))} */}
 
         </tbody>
-      </table>
-    </div>
+      </table >
+    </div >
   )
 }
 

@@ -7,6 +7,7 @@ import SingleCompanyProductList from '../components/SingleCompanyProductList'
 import UsersListAdmin from '../components/UsersList'
 import FullProductList from '../components/FullProductList'
 import useLoggedInUser from "../hooks/useLoggedInUser";
+import FullEventList from "../components/FullEventList";
 
 
 const Home = () => {
@@ -34,6 +35,9 @@ const Home = () => {
       </Route>
       <Route exact path="/home/user=:ownerId/items">
         <SingleCompanyProductList />
+      </Route>
+      <Route exact path="/home/events">
+        <FullEventList />
       </Route>
     </>
   )
