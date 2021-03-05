@@ -14,7 +14,7 @@ import Logout from './logout'
 import Registration from '../pages/Registration'
 import JusoftLogo from '../media/jusoftdark1.png'
 import ShowLoggedUserData from '../components/ShowLoggedUserData'
-import ForgettenPassword from '../pages/ForgottenPassword'
+import ForgottenPassword from '../pages/ForgottenPassword'
 
 const Main = () => {
   const { token } = useContext(TokenContext)
