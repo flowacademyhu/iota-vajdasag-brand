@@ -85,12 +85,16 @@ public class KeycloakClientService {
 
     public boolean deleteUser(String username) {
         UsersResource resource = keycloak.realm(keycloakPropertiesHolder.getKeycloakBackendClientRealm()).users();
-        List<UserRepresentation> listOfUsers = resource.search(username);
-        if (listOfUsers.isEmpty()) return false;
-        UserRepresentation userToBeDeleted = listOfUsers.get(0);
-        userToBeDeleted.setEnabled(false);
-        resource.get(userToBeDeleted.getId()).update(userToBeDeleted);
-        return true;
+        return resource
+                .search(username)
+                .stream()
+                .findFirst()
+                .map(userToEnable -> {
+                    userToEnable.setEnabled(false);
+                    resource.get(userToEnable.getId()).update(userToEnable);
+                    return userToEnable;
+                })
+                .isPresent();
     }
 
     private UserRepresentation createUserRepresentation(String email, CredentialRepresentation credential) {
