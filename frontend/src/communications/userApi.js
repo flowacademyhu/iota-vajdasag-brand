@@ -12,7 +12,9 @@ export const getUsers = async () => {
 export const getOneUser = async (ownerId) => {
   try{
     console.log(ownerId)
-    return await api.get(`/users/${ownerId}`)
+    const response=await api.get(`/users/${ownerId}`)
+    console.log('response :>> ', response);
+    return response.data
   } catch (error) {
     throw new Error('Failed to get requested user.')
   }

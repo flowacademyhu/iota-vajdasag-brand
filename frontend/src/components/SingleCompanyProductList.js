@@ -14,7 +14,7 @@ import { headerCellNamesItems } from '../sortHelpers'
 const SingleCompanyProductList = () => {
   const [searchKeyword, setSearchKeyword] = useState('')
   const { ownerId } = useParams()
-  const theUser = useUserById(ownerId)
+  const user = useUserById(ownerId)
   //let location = useLocation()
   //  const { owner } = location.state
   const {
@@ -38,9 +38,8 @@ const SingleCompanyProductList = () => {
       <table className="table table-striped table-sm">
         <ListHeader />
         <tbody>
-          {theUser?.map((user) => (
-            <UserListElement user={user} key={user.id} />
-          ))}
+            <UserListElement user={user}/>
+          
         </tbody>
         <Searchbar setSearchKeyword={setSearchKeyword} />
       </table>
