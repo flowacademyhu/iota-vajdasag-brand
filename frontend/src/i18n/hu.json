@@ -7,7 +7,7 @@
   },
   "editProduct": {
     "userId": "Felhasználó ID",
-    "selectSubCategory": "Válassz alkategóriát",
+    "selectSubCategory": "Válasszon alkategóriát",
     "famous_buildings": "Nevezetes épületek",
     "honourables": "Büszkeségeink",
     "museums": "Múzeumok",
@@ -24,7 +24,7 @@
     "phone": "Telefonszám",
     "save": "Termék elmentése",
     "selectAttraction": "Látnivaló",
-    "selectCategory": "Válassz kategóriát:",
+    "selectCategory": "Válasszon kategóriát:",
     "selectGastronomy": "Gasztronómia",
     "selectHoliday": "Hétvége",
     "selectHotel": "Szálló",
@@ -33,27 +33,27 @@
     "title": "Termék szerkesztése",
     "unsuccessfulEdition": "Sikertelen volt a mentés",
     "website": "Weboldal",
-    "language": "Válasszon nyelvet",
+    "language": "Válasszon beviteli nyelvet",
     "hu": "Magyar",
     "en": "Angol",
     "sr": "Szerb"
   },
   "forgottenPassword": {
-    "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
+    "accepted": "A módosítását fogadtuk. Kérjük figyelje email fiókját",
     "buttontext": "Jelszó megváltoztatása",
-    "noserver": "Szerver hiba, kérjük jöjjön vissza később",
+    "noserver": "Szerver hiba, kérjük térjen vissza később",
     "nouser": "A felhasználó nem található",
-    "title": "Jelszó megváltoztatása"
+    "title": "Új jelszó igénylése"
   },
   "login": {
     "buttontext": "Bejelentkezés",
     "connectionProblems": "Kapcsolati probléma",
     "email": "Email cím",
-    "forgottenPassword": "Elfelejtett jelszó",
-    "invalidData": "Rossz email vagy jelszó",
-    "invalidPassword": "A jelszó minimum 8 karakter",
-    "invalidemail": "Hibás email",
-    "noEmail": "Az email megadása kötelező",
+    "forgottenPassword": "Elfelejtette a jelszavát?",
+    "invalidData": "Hibás email cím vagy jelszó",
+    "invalidPassword": "A jelszó hossza minimum 8 karakter!",
+    "invalidemail": "Hibás email cím",
+    "noEmail": "Az email cím megadása kötelező",
     "other": "Egyéb hiba. Kérjük térjen vissza később",
     "password": "Jelszó",
     "title": "Belépés"
@@ -73,7 +73,7 @@
   "registration": {
     "address": "Lakcím/Székhely",
     "agreement": "Elfogadom az",
-    "alreadyRegistered": "Regisztrált már?",
+    "alreadyRegistered": "Új fiók létrehozása",
     "and": " és az",
     "buttontext": "Regisztráció",
     "email": "Email cím",
@@ -122,8 +122,8 @@
     "products": "Termékek"
   },
   "headerCell": {
-    "enabled": "Sikeres regisztráció",
-    "actions": "Lehetőségek",
+    "enabled": "Jóváhagyott regisztráció?",
+    "actions": "Teendők",
     "registeredAt": "Regisztráció dátuma",
     "email": "E-mail",
     "full_name": "Név",

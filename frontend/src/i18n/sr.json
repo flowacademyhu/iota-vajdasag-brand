@@ -44,7 +44,7 @@
     "noserver": "Server greška, vratite se kasnije",
     "nouser": "Korisnik nije pronađen",
     "other": "Greška, molimo Vas da se vratite kasnije",
-    "title": "Promena lozinke"
+    "title": "Zaboravili ste lozinku?"
   },
   "login": {
     "buttontext": "Prijavite se",
@@ -73,7 +73,7 @@
   "registration": {
     "address": "Adresa/Sedište",
     "agreement": "Prihvatam",
-    "alreadyRegistered": "Da li ste već registrovani?",
+    "alreadyRegistered": "Napravite novi nalog",
     "and": "  i",
     "buttontext": "Registracija",
     "email": "E-mail adresa",
@@ -122,7 +122,7 @@
     "products": "Proizvodi"
   },
   "headerCell": {
-    "enabled": "Prihvaćena registracija",
+    "enabled": "Odobrena registracija?",
     "registeredAt": "Datum registracije",
     "email": "Email",
     "full_name": "Ime",
