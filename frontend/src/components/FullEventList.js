@@ -5,8 +5,6 @@ import EventsListHeader from '../components/listofevents/EventsListHeader'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-
-
 const FullEventList = (props) => {
   const { t } = useTranslation()
   const [events, setEvents] = useState()
@@ -41,7 +39,7 @@ const FullEventList = (props) => {
           {events?.map((event) => (
             <ListElements event={event} />
           ))}
-          {error && <h5>{t("eventList.error")}</h5>}
+          {error && <h5>{t('eventList.error')}</h5>}
         </tbody>
       </table>
     </div>
