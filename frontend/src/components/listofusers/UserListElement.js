@@ -1,8 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import OperationButtons from './OperationButtons'
+import TheUsersProductsButton from './TheUsersProductsButton'
 
-const ListElement = ({
+const UserListElement = ({
   user,
   sendRegistrationApproval,
   setShowConfirmDeletion,
@@ -29,8 +30,9 @@ const ListElement = ({
           showConfirmDeletion={showConfirmDeletion}
         />
       </td>
+      <td>{user.enabled && <TheUsersProductsButton user={user} />}</td>
     </tr>
   )
 }
 
-export default ListElement
+export default UserListElement

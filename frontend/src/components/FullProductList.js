@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import useProducts from '../hooks/useProducts'
-import ListElement from './listOfProducts/ListElement'
+import ProductListElement from './listOfProducts/ProductListElement'
 import ListHeader from './ListHeader'
+
 import AddNewProductButton from './listOfProducts/AddNewProductButton'
 import Searchbar from './Searchbar'
 import { headerCellNamesItems } from '../sortHelpers'
@@ -38,7 +39,7 @@ const FullProductList = () => {
             .map(
               (product) =>
                 !product.deletedAt && (
-                  <ListElement
+                  <ProductListElement
                     product={product}
                     key={product.id}
                     searchKeyword={searchKeyword}

@@ -9,6 +9,15 @@ export const getUsers = async () => {
   }
 }
 
+export const getOneUser = async (ownerId) => {
+  try{
+    const response=await api.get(`/users/${ownerId}`)
+    return response.data
+  } catch (error) {
+    throw new Error('Failed to get requested user.')
+  }
+}
+
 export const login = (value) => {
   return api.post('/login', value)
 }
@@ -73,6 +82,14 @@ export const fetchOneProduct = async (productId) => {
     return await api.get(`/items/${productId}`)
   } catch (error) {
     throw new Error('The GET product request was unsuccessful.')
+  }
+}
+
+export const getProductsByOwnerId = async (ownerId) => {
+  try {
+    return await api.get(`/items?ownerId=${ownerId}`)
+  } catch (error) {
+    throw new Error('The get products request was unsuccessful.')
   }
 }
 
