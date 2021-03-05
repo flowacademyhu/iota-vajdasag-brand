@@ -60,12 +60,6 @@ public class ItemService {
 
     private void validateItemData(ItemDTO item) throws ValidationException {
         subcategoryValidation(item);
-        if (item.getName() == null) {
-            throw new ValidationException("No name was provided.");
-        }
-        if (item.getBio() == null) {
-            throw new ValidationException("No bio-description was provided.");
-        }
         if (item.getScore() == null) {
             throw new ValidationException("Impossible value for score.");
         }
@@ -86,9 +80,6 @@ public class ItemService {
         }
         if (item.getPhone() == null) {
             throw new ValidationException("No phone number was provided");
-        }
-        if (item.getWebsite() == null) {
-            throw new ValidationException("No website was provided.");
         }
         if (item.getContact() == null) {
             throw new ValidationException("No contact was provided.");

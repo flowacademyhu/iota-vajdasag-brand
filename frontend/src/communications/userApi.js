@@ -96,8 +96,9 @@ export const getProductsByOwnerId = async (ownerId) => {
 }
 
 export const fetchProducts = async () => {
+export const fetchProducts = async (language) => {
   try {
-    const response = await api.get('/items')
+    const response = await api.get(`/items?language=${language}`)
     return response.data
   } catch (e) {
     throw new Error('Error when fetching products from API.')
@@ -109,5 +110,21 @@ export const addProduct = async (data) => {
     return await api.post('/items', data)
   } catch (error) {
     throw new Error('Error when sending new product')
+  }
+}
+
+export const getAllEvents = async () => {
+  try {
+    return await api.get('/events')
+  } catch (error) {
+    throw new Error('Error when getting all Events')
+  }
+}
+
+export const getEventsById = async (productId) => {
+  try {
+    return await api.get('/events?item_id=' + productId)
+  } catch (error) {
+    throw new Error('No data from database')
   }
 }
