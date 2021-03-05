@@ -144,5 +144,20 @@
     "unsuccessful": "Sikertelen törlés.",
     "yes": "Igen"
   },
+  "eventList": {
+    "addEvent": "Új esemény",
+    "startDate": "Esemény kezdete",
+    "endDate": "Esemény vége",
+    "bio": "Leírás",
+    "name": "Cím",
+    "place": "Helyszín",
+    "title": "Esemény hozzáadása",
+    "save": "Mentés",
+    "required": "A mező kitöltése kötelező!",
+    "maxHundred": "Legfeljebb 100 karakter megadása lehetséges.",
+    "maxThousand": "Legfeljebb 1000 karakter megadása lehetséges.",
+    "unsuccessful": "Esemény hozzáadása sikertelen.",
+    "successful": "Esemény létrehozása sikeres."
+  },
   "welcome": "Üdvözöljük"
 }

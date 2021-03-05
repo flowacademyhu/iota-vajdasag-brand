@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-const EditProductButton = ({ productId }) => {
+const AddEventButton = ({ productId }) => {
   const { t } = useTranslation()
 
   return (
-    <Link to={`items/edit/${productId}`}>
-      <Button className="mx-2"> {t('editProduct.editButton')}</Button>
+    <Link to={`/super-admin/add-event/${productId}`}>
+      <Button variant="success"> {t('eventList.addEvent')}</Button>
     </Link>
   )
 }
 
-export default EditProductButton
+export default AddEventButton

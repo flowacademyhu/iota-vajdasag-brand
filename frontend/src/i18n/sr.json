@@ -145,5 +145,20 @@
     "unsuccessful": "Neuspešno brisanje",
     "yes": "Da"
   },
+  "eventList": {
+    "addEvent": "Dodaj događaj",
+    "startDate": "Početak",
+    "endDate": "Kraj",
+    "bio": "Biografija",
+    "name": "Naslov",
+    "place": "Mesto",
+    "title": "Dodaj novi događaj",
+    "save": "Dodaj",
+    "required": "Popunjavanje polja je obavezno!",
+    "maxHundred": "Najviše 100 karaktera je omogućeno.",
+    "maxThousand": "Najviše 1000 karaktera je omogućeno.",
+    "unsuccessful": "Dodavanje događaja je neuspiješno.",
+    "successful": "Dodavanje događaja je uspiješno."
+  },
   "welcome": "Pozdrav"
 }

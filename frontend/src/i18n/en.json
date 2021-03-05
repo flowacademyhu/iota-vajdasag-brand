@@ -144,5 +144,20 @@
     "unsuccessful": "Unsuccessful deletion.",
     "yes": "Yes"
   },
+  "eventList": {
+    "addEvent": "Add event",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "bio": "Description",
+    "name": "Title",
+    "place": "Place",
+    "title": "Add product",
+    "save": "Save product",
+    "required": "Required field!",
+    "maxHundred": "Field can contain maximum 100 characters.",
+    "maxThousand": "Field can contain maximum 1000 characters.",
+    "unsuccessful": "Event creation was unsuccessful.",
+    "successful": "Event creation was successful."
+  },
   "welcome": "Welcome"
 }

@@ -33,7 +33,7 @@ const AddAndEditProductForm = ({
   onClose,
   handleSubmit,
   product,
-  validationEdit,
+  itemEditValidation,
   showResponseModal,
   responseModalTitle,
   setShowResponseModal,
@@ -53,7 +53,7 @@ const AddAndEditProductForm = ({
 
       <Formik
         initialValues={initialValues}
-        validationSchema={validationEdit(t('registration.required'))}
+        validationSchema={itemEditValidation(t('registration.required'))}
         onSubmit={handleSubmit}
       >
         <Form>

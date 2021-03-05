@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import UsersList from '../components/UsersList'
 import AddAndEditProductPage from './AddAndEditProductPage'
 import FullProductList from '../components/FullProductList'
+import AddEventPage from './AddEventPage'
 import FullEventList from '../components/FullEventList'
 
 const SuperAdmin = () => {
@@ -26,8 +27,11 @@ const SuperAdmin = () => {
       <Route path="/super-admin/items/edit/:productId" exact>
         <AddAndEditProductPage />
       </Route>
-      <Route path="/super-admin/events">
+      <Route path="/super-admin/events" exact>
         <FullEventList />
+      </Route>
+      <Route path="/super-admin/add-event/:productId" exact>
+        <AddEventPage />
       </Route>
     </>
   )

@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-const validationEdit = () =>
+const itemEditValidation = () =>
   Yup.object().shape({
     address: Yup.string(),
     city: Yup.string(),
@@ -12,4 +12,4 @@ const validationEdit = () =>
     instagram: Yup.string().url(),
   })
 
-export default validationEdit
+export default itemEditValidation
