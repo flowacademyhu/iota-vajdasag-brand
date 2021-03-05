@@ -104,9 +104,9 @@ export const getAllEvents = async () => {
 
 export const getEventsById = async(productId) => {
   try {
-    return await api.get('/events?item_Id=' + productId)
+    return await api.get('/events?item_id=' + productId)
   } catch (error) {
-
+    throw new Error("No data from database")
   }
 }
 

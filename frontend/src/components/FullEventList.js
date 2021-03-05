@@ -10,13 +10,14 @@ const FullEventList = (props) => {
     const location = useLocation()
 
     const getEvents = async () => {
-        const mode = location.state ? location.state : undefined
+        const productId = location.state ? location.state : undefined
         try {
-            if (mode === undefined) {
+            if (productId === undefined) {
                 const response = await getAllEvents()
                 setEvents(response.data.content)
             } else {
-                const response = await getEventsById()
+                const response = await getEventsById(productId)
+                console.log('response', response)
                 setEvents(response.data.content)
             }
 
