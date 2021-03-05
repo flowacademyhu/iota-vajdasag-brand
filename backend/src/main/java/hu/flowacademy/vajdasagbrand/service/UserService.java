@@ -29,7 +29,7 @@ public class UserService {
     private final UIProperties uiProperties;
 
     public UserDTO deleteById(String id) throws ValidationException, UserNotEnabledException {
-        UserDTO deleted = userRepository.findById(id).filter(userDTO -> !userDTO.isEnabled()).orElseThrow(() -> new ValidationException("User with the following id " + id + " not found"));
+        UserDTO deleted = userRepository.findById(id).filter(UserDTO::isEnabled).orElseThrow(() -> new ValidationException("User with the following id " + id + " not found"));
         if (!keycloakClientService.deleteUser(deleted.getEmail())) {
             log.error("deleted {}", deleted);
             throw new ValidationException("No user was found with this id in Keycloak.");
