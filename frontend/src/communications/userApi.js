@@ -76,9 +76,9 @@ export const fetchOneProduct = async (productId) => {
   }
 }
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (language) => {
   try {
-    const response = await api.get('/items')
+    const response = await api.get(`/items?language=${language}`)
     return response.data
   } catch (e) {
     throw new Error('Error when fetching products from API.')

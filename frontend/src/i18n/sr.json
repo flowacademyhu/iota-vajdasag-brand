@@ -33,6 +33,11 @@
     "unsuccessfulEdition": "Neuspešno uređivanje",
     "userId": "ID korisnika",
     "website": "Web stranica"
+    "website": "Web stranica",
+    "language": "Izaberite jezik",
+    "hu": "Mađarski",
+    "en": "Engleski jezik",
+    "sr": "Srpski"
   },
   "eventList": {
     "button": "button",

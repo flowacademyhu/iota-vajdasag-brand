@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchProducts } from '../communications/userApi'
 import { normalize, highlightableProps } from '../textHelpers'
 import { sortColumn } from '../sortHelpers'
+import i18n from '../i18n'
 
 const useProducts = (searchKeyword) => {
   const [listOfAllProducts, setListOfAllProducts] = useState([])
@@ -10,7 +11,7 @@ const useProducts = (searchKeyword) => {
   const [isSortAscending, setAscendingSort] = useState(true)
 
   const getAllProducts = async () => {
-    const fetchedProducts = await fetchProducts()
+    const fetchedProducts = await fetchProducts(i18n.language)
     setListOfAllProducts(fetchedProducts)
   }
 
