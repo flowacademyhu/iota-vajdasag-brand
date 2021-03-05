@@ -39,7 +39,7 @@ const FullProductList = () => {
             .map(
               (product) =>
                 !product.deletedAt && (
-                  <ListElement
+                  <ProductListElement
                     product={product}
                     key={product.id}
                     searchKeyword={searchKeyword}
