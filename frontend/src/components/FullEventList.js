@@ -19,7 +19,6 @@ const FullEventList = (props) => {
         setEvents(response.data.content)
       } else {
         const response = await getEventsById(productId)
-        console.log('response', response)
         setEvents(response.data.content)
       }
     } catch (error) {
