@@ -25,7 +25,7 @@ const ListElement = ({ product, searchKeyword }) => {
       <td>
         <DeleteProductButton productId={product.id} />
         <EditProductButton productId={product.id} />
-        <EventsProductButton productId={product.id}/>
+        <EventsProductButton productId={product.id} />
       </td>
     </tr>
   )

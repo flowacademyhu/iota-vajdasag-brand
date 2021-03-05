@@ -93,20 +93,18 @@ export const addProduct = async (data) => {
   }
 }
 
-
 export const getAllEvents = async () => {
   try {
-    return await api.get("/events")
+    return await api.get('/events')
   } catch (error) {
-    throw new Error("Error when getting all Events")
+    throw new Error('Error when getting all Events')
   }
 }
 
-export const getEventsById = async(productId) => {
+export const getEventsById = async (productId) => {
   try {
     return await api.get('/events?item_id=' + productId)
   } catch (error) {
-    throw new Error("No data from database")
+    throw new Error('No data from database')
   }
 }
-

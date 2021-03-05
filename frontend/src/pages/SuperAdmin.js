@@ -27,7 +27,7 @@ const SuperAdmin = () => {
         <AddAndEditProductPage />
       </Route>
       <Route path="/super-admin/events">
-        <FullEventList/>
+        <FullEventList />
       </Route>
     </>
   )
