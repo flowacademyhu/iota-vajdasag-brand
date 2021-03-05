@@ -144,7 +144,7 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findById(REGISTRATION_ID);
         verify(userRepository, times(1)).save(result);
         verifyNoMoreInteractions(userRepository);
-        verify(keycloakClientService, times(2)).deleteUser(result.getEmail());
+        verify(keycloakClientService, times(1)).deleteUser(result.getEmail());
 
         assertThat(result, notNullValue());
         assertThat(result.isEnabled(), is(false));
@@ -163,7 +163,7 @@ public class UserServiceTest {
     public void givenUserWithEnabledFalse_whenCallingDelete_thenExceptionIsThrown() {
         givenUserRepositoryReturningUser();
 
-        assertThrows(UserNotEnabledException.class, () -> service.deleteById(REGISTRATION_ID));
+        assertThrows(ValidationException.class, () -> service.deleteById(REGISTRATION_ID));
     }
 
     private void givenUserRepositoryReturningUser() {

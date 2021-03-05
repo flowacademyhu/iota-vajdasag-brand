@@ -104,22 +104,8 @@ class ItemServiceTest {
     }
 
     @Test
-    public void givenItemMissingName_whenCreatingItem_thenExceptionIsThrown() {
-        ItemDTO itemData = givenItemMissingName();
-
-        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
-    }
-
-    @Test
     public void givenItemMissingScore_whenCreatingItem_thenExceptionIsThrown() {
         ItemDTO itemData = givenItemMissingScore();
-
-        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
-    }
-
-    @Test
-    public void givenItemMissingBio_whenCreatingItem_thenExceptionIsThrown() {
-        ItemDTO itemData = givenItemMissingBio();
 
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }
@@ -162,13 +148,6 @@ class ItemServiceTest {
     @Test
     public void givenItemMissingPhone_whenCreatingItem_thenExceptionIsThrown() {
         ItemDTO itemData = givenItemMissingPhone();
-
-        assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
-    }
-
-    @Test
-    public void givenItemMissingWebsite_whenCreatingItem_thenExceptionIsThrown() {
-        ItemDTO itemData = givenItemMissingWebsite();
 
         assertThrows(ValidationException.class, () -> itemService.createItem(itemData));
     }

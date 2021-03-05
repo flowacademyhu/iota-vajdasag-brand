@@ -5,6 +5,7 @@ import UsersList from '../components/UsersList'
 import AddAndEditProductPage from './AddAndEditProductPage'
 import FullProductList from '../components/FullProductList'
 import AddEventPage from './AddEventPage'
+import FullEventList from '../components/FullEventList'
 
 const SuperAdmin = () => {
   const { t } = useTranslation()
@@ -27,7 +28,7 @@ const SuperAdmin = () => {
         <AddAndEditProductPage />
       </Route>
       <Route path="/super-admin/events" exact>
-        <h1>Event List</h1>
+        <FullEventList />
       </Route>
       <Route path="/super-admin/add-event/:productId" exact>
         <AddEventPage />

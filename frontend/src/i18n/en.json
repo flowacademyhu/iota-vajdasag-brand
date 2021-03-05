@@ -6,11 +6,6 @@
     "search": "Search"
   },
   "editProduct": {
-    "userId": "User ID",
-    "selectSubCategory": "Select a subcategory",
-    "famous_buildings": "Famous Buildings",
-    "honourables": "Honourables",
-    "museums": "Museums",
     "addNewItemTitle": "Add new product",
     "addNewProduct": "Add new Product",
     "address": "Address",
@@ -20,6 +15,9 @@
     "coordinateX": "Latitude",
     "coordinateY": "Longitude",
     "editButton": "Edit product",
+    "famous_buildings": "Famous Buildings",
+    "honourables": "Honourables",
+    "museums": "Museums",
     "name": "Name",
     "phone": "Phone number",
     "save": "Update product",
@@ -29,10 +27,26 @@
     "selectHoliday": "Holiday",
     "selectHotel": "Hotel",
     "selectInformation": "Information",
+    "selectSubCategory": "Select a subcategory",
     "successfulEdition": "The update was successful",
     "title": "Edit product",
     "unsuccessfulEdition": "The update was unsuccessful",
-    "website": "Website"
+    "userId": "User ID",
+    "website": "Website",
+    "language": "Choose a language",
+    "hu": "Hungarian",
+    "en": "English",
+    "sr": "Serbian"
+  },
+  "eventList": {
+    "button": "Events",
+    "error": "Something went wrong. Please come back later"
+  },
+  "eventListHead": {
+    "endTime": "End Time",
+    "name": "Name",
+    "place": "Place",
+    "startTime": "Start Time"
   },
   "forgottenPassword": {
     "accepted": "Changes accepted. Please read your emails",
@@ -41,6 +55,22 @@
     "nouser": "User not found",
     "other": "Something went wrong. Please come back later",
     "title": "Forgotten password"
+  },
+  "headerCell": {
+    "actions": "Actions",
+    "address": "Address",
+    "category": "Category",
+    "city": "City",
+    "email": "Email",
+    "enabled": "Accepted registration",
+    "full_name": "Name",
+    "id": "ID",
+    "name": "Name",
+    "ownerName": "Owner",
+    "registeredAt": "Date of registration"
+  },
+  "headerUserData": {
+    "loggedIn": "Logged in as "
   },
   "login": {
     "buttontext": "Login",
@@ -94,41 +124,25 @@
     "search": "Search"
   },
   "superAdmin": {
-    "createNewUser": "Create a new user",
-    "name": "Name",
     "active": "Active",
-    "inactive": "Inactive",
+    "createNewUser": "Create a new user",
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
-    "editProducts": "Edit products"
-  },
-  "headerUserData": {
-    "loggedIn": "Logged in as "
+    "editProducts": "Edit products",
+    "inactive": "Inactive",
+    "name": "Name"
   },
   "userListElement": {
-    "close": "Close",
     "approveRegistration": "Approve registration",
-    "no": "No",
-    "yes": "Yes",
-    "successful": "Successful",
-    "unsuccessful": "Unsuccessful deletion.",
-    "delete": "Delete registration",
+    "close": "Close",
     "confirmDelete": "Are you sure you want to delete the user?",
     "confirmDeleteTitle": "Confirm deletion",
-    "products": "Products"
-  },
-  "headerCell": {
-    "enabled": "Accepted registration",
-    "registeredAt": "Date of registration",
-    "email": "Email",
-    "full_name": "Name",
-    "address": "Address",
-    "category": "Category",
-    "city": "City",
-    "id": "ID",
-    "name": "Name",
-    "ownerName": "Owner",
-    "actions": "Actions"
+    "delete": "Delete registration",
+    "no": "No",
+    "products": "Products",
+    "successful": "Successful",
+    "unsuccessful": "Unsuccessful deletion.",
+    "yes": "Yes"
   },
   "eventList": {
     "addEvent": "Add event",

@@ -6,11 +6,6 @@
     "search": "Keresés"
   },
   "editProduct": {
-    "userId": "Felhasználó ID",
-    "selectSubCategory": "Válassz alkategóriát",
-    "famous_buildings": "Nevezetes épületek",
-    "honourables": "Büszkeségeink",
-    "museums": "Múzeumok",
     "addNewItemTitle": "Termék hozzáadása",
     "addNewProduct": "Termék hozzáadása",
     "address": "Cím",
@@ -20,6 +15,9 @@
     "coordinateX": "Szélességi fok",
     "coordinateY": "Hosszúsági fok",
     "editButton": "Szerkesztés",
+    "famous_buildings": "Nevezetes épületek",
+    "honourables": "Büszkeségeink",
+    "museums": "Múzeumok",
     "name": "Megnevezés",
     "phone": "Telefonszám",
     "save": "Termék elmentése",
@@ -29,10 +27,26 @@
     "selectHoliday": "Hétvége",
     "selectHotel": "Szálló",
     "selectInformation": "Tájékoztatás",
+    "selectSubCategory": "Válassz alkategóriát",
     "successfulEdition": "A mentés sikeres volt",
     "title": "Termék szerkesztése",
     "unsuccessfulEdition": "Sikertelen volt a mentés",
-    "website": "Weboldal"
+    "userId": "Felhasználó ID",
+    "website": "Weboldal",
+    "language": "Válasszon nyelvet",
+    "hu": "Magyar",
+    "en": "Angol",
+    "sr": "Szerb"
+  },
+  "eventList": {
+    "button": "Rendezvények",
+    "error": "Hiba. Kérjük jöjjön vissza később"
+  },
+  "eventListHead": {
+    "endTime": "Vége",
+    "name": "Név",
+    "place": "Helyszín",
+    "startTime": "Kezdés"
   },
   "forgottenPassword": {
     "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
@@ -40,6 +54,22 @@
     "noserver": "Szerver hiba, kérjük jöjjön vissza később",
     "nouser": "A felhasználó nem található",
     "title": "Jelszó megváltoztatása"
+  },
+  "headerCell": {
+    "actions": "Lehetőségek",
+    "address": "Cím",
+    "category": "Kategória",
+    "city": "Város",
+    "email": "E-mail",
+    "enabled": "Sikeres regisztráció",
+    "full_name": "Név",
+    "id": "ID",
+    "name": "Név",
+    "ownerName": "Tulajdonos",
+    "registeredAt": "Regisztráció dátuma"
+  },
+  "headerUserData": {
+    "loggedIn": "Bejelentkezve mint "
   },
   "login": {
     "buttontext": "Bejelentkezés",
@@ -94,41 +124,25 @@
     "search": "Keresés"
   },
   "superAdmin": {
-    "createNewUser": "Új felhasználó létrehozása",
-    "name": "Név",
     "active": "Aktív",
-    "inactive": "Inaktív",
+    "createNewUser": "Új felhasználó létrehozása",
     "dateOfRegistration": "Regisztráció időpontja",
     "editBasicData": "Alapadatok szerkesztése",
-    "editProducts": "Termékek szerkesztése"
-  },
-  "headerUserData": {
-    "loggedIn": "Bejelentkezve mint "
+    "editProducts": "Termékek szerkesztése",
+    "inactive": "Inaktív",
+    "name": "Név"
   },
   "userListElement": {
-    "close": "Bezárás",
     "approveRegistration": "Regisztráció jóváhagyása",
-    "no": "Nem",
-    "yes": "Igen",
-    "successful": "Sikeres törlés",
-    "unsuccessful": "Sikertelen törlés.",
-    "delete": "Regisztráció törlése",
+    "close": "Bezárás",
     "confirmDelete": "Biztosan törölni akarja a felhasználót?",
     "confirmDeleteTitle": "Törlés megerősítése",
-    "products": "Termékek"
-  },
-  "headerCell": {
-    "enabled": "Sikeres regisztráció",
-    "actions": "Lehetőségek",
-    "registeredAt": "Regisztráció dátuma",
-    "email": "E-mail",
-    "full_name": "Név",
-    "address": "Cím",
-    "category": "Kategória",
-    "city": "Város",
-    "id": "ID",
-    "name": "Név",
-    "ownerName": "Tulajdonos"
+    "delete": "Regisztráció törlése",
+    "no": "Nem",
+    "products": "Termékek",
+    "successful": "Sikeres törlés",
+    "unsuccessful": "Sikertelen törlés.",
+    "yes": "Igen"
   },
   "eventList": {
     "addEvent": "Új esemény",
