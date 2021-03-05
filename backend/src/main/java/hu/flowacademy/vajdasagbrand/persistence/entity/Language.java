@@ -13,7 +13,7 @@ public enum Language {
         public String translate(String toTranslate) {
             return toTranslate;
         }
-    }, rs {
+    }, sr {
         @Override
         public String translate(String toTranslate) {
             return CyrillicLatinConverter.cyrilicToLatin(toTranslate);

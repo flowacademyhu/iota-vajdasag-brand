@@ -32,7 +32,11 @@
     "successfulEdition": "A mentés sikeres volt",
     "title": "Termék szerkesztése",
     "unsuccessfulEdition": "Sikertelen volt a mentés",
-    "website": "Weboldal"
+    "website": "Weboldal",
+    "language": "Válasszon nyelvet",
+    "hu": "Magyar",
+    "en": "Angol",
+    "sr": "Szerb"
   },
   "forgottenPassword": {
     "accepted": "A módosítását fogadtuk. Kérjük olvassa el emailjeit",
