@@ -6,11 +6,6 @@
     "search": "Pretraga"
   },
   "editProduct": {
-    "userId": "ID korisnika",
-    "selectSubCategory": "Odaberi subkategoriju",
-    "famous_buildings": "Čuvena građevina",
-    "honourables": "Znamenitost",
-    "museums": "Muzej",
     "addNewItemTitle": "Dodaj novi proizvod",
     "addNewProduct": "Dodaj novi proizvod",
     "address": "Adresa",
@@ -20,6 +15,9 @@
     "coordinateX": "Širina",
     "coordinateY": "Dužina",
     "editButton": "Uređivanje",
+    "famous_buildings": "Čuvena građevina",
+    "honourables": "Znamenitost",
+    "museums": "Muzej",
     "name": "Ime",
     "phone": "Broj telefona",
     "save": "Sačuvaj podatke",
@@ -29,14 +27,27 @@
     "selectHoliday": "Odmor",
     "selectHotel": "Hotel",
     "selectInformation": "Informacija",
+    "selectSubCategory": "Odaberi subkategoriju",
     "successfulEdition": "Uspešno uređivanje",
     "title": "Uređivanje proizvoda",
     "unsuccessfulEdition": "Neuspešno uređivanje",
+    "userId": "ID korisnika",
+    "website": "Web stranica",
     "website": "Web stranica",
     "language": "Izaberite jezik",
     "hu": "Mađarski",
     "en": "Engleski jezik",
     "sr": "Srpski"
+  },
+  "eventList": {
+    "button": "button",
+    "error": "error"
+  },
+  "eventListHead": {
+    "endTime": "endTime",
+    "name": "name",
+    "place": "place",
+    "startTime": "startTime"
   },
   "forgottenPassword": {
     "accepted": "Vaš zahtev je prihvaćen. Molimo pročitajte svoje e-mailove",
@@ -45,6 +56,22 @@
     "nouser": "Korisnik nije pronađen",
     "other": "Greška, molimo Vas da se vratite kasnije",
     "title": "Promena lozinke"
+  },
+  "headerCell": {
+    "actions": "Mogućnosti",
+    "address": "Adresa",
+    "category": "Kategorija",
+    "city": "Grad",
+    "email": "Email",
+    "enabled": "Prihvaćena registracija",
+    "full_name": "Ime",
+    "id": "ID",
+    "name": "Ime",
+    "ownerName": "Korisnik",
+    "registeredAt": "Datum registracije"
+  },
+  "headerUserData": {
+    "loggedIn": "Prijavljen kao "
   },
   "login": {
     "buttontext": "Prijavite se",
@@ -98,41 +125,25 @@
     "search": "Pretraga"
   },
   "superAdmin": {
-    "createNewUser": "Create a new user",
-    "name": "Name",
     "active": "Active",
-    "inactive": "Inactive",
+    "createNewUser": "Create a new user",
     "dateOfRegistration": "Date of registration",
     "editBasicData": "Edit basic data",
-    "editProducts": "Edit products"
-  },
-  "headerUserData": {
-    "loggedIn": "Prijavljen kao "
+    "editProducts": "Edit products",
+    "inactive": "Inactive",
+    "name": "Name"
   },
   "userListElement": {
-    "close": "Zatvori",
     "approveRegistration": "Potvrda registracije",
-    "no": "Ne",
-    "yes": "Da",
-    "successful": "Uspešno brisanje",
-    "unsuccessful": "Neuspešno brisanje",
-    "delete": "Brisanje registracije",
+    "close": "Zatvori",
     "confirmDelete": "Sigurno želite brisanje?",
     "confirmDeleteTitle": "Brisanje naloga",
-    "products": "Proizvodi"
-  },
-  "headerCell": {
-    "enabled": "Prihvaćena registracija",
-    "registeredAt": "Datum registracije",
-    "email": "Email",
-    "full_name": "Ime",
-    "address": "Adresa",
-    "category": "Kategorija",
-    "city": "Grad",
-    "name": "Ime",
-    "id": "ID",
-    "ownerName": "Korisnik",
-    "actions": "Mogućnosti"
+    "delete": "Brisanje registracije",
+    "no": "Ne",
+    "products": "Proizvodi",
+    "successful": "Uspešno brisanje",
+    "unsuccessful": "Neuspešno brisanje",
+    "yes": "Da"
   },
   "welcome": "Pozdrav"
 }

@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import UsersList from '../components/UsersList'
 import AddAndEditProductPage from './AddAndEditProductPage'
 import FullProductList from '../components/FullProductList'
+import FullEventList from '../components/FullEventList'
 
 const SuperAdmin = () => {
   const { t } = useTranslation()
@@ -24,6 +25,9 @@ const SuperAdmin = () => {
       </Route>
       <Route path="/super-admin/items/edit/:productId" exact>
         <AddAndEditProductPage />
+      </Route>
+      <Route path="/super-admin/events">
+        <FullEventList />
       </Route>
     </>
   )
