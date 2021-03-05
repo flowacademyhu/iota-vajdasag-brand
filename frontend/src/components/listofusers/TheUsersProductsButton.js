@@ -13,7 +13,7 @@ const TheUsersProductsButton = ({ user }) => {
       //   pathname: `/super-admin/user=${user.id}/items`,
       //   state: { owner: owner },
       // }}
-      to={`/super-admin/user=${user.id}/items`}
+      to={`/home/user=${user.id}/items`}
     >
       <Button>{t('userListElement.products')}</Button>
     </NavLink>
