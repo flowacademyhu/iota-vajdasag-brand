@@ -34,6 +34,10 @@
     "userId": "User ID",
     "website": "Website"
   },
+  "eventList": {
+    "button": "Events",
+    "error": "Something went wrong. Please come back later"
+  },
   "eventListHead": {
     "endTime": "End Time",
     "name": "Name",

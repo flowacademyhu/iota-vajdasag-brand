@@ -34,6 +34,10 @@
     "userId": "Felhasználó ID",
     "website": "Weboldal"
   },
+  "eventList": {
+    "button": "Rendezvények",
+    "error": "Hiba. Kérjük jöjjön vissza később"
+  },
   "eventListHead": {
     "endTime": "Vége",
     "name": "Név",

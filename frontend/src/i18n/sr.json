@@ -34,6 +34,10 @@
     "userId": "ID korisnika",
     "website": "Web stranica"
   },
+  "eventList": {
+    "button": "button",
+    "error": "error"
+  },
   "eventListHead": {
     "endTime": "endTime",
     "name": "name",
