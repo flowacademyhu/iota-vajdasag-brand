@@ -14,7 +14,7 @@ const FullEventList = (props) => {
   const getEvents = async () => {
     const productId = location.state
     try {
-      if (productId === undefined) {
+      if (!productId) {
         const response = await getAllEvents()
         setEvents(response.data.content)
       } else {
