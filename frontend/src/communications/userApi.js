@@ -95,7 +95,6 @@ export const getProductsByOwnerId = async (ownerId) => {
   }
 }
 
-export const fetchProducts = async () => {
 export const fetchProducts = async (language) => {
   try {
     const response = await api.get(`/items?language=${language}`)
