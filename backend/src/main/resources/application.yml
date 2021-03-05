@@ -36,7 +36,7 @@ keycloak:
 userController:
   defaultOrderCategory: registeredAt
   defaultPageNumber: 0
-  defaultPageLimit: 10
+  defaultPageLimit: 100
 
 firestore:
   project_id: iota-vajdasag-brand-b3e95c95
@@ -54,7 +54,7 @@ firestore:
 eventController:
   defaultOrderCategory: eventstart
   defaultPageNumber: 0
-  defaultPageLimit: 10
+  defaultPageLimit: 100
 
 ui:
   loginUrl: "https://iota-vajdasag-brand-b3e95c95.web.app/login"
